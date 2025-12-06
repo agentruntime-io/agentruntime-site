@@ -12,6 +12,10 @@ npm run dev
 
 The dev server runs on http://localhost:5174 by default. Update `vite.config.ts` if you need a different port to avoid conflicts with the main console.
 
+### Environment variables
+
+No environment variables are required—the site now renders using the baked-in content under `src/lib/fallback.ts`.
+
 ## Build & Deploy
 
 ```bash
