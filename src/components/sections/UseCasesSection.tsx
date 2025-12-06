@@ -9,7 +9,7 @@ interface UseCasesSectionProps {
 
 export const UseCasesSection: FC<UseCasesSectionProps> = ({ heading, useCases }) => {
   return (
-    <PageSection id="use-cases" variant="muted">
+    <PageSection id="use-cases" variant="muted" align="center">
       {heading ? <h2 className="section-title">{heading.title}</h2> : null}
       <div className="card-grid">
         {useCases.map((item, index) => (

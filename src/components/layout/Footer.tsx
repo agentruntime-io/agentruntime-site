@@ -38,7 +38,7 @@ export const Footer: FC<FooterProps> = ({
             <h4>Company</h4>
             <a href={`mailto:careers@${domain}`}>Careers</a>
             <a href={`mailto:press@${domain}`}>Press</a>
-            <a href={`mailto:${contactEmail}`}>Contact</a>
+            <a href="/contact">Contact</a>
           </div>
           <div>
             <h4>Resources</h4>

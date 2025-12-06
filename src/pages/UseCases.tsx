@@ -13,7 +13,7 @@ export const UseCasesPage = () => {
     <div className="page">
       <Header documentationUrl={documentationUrl} consoleUrl={consoleUrl} />
       <main>
-        <PageSection>
+        <PageSection align="center">
           {useCasesContent.hero.badge ? <div className="hero-badge">{useCasesContent.hero.badge}</div> : null}
           <h1 className="section-title">{useCasesContent.hero.title}</h1>
           {useCasesContent.hero.subtitle ? (
@@ -55,7 +55,7 @@ export const UseCasesPage = () => {
           </PageSection>
         ))}
 
-        <PageSection>
+        <PageSection align="center">
           <div className="cta-card">
             <h2>{useCasesContent.cta.title}</h2>
             {useCasesContent.cta.subtitle ? <p>{useCasesContent.cta.subtitle}</p> : null}

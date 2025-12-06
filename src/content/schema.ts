@@ -65,6 +65,14 @@ const pricingTierSchema = z.object({
   ctaUrl: z.string().optional(),
 });
 
+const contactFormFieldSchema = z.object({
+  name: z.string(),
+  label: z.string(),
+  type: z.enum(["text", "email", "textarea"]).default("text"),
+  placeholder: z.string().optional(),
+  required: z.boolean().optional(),
+});
+
 export const landingPageSchema = z.object({
   slug: z.string().default("home"),
   locale: z.string().default("en"),
@@ -169,5 +177,50 @@ export const docsPageSchema = z.object({
     secondaryCtaLabel: z.string().optional(),
     secondaryCtaUrl: z.string().optional(),
   }),
+});
+
+export const contactPageSchema = z.object({
+  hero: z.object({
+    title: z.string(),
+    subtitle: z.string().optional(),
+    badge: z.string().optional(),
+  }),
+  intro: z.object({
+    eyebrow: z.string().optional(),
+    title: z.string(),
+    subtitle: z.string().optional(),
+  }),
+  reasons: z
+    .array(
+      z.object({
+        title: z.string(),
+        description: z.string().optional(),
+      }),
+    )
+    .default([]),
+  contactMethods: z.array(
+    z.object({
+      label: z.string(),
+      value: z.string(),
+      href: z.string(),
+      description: z.string().optional(),
+    }),
+  ),
+  form: z.object({
+    title: z.string(),
+    subtitle: z.string().optional(),
+    mailto: z.string(),
+    subject: z.string().default("AgentRuntime contact request"),
+    successMessage: z.string(),
+    fields: z.array(contactFormFieldSchema),
+  }),
+  faq: z
+    .array(
+      z.object({
+        question: z.string(),
+        answer: z.string(),
+      }),
+    )
+    .default([]),
 });
 

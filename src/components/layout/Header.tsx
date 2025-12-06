@@ -10,7 +10,8 @@ const navLinks = [
   { label: "Use cases", href: "#use-cases" },
   { label: "Architecture", href: "#architecture" },
   { label: "Pricing", href: "#pricing" },
-  { label: "Docs", href: "https://docs.agentruntime.io" },
+  { label: "Docs", href: "/docs" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const Header: FC<HeaderProps> = ({ documentationUrl, consoleUrl }) => {

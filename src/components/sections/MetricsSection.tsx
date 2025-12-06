@@ -9,10 +9,10 @@ interface MetricsSectionProps {
 
 export const MetricsSection: FC<MetricsSectionProps> = ({ heading, metrics }) => {
   return (
-    <PageSection>
-      <div className="shell stats-grid">
+    <PageSection align="center">
+      <div className="stats-grid">
         {(heading ? [heading] : []).map((item) => (
-          <div key={item.title} className="stat-card">
+          <div key={item.title} className="stat-card highlight">
             <h3 className="stat-metric">{item.title}</h3>
             {item.subtitle ? <p className="stat-caption">{item.subtitle}</p> : null}
           </div>

@@ -9,7 +9,7 @@ interface FeaturesSectionProps {
 
 export const FeaturesSection: FC<FeaturesSectionProps> = ({ heading, features }) => {
   return (
-    <PageSection id="platform">
+    <PageSection id="platform" align={heading ? "center" : "left"}>
       {heading ? (
         <>
           <h2 className="section-title">{heading.title}</h2>

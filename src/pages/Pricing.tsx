@@ -20,7 +20,7 @@ export const PricingPage = () => {
     <div className="page">
       <Header documentationUrl={documentationUrl} consoleUrl={consoleUrl} />
       <main>
-        <PageSection>
+        <PageSection align="center">
           {pricingContent.hero.badge ? (
             <div className="hero-badge">{pricingContent.hero.badge}</div>
           ) : null}
@@ -35,7 +35,7 @@ export const PricingPage = () => {
           contactEmail={contactEmail}
           consoleUrl={consoleUrl}
         />
-        <PageSection>
+        <PageSection align="center">
           <div className="faq-grid">
             {pricingContent.faq.map((item, index) => (
               <article key={`${item.question}-${index}`}>
@@ -45,7 +45,7 @@ export const PricingPage = () => {
             ))}
           </div>
         </PageSection>
-        <PageSection>
+        <PageSection align="center">
           <div className="cta-card">
             <h2>{pricingContent.cta.title}</h2>
             {pricingContent.cta.subtitle ? <p>{pricingContent.cta.subtitle}</p> : null}

@@ -155,3 +155,46 @@ export interface DocsPageContent {
   };
 }
 
+export interface ContactFormField {
+  name: string;
+  label: string;
+  type: "text" | "email" | "textarea";
+  placeholder?: string;
+  required?: boolean;
+}
+
+export interface ContactPageContent {
+  hero: {
+    title: string;
+    subtitle?: string;
+    badge?: string;
+  };
+  intro: {
+    eyebrow?: string;
+    title: string;
+    subtitle?: string;
+  };
+  reasons: {
+    title: string;
+    description?: string;
+  }[];
+  contactMethods: {
+    label: string;
+    value: string;
+    href: string;
+    description?: string;
+  }[];
+  form: {
+    title: string;
+    subtitle?: string;
+    mailto: string;
+    subject: string;
+    successMessage: string;
+    fields: ContactFormField[];
+  };
+  faq: {
+    question: string;
+    answer: string;
+  }[];
+}
+

@@ -13,7 +13,7 @@ export const DocsPage = () => {
     <div className="page">
       <Header documentationUrl={documentationUrl} consoleUrl={consoleUrl} />
       <main>
-        <PageSection>
+        <PageSection align="center">
           {docsContent.hero.badge ? <div className="hero-badge">{docsContent.hero.badge}</div> : null}
           <h1 className="section-title">{docsContent.hero.title}</h1>
           {docsContent.hero.subtitle ? <p className="section-subtitle">{docsContent.hero.subtitle}</p> : null}
@@ -61,7 +61,7 @@ export const DocsPage = () => {
           </div>
         </PageSection>
 
-        <PageSection>
+        <PageSection align="center">
           <div className="cta-card">
             <h2>{docsContent.cta.title}</h2>
             {docsContent.cta.subtitle ? <p>{docsContent.cta.subtitle}</p> : null}

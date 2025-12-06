@@ -16,7 +16,7 @@ export const PricingSection: FC<PricingSectionProps> = ({
   consoleUrl,
 }) => {
   return (
-    <PageSection id="pricing">
+    <PageSection id="pricing" align="center">
       <div className="pricing-card">
         {heading ? (
           <>
