@@ -14,15 +14,7 @@ The dev server runs on http://localhost:5174 by default. Update `vite.config.ts`
 
 ### Environment variables
 
-Create a `.env` or `.env.local` file to point the site at the Strapi CMS:
-
-```
-VITE_STRAPI_API_URL=https://cms.agentruntime.io
-VITE_STRAPI_LANDING_SLUG=main
-VITE_STRAPI_LOCALE=en
-```
-
-If the CMS is unavailable, the site automatically falls back to baked-in content.
+No environment variables are required—the site now renders using the baked-in content under `src/lib/fallback.ts`.
 
 ## Build & Deploy
 

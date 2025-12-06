@@ -80,3 +80,78 @@ export interface LandingPageContent {
   contactEmail?: string;
 }
 
+export interface PricingPageContent {
+  hero: {
+    title: string;
+    subtitle?: string;
+    badge?: string;
+  };
+  tiers: PricingTier[];
+  faq: {
+    question: string;
+    answer: string;
+  }[];
+  cta: {
+    title: string;
+    subtitle?: string;
+    primaryCtaLabel: string;
+    primaryCtaUrl: string;
+    secondaryCtaLabel?: string;
+    secondaryCtaUrl?: string;
+  };
+}
+
+export interface UseCasesDetail {
+  id: string;
+  title: string;
+  summary?: string;
+  painPoints: string[];
+  solutions: string[];
+  ctaLabel?: string;
+  ctaUrl?: string;
+}
+
+export interface UseCasesPageContent {
+  hero: {
+    title: string;
+    subtitle?: string;
+    badge?: string;
+  };
+  sections: UseCasesDetail[];
+  cta: {
+    title: string;
+    subtitle?: string;
+    primaryCtaLabel: string;
+    primaryCtaUrl: string;
+    secondaryCtaLabel?: string;
+    secondaryCtaUrl?: string;
+  };
+}
+
+export interface DocsPageContent {
+  hero: {
+    title: string;
+    subtitle?: string;
+    badge?: string;
+  };
+  quickstart: string[];
+  sdks: {
+    name: string;
+    description: string;
+    url: string;
+  }[];
+  resources: {
+    title: string;
+    description: string;
+    url: string;
+  }[];
+  cta: {
+    title: string;
+    subtitle?: string;
+    primaryCtaLabel: string;
+    primaryCtaUrl: string;
+    secondaryCtaLabel?: string;
+    secondaryCtaUrl?: string;
+  };
+}
+

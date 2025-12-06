@@ -1,0 +1,110 @@
+{
+  "heroVariants": [
+    {
+      "scenario": "main",
+      "badge": "New",
+      "title": "Orchestrate production AI workflows",
+      "subtitle": "AgentRuntime delivers a secure, multi-tenant foundation for AI-first operations teams.",
+      "footnote": "Trusted by GTM, support, and ops teams.",
+      "primaryCta": {
+        "label": "Launch Console",
+        "url": "https://console.agentruntime.io/onboarding"
+      },
+      "secondaryCta": {
+        "label": "View docs",
+        "url": "https://docs.agentruntime.io"
+      },
+      "steps": [
+        { "title": "Plan workflows", "description": "Model approval loops, guardrails, and fallback paths." },
+        { "title": "Deploy agents", "description": "Roll out GPT/Claude workflows with zero-downtime releases." },
+        { "title": "Measure & iterate", "description": "Track latency, quality, and human-in-the-loop intervention." }
+      ]
+    }
+  ],
+  "featuresHeading": {
+    "title": "Platform pillars",
+    "subtitle": "Ship AI workflows with the controls enterprises expect."
+  },
+  "features": [
+    {
+      "headline": "Policy-aware orchestration",
+      "description": "Multi-tenant isolation, RBAC, and policy-as-code baked into every workflow."
+    },
+    {
+      "headline": "Human-in-the-loop",
+      "description": "Bring supervisors into the loop for approvals, escalations, and audit trails."
+    },
+    {
+      "headline": "Observability out of the box",
+      "description": "Latency, cost, and quality telemetry with rich tracing for every agent call."
+    }
+  ],
+  "useCasesHeading": { "title": "Use cases" },
+  "useCases": [
+    {
+      "title": "Sales engineering copilots",
+      "description": "Generate architectures, demos, and RFx responses with traceable guardrails.",
+      "ctaLabel": "Talk to sales",
+      "ctaUrl": "mailto:hello@agentruntime.io"
+    },
+    {
+      "title": "Customer support automations",
+      "description": "Blend LLM-powered workflows with supervisor checkpoints.",
+      "ctaLabel": "View docs",
+      "ctaUrl": "https://docs.agentruntime.io"
+    }
+  ],
+  "metricsHeading": { "title": "Ready for production teams" },
+  "metrics": [
+    { "metric": "99.9% uptime", "caption": "Global, multi-region runtime" },
+    { "metric": "SOC2 in flight", "caption": "Security-first foundation" },
+    { "metric": "Minutes to launch", "caption": "Start with ready-made blueprints" }
+  ],
+  "architectureHeading": {
+    "title": "Reference architecture",
+    "subtitle": "Composable services built on Rust + Go control planes."
+  },
+  "architecturePanels": [
+    {
+      "heading": "Runtime layer",
+      "description": "Event bus, workflow scheduler, and sandboxed agent runners.",
+      "points": [
+        "Supports OpenAI, Anthropic, and OSS models",
+        "Deterministic retries and compensating actions"
+      ]
+    },
+    {
+      "heading": "Supervisor console",
+      "description": "UI for annotations, approvals, and audit trails.",
+      "points": [
+        "SOC2-ready audit logging",
+        "Supervisor SLAs and escalations"
+      ]
+    }
+  ],
+  "pricingHeading": { "title": "Pricing", "subtitle": "Simple pricing aligned with usage." },
+  "pricingTiers": [
+    {
+      "name": "Starter",
+      "priceDisplay": "Free sandbox",
+      "summary": "Evaluate workflows with 3 team members.",
+      "features": ["Sandbox runtime", "Supervisor console", "Community support"],
+      "ctaLabel": "Launch console",
+      "ctaUrl": "https://console.agentruntime.io/onboarding"
+    },
+    {
+      "name": "Growth",
+      "priceDisplay": "Usage-based",
+      "summary": "Production deployments with security + compliance add-ons.",
+      "features": ["Multi-tenant isolation", "SLA + support", "Dedicated onboarding"],
+      "ctaLabel": "Talk to sales",
+      "ctaUrl": "mailto:hello@agentruntime.io"
+    }
+  ],
+  "footerCopy": "AgentRuntime gives teams a production-ready foundation for orchestrating AI-first operations.",
+  "documentationUrl": "https://docs.agentruntime.io",
+  "consoleUrl": "https://console.agentruntime.io",
+  "statusPageUrl": "https://status.agentruntime.io",
+  "contactEmail": "hello@agentruntime.io"
+}
+
