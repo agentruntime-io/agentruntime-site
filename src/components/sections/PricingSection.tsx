@@ -17,18 +17,19 @@ export const PricingSection: FC<PricingSectionProps> = ({
 }) => {
   return (
     <PageSection id="pricing" align="center">
-      <div className="pricing-card">
+      <div className="pricing-card teaser">
         {heading ? (
           <>
             <h2>{heading.title}</h2>
             {heading.subtitle ? <p>{heading.subtitle}</p> : null}
           </>
         ) : null}
-        <ul>
+        <ul className="pricing-teaser-list">
           {tiers.map((tier, index) => (
             <li key={`${tier.name}-${index}`}>
-              {tier.name} — <strong>{tier.priceDisplay}</strong>{" "}
-              {tier.summary ? `— ${tier.summary}` : null}
+              <span className="pricing-teaser-name">{tier.name}</span> —{" "}
+              <strong>{tier.priceDisplay}</strong>{" "}
+              {tier.summary ? <span className="pricing-teaser-summary">— {tier.summary}</span> : null}
             </li>
           ))}
         </ul>

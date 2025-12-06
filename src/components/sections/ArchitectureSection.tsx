@@ -32,7 +32,7 @@ export const ArchitectureSection: FC<ArchitectureSectionProps> = ({ heading, pan
       </div>
       <div className="architecture-diagram">
         {panels.map((panel, index) => (
-          <div key={`${panel.heading}-${index}`} className="diagram-panel">
+          <div key={`${panel.heading}-${index}`} className="diagram-panel feature-card">
             <h4>{panel.heading}</h4>
             {panel.description ? <p>{panel.description}</p> : null}
             {panel.points.length > 0 ? (

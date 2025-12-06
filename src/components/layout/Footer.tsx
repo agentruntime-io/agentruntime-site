@@ -30,9 +30,9 @@ export const Footer: FC<FooterProps> = ({
         <div className="footer-links">
           <div>
             <h4>Product</h4>
-            <a href="#platform">Platform</a>
-            <a href="#use-cases">Use cases</a>
-            <a href="#architecture">Architecture</a>
+            <a href="/features">Platform</a>
+            <a href="/use-cases">Use cases</a>
+            <a href="/how-it-works">Architecture</a>
           </div>
           <div>
             <h4>Company</h4>
@@ -55,9 +55,9 @@ export const Footer: FC<FooterProps> = ({
       <div className="shell footer-bottom">
         <span>© {new Date().getFullYear()} AgentRuntime. All rights reserved.</span>
         <span className="footer-bottom-links">
-          <a href="#">Privacy</a>
-          <a href="#">Security</a>
-          <a href="#">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/security">Security</a>
+          <a href="/terms">Terms</a>
         </span>
       </div>
     </footer>

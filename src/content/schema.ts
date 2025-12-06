@@ -87,6 +87,27 @@ export const landingPageSchema = z.object({
   architecturePanels: z.array(architecturePanelSchema).default([]),
   pricingHeading: sectionHeadingSchema.optional(),
   pricingTiers: z.array(pricingTierSchema).default([]),
+  testimonials: z
+    .array(
+      z.object({
+        quote: z.string(),
+        author: z.string(),
+        role: z.string().optional(),
+      }),
+    )
+    .default([]),
+  finalCta: z
+    .object({
+      title: z.string(),
+      subtitle: z.string().optional(),
+      primaryCtaLabel: z.string(),
+      primaryCtaUrl: z.string(),
+      secondaryCtaLabel: z.string().optional(),
+      secondaryCtaUrl: z.string().optional(),
+      footnote: z.string().optional(),
+      icon: z.string().optional(),
+    })
+    .optional(),
   footerCopy: z.string().optional(),
   statusPageUrl: z.string().optional(),
   documentationUrl: z.string().optional(),

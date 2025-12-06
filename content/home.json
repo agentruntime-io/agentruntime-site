@@ -101,6 +101,28 @@
       "ctaUrl": "mailto:hello@agentruntime.io"
     }
   ],
+  "testimonials": [
+    {
+      "quote": "AgentRuntime transformed how we handle customer support. We reduced response times by 75% while improving satisfaction scores.",
+      "author": "Sarah Chen",
+      "role": "Engineering Lead, TechFlow"
+    },
+    {
+      "quote": "Reliability and observability gave us confidence to deploy AI agents in production. Absolutely game-changing.",
+      "author": "Marcus Rodriguez",
+      "role": "CTO, DataStream"
+    }
+  ],
+  "finalCta": {
+    "title": "Start your free trial",
+    "subtitle": "Get started in minutes with docs, support, and production-ready guardrails. No credit card required.",
+    "primaryCtaLabel": "Start free trial",
+    "primaryCtaUrl": "https://console.agentruntime.io/onboarding",
+    "secondaryCtaLabel": "Contact sales",
+    "secondaryCtaUrl": "mailto:hello@agentruntime.io",
+    "footnote": "5 agents included • Community support • SOC2 in flight",
+    "icon": "⚡"
+  },
   "footerCopy": "AgentRuntime gives teams a production-ready foundation for orchestrating AI-first operations.",
   "documentationUrl": "https://docs.agentruntime.io",
   "consoleUrl": "https://console.agentruntime.io",

@@ -33,13 +33,22 @@ export const ContactPage = () => {
     <div className="page">
       <Header documentationUrl={documentationUrl} consoleUrl={consoleUrl} />
       <main>
-        <PageSection align="center">
-          {contactContent.hero.badge ? <div className="hero-badge">{contactContent.hero.badge}</div> : null}
-          <h1 className="section-title">{contactContent.hero.title}</h1>
-          {contactContent.hero.subtitle ? (
-            <p className="section-subtitle">{contactContent.hero.subtitle}</p>
-          ) : null}
-        </PageSection>
+        <section className="contact-hero">
+          <div className="image-overlay" />
+          <div className="shell contact-hero-inner">
+            {contactContent.hero.badge ? <div className="hero-badge">{contactContent.hero.badge}</div> : null}
+            <h1 className="section-title">{contactContent.hero.title}</h1>
+            {contactContent.hero.subtitle ? <p className="section-subtitle">{contactContent.hero.subtitle}</p> : null}
+            <div className="cta-actions">
+              <a className="primary-button giant" href={`mailto:${contactEmail}`}>
+                Email us
+              </a>
+              <a className="ghost-button giant" href={documentationUrl}>
+                Visit docs
+              </a>
+            </div>
+          </div>
+        </section>
 
         <PageSection align="center">
           {contactContent.intro.eyebrow ? <p className="eyebrow">{contactContent.intro.eyebrow}</p> : null}
@@ -69,6 +78,13 @@ export const ContactPage = () => {
                   {method.description ? <p>{method.description}</p> : null}
                 </article>
               ))}
+              <div className="support-hours">
+                <p className="eyebrow">Support hours</p>
+                <p>Mon–Fri: 9:00–18:00 PST</p>
+                <p>Sat: 10:00–14:00 PST</p>
+                <p>Sun: Closed</p>
+                <p className="text-muted">24/7 emergency for Enterprise</p>
+              </div>
             </div>
 
             <form className="contact-form" onSubmit={handleSubmit}>

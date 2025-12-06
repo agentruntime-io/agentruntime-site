@@ -73,6 +73,21 @@ export interface LandingPageContent {
   architecturePanels: ArchitecturePanel[];
   pricingHeading?: SectionHeading;
   pricingTiers: PricingTier[];
+  testimonials?: {
+    quote: string;
+    author: string;
+    role?: string;
+  }[];
+  finalCta?: {
+    title: string;
+    subtitle?: string;
+    primaryCtaLabel: string;
+    primaryCtaUrl: string;
+    secondaryCtaLabel?: string;
+    secondaryCtaUrl?: string;
+    footnote?: string;
+    icon?: string;
+  };
   footerCopy?: string;
   statusPageUrl?: string;
   documentationUrl?: string;

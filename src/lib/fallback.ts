@@ -12,7 +12,7 @@ export const fallbackLandingPage: LandingPageContent = {
         "AgentRuntime lets you compose, supervise, and scale autonomous agents with enterprise guardrails. Connect LLMs, APIs, humans-in-the-loop, and lineage tracking—without duct tape.",
       footnote:
         "Trusted by platform, ops, and AI teams delivering outcomes across finance, SaaS, and modern commerce.",
-      primaryCta: { label: "Book a demo", url: "#pricing" },
+      primaryCta: { label: "Book a demo", url: "/pricing" },
       secondaryCta: {
         label: "View documentation",
         url: "https://docs.agentruntime.io",
@@ -71,20 +71,20 @@ export const fallbackLandingPage: LandingPageContent = {
       description:
         "Resolve tickets end-to-end with supervised agents that orchestrate LLMs, knowledge bases, and internal APIs.",
       ctaLabel: "Explore playbook →",
-      ctaUrl: "#pricing",
+      ctaUrl: "/pricing",
     },
     {
       title: "Developer productivity",
       description: "Automate incident response, runbooks, and release checklists with dependable multi-step flows.",
       ctaLabel: "Explore playbook →",
-      ctaUrl: "#pricing",
+      ctaUrl: "/pricing",
     },
     {
       title: "Data intelligence",
       description:
         "Compose data pipelines that fetch, validate, and narrate insights using governed, auditable agents.",
       ctaLabel: "Explore playbook →",
-      ctaUrl: "#pricing",
+      ctaUrl: "/pricing",
     },
   ],
   metricsHeading: {
