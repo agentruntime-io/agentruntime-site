@@ -20,9 +20,9 @@ export const Header: FC<HeaderProps> = ({ documentationUrl, consoleUrl }) => {
   return (
     <header className="site-header">
       <div className="shell">
-        <a className="brand" href="#top">
-          <span className="brand-mark">AR</span>
-          <span className="brand-name">AgentRuntime</span>
+        <a className="brand" href="#top" onClick={() => setOpen(false)}>
+          <img className="brand-mark-inline" src="/brand/mark-512.png" alt="AgentRuntime mark" />
+          <img className="brand-logo" src="/brand/wordmark.svg" alt="AgentRuntime" />
         </a>
         <button
           className="nav-toggle"

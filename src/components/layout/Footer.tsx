@@ -21,7 +21,9 @@ export const Footer: FC<FooterProps> = ({
     <footer className="site-footer">
       <div className="shell footer-grid">
         <div>
-          <div className="brand mark-only">AR</div>
+              <div className="brand mark-only">
+                <img className="brand-mark-img" src="/brand/mark-512.png" alt="AgentRuntime mark" />
+              </div>
           <p className="footer-copy">
             {footerCopy ??
               "AgentRuntime gives teams a production-ready foundation for orchestrating AI-first operations."}

@@ -7,6 +7,9 @@ import { ContactPage } from "../pages/Contact";
 import { FeaturesPage } from "../pages/Features";
 import { HowItWorksPage } from "../pages/HowItWorks";
 import { AboutPage } from "../pages/About";
+import { PrivacyPage } from "../pages/Privacy";
+import { SecurityPage } from "../pages/Security";
+import { TermsPage } from "../pages/Terms";
 
 export const AppRouter = () => (
   <BrowserRouter>
@@ -19,6 +22,9 @@ export const AppRouter = () => (
       <Route path="/features" element={<FeaturesPage />} />
       <Route path="/how-it-works" element={<HowItWorksPage />} />
       <Route path="/about" element={<AboutPage />} />
+      <Route path="/privacy" element={<PrivacyPage />} />
+      <Route path="/security" element={<SecurityPage />} />
+      <Route path="/terms" element={<TermsPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   </BrowserRouter>
