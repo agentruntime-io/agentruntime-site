@@ -4,7 +4,7 @@ import "./styles.css";
 
 function App() {
   // Toggle this to "light" when ready; kept internal for now.
-  const theme: "dark" | "light" = "dark";
+  const theme: "dark" | "light" = "light";
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
