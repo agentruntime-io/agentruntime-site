@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import { Brand } from "./Brand";
 
 interface HeaderProps {
   documentationUrl: string;
@@ -21,11 +22,10 @@ export const Header: FC<HeaderProps> = ({ documentationUrl, consoleUrl }) => {
     <header className="site-header">
       <div className="shell">
         <a className="brand" href="#top" onClick={() => setOpen(false)}>
-          <img className="brand-mark-inline" src="/brand/mark-512.png" alt="AgentRuntime mark" />
-          <img className="brand-logo" src="/brand/wordmark.svg" alt="AgentRuntime" />
+          <Brand />
         </a>
         <button
-          className="nav-toggle"
+          className="nav-toggle nav-toggle-right"
           aria-label="Toggle navigation"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
