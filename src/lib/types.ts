@@ -179,6 +179,10 @@ export interface ContactFormField {
 }
 
 export interface ContactPageContent {
+  enterprise?: {
+    heroSubtitle: string;
+    formSubject: string;
+  };
   hero: {
     title: string;
     subtitle?: string;

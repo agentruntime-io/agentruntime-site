@@ -200,7 +200,15 @@ export const docsPageSchema = z.object({
   }),
 });
 
+const enterpriseContentSchema = z
+  .object({
+    heroSubtitle: z.string(),
+    formSubject: z.string(),
+  })
+  .optional();
+
 export const contactPageSchema = z.object({
+  enterprise: enterpriseContentSchema,
   hero: z.object({
     title: z.string(),
     subtitle: z.string().optional(),
@@ -231,8 +239,10 @@ export const contactPageSchema = z.object({
     title: z.string(),
     subtitle: z.string().optional(),
     mailto: z.string(),
+    formEndpoint: z.string().optional(),
     subject: z.string().default("AgentRuntime contact request"),
     successMessage: z.string(),
+    successMessagePost: z.string().optional(),
     fields: z.array(contactFormFieldSchema),
   }),
   faq: z

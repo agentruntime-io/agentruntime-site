@@ -43,12 +43,18 @@
       "description": "Check real-time platform health and upcoming maintenance."
     }
   ],
+  "enterprise": {
+    "heroSubtitle": "Interested in Enterprise? Tell us about your needs.",
+    "formSubject": "[Enterprise] AgentRuntime contact request"
+  },
   "form": {
     "title": "Tell us about your team",
     "subtitle": "This helps us prep the right engineers and sample playbooks before we hop on a call.",
     "mailto": "hello@agentruntime.io",
+    "formEndpoint": "http://localhost:8080/v1/contact",
     "subject": "AgentRuntime contact request",
     "successMessage": "Thanks! We just opened an email for you—feel free to add any extra context before sending.",
+    "successMessagePost": "Thanks! We’ve received your message and will reply within one business day.",
     "fields": [
       {
         "name": "name",
