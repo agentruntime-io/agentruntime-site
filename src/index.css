@@ -1,0 +1,328 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* AgentRuntime Design System - Professional sky-inspired theme */
+
+@layer base {
+  :root {
+    /* Sky-inspired background colors */
+    --background: 210 20% 98%;
+    --foreground: 222 84% 4.9%;
+
+    /* Card and surface colors */
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 4.9%;
+
+    /* Brand colors - professional blues */
+    --primary: 213 94% 68%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    /* Muted colors for subtle elements */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    /* Accent colors */
+    --accent: 213 94% 68%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Destructive colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Border and input colors */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 213 94% 68%;
+
+    /* Design tokens */
+    --radius: 0.75rem;
+    
+    /* Custom gradients */
+    --gradient-sky: linear-gradient(135deg, hsl(213 94% 68%) 0%, hsl(201 79% 56%) 50%, hsl(210 40% 96%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(213 94% 68% / 0.1) 0%, hsl(210 20% 98%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(210 40% 98%) 100%);
+    
+    /* Shadows */
+    --shadow-elegant: 0 10px 40px -10px hsl(213 94% 68% / 0.15);
+    --shadow-card: 0 4px 20px -4px hsl(213 94% 68% / 0.1);
+    
+    /* Animation variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Futuristic dark space theme */
+    --background: 222 47% 4%;
+    --foreground: 210 40% 98%;
+
+    /* Card and surface colors - dark industrial */
+    --card: 224 47% 6%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 224 47% 6%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Futuristic primary - electric cyan/blue */
+    --primary: 193 100% 60%;
+    --primary-foreground: 222 47% 4%;
+
+    /* Dark secondary with subtle glow */
+    --secondary: 217 32% 12%;
+    --secondary-foreground: 210 40% 98%;
+
+    /* Muted dark tones */
+    --muted: 217 32% 12%;
+    --muted-foreground: 215 20% 65%;
+
+    /* Accent - electric purple for sci-fi feel */
+    --accent: 269 100% 70%;
+    --accent-foreground: 222 47% 4%;
+
+    /* Destructive - red warning glow */
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Dark borders and inputs */
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 193 100% 60%;
+
+    /* Custom dark gradients - futuristic space theme */
+    --gradient-sky: linear-gradient(135deg, hsl(193 100% 60%) 0%, hsl(269 100% 70%) 50%, hsl(222 47% 4%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(193 100% 60% / 0.1) 0%, hsl(222 47% 4%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(224 47% 6%) 0%, hsl(217 32% 12%) 100%);
+    
+    /* Futuristic shadows with glow effects */
+    --shadow-elegant: 0 10px 40px -10px hsl(193 100% 60% / 0.3);
+    --shadow-card: 0 4px 20px -4px hsl(193 100% 60% / 0.2);
+    --shadow-glow: 0 0 20px hsl(193 100% 60% / 0.4);
+    --shadow-beam: 0 0 40px hsl(269 100% 70% / 0.3);
+
+    /* Sidebar dark theme */
+    --sidebar-background: 222 47% 4%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 193 100% 60%;
+    --sidebar-primary-foreground: 222 47% 4%;
+    --sidebar-accent: 217 32% 12%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 32% 17%;
+    --sidebar-ring: 193 100% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer components {
+  /* Hero section styling */
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+  
+  /* Card components */
+  .card-gradient {
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+  }
+  
+  /* Dark mode futuristic effects */
+  .dark .card-gradient {
+    box-shadow: var(--shadow-glow);
+    border: 1px solid hsl(193 100% 60% / 0.1);
+  }
+  
+  .dark .card-gradient:hover {
+    box-shadow: var(--shadow-beam);
+    border: 1px solid hsl(193 100% 60% / 0.3);
+  }
+  
+  /* Button variants */
+  .btn-hero {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl;
+    transition: var(--transition-smooth);
+  }
+  
+  .dark .btn-hero {
+    box-shadow: 0 0 20px hsl(193 100% 60% / 0.3);
+  }
+  
+  .dark .btn-hero:hover {
+    box-shadow: 0 0 30px hsl(193 100% 60% / 0.5);
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground;
+    transition: var(--transition-smooth);
+  }
+  
+  /* Futuristic light beam effects */
+  .dark .light-beam {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .dark .light-beam::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(193 100% 60% / 0.3), transparent);
+    animation: beam 3s infinite;
+  }
+  
+  /* Space grid background */
+  .dark .space-grid {
+    background-image: 
+      linear-gradient(hsl(193 100% 60% / 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(193 100% 60% / 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  /* Glowing text effect */
+  .dark .glow-text {
+    text-shadow: 0 0 10px hsl(193 100% 60% / 0.5);
+  }
+  
+  /* Text animations */
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  .fade-in-left {
+    animation: fadeInLeft 0.8s ease-out forwards;
+  }
+  
+  .fade-in-right {
+    animation: fadeInRight 0.8s ease-out forwards;
+  }
+  
+  /* Hover effects */
+  .hover-lift {
+    transition: var(--transition-smooth);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elegant);
+  }
+  
+  .dark .hover-lift:hover {
+    box-shadow: var(--shadow-beam);
+  }
+}
+
+@layer utilities {
+  /* Animation keyframes */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Futuristic beam animation */
+  @keyframes beam {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+  
+  /* Pulse glow animation */
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(193 100% 60% / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(193 100% 60% / 0.6);
+    }
+  }
+  
+  /* Space particle animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  /* Utility classes */
+  .text-gradient {
+    background: var(--gradient-sky);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Dark mode specific utilities */
+  .dark .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+  
+  .dark .float-particle {
+    animation: float 6s ease-in-out infinite;
+  }
+}

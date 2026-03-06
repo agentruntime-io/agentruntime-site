@@ -1,33 +1,73 @@
-# AgentRuntime Marketing Site
+# Welcome to your Lovable project
 
-A lightweight Vite + React project for the public-facing landing page at `agentruntime.io`. This project lives alongside the console (`webapp/`) and BFF (`bff/`), but ships independently.
+## Project info
 
-## Development
+**URL**: https://lovable.dev/projects/2bd4f3c2-5061-445b-86b5-020d195eed12
 
-```bash
-cd agentruntime-site
-npm install
+## How can I edit this code?
+
+There are several ways of editing your application.
+
+**Use Lovable**
+
+Simply visit the [Lovable Project](https://lovable.dev/projects/2bd4f3c2-5061-445b-86b5-020d195eed12) and start prompting.
+
+Changes made via Lovable will be committed automatically to this repo.
+
+**Use your preferred IDE**
+
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+
+Follow these steps:
+
+```sh
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
+
+# Step 2: Navigate to the project directory.
+cd <YOUR_PROJECT_NAME>
+
+# Step 3: Install the necessary dependencies.
+npm i
+
+# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
 
-The dev server runs on http://localhost:5174 by default. Update `vite.config.ts` if you need a different port to avoid conflicts with the main console.
+**Edit a file directly in GitHub**
 
-### Environment variables
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
 
-No environment variables are required—the site now renders using the baked-in content under `src/lib/fallback.ts`.
+**Use GitHub Codespaces**
 
-## Build & Deploy
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-```bash
-npm run build
-npm run preview
-```
+## What technologies are used for this project?
 
-The output in `dist/` is static and can be hosted on any CDN or static host (Netlify, Vercel, S3 + CloudFront, etc.).
+This project is built with:
 
-## Notes
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
 
-- The console lives at `console.agentruntime.io`; keep DNS, caching, and deployment pipelines separate from the marketing site.
-- Content is currently static. When you introduce a CMS or blog, add adapters in `src/` or consume a headless CMS via API.
-- Update hero copy, pricing, and CTA targets as you define GTM motions. Buttons currently route to docs, sales email, and console entry points.
+## How can I deploy this project?
 
+Simply open [Lovable](https://lovable.dev/projects/2bd4f3c2-5061-445b-86b5-020d195eed12) and click on Share -> Publish.
+
+## Can I connect a custom domain to my Lovable project?
+
+Yes, you can!
+
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
