@@ -41,7 +41,7 @@ const Contact = () => {
       const lastName = String(formData.get("lastName") ?? "").trim();
       const subject = isEnterpriseSource
         ? "[Enterprise] AgentRuntime contact request"
-        : (String(formData.get("subject") ?? "").trim() || "AgentRuntime contact request";
+        : (String(formData.get("subject") ?? "").trim() || "AgentRuntime contact request");
 
       const footerSuffix = isEnterpriseSource
         ? "\n\nSource: Enterprise (Billing CTA)\nShared via agentruntime.io/contact"
