@@ -1,3 +1,5 @@
+import { FormEvent, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,7 +17,71 @@ import {
 } from "lucide-react";
 import contactBackground from "@/assets/contact-background.jpg";
 
+const formEndpoint =
+  (import.meta.env.VITE_CONTACT_FORM_ENDPOINT as string | undefined)?.trim() || "";
+
 const Contact = () => {
+  const [searchParams] = useSearchParams();
+  const source = searchParams.get("source");
+  const isEnterpriseSource = source === "enterprise";
+
+  const [status, setStatus] = useState<"idle" | "success" | "error" | "submitting">("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    if (formEndpoint) {
+      setStatus("submitting");
+      setErrorMessage("");
+
+      const firstName = String(formData.get("firstName") ?? "").trim();
+      const lastName = String(formData.get("lastName") ?? "").trim();
+      const subject = isEnterpriseSource
+        ? "[Enterprise] AgentRuntime contact request"
+        : (String(formData.get("subject") ?? "").trim() || "AgentRuntime contact request";
+
+      const footerSuffix = isEnterpriseSource
+        ? "\n\nSource: Enterprise (Billing CTA)\nShared via agentruntime.io/contact"
+        : "\n\nShared via agentruntime.io/contact";
+
+      const payload: Record<string, string> = {
+        _subject: subject,
+        _replyto: (formData.get("email") as string) ?? "",
+        name: [firstName, lastName].filter(Boolean).join(" ") || "—",
+        email: (formData.get("email") as string) ?? "",
+        company: String(formData.get("company") ?? "").trim(),
+        message: (String(formData.get("message") ?? "").trim()) + footerSuffix,
+        website: String(formData.get("website") ?? "").trim(),
+      };
+      if (source) payload.source = source;
+
+      try {
+        const res = await fetch(formEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(text || `Request failed (${res.status})`);
+        }
+        setStatus("success");
+        form.reset();
+        window.setTimeout(() => setStatus("idle"), 8000);
+      } catch (err) {
+        setStatus("error");
+        setErrorMessage(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      }
+      return;
+    }
+
+    setStatus("error");
+    setErrorMessage("There seems to be an issue. Please contact hello@agentruntime.io directly. Sorry for the inconvenience.");
+  };
+
   const contactMethods = [
     {
       icon: Headphones,
@@ -81,48 +147,81 @@ const Contact = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="firstName">First Name</Label>
-                  <Input id="firstName" placeholder="John" />
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
+                {formEndpoint ? (
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="sr-only"
+                    style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px" }}
+                  />
+                ) : null}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="firstName">First Name</Label>
+                    <Input id="firstName" name="firstName" placeholder="John" required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="lastName">Last Name</Label>
+                    <Input id="lastName" name="lastName" placeholder="Doe" required />
+                  </div>
                 </div>
+                
                 <div className="space-y-2">
-                  <Label htmlFor="lastName">Last Name</Label>
-                  <Input id="lastName" placeholder="Doe" />
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" name="email" type="email" placeholder="john@company.com" required />
                 </div>
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="john@company.com" />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="company">Company</Label>
-                <Input id="company" placeholder="Acme Corp" />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="subject">Subject</Label>
-                <Input id="subject" placeholder="How can we help?" />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="message">Message</Label>
-                <Textarea 
-                  id="message" 
-                  placeholder="Tell us about your project and how AgentRuntime can help..."
-                  rows={5}
-                />
-              </div>
-              
-              <Button variant="hero" size="lg" className="w-full">
-                Send Message
-              </Button>
-              
-              <p className="text-sm text-muted-foreground text-center">
-                We typically respond within one business day.
-              </p>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="company">Company</Label>
+                  <Input id="company" name="company" placeholder="Acme Corp" />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="subject">Subject</Label>
+                  <Input id="subject" name="subject" placeholder="How can we help?" />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="message">Message</Label>
+                  <Textarea 
+                    id="message" 
+                    name="message"
+                    placeholder="Tell us about your project and how AgentRuntime can help..."
+                    rows={5}
+                    required
+                  />
+                </div>
+                
+                <Button
+                  variant="hero"
+                  size="lg"
+                  className="w-full"
+                  type="submit"
+                  disabled={status === "submitting"}
+                >
+                  {status === "submitting" ? "Sending…" : "Send Message"}
+                </Button>
+                
+                {status === "success" && (
+                  <p className="text-sm text-green-600 dark:text-green-400">
+                    Thanks! We've received your message and will reply within one business day.
+                  </p>
+                )}
+                {status === "error" && errorMessage && (
+                  <p className="text-sm text-destructive">{errorMessage}</p>
+                )}
+                
+                <p className="text-sm text-muted-foreground text-center">
+                  We typically respond within one business day.
+                </p>
+              </form>
             </CardContent>
           </Card>
 
