@@ -10,25 +10,25 @@ const About = () => {
       name: "Sarah Chen",
       role: "CEO & Co-Founder",
       bio: "Former VP of Engineering at Stripe. Expert in distributed systems and developer tools with 15+ years experience.",
-      image: "/api/placeholder/150/150"
+      image: "/placeholder.svg"
     },
     {
       name: "Marcus Rodriguez",
       role: "CTO & Co-Founder", 
       bio: "Ex-Principal Engineer at Google. Specialist in AI/ML infrastructure and scalable agent orchestration platforms.",
-      image: "/api/placeholder/150/150"
+      image: "/placeholder.svg"
     },
     {
       name: "Dr. Emily Watson",
       role: "VP of Product",
       bio: "Former Product Lead at Microsoft Azure. PhD in Computer Science with focus on human-AI interaction design.",
-      image: "/api/placeholder/150/150"
+      image: "/placeholder.svg"
     },
     {
       name: "David Kim",
       role: "Head of Engineering",
       bio: "Previously Senior Staff Engineer at Uber. Builds developer platforms that scale to millions of operations daily.",
-      image: "/api/placeholder/150/150"
+      image: "/placeholder.svg"
     }
   ];
 
