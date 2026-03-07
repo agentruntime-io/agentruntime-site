@@ -1,116 +1,149 @@
-import { Header } from "../components/layout/Header";
-import { Footer } from "../components/layout/Footer";
-import { homeContent } from "../content";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { 
+  Code2, 
+  Settings, 
+  Play, 
+  Database, 
+  GitBranch, 
+  Eye, 
+  BarChart3, 
+  Shield, 
+  History, 
+  FileText,
+  ExternalLink
+} from "lucide-react";
+import featuresBackground from "@/assets/features-background.jpg";
 
-const featureDetails = [
-  {
-    title: "Agent registration",
-    description:
-      "Import agents via API, Swagger, or manual form. Automatic schema extraction, dependency mapping, and validation.",
-    points: ["Swagger/OpenAPI import", "Schema linting", "Dependency resolution", "Versioning & rollback"],
-  },
-  {
-    title: "Simulation & compile",
-    description:
-      "Pre-flight checks, dry-runs, and dependency analysis before production. Catch errors early with structured testing.",
-    points: ["Dry-run validation", "Flow simulation", "Pre-flight checks", "Safety rails"],
-  },
-  {
-    title: "Runtime controls",
-    description:
-      "Programmatic triggers, pause/resume, controlled looping, parallel and nested runs with real-time monitoring.",
-    points: ["Parallel execution", "Pause/resume", "Loop controls", "Run-time overrides"],
-  },
-  {
-    title: "Observability",
-    description:
-      "Structured logs, traces, and run-level drilldowns. OpenTelemetry/Jaeger support with real-time dashboards.",
-    points: ["Tracing & spans", "Structured logs", "Live dashboards", "Alerts & status"],
-  },
-  {
-    title: "Security & tenancy",
-    description:
-      "RBAC, policy-as-code, circuit breakers, and tenant isolation. Built for enterprise deployments.",
-    points: ["RBAC & audit", "Policy-as-code", "Circuit breakers", "Tenant isolation"],
-  },
-  {
-    title: "Data handling",
-    description:
-      "Schema validation, encrypted transports, large payload refs. Safe, efficient data processing at scale.",
-    points: ["Schema validation", "Encrypted transport", "Payload refs", "Retention controls"],
-  },
-];
-
-export const FeaturesPage = () => {
-  const documentationUrl = homeContent.documentationUrl ?? "https://docs.agentruntime.io";
-  const consoleUrl = homeContent.consoleUrl ?? "/console";
-  const statusUrl = homeContent.statusPageUrl ?? "https://status.agentruntime.io";
-  const contactEmail = homeContent.contactEmail ?? "hello@agentruntime.io";
+const Features = () => {
+  const features = [
+    {
+      icon: Code2,
+      title: "Agent Registration",
+      description: "Import MCPs via code, API, Swagger or manual form. Extract IDs, schemas, and tooling automatically with intelligent dependency resolution.",
+    },
+    {
+      icon: Settings,
+      title: "Simulation & Compile",
+      description: "Pre-flight dependency analysis, schema linting, and dry-run validation. Catch errors before deployment with comprehensive testing frameworks.",
+    },
+    {
+      icon: Play,
+      title: "Runtime API",
+      description: "Programmatic triggers, pause/resume, controlled looping, parallel and nested runs. Full control over agent execution with real-time monitoring.",
+    },
+    {
+      icon: Database,
+      title: "Context Management",
+      description: "Redis-backed context snapshots with run_id/parent_run_id tracking. Real-time updates with persistent state management across runs.",
+    },
+    {
+      icon: GitBranch,
+      title: "Flow Management",
+      description: "Type-safe JSON handoffs, schema-driven branching, LLM-powered decision fallbacks. Build complex workflows with confidence and reliability.",
+    },
+    {
+      icon: Eye,
+      title: "Logging & Tracing",
+      description: "OpenTelemetry/Jaeger integration, structured logs, run-level and node-level drilldowns. Complete visibility into agent behavior and performance.",
+    },
+    {
+      icon: BarChart3,
+      title: "Post-Run Analytics",
+      description: "Performance dashboards, pattern mining, cost optimization recommendations. Turn execution data into actionable insights for improvement.",
+    },
+    {
+      icon: Shield,
+      title: "Security & Multi-Tenancy",
+      description: "Per-key OAuth, SLIs/SLOs, circuit breakers, tenant isolation. Enterprise-grade security with comprehensive access controls and monitoring.",
+    },
+    {
+      icon: History,
+      title: "Versioning & Rollback",
+      description: "Immutable workflows, side-by-side execution, deterministic replay. Safely manage updates and rollbacks with complete version history.",
+    },
+    {
+      icon: FileText,
+      title: "Data Handling",
+      description: "Pydantic/JSON Schema validation, encrypted transports, large payload references. Secure and efficient data processing at any scale.",
+    },
+  ];
 
   return (
-    <div className="page">
-      <Header documentationUrl={documentationUrl} consoleUrl={consoleUrl} />
-      <main>
-        <section className="feature-hero">
-          <div className="image-overlay" />
-          <div className="shell feature-hero-inner">
-            <h1 className="section-title">Features built for production AI</h1>
-            <p className="section-subtitle">
-              Register, test, and run supervised AI agents with policy-aware orchestration, deep observability, and
-              enterprise-grade controls.
+    <div className="min-h-screen bg-background">
+      {/* Hero Section with Background */}
+      <section 
+        className="relative py-32 overflow-hidden"
+        style={{
+          backgroundImage: `url(${featuresBackground})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 fade-in-up">
+            Powerful Features for
+            <span className="text-gradient block">Agent Orchestration</span>
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto fade-in-up">
+            Everything you need to register, test, run, and monitor AI agents at scale. 
+            Built for developers who demand reliability, performance, and complete control.
+          </p>
+        </div>
+      </section>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {features.map((feature, index) => {
+            const IconComponent = feature.icon;
+            return (
+              <Card 
+                key={feature.title} 
+                className="card-gradient hover-lift transition-all duration-300"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <CardHeader>
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                    <IconComponent className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle className="text-xl font-semibold text-foreground">
+                    {feature.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-muted-foreground text-base leading-relaxed">
+                    {feature.description}
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+
+        {/* CTA Section */}
+        <div className="text-center">
+          <div className="bg-gradient-card p-8 rounded-2xl shadow-lg max-w-2xl mx-auto">
+            <h2 className="text-2xl font-bold text-foreground mb-4">
+              Ready to explore the full API?
+            </h2>
+            <p className="text-muted-foreground mb-6">
+              Dive into our comprehensive documentation and start building with AgentRuntime today.
             </p>
-            <div className="cta-actions">
-              <a className="primary-button giant" href={consoleUrl}>
-                Launch console
-              </a>
-              <a className="ghost-button giant" href={documentationUrl}>
-                View docs
-              </a>
-            </div>
+            <Button variant="hero" size="lg" className="gap-2">
+              <ExternalLink className="h-5 w-5" />
+              Explore the Full API
+            </Button>
           </div>
-        </section>
-
-        <section className="feature-grid-section">
-          <div className="shell">
-            <div className="feature-grid-page">
-              {featureDetails.map((item, idx) => (
-                <article key={item.title} className="feature-card" style={{ animationDelay: `${idx * 80}ms` }}>
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-                  <ul>
-                    {item.points.map((p) => (
-                      <li key={p}>{p}</li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="feature-cta">
-          <div className="shell feature-cta-card">
-            <h2 className="section-title">Ready to explore the full API?</h2>
-            <p className="section-subtitle">Dive into docs and ship your first supervised workflow in minutes.</p>
-            <div className="cta-actions">
-              <a className="primary-button giant" href={documentationUrl}>
-                Explore API docs
-              </a>
-              <a className="ghost-button giant" href={consoleUrl}>
-                Start free
-              </a>
-            </div>
-          </div>
-        </section>
-      </main>
-      <Footer
-        documentationUrl={documentationUrl}
-        consoleUrl={consoleUrl}
-        statusUrl={statusUrl}
-        contactEmail={contactEmail}
-        footerCopy={homeContent.footerCopy}
-      />
+        </div>
+      </div>
     </div>
   );
 };
 
+export default Features;
