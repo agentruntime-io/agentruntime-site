@@ -11,7 +11,6 @@ const Navigation = () => {
   const isActive = (path: string) => location.pathname === path;
 
   const navItems = [
-    { path: "/", label: "Home" },
     { path: "/features", label: "Features" },
     { path: "/how-it-works", label: "How It Works" },
     { path: "/pricing", label: "Pricing" },
@@ -24,18 +23,19 @@ const Navigation = () => {
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border dark:space-grid">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <div className="relative">
-              <Code className="h-8 w-8 text-primary dark:glow-text transition-all duration-300" />
-              <Zap className="h-4 w-4 text-accent absolute -top-1 -right-1 dark:pulse-glow" />
-            </div>
-            <span className="text-xl font-bold text-foreground dark:glow-text">AgentRuntime</span>
-          </Link>
+        <div className="flex items-center h-16">
+          {/* Logo + Nav links grouped */}
+          <div className="flex items-center gap-8">
+            <Link to="/" className="flex items-center space-x-2 group">
+              <div className="relative">
+                <Code className="h-8 w-8 text-primary dark:glow-text transition-all duration-300" />
+                <Zap className="h-4 w-4 text-accent absolute -top-1 -right-1 dark:pulse-glow" />
+              </div>
+              <span className="text-xl font-bold text-foreground dark:glow-text">AgentRuntime</span>
+            </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -47,20 +47,22 @@ const Navigation = () => {
                 {item.label}
               </Link>
             ))}
-            
-            <div className="flex items-center space-x-3">
-              <ThemeToggle />
+            </div>
+          </div>
+
+          {/* Desktop CTAs — pushed right */}
+          <div className="hidden md:flex items-center space-x-3 ml-auto">
+            <ThemeToggle />
               <Button variant="outline" size="sm" asChild className="dark:border-primary/50 dark:hover:bg-primary/10">
                 <Link to="/docs">Docs</Link>
               </Button>
               <Button variant="hero" size="sm" className="dark:shadow-glow">
                 Get Started Free
               </Button>
-            </div>
           </div>
 
           {/* Mobile menu button and theme toggle */}
-          <div className="flex items-center space-x-2 md:hidden">
+          <div className="flex items-center space-x-2 md:hidden ml-auto">
             <ThemeToggle />
             <Button
               variant="ghost"

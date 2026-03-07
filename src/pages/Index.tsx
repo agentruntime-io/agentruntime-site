@@ -4,10 +4,10 @@ import { Badge } from "@/components/ui/badge";
 import { 
   ArrowRight, 
   CheckCircle, 
+  ChevronDown,
   Code2, 
   Settings, 
   Play, 
-  Star,
   Quote,
   Users,
   Building,
@@ -83,8 +83,8 @@ const Index = () => {
           <div className="absolute top-60 right-1/3 w-1 h-1 bg-accent rounded-full dark:float-particle" style={{animationDelay: '2s'}}></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <Badge variant="outline" className="mb-6 bg-white/10 text-primary border-primary/30 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center justify-center text-center min-h-screen">
+          <Badge variant="outline" className="mb-6 bg-white/20 text-primary border-white/40 backdrop-blur-md px-4 py-1.5">
             API-First Agent Orchestration
           </Badge>
           
@@ -98,25 +98,35 @@ const Index = () => {
             Build production-ready agent workflows with confidence.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 fade-in-up">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 fade-in-up">
             <Button variant="hero" size="xl" className="gap-2 dark:shadow-glow" asChild>
               <Link to="/pricing">
                 Get Started Free
                 <ArrowRight className="h-5 w-5" />
               </Link>
             </Button>
-            <Button variant="glass" size="xl" className="gap-2" asChild>
+            <Button variant="glass" size="xl" className="gap-2 bg-white/20 border-white/40 text-white hover:bg-white/30 hover:border-white/50" asChild>
               <Link to="/docs">
                 See Docs
                 <Code2 className="h-5 w-5" />
               </Link>
             </Button>
           </div>
+
+          {/* Scroll indicator — hidden, can be shown with `hidden` removal */}
+          <a
+            href="#features"
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/70 hover:text-white transition-colors duration-200 animate-bounce hidden"
+            aria-label="Scroll to features"
+          >
+            <span className="text-xs font-medium tracking-wider uppercase">Scroll to explore</span>
+            <ChevronDown className="h-6 w-6" />
+          </a>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-background dark:space-grid">
+      <section id="features" className="py-20 bg-background dark:space-grid">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           {/* Dark mode floating elements */}
           <div className="absolute inset-0 dark:opacity-30 pointer-events-none">
@@ -216,46 +226,53 @@ const Index = () => {
           backgroundRepeat: 'no-repeat'
         }}
       >
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/70 dark:bg-black/80"></div>
+        {/* Dark overlay — stronger to reduce background competition */}
+        <div className="absolute inset-0 bg-black/80 dark:bg-black/90"></div>
+        {/* Gradient to darken lower half where cards sit */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center">
+          <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 dark:glow-text">
               Human-AI
               <span className="text-gradient block">Collaboration</span>
             </h2>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto mb-8">
-              Our friendly AI agents are designed to work alongside humans, not replace them. 
-              Experience seamless collaboration where agents enhance human capabilities 
-              and provide intelligent assistance without friction.
+            <p className="text-xl text-white/90 max-w-3xl mx-auto">
+              Our agents are designed to work alongside humans, not replace them. 
+              Every feature is built around the principle that AI should empower people to do more.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-                <div className="flex items-center gap-3 justify-center">
-                  <CheckCircle className="h-5 w-5 text-primary" />
-                  <span className="text-white">Intuitive interfaces</span>
-                </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+            <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6 border border-white/30 text-left">
+              <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center mb-4">
+                <CheckCircle className="h-5 w-5 text-primary" />
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-                <div className="flex items-center gap-3 justify-center">
-                  <CheckCircle className="h-5 w-5 text-primary" />
-                  <span className="text-white">Transparent decisions</span>
-                </div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-                <div className="flex items-center gap-3 justify-center">
-                  <CheckCircle className="h-5 w-5 text-primary" />
-                  <span className="text-white">Human oversight</span>
-                </div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-                <div className="flex items-center gap-3 justify-center">
-                  <CheckCircle className="h-5 w-5 text-primary" />
-                  <span className="text-white">Adaptive learning</span>
-                </div>
-              </div>
+              <h3 className="font-semibold text-white mb-2">Intuitive Interfaces</h3>
+              <p className="text-sm text-white/70 leading-relaxed">Agents surface the right information at the right moment, so humans stay in flow.</p>
             </div>
+            <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6 border border-white/30 text-left">
+              <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center mb-4">
+                <CheckCircle className="h-5 w-5 text-primary" />
+              </div>
+              <h3 className="font-semibold text-white mb-2">Transparent Decisions</h3>
+              <p className="text-sm text-white/70 leading-relaxed">Every agent action is logged and explainable — no black boxes, full audit trails.</p>
+            </div>
+            <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6 border border-white/30 text-left">
+              <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center mb-4">
+                <CheckCircle className="h-5 w-5 text-primary" />
+              </div>
+              <h3 className="font-semibold text-white mb-2">Human Oversight</h3>
+              <p className="text-sm text-white/70 leading-relaxed">Pause, review, and approve at any step. Humans stay in control of every critical decision.</p>
+            </div>
+            <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6 border border-white/30 text-left">
+              <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center mb-4">
+                <CheckCircle className="h-5 w-5 text-primary" />
+              </div>
+              <h3 className="font-semibold text-white mb-2">Adaptive Learning</h3>
+              <p className="text-sm text-white/70 leading-relaxed">Agents improve from feedback loops, getting smarter with every interaction over time.</p>
+            </div>
+          </div>
+          <div className="text-center">
             <Button variant="glass" size="lg" className="gap-2" asChild>
               <Link to="/features">
                 Learn More
