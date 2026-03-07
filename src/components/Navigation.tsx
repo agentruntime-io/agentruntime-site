@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Code, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 const Navigation = () => {
@@ -27,10 +27,7 @@ const Navigation = () => {
           {/* Logo + Nav links grouped */}
           <div className="flex items-center gap-8">
             <Link to="/" className="flex items-center space-x-2 group">
-              <div className="relative">
-                <Code className="h-8 w-8 text-primary dark:glow-text transition-all duration-300" />
-                <Zap className="h-4 w-4 text-accent absolute -top-1 -right-1 dark:pulse-glow" />
-              </div>
+              <img src="/agentruntime-logo.svg" alt="" className="h-8 w-auto dark:invert" aria-hidden="true" />
               <span className="text-xl font-bold text-foreground dark:glow-text">AgentRuntime</span>
             </Link>
 
