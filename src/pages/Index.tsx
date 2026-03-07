@@ -85,17 +85,16 @@ const Index = () => {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center justify-center text-center min-h-screen">
           <Badge variant="outline" className="mb-6 bg-white/20 text-primary border-white/40 backdrop-blur-md px-4 py-1.5">
-            API-First Agent Orchestration
+            Production-Ready Agent Runtime
           </Badge>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 fade-in-up dark:glow-text">
-            Orchestrate AI Agents
-            <span className="text-gradient block">at Scale</span>
+            Stop Experimenting.
+            <span className="text-gradient block">Put Your Agents to Work.</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto mb-8 fade-in-up">
-            API-first runtime for importing, testing, and running your agents and tools—no frontend needed. 
-            Build production-ready agent workflows with confidence.
+            Run AI agents reliably, safely, and at scale—with full control, visibility, and zero fragile scripts. Now.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 fade-in-up">
