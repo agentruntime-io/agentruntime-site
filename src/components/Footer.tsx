@@ -17,8 +17,9 @@ const Footer = () => {
       { label: "Use Cases", path: "/use-cases" },
     ],
     legal: [
-      { label: "Privacy Policy", path: "/privacy" },
-      { label: "Terms of Service", path: "/terms" },
+      { label: "Legal", path: "/legal" },
+      { label: "Privacy Policy", path: "/legal/privacy-policy" },
+      { label: "Terms and Conditions", path: "/legal/terms-and-conditions" },
     ],
   };
 
