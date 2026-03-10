@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Headphones, Cpu, Database, Brain } from "lucide-react";
+import { featureFlags } from "@/config/featureFlags";
 import useCasesBackground from "@/assets/usecases-background.jpg";
 
 const UseCases = () => {
@@ -144,54 +145,58 @@ const UseCases = () => {
         </div>
 
         {/* ROI Calculator Teaser */}
-        <div className="bg-gradient-card p-8 rounded-2xl shadow-lg max-w-4xl mx-auto mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="text-2xl font-bold text-foreground mb-4">
-                Calculate Your ROI
-              </h3>
-              <p className="text-muted-foreground mb-6">
-                See how much time and money you could save by automating your agent workflows 
-                with AgentRuntime. Most customers see ROI within 3 months.
-              </p>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Average 65% reduction in operational costs</li>
-                <li>• 40+ hours saved per developer per month</li>
-                <li>• 85% faster time-to-market for new features</li>
-              </ul>
-            </div>
-            
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary mb-2">$250K+</div>
-              <div className="text-muted-foreground mb-4">Average annual savings</div>
-              <Button variant="hero" className="gap-2">
-                Calculate Your Savings
-                <ArrowRight className="h-4 w-4" />
-              </Button>
+        {featureFlags.showUseCasesROISection && (
+          <div className="bg-gradient-card p-8 rounded-2xl shadow-lg max-w-4xl mx-auto mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h3 className="text-2xl font-bold text-foreground mb-4">
+                  Calculate Your ROI
+                </h3>
+                <p className="text-muted-foreground mb-6">
+                  See how much time and money you could save by automating your agent workflows 
+                  with AgentRuntime. Most customers see ROI within 3 months.
+                </p>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>• Average 65% reduction in operational costs</li>
+                  <li>• 40+ hours saved per developer per month</li>
+                  <li>• 85% faster time-to-market for new features</li>
+                </ul>
+              </div>
+              
+              <div className="text-center">
+                <div className="text-4xl font-bold text-primary mb-2">$250K+</div>
+                <div className="text-muted-foreground mb-4">Average annual savings</div>
+                <Button variant="hero" className="gap-2">
+                  Calculate Your Savings
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* CTA Section */}
-        <div className="text-center">
-          <div className="bg-gradient-card p-8 rounded-2xl shadow-lg max-w-2xl mx-auto">
-            <h2 className="text-2xl font-bold text-foreground mb-4">
-              Ready to get started?
-            </h2>
-            <p className="text-muted-foreground mb-6">
-              Join hundreds of companies already using AgentRuntime to orchestrate their AI agents.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="hero" size="lg">
-                Start Free Trial
-              </Button>
-              <Button variant="outline" size="lg" className="gap-2">
-                See Detailed Case Studies
-                <ArrowRight className="h-4 w-4" />
-              </Button>
+        {featureFlags.showUseCasesCTASection && (
+          <div className="text-center">
+            <div className="bg-gradient-card p-8 rounded-2xl shadow-lg max-w-2xl mx-auto">
+              <h2 className="text-2xl font-bold text-foreground mb-4">
+                Ready to get started?
+              </h2>
+              <p className="text-muted-foreground mb-6">
+                Join hundreds of companies already using AgentRuntime to orchestrate their AI agents.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button variant="hero" size="lg">
+                  Start Free Trial
+                </Button>
+                <Button variant="outline" size="lg" className="gap-2">
+                  See Detailed Case Studies
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

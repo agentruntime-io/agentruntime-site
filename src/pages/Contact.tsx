@@ -16,6 +16,8 @@ import {
   ExternalLink
 } from "lucide-react";
 import contactBackground from "@/assets/contact-background.jpg";
+import { featureFlags } from "@/config/featureFlags";
+import { company } from "@/config/company";
 
 const formEndpoint =
   (import.meta.env.VITE_CONTACT_FORM_ENDPOINT as string | undefined)?.trim() || "";
@@ -26,7 +28,6 @@ const Contact = () => {
   const isEnterpriseSource = source === "enterprise";
 
   const [status, setStatus] = useState<"idle" | "success" | "error" | "submitting">("idle");
-  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,7 +36,6 @@ const Contact = () => {
 
     if (formEndpoint) {
       setStatus("submitting");
-      setErrorMessage("");
 
       const firstName = String(formData.get("firstName") ?? "").trim();
       const lastName = String(formData.get("lastName") ?? "").trim();
@@ -73,36 +73,43 @@ const Contact = () => {
         window.setTimeout(() => setStatus("idle"), 8000);
       } catch (err) {
         setStatus("error");
-        setErrorMessage(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+        setErrorMessage("The form couldn't be sent. Please contact us directly at hello@agentruntime.io — we'll get back to you within one business day.");
       }
       return;
     }
 
     setStatus("error");
-    setErrorMessage("There seems to be an issue. Please contact hello@agentruntime.io directly. Sorry for the inconvenience.");
   };
 
   const contactMethods = [
-    {
-      icon: Headphones,
-      title: "Support",
-      email: "support@agentruntime.io",
-      link: "https://docs.agentruntime.io/help",
-      description: "Technical support and documentation"
-    },
-    {
-      icon: DollarSign,
-      title: "Sales",
-      email: "sales@agentruntime.io", 
-      phone: "+1-800-123-4567",
-      description: "Pricing and enterprise inquiries"
-    },
+    ...(featureFlags.showContactSupport
+      ? [
+          {
+            icon: Headphones,
+            title: "Support",
+            email: "support@agentruntime.io",
+            link: "https://docs.agentruntime.io/help",
+            description: "Technical support and documentation",
+          },
+        ]
+      : []),
+    ...(featureFlags.showContactSales
+      ? [
+          {
+            icon: DollarSign,
+            title: "Sales",
+            email: "sales@agentruntime.io",
+            phone: "+1-800-123-4567",
+            description: "Pricing and enterprise inquiries",
+          },
+        ]
+      : []),
     {
       icon: MessageCircle,
       title: "General",
       email: "hello@agentruntime.io",
-      description: "General questions and partnerships"
-    }
+      description: "General questions and partnerships",
+    },
   ];
 
   return (
@@ -214,8 +221,14 @@ const Contact = () => {
                     Thanks! We've received your message and will reply within one business day.
                   </p>
                 )}
-                {status === "error" && errorMessage && (
-                  <p className="text-sm text-destructive">{errorMessage}</p>
+                {status === "error" && (
+                  <p className="text-sm text-destructive">
+                    The form couldn't be sent. Please contact us directly at{" "}
+                    <a href="mailto:hello@agentruntime.io" className="underline hover:text-primary font-medium">
+                      hello@agentruntime.io
+                    </a>
+                    {" "}— we'll get back to you within one business day.
+                  </p>
                 )}
                 
                 <p className="text-sm text-muted-foreground text-center">
@@ -287,10 +300,10 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold text-foreground mb-2">Headquarters</h3>
                     <div className="space-y-1 text-sm text-muted-foreground">
-                      <p>AgentRuntime Inc.</p>
-                      <p>123 Innovation Drive</p>
-                      <p>San Francisco, CA 94105</p>
-                      <p>United States</p>
+                      <p>{company.name}</p>
+                      <p>{company.address.line1}</p>
+                      <p>{company.address.city}, {company.address.state} {company.address.zip}</p>
+                      <p>{company.address.country}</p>
                     </div>
                   </div>
                 </div>

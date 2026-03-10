@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Twitter } from "lucide-react";
+import { featureFlags } from "@/config/featureFlags";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -12,7 +13,7 @@ const Footer = () => {
       { label: "How It Works", path: "/how-it-works" },
     ],
     company: [
-      { label: "About", path: "/about" },
+      ...(featureFlags.showAboutPage ? [{ label: "About", path: "/about" }] : []),
       { label: "Contact", path: "/contact" },
       { label: "Use Cases", path: "/use-cases" },
     ],

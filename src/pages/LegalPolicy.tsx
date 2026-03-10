@@ -56,7 +56,7 @@ const LegalPolicy = () => {
                 <h2 className="text-sm font-semibold text-foreground mb-3">
                   Table of contents
                 </h2>
-                <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
+                <ul className="list-none space-y-2 text-sm text-muted-foreground">
                   {headings
                     .filter((h) => h.level <= 2)
                     .map((h, i) => (
@@ -69,7 +69,7 @@ const LegalPolicy = () => {
                         </a>
                       </li>
                     ))}
-                </ol>
+                </ul>
               </div>
             )}
 
