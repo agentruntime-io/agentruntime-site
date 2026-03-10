@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import { featureFlags } from "@/config/featureFlags";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +17,7 @@ const Navigation = () => {
     { path: "/pricing", label: "Pricing" },
     { path: "/use-cases", label: "Use Cases" },
     { path: "/docs", label: "Documentation" },
-    { path: "/about", label: "About" },
+    ...(featureFlags.showAboutPage ? [{ path: "/about", label: "About" }] : []),
     { path: "/contact", label: "Contact" }
   ];
 

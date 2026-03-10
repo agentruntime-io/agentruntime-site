@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Github, Linkedin, MapPin, Users, Target, Lightbulb, Shield } from "lucide-react";
 import { featureFlags } from "@/config/featureFlags";
+import { company } from "@/config/company";
 import aboutBackground from "@/assets/about-background.jpg";
 
 const About = () => {
@@ -237,10 +238,10 @@ const About = () => {
           <div className="bg-gradient-card p-8 rounded-2xl shadow-lg max-w-2xl mx-auto">
             <div className="flex items-center justify-center gap-2 mb-4">
               <MapPin className="h-5 w-5 text-primary" />
-              <span className="font-semibold text-foreground">San Francisco, CA</span>
+              <span className="font-semibold text-foreground">{company.address.city}, {company.address.state}</span>
             </div>
             <p className="text-muted-foreground mb-6">
-              Headquarters in the heart of Silicon Valley, with a global remote-first culture.
+              {company.name} — {company.address.line1}, {company.address.city}, {company.address.state} {company.address.zip}. Global remote-first culture.
             </p>
             <div className="flex justify-center gap-4">
               <Button variant="outline" size="icon">

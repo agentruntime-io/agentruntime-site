@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
@@ -17,6 +17,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Legal from "./pages/Legal";
 import LegalPolicy from "./pages/LegalPolicy";
+import { featureFlags } from "@/config/featureFlags";
 
 const queryClient = new QueryClient();
 
@@ -35,7 +36,7 @@ const App = () => (
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/use-cases" element={<UseCases />} />
             <Route path="/docs" element={<Documentation />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/about" element={featureFlags.showAboutPage ? <About /> : <Navigate to="/" replace />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/legal" element={<Legal />} />
             <Route path="/legal/:policyName" element={<LegalPolicy />} />
