@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Github, Linkedin, MapPin, Users, Target, Lightbulb, Shield } from "lucide-react";
+import { featureFlags } from "@/config/featureFlags";
 import aboutBackground from "@/assets/about-background.jpg";
 
 const About = () => {
@@ -208,27 +209,30 @@ const About = () => {
         </div>
 
         {/* Careers Section */}
-        <div className="mb-20">
-          <Card className="card-gradient">
-            <CardContent className="p-12 text-center">
-              <h2 className="text-3xl font-bold text-foreground mb-6">Join Our Team</h2>
-              <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-                We're always looking for talented engineers, designers, and researchers 
-                who share our passion for building developer tools that matter.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button variant="hero" size="lg">
-                  View Open Roles
-                </Button>
-                <Button variant="outline" size="lg">
-                  Life at AgentRuntime
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+        {featureFlags.showAboutCareers && (
+          <div className="mb-20">
+            <Card className="card-gradient">
+              <CardContent className="p-12 text-center">
+                <h2 className="text-3xl font-bold text-foreground mb-6">Join Our Team</h2>
+                <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+                  We're always looking for talented engineers, designers, and researchers 
+                  who share our passion for building developer tools that matter.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button variant="hero" size="lg">
+                    View Open Roles
+                  </Button>
+                  <Button variant="outline" size="lg">
+                    Life at AgentRuntime
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
         {/* Contact & Location */}
+        {featureFlags.showAboutContactLocation && (
         <div className="text-center">
           <div className="bg-gradient-card p-8 rounded-2xl shadow-lg max-w-2xl mx-auto">
             <div className="flex items-center justify-center gap-2 mb-4">
@@ -248,6 +252,7 @@ const About = () => {
             </div>
           </div>
         </div>
+        )}
       </div>
     </div>
   );
