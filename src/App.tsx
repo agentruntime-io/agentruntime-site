@@ -14,6 +14,8 @@ import UseCases from "./pages/UseCases";
 import Documentation from "./pages/Documentation";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Waitlist from "./pages/Waitlist";
+import Careers from "./pages/Careers";
 import NotFound from "./pages/NotFound";
 import Legal from "./pages/Legal";
 import LegalPolicy from "./pages/LegalPolicy";
@@ -38,6 +40,8 @@ const App = () => (
             <Route path="/docs" element={<Documentation />} />
             <Route path="/about" element={featureFlags.showAboutPage ? <About /> : <Navigate to="/" replace />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/waitlist" element={<Waitlist />} />
+            <Route path="/careers" element={<Careers />} />
             <Route path="/legal" element={<Legal />} />
             <Route path="/legal/:policyName" element={<LegalPolicy />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
