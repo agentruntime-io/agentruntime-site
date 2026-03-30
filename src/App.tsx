@@ -41,7 +41,10 @@ const App = () => (
             <Route path="/about" element={featureFlags.showAboutPage ? <About /> : <Navigate to="/" replace />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/waitlist" element={<Waitlist />} />
-            <Route path="/careers" element={<Careers />} />
+            <Route
+              path="/careers"
+              element={featureFlags.showCareersPage ? <Careers /> : <Navigate to="/" replace />}
+            />
             <Route path="/legal" element={<Legal />} />
             <Route path="/legal/:policyName" element={<LegalPolicy />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

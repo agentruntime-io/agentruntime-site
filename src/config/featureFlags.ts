@@ -13,6 +13,9 @@ export const featureFlags = {
   /** About page: "Join Our Team" careers section */
   showAboutCareers: false,
 
+  /** Standalone /careers page and footer link */
+  showCareersPage: false,
+
   /** About page: Contact & Location section (location + social links) */
   showAboutContactLocation: false,
 
