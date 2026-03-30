@@ -22,7 +22,7 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border dark:space-grid">
+    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-white/80 dark:bg-white/60 dark:border-white/30 dark:space-grid">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center h-16">
           {/* Logo + Nav links grouped */}
@@ -76,7 +76,7 @@ const Navigation = () => {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-background border-t border-border dark:space-grid">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 border-t border-white/80 dark:bg-white/60 dark:border-white/30 dark:space-grid">
               {navItems.map((item) => (
                 <Link
                   key={item.path}

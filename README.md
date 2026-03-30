@@ -29,7 +29,8 @@ Output is in `dist/`. Deployed to AWS Amplify via the monorepo pipeline.
 
 | Variable | Description |
 |----------|-------------|
-| `VITE_CONTACT_FORM_ENDPOINT` | Optional. Formspree/backend URL for the contact form. If unset, form shows fallback message. |
+| `VITE_CONTACT_FORM_ENDPOINT` | Optional. Full URL for the contact form (e.g. `https://api.agentruntime.io/v1/contact`). If unset, form shows fallback message. |
+| `VITE_BFF_URL` | Optional. Base URL for BFF API (e.g. `https://api.agentruntime.io`). If unset, derived from `VITE_CONTACT_FORM_ENDPOINT`. Used for waitlist, newsletter, and careers endpoints. |
 
 ## Scripts
 

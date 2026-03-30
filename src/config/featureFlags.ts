@@ -4,11 +4,17 @@
  */
 
 export const featureFlags = {
+  /** Hero section variant: "cta" = centered with Get Started / See Docs; "waitlist" = split layout with waitlist form on right */
+  heroVariant: "waitlist" as "cta" | "waitlist",
+
   /** Show About page and its nav link */
   showAboutPage: false,
 
   /** About page: "Join Our Team" careers section */
   showAboutCareers: false,
+
+  /** Standalone /careers page and footer link */
+  showCareersPage: false,
 
   /** About page: Contact & Location section (location + social links) */
   showAboutContactLocation: false,
