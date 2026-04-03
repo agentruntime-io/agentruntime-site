@@ -1,16 +1,38 @@
+import { useEffect, useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import rehypeSlug from "rehype-slug";
 import { getPolicyBySlug, LEGAL_POLICIES } from "@/legal/policies";
 import { extractHeadings } from "@/legal/utils";
+import type { LegalPolicy } from "@/legal/policies";
 
 const LegalPolicy = () => {
   const { policyName } = useParams<{ policyName: string }>();
-  const policy = policyName ? getPolicyBySlug(policyName) : undefined;
+  const [policy, setPolicy] = useState<LegalPolicy | null | "loading">("loading");
+  const [notFound, setNotFound] = useState(false);
 
-  if (!policy) {
+  useEffect(() => {
+    if (!policyName) {
+      setNotFound(true);
+      return;
+    }
+    setPolicy("loading");
+    getPolicyBySlug(policyName)
+      .then((p) => setPolicy(p ?? null))
+      .catch(() => setPolicy(null));
+  }, [policyName]);
+
+  if (notFound || policy === null) {
     return <Navigate to="/legal" replace />;
+  }
+
+  if (policy === "loading") {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="animate-pulse text-muted-foreground">Loading...</div>
+      </div>
+    );
   }
 
   const headings = extractHeadings(policy.content);
@@ -59,7 +81,7 @@ const LegalPolicy = () => {
                 <ul className="list-none space-y-2 text-sm text-muted-foreground">
                   {headings
                     .filter((h) => h.level <= 2)
-                    .map((h, i) => (
+                    .map((h) => (
                       <li key={h.id}>
                         <a
                           href={`#${h.id}`}

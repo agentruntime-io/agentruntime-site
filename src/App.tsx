@@ -1,36 +1,39 @@
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
-import Index from "./pages/Index";
-import Features from "./pages/Features";
-import HowItWorks from "./pages/HowItWorks";
-import Pricing from "./pages/Pricing";
-import UseCases from "./pages/UseCases";
-import Documentation from "./pages/Documentation";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Waitlist from "./pages/Waitlist";
-import Careers from "./pages/Careers";
-import NotFound from "./pages/NotFound";
-import Legal from "./pages/Legal";
-import LegalPolicy from "./pages/LegalPolicy";
 import { featureFlags } from "@/config/featureFlags";
 
-const queryClient = new QueryClient();
+const PageFallback = () => (
+  <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading...</div>
+);
+
+const Index = lazy(() => import("./pages/Index"));
+const Features = lazy(() => import("./pages/Features"));
+const HowItWorks = lazy(() => import("./pages/HowItWorks"));
+const Pricing = lazy(() => import("./pages/Pricing"));
+const UseCases = lazy(() => import("./pages/UseCases"));
+const Documentation = lazy(() => import("./pages/Documentation"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const Legal = lazy(() => import("./pages/Legal"));
+const LegalPolicy = lazy(() => import("./pages/LegalPolicy"));
+const Waitlist = lazy(() => import("./pages/Waitlist"));
+const Careers = lazy(() => import("./pages/Careers"));
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Navigation />
+  <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Navigation />
+        <Suspense fallback={<PageFallback />}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/features" element={<Features />} />
@@ -50,11 +53,11 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <Footer />
-        </BrowserRouter>
-      </TooltipProvider>
-    </ThemeProvider>
-  </QueryClientProvider>
+        </Suspense>
+        <Footer />
+      </BrowserRouter>
+    </TooltipProvider>
+  </ThemeProvider>
 );
 
 export default App;
