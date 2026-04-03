@@ -1,9 +1,33 @@
+import { useState, FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Twitter } from "lucide-react";
 import { featureFlags } from "@/config/featureFlags";
+import { api } from "@/config/api";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "success" | "error" | "submitting">("idle");
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+
+  const handleNewsletterSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!api.newsletter || !newsletterEmail.trim()) return;
+    setNewsletterStatus("submitting");
+    try {
+      const res = await fetch(api.newsletter, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: newsletterEmail.trim(), source: "footer" }),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      setNewsletterStatus("success");
+      setNewsletterEmail("");
+    } catch {
+      setNewsletterStatus("error");
+    }
+  };
 
   const footerLinks = {
     product: [
@@ -15,6 +39,8 @@ const Footer = () => {
     company: [
       ...(featureFlags.showAboutPage ? [{ label: "About", path: "/about" }] : []),
       { label: "Contact", path: "/contact" },
+      ...(featureFlags.showCareersPage ? [{ label: "Careers", path: "/careers" }] : []),
+      { label: "Waitlist", path: "/waitlist" },
       { label: "Use Cases", path: "/use-cases" },
     ],
     legal: [
@@ -46,6 +72,29 @@ const Footer = () => {
               API-first runtime for importing, testing, and running AI agents at scale. 
               Empowering developers to orchestrate intelligent workflows with confidence.
             </p>
+            {api.newsletter && (
+              <form onSubmit={handleNewsletterSubmit} className="mb-6">
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <Input
+                    type="email"
+                    placeholder="Subscribe to our newsletter"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    className="flex-1 min-w-0"
+                    disabled={newsletterStatus === "submitting"}
+                  />
+                  <Button type="submit" variant="outline" size="sm" disabled={newsletterStatus === "submitting"}>
+                    {newsletterStatus === "submitting" ? "…" : "Subscribe"}
+                  </Button>
+                </div>
+                {newsletterStatus === "success" && (
+                  <p className="text-xs text-green-600 dark:text-green-400 mt-1">Thanks for subscribing!</p>
+                )}
+                {newsletterStatus === "error" && (
+                  <p className="text-xs text-destructive mt-1">Something went wrong. Try again.</p>
+                )}
+              </form>
+            )}
             {/* Social Links */}
             <div className="flex items-center space-x-4">
               {socialLinks.map((social) => {

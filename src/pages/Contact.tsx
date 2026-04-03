@@ -18,9 +18,9 @@ import {
 import contactBackground from "@/assets/contact-background.jpg";
 import { featureFlags } from "@/config/featureFlags";
 import { company } from "@/config/company";
+import { api } from "@/config/api";
 
-const formEndpoint =
-  (import.meta.env.VITE_CONTACT_FORM_ENDPOINT as string | undefined)?.trim() || "";
+const formEndpoint = api.contact;
 
 const Contact = () => {
   const [searchParams] = useSearchParams();
@@ -71,9 +71,8 @@ const Contact = () => {
         setStatus("success");
         form.reset();
         window.setTimeout(() => setStatus("idle"), 8000);
-      } catch (err) {
+      } catch {
         setStatus("error");
-        setErrorMessage("The form couldn't be sent. Please contact us directly at hello@agentruntime.io — we'll get back to you within one business day.");
       }
       return;
     }
@@ -171,17 +170,17 @@ const Contact = () => {
                 ) : null}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="firstName">First Name</Label>
+                    <Label htmlFor="firstName">First Name *</Label>
                     <Input id="firstName" name="firstName" placeholder="John" required />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="lastName">Last Name</Label>
-                    <Input id="lastName" name="lastName" placeholder="Doe" required />
+                    <Label htmlFor="lastName">Last Name (optional)</Label>
+                    <Input id="lastName" name="lastName" placeholder="Doe" />
                   </div>
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email">Email *</Label>
                   <Input id="email" name="email" type="email" placeholder="john@company.com" required />
                 </div>
                 
@@ -196,7 +195,7 @@ const Contact = () => {
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="message">Message</Label>
+                  <Label htmlFor="message">Message *</Label>
                   <Textarea 
                     id="message" 
                     name="message"
