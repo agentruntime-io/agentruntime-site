@@ -28,7 +28,14 @@ const Navigation = () => {
           {/* Logo + Nav links grouped */}
           <div className="flex items-center gap-8">
             <Link to="/" className="flex items-center space-x-2 group">
-              <img src="/agentruntime-logo.svg" alt="" className="h-8 w-auto dark:invert" aria-hidden="true" />
+              <img
+                src="/agentruntime-logo.svg"
+                alt=""
+                width={32}
+                height={32}
+                className="h-8 w-8 shrink-0 object-contain dark:invert"
+                aria-hidden="true"
+              />
               <span className="text-xl font-bold text-foreground dark:glow-text">AgentRuntime</span>
             </Link>
 
@@ -54,8 +61,8 @@ const Navigation = () => {
               <Button variant="outline" size="sm" asChild className="dark:border-primary/50 dark:hover:bg-primary/10">
                 <Link to="/docs">Docs</Link>
               </Button>
-              <Button variant="hero" size="sm" className="dark:shadow-glow">
-                Get Started Free
+              <Button variant="hero" size="sm" className="dark:shadow-glow" asChild>
+                <Link to="/waitlist">Get Started Free</Link>
               </Button>
           </div>
 
@@ -66,16 +73,19 @@ const Navigation = () => {
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
-              className="dark:hover:bg-primary/10"
+              className="dark:hover:bg-primary/10 min-h-11 min-w-11"
+              aria-expanded={isOpen}
+              aria-controls="mobile-nav-menu"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? <X className="h-6 w-6" aria-hidden /> : <Menu className="h-6 w-6" aria-hidden />}
             </Button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden">
+          <div className="md:hidden" id="mobile-nav-menu">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 border-t border-white/80 dark:bg-white/60 dark:border-white/30 dark:space-grid">
               {navItems.map((item) => (
                 <Link
@@ -95,8 +105,8 @@ const Navigation = () => {
                 <Button variant="outline" size="sm" asChild className="w-full dark:border-primary/50 dark:hover:bg-primary/10">
                   <Link to="/docs">Documentation</Link>
                 </Button>
-                <Button variant="hero" size="sm" className="w-full dark:shadow-glow">
-                  Get Started Free
+                <Button variant="hero" size="sm" className="w-full dark:shadow-glow" asChild>
+                  <Link to="/waitlist">Get Started Free</Link>
                 </Button>
               </div>
             </div>

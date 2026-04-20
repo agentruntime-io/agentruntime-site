@@ -51,7 +51,7 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com/agentruntime", label: "GitHub" },
+    { icon: Github, href: "https://github.com/agentruntime-io", label: "GitHub" },
     { icon: Linkedin, href: "https://linkedin.com/company/agentruntime", label: "LinkedIn" },
     { icon: Twitter, href: "https://twitter.com/agentruntime", label: "Twitter" },
   ];
@@ -63,7 +63,14 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center space-x-2 group mb-4">
-              <img src="/agentruntime-logo.svg" alt="" className="h-8 w-auto dark:invert" aria-hidden="true" />
+              <img
+                src="/agentruntime-logo.svg"
+                alt=""
+                width={32}
+                height={32}
+                className="h-8 w-8 shrink-0 object-contain dark:invert"
+                aria-hidden="true"
+              />
               <span className="text-xl font-bold text-foreground dark:glow-text">
                 AgentRuntime
               </span>

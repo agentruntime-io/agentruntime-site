@@ -21,7 +21,13 @@ const ThemeToggle = () => {
 
   if (!clientReady) {
     return (
-      <Button variant="ghost" size="icon" disabled suppressHydrationWarning />
+      <Button
+        variant="ghost"
+        size="icon"
+        disabled
+        suppressHydrationWarning
+        aria-label="Toggle theme"
+      />
     );
   }
 
@@ -35,6 +41,7 @@ const ThemeToggle = () => {
       size="icon"
       onClick={toggleTheme}
       className="relative overflow-hidden transition-all duration-300 hover:scale-110"
+      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
       title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
     >
       {theme === "dark" ? (
@@ -42,7 +49,6 @@ const ThemeToggle = () => {
       ) : (
         <Moon className="h-5 w-5 text-primary transition-all duration-300 rotate-0 scale-100" />
       )}
-      <span className="sr-only">Toggle theme</span>
     </Button>
   );
 };

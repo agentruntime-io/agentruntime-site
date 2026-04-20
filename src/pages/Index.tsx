@@ -193,35 +193,35 @@ const Index = () => {
                 <CheckCircle className="h-5 w-5 text-primary" />
               </div>
               <h3 className="font-semibold text-white mb-2">Intuitive Interfaces</h3>
-              <p className="text-sm text-white/70 leading-relaxed">Agents surface the right information at the right moment, so humans stay in flow.</p>
+              <p className="text-sm text-white/90 leading-relaxed">Agents surface the right information at the right moment, so humans stay in flow.</p>
             </div>
             <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6 border border-white/30 text-left">
               <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center mb-4">
                 <CheckCircle className="h-5 w-5 text-primary" />
               </div>
               <h3 className="font-semibold text-white mb-2">Transparent Decisions</h3>
-              <p className="text-sm text-white/70 leading-relaxed">Every agent action is logged and explainable — no black boxes, full audit trails.</p>
+              <p className="text-sm text-white/90 leading-relaxed">Every agent action is logged and explainable — no black boxes, full audit trails.</p>
             </div>
             <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6 border border-white/30 text-left">
               <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center mb-4">
                 <CheckCircle className="h-5 w-5 text-primary" />
               </div>
               <h3 className="font-semibold text-white mb-2">Human Oversight</h3>
-              <p className="text-sm text-white/70 leading-relaxed">Pause, review, and approve at any step. Humans stay in control of every critical decision.</p>
+              <p className="text-sm text-white/90 leading-relaxed">Pause, review, and approve at any step. Humans stay in control of every critical decision.</p>
             </div>
             <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6 border border-white/30 text-left">
               <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center mb-4">
                 <CheckCircle className="h-5 w-5 text-primary" />
               </div>
               <h3 className="font-semibold text-white mb-2">Adaptive Learning</h3>
-              <p className="text-sm text-white/70 leading-relaxed">Agents improve from feedback loops, getting smarter with every interaction over time.</p>
+              <p className="text-sm text-white/90 leading-relaxed">Agents improve from feedback loops, getting smarter with every interaction over time.</p>
             </div>
           </div>
           <div className="text-center">
             <Button variant="glass" size="lg" className="gap-2" asChild>
               <Link to="/features">
-                Learn More
-                <ArrowRight className="h-4 w-4" />
+                Explore features
+                <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>
             </Button>
           </div>

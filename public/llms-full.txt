@@ -30,7 +30,7 @@ The public marketing SPA uses client-side routing; authoritative legal text live
 
 ## Legal & policies
 
-Operator named in site structured data: **AgentRuntime Labs LLC** (see also Organization JSON-LD on the home page). Policy pages are suitable for **citation of terms**, not for inferring product SLAs without reading the actual document.
+Brand **AgentRuntime** appears in page copy; **AgentRuntime Labs LLC** is the legal entity (`legalName` in Organization JSON-LD on the home page). Policy pages are suitable for **citation of terms**, not for inferring product SLAs without reading the actual document.
 
 - [Legal index](https://agentruntime.io/legal): Central list of all policies below.
 
