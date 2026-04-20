@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import rehypeSlug from "rehype-slug";
 import { getPolicyBySlug, LEGAL_POLICIES } from "@/legal/policies";
 import { extractHeadings } from "@/legal/utils";
+import { Seo } from "@/components/Seo";
 
 const LegalPolicy = () => {
   const { policyName } = useParams<{ policyName: string }>();
@@ -14,9 +15,15 @@ const LegalPolicy = () => {
   }
 
   const headings = extractHeadings(policy.content);
+  const policyDescription = `Read AgentRuntime's ${policy.title}: terms, obligations, and how they apply to your use of the platform.`;
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`${policy.title} | Legal`}
+        description={policyDescription}
+        canonicalPath={`/legal/${policy.slug}`}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
           {/* Sidebar - Legal navigation */}

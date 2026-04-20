@@ -4,6 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Headphones, Cpu, Database, Brain } from "lucide-react";
 import { featureFlags } from "@/config/featureFlags";
 import useCasesBackground from "@/assets/usecases-background.jpg";
+import { Seo } from "@/components/Seo";
+import { seoCopy } from "@/seo/metadata";
 
 const UseCases = () => {
   const useCases = [
@@ -43,6 +45,7 @@ const UseCases = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo {...seoCopy.useCases} canonicalPath="/use-cases" />
       {/* Hero Section with Background */}
       <section 
         className="relative py-32 overflow-hidden"

@@ -1,3 +1,6 @@
 {
-  "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }]
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
+  "installCommand": "bash scripts/vercel-install.sh",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
