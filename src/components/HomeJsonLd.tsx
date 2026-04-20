@@ -12,7 +12,8 @@ export function HomeJsonLd() {
       {
         "@type": "Organization",
         "@id": `${SITE_URL}/#organization`,
-        name: company.name,
+        name: SITE_NAME,
+        legalName: company.name,
         url: SITE_URL,
         logo: {
           "@type": "ImageObject",
