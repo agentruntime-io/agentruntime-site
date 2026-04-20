@@ -20,6 +20,8 @@ import NotFound from "./pages/NotFound";
 import Legal from "./pages/Legal";
 import LegalPolicy from "./pages/LegalPolicy";
 import { featureFlags } from "@/config/featureFlags";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +53,8 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
+          <Analytics />
+          <SpeedInsights />
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>
