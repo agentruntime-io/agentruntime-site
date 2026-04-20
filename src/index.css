@@ -308,6 +308,21 @@
       transform: translateY(-20px);
     }
   }
+
+  /* Hero scroll hint — ease-out vertical nudge (replaces animate-bounce) */
+  @keyframes scrollCue {
+    0%,
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(0.35rem);
+    }
+  }
+
+  .animate-scroll-cue {
+    animation: scrollCue 2.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  }
   
   /* Utility classes */
   .text-gradient {

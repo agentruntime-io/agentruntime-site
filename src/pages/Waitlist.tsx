@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { api } from "@/config/api";
+import { Seo } from "@/components/Seo";
+import { seoCopy } from "@/seo/metadata";
 
 const Waitlist = () => {
   const [searchParams] = useSearchParams();
@@ -54,6 +56,7 @@ const Waitlist = () => {
   if (!api.waitlist) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
+        <Seo {...seoCopy.waitlist} canonicalPath="/waitlist" />
         <Card className="max-w-md w-full mx-4">
           <CardContent className="pt-6">
             <p className="text-muted-foreground text-center">
@@ -67,6 +70,7 @@ const Waitlist = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo {...seoCopy.waitlist} canonicalPath="/waitlist" />
       <section className="py-24 px-4">
         <div className="max-w-xl mx-auto text-center">
           <h1 className="text-4xl font-bold text-foreground mb-4">

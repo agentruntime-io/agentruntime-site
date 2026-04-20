@@ -1,19 +1,28 @@
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
+
+/** Client-only gate without useEffect+setState (matches SSR, then updates after hydration). */
+function useClientReady() {
+  return useSyncExternalStore(
+    (onStoreChange) => {
+      queueMicrotask(onStoreChange);
+      return () => {};
+    },
+    () => true,
+    () => false
+  );
+}
 
 const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const clientReady = useClientReady();
 
-  // Avoid hydration mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return <Button variant="ghost" size="icon" disabled />;
+  if (!clientReady) {
+    return (
+      <Button variant="ghost" size="icon" disabled suppressHydrationWarning />
+    );
   }
 
   const toggleTheme = () => {

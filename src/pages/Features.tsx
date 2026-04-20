@@ -14,6 +14,8 @@ import {
   ExternalLink
 } from "lucide-react";
 import featuresBackground from "@/assets/features-background.jpg";
+import { Seo } from "@/components/Seo";
+import { seoCopy } from "@/seo/metadata";
 
 const Features = () => {
   const features = [
@@ -71,6 +73,7 @@ const Features = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo {...seoCopy.features} canonicalPath="/features" />
       {/* Hero Section with Background */}
       <section 
         className="relative py-32 overflow-hidden"

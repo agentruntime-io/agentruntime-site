@@ -2,6 +2,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Play, CheckCircle, Activity, BarChart3, Settings } from "lucide-react";
+import { Seo } from "@/components/Seo";
+import { seoCopy } from "@/seo/metadata";
 
 const HowItWorks = () => {
   const steps = [
@@ -70,6 +72,7 @@ for event in client.runs.stream(run.id):
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo {...seoCopy.howItWorks} canonicalPath="/how-it-works" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         {/* Header */}
         <div className="text-center mb-16">
