@@ -15,12 +15,12 @@
 - [Documentation hub](https://agentruntime.io/docs): On-site documentation overview and links to concepts (not a full API reference host by itself).
 - [Contact](https://agentruntime.io/contact): Sales, support, and general inquiries (form and contact options as configured).
 - [Waitlist](https://agentruntime.io/waitlist): Early access signup when offered.
-- [Careers](https://agentruntime.io/careers): Job listings and applications when the careers experience is enabled.
 
 ## Company & trust
 
-- [About](https://agentruntime.io/about): Mission, team, and values when the about page is published.
 - [Legal index](https://agentruntime.io/legal): Index of policies and agreements.
+
+**Routes gated in production:** `/about` and `/careers` exist in code but may be disabled via `featureFlags` (`showAboutPage`, `showCareersPage`); add them back to sitemap and `llms.txt` when enabled.
 
 ## Optional / extended index
 

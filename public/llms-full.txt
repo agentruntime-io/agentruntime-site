@@ -24,10 +24,9 @@ The public marketing SPA uses client-side routing; authoritative legal text live
 
 ## Company & conversion
 
-- [About](https://agentruntime.io/about): Company story, leadership, values—visibility may depend on site feature flags.
 - [Contact](https://agentruntime.io/contact): Contact form and listed channels; enterprise or support lines may be gated behind feature flags.
 - [Waitlist](https://agentruntime.io/waitlist): Email capture for launches and updates when enabled.
-- [Careers](https://agentruntime.io/careers): Open roles and application flow when enabled.
+- **About (`/about`)** and **Careers (`/careers`)**: Implemented in the app but may be **disabled** in production via `featureFlags.showAboutPage` / `showCareersPage`. When disabled, those paths redirect to `/`. Do not treat them as canonical live URLs until flags are enabled (then add to sitemap).
 
 ## Legal & policies
 
