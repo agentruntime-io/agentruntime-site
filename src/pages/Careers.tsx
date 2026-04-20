@@ -48,7 +48,7 @@ const PhoneInput = ({
   useEffect(() => {
     if (!didInit.current) { didInit.current = true; return; }
     onChange(localNumber ? `${selected.code} ${localNumber}` : "");
-  }, [selected, localNumber]);
+  }, [selected, localNumber, onChange]);
 
   return (
     <div className="flex gap-2">
