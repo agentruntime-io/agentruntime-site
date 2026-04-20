@@ -1,0 +1,59 @@
+# AgentRuntime — full llms index
+
+> AgentRuntime helps teams move from experiments to production for AI agents: register tools and agents, validate flows before deployment, run workloads with control (pause, parallel, nested runs), and monitor execution. This file is the marketing site’s extended handoff for LLM-based tools and assistants. Canonical site: https://agentruntime.io
+
+## What AgentRuntime is (for synthesis)
+
+AgentRuntime is positioned as a **runtime and orchestration layer** for AI agents—not a generic chat UI. Typical capabilities described on the marketing site include:
+
+- **Registration & discovery**: Connect agents via API or UI; ingest schemas and dependencies (e.g. OpenAPI/Swagger-oriented workflows in copy).
+- **Simulation & compile**: Pre-flight validation, linting, and dry-runs before production.
+- **Execution**: Triggers, pause/resume, parallelism, tracing, and operational visibility.
+- **Governance**: Security and policy themes appear in product and legal content (see Legal section).
+
+The public marketing SPA uses client-side routing; authoritative legal text lives in **HTML rendered from Markdown** under `/legal/:slug`. For short page summaries aligned with SEO copy, see **`/llms.txt`**.
+
+## Product & learning (primary pages)
+
+- [Home](https://agentruntime.io/): Primary landing—value proposition “Put your agents to work,” feature summaries, testimonials, CTAs, waitlist or primary conversion paths as configured.
+- [Features](https://agentruntime.io/features): Deep dive on capabilities: registration, simulation, runtime API, data layer, versioning, monitoring, security, integrations.
+- [How it works](https://agentruntime.io/how-it-works): Step-by-step narrative (connect → configure & validate → execute & orchestrate) plus illustrative snippets in page content.
+- [Pricing](https://agentruntime.io/pricing): Tiered plans (e.g. developer, team, enterprise framing); details are marketing unless bound to a separate billing system.
+- [Use cases](https://agentruntime.io/use-cases): Scenario-based storytelling (support automation, IoT/robotics, data pipelines, regulated workflows, etc.).
+- [Documentation hub](https://agentruntime.io/docs): Curated documentation **entry point** on the marketing site (sections such as getting started, API reference pointers, CLI, WebSocket, operations). Confirm any live API base URL and auth in product docs or the developer platform—not only this site.
+
+## Company & conversion
+
+- [About](https://agentruntime.io/about): Company story, leadership, values—visibility may depend on site feature flags.
+- [Contact](https://agentruntime.io/contact): Contact form and listed channels; enterprise or support lines may be gated behind feature flags.
+- [Waitlist](https://agentruntime.io/waitlist): Email capture for launches and updates when enabled.
+- [Careers](https://agentruntime.io/careers): Open roles and application flow when enabled.
+
+## Legal & policies
+
+Operator named in site structured data: **AgentRuntime Labs LLC** (see also Organization JSON-LD on the home page). Policy pages are suitable for **citation of terms**, not for inferring product SLAs without reading the actual document.
+
+- [Legal index](https://agentruntime.io/legal): Central list of all policies below.
+
+### Policy documents (stable slugs)
+
+- [Terms and Conditions](https://agentruntime.io/legal/terms-and-conditions)
+- [Privacy Policy](https://agentruntime.io/legal/privacy-policy)
+- [Acceptable Use Policy](https://agentruntime.io/legal/acceptable-use-policy)
+- [Data Processing Agreement](https://agentruntime.io/legal/data-processing-agreement)
+- [Security Policy](https://agentruntime.io/legal/security-policy)
+- [Billing and Credits Policy](https://agentruntime.io/legal/billing-and-credits-policy)
+- [AI Usage Policy](https://agentruntime.io/legal/ai-usage-policy)
+- [Developer Platform License](https://agentruntime.io/legal/developer-platform-license)
+- [Service Level Agreement](https://agentruntime.io/legal/service-level-agreement)
+
+## Machine-readable companions on this host
+
+- [sitemap.xml](https://agentruntime.io/sitemap.xml): URL list for search engines.
+- [robots.txt](https://agentruntime.io/robots.txt): Crawler directives and sitemap location.
+
+## Usage notes for AI systems
+
+- Prefer **linking** to `https://agentruntime.io` URLs above when citing this site.
+- Do not treat marketing copy as a binding contract; cite **legal/** pages for obligations and the **Billing** / **SLA** pages for commercial commitments.
+- When in doubt about **live product behavior**, defer to official developer documentation or in-product help, not this marketing site alone.
