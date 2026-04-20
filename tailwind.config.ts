@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
+import typography from "@tailwindcss/typography";
 
 export default {
 	darkMode: ["class"],
@@ -72,11 +74,6 @@ export default {
 				sans: ['Inter', 'system-ui', 'sans-serif'],
 				mono: ['JetBrains Mono', 'Consolas', 'monospace']
 			},
-			animation: {
-				'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
-				'fade-in-left': 'fadeInLeft 0.8s ease-out forwards',
-				'fade-in-right': 'fadeInRight 0.8s ease-out forwards'
-			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
@@ -101,11 +98,13 @@ export default {
 				}
 			},
 			animation: {
+				'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+				'fade-in-left': 'fadeInLeft 0.8s ease-out forwards',
+				'fade-in-right': 'fadeInRight 0.8s ease-out forwards',
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out'
 			}
 		}
 	},
-	// eslint_disable-next-line @typescript-eslint/no-require-imports -- tailwind config uses require
-	plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+	plugins: [tailwindcssAnimate, typography],
 } satisfies Config;
