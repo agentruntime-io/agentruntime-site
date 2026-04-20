@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "npm run build",
-  "installCommand": "dnf install -y libXcomposite libXcursor libXdamage libXext libXi libXtst cups-libs libXScrnSaver libXrandr gtk3 pango alsa-lib atk at-spi2-atk at-spi2-core libdrm libxkbcommon nss nspr xorg-x11-server-Xvfb mesa-libgbm && npm install && npx playwright install chromium",
+  "installCommand": "bash scripts/vercel-install.sh",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
