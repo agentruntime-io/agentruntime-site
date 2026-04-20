@@ -106,6 +106,6 @@ export default {
 			}
 		}
 	},
-	// eslint-disable-next-line @typescript-eslint/no-require-imports -- tailwind config uses require
+	// eslint_disable-next-line @typescript-eslint/no-require-imports -- tailwind config uses require
 	plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;
