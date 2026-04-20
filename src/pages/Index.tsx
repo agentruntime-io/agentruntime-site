@@ -129,7 +129,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {useCases.map((useCase, index) => (
               <Card 
-                key={index}
+                key={useCase}
                 className="bg-white/10 backdrop-blur-sm border border-white/20 hover-lift transition-all duration-300 dark:bg-background/20 dark:border-primary/30"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
@@ -238,7 +238,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {testimonials.map((testimonial, index) => (
               <Card 
-                key={index}
+                key={`${testimonial.author}-${testimonial.company}`}
                 className="card-gradient hover-lift transition-all duration-300 border-0"
                 style={{ animationDelay: `${index * 200}ms` }}
               >

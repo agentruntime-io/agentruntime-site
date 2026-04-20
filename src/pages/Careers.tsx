@@ -1,4 +1,5 @@
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useId, useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -43,6 +44,7 @@ const PhoneInput = ({
   );
   const [localNumber, setLocalNumber] = useState("");
   const didInit = useRef(false);
+  const countryListId = useId();
 
   // Sync combined value outward
   useEffect(() => {
@@ -58,6 +60,7 @@ const PhoneInput = ({
             variant="outline"
             role="combobox"
             aria-expanded={open}
+            aria-controls={countryListId}
             className="w-[110px] justify-between shrink-0 font-normal px-3"
             type="button"
           >
@@ -66,7 +69,7 @@ const PhoneInput = ({
             <ChevronsUpDown className="h-3.5 w-3.5 opacity-50 ml-1 shrink-0" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-64 p-0" align="start">
+        <PopoverContent id={countryListId} className="w-64 p-0" align="start">
           <Command>
             <CommandInput placeholder="Search country or code…" />
             <CommandList>
@@ -133,23 +136,22 @@ type JobPosting = {
 };
 
 const Careers = () => {
-  const [jobs, setJobs] = useState<JobPosting[]>([]);
-  const [jobsLoading, setJobsLoading] = useState(true);
+  const jobsQuery = useQuery({
+    queryKey: ["careers-jobs"],
+    queryFn: async (): Promise<JobPosting[]> => {
+      if (!api.careersJobs) return [];
+      const res = await fetch(api.careersJobs);
+      if (!res.ok) throw new Error("Failed to load jobs");
+      const data = await res.json();
+      return data.jobs ?? [];
+    },
+    enabled: Boolean(api.careersJobs),
+  });
+  const jobs = jobsQuery.data ?? [];
+  const jobsLoading = jobsQuery.isLoading;
   const [appStatus, setAppStatus] = useState<"idle" | "success" | "error" | "submitting">("idle");
   const [selectedJobId, setSelectedJobId] = useState("");
   const [phone, setPhone] = useState("");
-
-  useEffect(() => {
-    if (!api.careersJobs) {
-      setJobsLoading(false);
-      return;
-    }
-    fetch(api.careersJobs)
-      .then((res) => res.json())
-      .then((data) => setJobs(data.jobs ?? []))
-      .catch(() => setJobs([]))
-      .finally(() => setJobsLoading(false));
-  }, []);
 
   const buildLinks = (formData: FormData) => {
     const linkedin = (formData.get("linkedin") as string)?.trim() ?? "";
