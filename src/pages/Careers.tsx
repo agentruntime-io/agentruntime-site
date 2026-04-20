@@ -18,6 +18,8 @@ import { Briefcase, MapPin, Building2, ChevronsUpDown, Check } from "lucide-reac
 import { api } from "@/config/api";
 import { customList } from "country-codes-list";
 import ReactCountryFlag from "react-country-flag";
+import { Seo } from "@/components/Seo";
+import { seoCopy } from "@/seo/metadata";
 
 type Country = { isoCode: string; name: string; code: string };
 
@@ -227,6 +229,7 @@ const Careers = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo {...seoCopy.careers} canonicalPath="/careers" />
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h1 className="text-4xl font-bold text-foreground mb-4">Careers at AgentRuntime</h1>

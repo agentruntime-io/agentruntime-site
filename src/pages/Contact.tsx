@@ -12,6 +12,8 @@ import { ContactFormSection } from "@/components/contact/ContactFormSection";
 import { ContactDetailsColumn, type ContactMethodItem } from "@/components/contact/ContactDetailsColumn";
 import { ContactFaqSection } from "@/components/contact/ContactFaqSection";
 import { ContactClosingCta } from "@/components/contact/ContactClosingCta";
+import { Seo } from "@/components/Seo";
+import { seoCopy } from "@/seo/metadata";
 
 const formEndpoint = api.contact;
 
@@ -106,6 +108,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo {...seoCopy.contact} canonicalPath="/contact" />
       <ContactHero />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">

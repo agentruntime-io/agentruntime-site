@@ -18,6 +18,9 @@ import ctaBackground from "@/assets/cta-background.jpg";
 import { HeroCta } from "@/components/HeroCta";
 import { HeroWaitlist } from "@/components/HeroWaitlist";
 import { featureFlags } from "@/config/featureFlags";
+import { HomeJsonLd } from "@/components/HomeJsonLd";
+import { Seo } from "@/components/Seo";
+import { seoCopy } from "@/seo/metadata";
 
 const Index = () => {
   const features = [
@@ -62,6 +65,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo {...seoCopy.home} canonicalPath="/" />
+      <HomeJsonLd />
       {/* Hero Section — variant controlled by featureFlags.heroVariant */}
       {featureFlags.heroVariant === "waitlist" ? <HeroWaitlist /> : <HeroCta />}
 

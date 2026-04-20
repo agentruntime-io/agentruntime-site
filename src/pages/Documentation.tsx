@@ -12,6 +12,8 @@ import {
   Zap,
   Search
 } from "lucide-react";
+import { Seo } from "@/components/Seo";
+import { seoCopy } from "@/seo/metadata";
 
 const Documentation = () => {
   const sections = [
@@ -84,6 +86,7 @@ const Documentation = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo {...seoCopy.documentation} canonicalPath="/docs" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         {/* Header */}
         <div className="text-center mb-16">

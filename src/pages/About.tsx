@@ -5,6 +5,8 @@ import { Github, Linkedin, MapPin, Users, Target, Lightbulb, Shield } from "luci
 import { featureFlags } from "@/config/featureFlags";
 import { company } from "@/config/company";
 import aboutBackground from "@/assets/about-background.jpg";
+import { Seo } from "@/components/Seo";
+import { seoCopy } from "@/seo/metadata";
 
 const About = () => {
   const team = [
@@ -54,6 +56,7 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo {...seoCopy.about} canonicalPath="/about" />
       {/* Hero Section with Background */}
       <section 
         className="relative py-32 overflow-hidden"
