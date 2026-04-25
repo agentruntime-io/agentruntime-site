@@ -37,6 +37,7 @@ const Footer = () => {
       { label: "How It Works", path: "/how-it-works" },
     ],
     company: [
+      { label: "Blog", path: "/blog" },
       ...(featureFlags.showAboutPage ? [{ label: "About", path: "/about" }] : []),
       { label: "Contact", path: "/contact" },
       ...(featureFlags.showCareersPage ? [{ label: "Careers", path: "/careers" }] : []),

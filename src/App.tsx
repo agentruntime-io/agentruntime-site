@@ -19,6 +19,8 @@ import Careers from "./pages/Careers";
 import NotFound from "./pages/NotFound";
 import Legal from "./pages/Legal";
 import LegalPolicy from "./pages/LegalPolicy";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import { featureFlags } from "@/config/featureFlags";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -48,6 +50,8 @@ const App = () => (
               path="/careers"
               element={featureFlags.showCareersPage ? <Careers /> : <Navigate to="/" replace />}
             />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/legal" element={<Legal />} />
             <Route path="/legal/:policyName" element={<LegalPolicy />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

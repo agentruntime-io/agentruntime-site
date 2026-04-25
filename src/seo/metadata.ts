@@ -59,6 +59,11 @@ export const seoCopy = {
     description:
       "Terms, privacy, acceptable use, security, billing, and other policies governing use of the AgentRuntime platform.",
   },
+  blog: {
+    title: "Blog",
+    description:
+      "Product updates, engineering notes, and guidance for running AI agents in production on AgentRuntime.",
+  },
   notFound: {
     title: "Page Not Found",
     description: "The page you requested could not be found.",

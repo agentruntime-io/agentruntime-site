@@ -9,7 +9,12 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => {
+    if (path === "/blog") {
+      return location.pathname === "/blog" || location.pathname.startsWith("/blog/");
+    }
+    return location.pathname === path;
+  };
 
   const navItems = [
     { path: "/features", label: "Features" },
@@ -17,6 +22,7 @@ const Navigation = () => {
     { path: "/pricing", label: "Pricing" },
     { path: "/use-cases", label: "Use Cases" },
     { path: "/docs", label: "Documentation" },
+    { path: "/blog", label: "Blog" },
     ...(featureFlags.showAboutPage ? [{ path: "/about", label: "About" }] : []),
     { path: "/contact", label: "Contact" }
   ];
