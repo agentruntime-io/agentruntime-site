@@ -18,13 +18,11 @@ const Navigation = () => {
 
   const navItems = [
     { path: "/features", label: "Features" },
-    { path: "/how-it-works", label: "How It Works" },
     { path: "/pricing", label: "Pricing" },
-    { path: "/use-cases", label: "Use Cases" },
-    { path: "/docs", label: "Documentation" },
     { path: "/blog", label: "Blog" },
     ...(featureFlags.showAboutPage ? [{ path: "/about", label: "About" }] : []),
-    { path: "/contact", label: "Contact" }
+    { path: "/contact", label: "Contact" },
+    // How It Works and Use Cases are accessible from within Features/Homepage — not needed in primary nav
   ];
 
   return (

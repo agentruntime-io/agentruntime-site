@@ -44,4 +44,10 @@ export const featureFlags = {
 
   /** Contact page: Sales contact method (sales@agentruntime.io, +1-800-123-4567) */
   showContactSales: false,
+
+  /**
+   * Home page: Testimonials section.
+   * Keep false until real customer quotes are available — placeholder quotes damage credibility.
+   */
+  showTestimonials: false,
 } as const;

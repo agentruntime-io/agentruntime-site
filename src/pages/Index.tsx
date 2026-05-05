@@ -228,47 +228,49 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Trusted by Engineering Teams
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              See what leaders are saying about AgentRuntime
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card 
-                key={`${testimonial.author}-${testimonial.company}`}
-                className="card-gradient hover-lift transition-all duration-300 border-0"
-                style={{ animationDelay: `${index * 200}ms` }}
-              >
-                <CardContent className="p-8">
-                  <Quote className="h-8 w-8 text-primary mb-4" />
-                  <blockquote className="text-lg text-foreground mb-6 leading-relaxed">
-                    "{testimonial.quote}"
-                  </blockquote>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-hero flex items-center justify-center">
-                      <Users className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-foreground">{testimonial.author}</div>
-                      <div className="text-sm text-muted-foreground">
-                        {testimonial.role} at {testimonial.company}
+      {/* Testimonials Section — hidden until real customer quotes are available */}
+      {featureFlags.showTestimonials && (
+        <section className="py-20 bg-background">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+                Trusted by Engineering Teams
+              </h2>
+              <p className="text-xl text-muted-foreground">
+                See what leaders are saying about AgentRuntime
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {testimonials.map((testimonial, index) => (
+                <Card 
+                  key={`${testimonial.author}-${testimonial.company}`}
+                  className="card-gradient hover-lift transition-all duration-300 border-0"
+                  style={{ animationDelay: `${index * 200}ms` }}
+                >
+                  <CardContent className="p-8">
+                    <Quote className="h-8 w-8 text-primary mb-4" />
+                    <blockquote className="text-lg text-foreground mb-6 leading-relaxed">
+                      "{testimonial.quote}"
+                    </blockquote>
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-full bg-gradient-hero flex items-center justify-center">
+                        <Users className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <div className="font-semibold text-foreground">{testimonial.author}</div>
+                        <div className="text-sm text-muted-foreground">
+                          {testimonial.role} at {testimonial.company}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Final CTA Section with Background */}
       <section 

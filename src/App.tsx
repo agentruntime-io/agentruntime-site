@@ -28,6 +28,7 @@ const Legal = lazy(() => import("./pages/Legal"));
 const LegalPolicy = lazy(() => import("./pages/LegalPolicy"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
+const ApiReference = lazy(() => import("./pages/ApiReference"));
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -36,33 +37,47 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Navigation />
-          <main id="main-content">
-            <Suspense fallback={<div className="min-h-screen bg-background" aria-label="Loading page" />}>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/features" element={<Features />} />
-                <Route path="/how-it-works" element={<HowItWorks />} />
-                <Route path="/pricing" element={<Pricing />} />
-                <Route path="/use-cases" element={<UseCases />} />
-                <Route path="/docs" element={<Documentation />} />
-                <Route path="/about" element={featureFlags.showAboutPage ? <About /> : <Navigate to="/" replace />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/waitlist" element={<Waitlist />} />
-                <Route
-                  path="/careers"
-                  element={featureFlags.showCareersPage ? <Careers /> : <Navigate to="/" replace />}
-                />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:slug" element={<BlogPost />} />
-                <Route path="/legal" element={<Legal />} />
-                <Route path="/legal/:policyName" element={<LegalPolicy />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-          </main>
-          <Footer />
+          <Routes>
+            {/* Full-viewport route — no site nav or footer */}
+            <Route path="/api-reference" element={
+              <Suspense fallback={<div className="min-h-screen bg-background" aria-label="Loading page" />}>
+                <ApiReference />
+              </Suspense>
+            } />
+
+            {/* All other routes share the site nav + footer shell */}
+            <Route path="*" element={
+              <>
+                <Navigation />
+                <main id="main-content">
+                  <Suspense fallback={<div className="min-h-screen bg-background" aria-label="Loading page" />}>
+                    <Routes>
+                      <Route path="/" element={<Index />} />
+                      <Route path="/features" element={<Features />} />
+                      <Route path="/how-it-works" element={<HowItWorks />} />
+                      <Route path="/pricing" element={<Pricing />} />
+                      <Route path="/use-cases" element={<UseCases />} />
+                      <Route path="/docs" element={<Documentation />} />
+                      <Route path="/about" element={featureFlags.showAboutPage ? <About /> : <Navigate to="/" replace />} />
+                      <Route path="/contact" element={<Contact />} />
+                      <Route path="/waitlist" element={<Waitlist />} />
+                      <Route
+                        path="/careers"
+                        element={featureFlags.showCareersPage ? <Careers /> : <Navigate to="/" replace />}
+                      />
+                      <Route path="/blog" element={<Blog />} />
+                      <Route path="/blog/:slug" element={<BlogPost />} />
+                      <Route path="/legal" element={<Legal />} />
+                      <Route path="/legal/:policyName" element={<LegalPolicy />} />
+                      {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                      <Route path="*" element={<NotFound />} />
+                    </Routes>
+                  </Suspense>
+                </main>
+                <Footer />
+              </>
+            } />
+          </Routes>
           <Analytics />
           <SpeedInsights />
         </BrowserRouter>
