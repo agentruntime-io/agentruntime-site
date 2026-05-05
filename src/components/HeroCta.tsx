@@ -45,7 +45,7 @@ export const HeroCta = () => {
         </h1>
 
         <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto mb-8 fade-in-up">
-          Run AI agents reliably, safely, and at scale—with full control, visibility, and zero
+          Run AI agents reliably, safely, and at scale - with full control, visibility, and zero
           fragile scripts. Now.
         </p>
 

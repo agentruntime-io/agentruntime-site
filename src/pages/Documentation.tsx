@@ -12,6 +12,7 @@ import {
   Zap,
   Search
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Seo } from "@/components/Seo";
 import { seoCopy } from "@/seo/metadata";
 
@@ -130,9 +131,12 @@ const Documentation = () => {
                 <CardContent>
                   <div className="space-y-3">
                     {section.links.map((link) => (
-                      <div key={link} className="flex items-center gap-3 p-2 rounded hover:bg-muted/50 transition-colors cursor-pointer">
+                      <div key={link} className="flex items-center gap-3 p-2 rounded bg-muted/20">
                         <ExternalLink className="h-4 w-4 text-primary" />
                         <span className="text-sm font-medium text-foreground">{link}</span>
+                        <Badge variant="outline" className="ml-auto text-xs">
+                          Planned
+                        </Badge>
                       </div>
                     ))}
                   </div>
@@ -152,7 +156,7 @@ const Documentation = () => {
             {resources.map((resource) => {
               const IconComponent = resource.icon;
               return (
-                <Card key={resource.title} className="card-gradient hover-lift transition-all duration-300 cursor-pointer">
+                <Card key={resource.title} className="card-gradient transition-all duration-300">
                   <CardContent className="p-6 text-center">
                     <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
                       <IconComponent className="h-6 w-6 text-primary" />
@@ -207,7 +211,7 @@ const Documentation = () => {
               "Multi-Tenant Setup",
               "Custom Integrations"
             ].map((tutorial) => (
-              <Card key={tutorial} className="card-gradient hover-lift transition-all duration-300 cursor-pointer">
+              <Card key={tutorial} className="card-gradient transition-all duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3 mb-3">
                     <BookOpen className="h-5 w-5 text-primary" />
@@ -231,13 +235,17 @@ const Documentation = () => {
               Can't find what you're looking for? Our support team is here to help you succeed.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="hero" size="lg" className="gap-2">
-                <MessageCircle className="h-5 w-5" />
-                Contact Support
+              <Button variant="hero" size="lg" className="gap-2" asChild>
+                <Link to="/contact?source=docs">
+                  <MessageCircle className="h-5 w-5" />
+                  Contact Support
+                </Link>
               </Button>
-              <Button variant="outline" size="lg" className="gap-2">
-                <ExternalLink className="h-5 w-5" />
-                Join Community
+              <Button variant="outline" size="lg" className="gap-2" asChild>
+                <Link to="/waitlist?source=docs">
+                  <ExternalLink className="h-5 w-5" />
+                  Join Community
+                </Link>
               </Button>
             </div>
           </div>

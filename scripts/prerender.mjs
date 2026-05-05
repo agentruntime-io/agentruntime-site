@@ -4,13 +4,13 @@
  * 1. Expects `dist/` from a prior `vite build`.
  * 2. Starts `vite preview` on a local port.
  * 3. Visits each URL from `public/sitemap.xml` with Playwright and writes HTML
- *    as `dist/<path>/index.html` (root → `dist/index.html`).
+ *    as `dist/<path>/index.html` (root -> `dist/index.html`).
  *
  * One-time setup: `npx playwright install chromium`
  *
  * Env:
- *   PRERENDER_PREVIEW_PORT — fixed port (optional; if unset, an ephemeral free port is used)
- *   PRERENDER_WAIT_MS — extra settle time after load (default 800)
+ *   PRERENDER_PREVIEW_PORT - fixed port (optional; if unset, an ephemeral free port is used)
+ *   PRERENDER_WAIT_MS - extra settle time after load (default 800)
  */
 
 import { spawn } from "node:child_process";
@@ -118,7 +118,7 @@ async function main() {
 
   const viteCli = join(ROOT, "node_modules", "vite", "bin", "vite.js");
 
-  console.log(`prerender: starting vite preview on port ${previewPort}…`);
+  console.log(`prerender: starting vite preview on port ${previewPort}...`);
   previewProc = spawn(
     process.execPath,
     [
@@ -145,7 +145,7 @@ async function main() {
   try {
     await waitForPreview(`${previewOrigin}/`);
 
-    console.log(`prerender: capturing ${paths.length} routes with Playwright…`);
+    console.log(`prerender: capturing ${paths.length} routes with Playwright...`);
 
     const browser = await chromium.launch({ headless: true });
 
@@ -168,7 +168,7 @@ async function main() {
           await mkdir(dirname(outPath), { recursive: true });
           await writeFile(outPath, html, "utf8");
           const rel = outPath.slice(ROOT.length + 1);
-          console.log(`prerender: ok ${pathname} → ${rel}`);
+          console.log(`prerender: ok ${pathname} -> ${rel}`);
         } finally {
           await page.close();
         }

@@ -43,7 +43,7 @@ const Legal = () => {
                 </p>
               </div>
               <span className="text-muted-foreground group-hover:text-primary transition-colors">
-                →
+                -&gt;
               </span>
             </Link>
           ))}

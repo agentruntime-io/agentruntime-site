@@ -73,7 +73,7 @@ const PhoneInput = ({
         </PopoverTrigger>
         <PopoverContent id={countryListId} className="w-64 p-0" align="start">
           <Command>
-            <CommandInput placeholder="Search country or code…" />
+            <CommandInput placeholder="Search country or code..." />
             <CommandList>
               <CommandEmpty>No country found.</CommandEmpty>
               <CommandGroup>
@@ -347,7 +347,7 @@ const Careers = () => {
                       type="submit"
                       disabled={appStatus === "submitting"}
                     >
-                      {appStatus === "submitting" ? "Submitting…" : "Submit Application"}
+                      {appStatus === "submitting" ? "Submitting..." : "Submit Application"}
                     </Button>
                     {appStatus === "success" && (
                       <p className="text-sm text-green-600 dark:text-green-400">

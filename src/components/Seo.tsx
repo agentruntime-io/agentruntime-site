@@ -11,7 +11,7 @@ export type SeoProps = {
   /** Short page title; ` | ${SITE_NAME}` is appended when missing */
   title: string;
   description?: string;
-  /** Path only, e.g. `/pricing` — canonical and og:url. Omit on error pages. */
+  /** Path only, e.g. `/pricing` - canonical and og:url. Omit on error pages. */
   canonicalPath?: string;
   /** Use for 404, thank-you pages, etc. */
   noindex?: boolean;

@@ -67,7 +67,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Seo {...seoCopy.home} canonicalPath="/" />
       <HomeJsonLd />
-      {/* Hero Section — variant controlled by featureFlags.heroVariant */}
+      {/* Hero Section - variant controlled by featureFlags.heroVariant */}
       {featureFlags.heroVariant === "waitlist" ? <HeroWaitlist /> : <HeroCta />}
 
       {/* Features Section */}
@@ -171,7 +171,7 @@ const Index = () => {
           backgroundRepeat: 'no-repeat'
         }}
       >
-        {/* Dark overlay — stronger to reduce background competition */}
+        {/* Dark overlay - stronger to reduce background competition */}
         <div className="absolute inset-0 bg-black/80 dark:bg-black/90"></div>
         {/* Gradient to darken lower half where cards sit */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
@@ -200,7 +200,7 @@ const Index = () => {
                 <CheckCircle className="h-5 w-5 text-primary" />
               </div>
               <h3 className="font-semibold text-white mb-2">Transparent Decisions</h3>
-              <p className="text-sm text-white/90 leading-relaxed">Every agent action is logged and explainable — no black boxes, full audit trails.</p>
+              <p className="text-sm text-white/90 leading-relaxed">Every agent action is logged and explainable - no black boxes, full audit trails.</p>
             </div>
             <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6 border border-white/30 text-left">
               <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center mb-4">
@@ -316,7 +316,7 @@ const Index = () => {
               </Button>
             </div>
             <p className="text-sm text-white/90 mt-4">
-              No credit card required • 5 agents included • Community support
+              No credit card required - 5 agents included - Community support
             </p>
           </div>
         </div>

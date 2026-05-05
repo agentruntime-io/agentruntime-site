@@ -7,7 +7,7 @@ export const seoCopy = {
   home: {
     title: "Put Your Agents to Work",
     description:
-      "Stop experimenting. Put your agents to work. Run AI agents reliably, safely, at scale—now. Build production-ready agent workflows with confidence.",
+      "Stop experimenting. Put your agents to work. Run AI agents reliably, safely, at scale - now. Build production-ready agent workflows with confidence.",
   },
   features: {
     title: "Features",
@@ -22,12 +22,12 @@ export const seoCopy = {
   pricing: {
     title: "Pricing",
     description:
-      "Plans for individuals, teams, and enterprise—from free developer tier to dedicated support, SLAs, and custom integrations.",
+      "Plans for individuals, teams, and enterprise - from free developer tier to dedicated support, SLAs, and custom integrations.",
   },
   useCases: {
     title: "Use Cases",
     description:
-      "Customer support, IoT and robotics, data pipelines, and more—see how teams deploy reliable agent workflows with AgentRuntime.",
+      "Customer support, IoT and robotics, data pipelines, and more - see how teams deploy reliable agent workflows with AgentRuntime.",
   },
   documentation: {
     title: "Documentation",
@@ -37,7 +37,7 @@ export const seoCopy = {
   about: {
     title: "About",
     description:
-      "Mission, team, and values behind AgentRuntime—building dependable infrastructure for AI agent orchestration.",
+      "Mission, team, and values behind AgentRuntime - building dependable infrastructure for AI agent orchestration.",
   },
   contact: {
     title: "Contact",
@@ -52,7 +52,7 @@ export const seoCopy = {
   careers: {
     title: "Careers",
     description:
-      "Open roles and applications at AgentRuntime—help build the future of AI agent orchestration.",
+      "Open roles and applications at AgentRuntime - help build the future of AI agent orchestration.",
   },
   legal: {
     title: "Legal",

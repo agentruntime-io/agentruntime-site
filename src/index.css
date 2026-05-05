@@ -309,7 +309,7 @@
     }
   }
 
-  /* Hero scroll hint — ease-out vertical nudge (replaces animate-bounce) */
+  /* Hero scroll hint - ease-out vertical nudge (replaces animate-bounce) */
   @keyframes scrollCue {
     0%,
     100% {

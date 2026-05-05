@@ -61,7 +61,7 @@ const Navigation = () => {
             </div>
           </div>
 
-          {/* Desktop CTAs — pushed right */}
+          {/* Desktop CTAs - pushed right */}
           <div className="hidden md:flex items-center space-x-3 ml-auto">
             <ThemeToggle />
               <Button variant="outline" size="sm" asChild className="dark:border-primary/50 dark:hover:bg-primary/10">

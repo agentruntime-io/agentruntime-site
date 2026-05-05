@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Check, Star, Zap, Crown } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Seo } from "@/components/Seo";
 import { seoCopy } from "@/seo/metadata";
 
@@ -26,6 +27,7 @@ const Pricing = () => {
         "Limited monitoring"
       ],
       cta: "Start Free",
+      ctaPath: "/waitlist?plan=developer",
       popular: false
     },
     {
@@ -48,6 +50,7 @@ const Pricing = () => {
       ],
       limitations: [],
       cta: "Start Team Trial",
+      ctaPath: "/waitlist?plan=team",
       popular: true
     },
     {
@@ -71,6 +74,7 @@ const Pricing = () => {
       ],
       limitations: [],
       cta: "Contact Sales",
+      ctaPath: "/contact?source=enterprise",
       popular: false
     }
   ];
@@ -141,8 +145,9 @@ const Pricing = () => {
                     variant={plan.popular ? "hero" : "outline"} 
                     size="lg" 
                     className="w-full"
+                    asChild
                   >
-                    {plan.cta}
+                    <Link to={plan.ctaPath}>{plan.cta}</Link>
                   </Button>
                 </CardContent>
               </Card>

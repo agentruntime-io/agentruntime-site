@@ -4,7 +4,7 @@
  *
  * SEO / sitemap / prerender / llms:
  * When a **route** is disabled here (redirects in App.tsx), do **not** list that URL in
- * `public/sitemap.xml`, `public/llms.txt`, or `public/llms-full.txt`—crawlers would see a
+ * `public/sitemap.xml`, `public/llms.txt`, or `public/llms-full.txt` - crawlers would see a
  * mismatch (sitemap promises a page; app redirects to `/`). The prerender script reads
  * `sitemap.xml`, so those URLs would also get wrong static HTML.
  * Applies today to **showAboutPage** (`/about`) and **showCareersPage** (`/careers`).
@@ -17,7 +17,7 @@ export const featureFlags = {
 
   /**
    * Show About page and its nav link (`/about`).
-   * If false, `/about` redirects to `/` — keep it out of sitemap + llms until true.
+   * If false, `/about` redirects to `/` - keep it out of sitemap + llms until true.
    */
   showAboutPage: false,
 
@@ -26,7 +26,7 @@ export const featureFlags = {
 
   /**
    * Standalone `/careers` page and footer link.
-   * If false, `/careers` redirects to `/` — keep it out of sitemap + llms until true.
+   * If false, `/careers` redirects to `/` - keep it out of sitemap + llms until true.
    */
   showCareersPage: false,
 

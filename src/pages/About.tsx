@@ -244,7 +244,7 @@ const About = () => {
               <span className="font-semibold text-foreground">{company.address.city}, {company.address.state}</span>
             </div>
             <p className="text-muted-foreground mb-6">
-              {company.name} — {company.address.line1}, {company.address.city}, {company.address.state} {company.address.zip}. Global remote-first culture.
+              {company.name} - {company.address.line1}, {company.address.city}, {company.address.state} {company.address.zip}. Global remote-first culture.
             </p>
             <div className="flex justify-center gap-4">
               <Button variant="outline" size="icon">

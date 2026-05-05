@@ -43,7 +43,7 @@ const Blog = () => {
                 <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{post.description}</p>
               </div>
               <span className="text-muted-foreground group-hover:text-primary transition-colors shrink-0">
-                →
+                -&gt;
               </span>
             </Link>
           ))}

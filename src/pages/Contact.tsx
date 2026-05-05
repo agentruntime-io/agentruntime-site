@@ -45,7 +45,7 @@ const Contact = () => {
       const payload: Record<string, string> = {
         _subject: subject,
         _replyto: (formData.get("email") as string) ?? "",
-        name: [firstName, lastName].filter(Boolean).join(" ") || "—",
+        name: [firstName, lastName].filter(Boolean).join(" ") || "-",
         email: (formData.get("email") as string) ?? "",
         company: String(formData.get("company") ?? "").trim(),
         message: (String(formData.get("message") ?? "").trim()) + footerSuffix,

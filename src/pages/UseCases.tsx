@@ -160,9 +160,9 @@ const UseCases = () => {
                   with AgentRuntime. Most customers see ROI within 3 months.
                 </p>
                 <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Average 65% reduction in operational costs</li>
-                  <li>• 40+ hours saved per developer per month</li>
-                  <li>• 85% faster time-to-market for new features</li>
+                  <li>- Average 65% reduction in operational costs</li>
+                  <li>- 40+ hours saved per developer per month</li>
+                  <li>- 85% faster time-to-market for new features</li>
                 </ul>
               </div>
               
