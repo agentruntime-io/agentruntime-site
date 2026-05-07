@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
-import { featureFlags } from "@/config/featureFlags";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,13 +15,15 @@ const Navigation = () => {
     return location.pathname === path;
   };
 
+  /** Primary navigation */
   const navItems = [
     { path: "/features", label: "Features" },
+    { path: "/how-it-works", label: "How It Works" },
     { path: "/pricing", label: "Pricing" },
+    { path: "/use-cases", label: "Use Cases" },
+    { path: "/docs", label: "Documentation" },
     { path: "/blog", label: "Blog" },
-    ...(featureFlags.showAboutPage ? [{ path: "/about", label: "About" }] : []),
     { path: "/contact", label: "Contact" },
-    // How It Works and Use Cases are accessible from within Features/Homepage — not needed in primary nav
   ];
 
   return (
@@ -62,12 +63,9 @@ const Navigation = () => {
           {/* Desktop CTAs - pushed right */}
           <div className="hidden md:flex items-center space-x-3 ml-auto">
             <ThemeToggle />
-              <Button variant="outline" size="sm" asChild className="dark:border-primary/50 dark:hover:bg-primary/10">
-                <Link to="/docs">Docs</Link>
-              </Button>
-              <Button variant="hero" size="sm" className="dark:shadow-glow" asChild>
-                <Link to="/waitlist">Get Started Free</Link>
-              </Button>
+            <Button variant="hero" size="sm" className="dark:shadow-glow" asChild>
+              <Link to="/waitlist">Get Started Free</Link>
+            </Button>
           </div>
 
           {/* Mobile menu button and theme toggle */}
@@ -106,9 +104,6 @@ const Navigation = () => {
                 </Link>
               ))}
               <div className="flex flex-col space-y-2 pt-4">
-                <Button variant="outline" size="sm" asChild className="w-full dark:border-primary/50 dark:hover:bg-primary/10">
-                  <Link to="/docs">Documentation</Link>
-                </Button>
                 <Button variant="hero" size="sm" className="w-full dark:shadow-glow" asChild>
                   <Link to="/waitlist">Get Started Free</Link>
                 </Button>

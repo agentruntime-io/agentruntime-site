@@ -7,6 +7,8 @@ import { type BlogTag } from "@/blog/types";
 import { Seo } from "@/components/Seo";
 import { seoCopy } from "@/seo/metadata";
 import { Badge } from "@/components/ui/badge";
+import { SITE_URL } from "@/config/site";
+import { BreadcrumbListJsonLd } from "@/components/BreadcrumbListJsonLd";
 
 const TAG_COLORS: Record<BlogTag, string> = {
   Infrastructure: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
@@ -36,6 +38,12 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-background">
       <Seo {...seoCopy.blog} canonicalPath="/blog" />
+      <BreadcrumbListJsonLd
+        items={[
+          { name: "Home", item: SITE_URL },
+          { name: "Blog", item: `${SITE_URL}/blog` },
+        ]}
+      />
 
       {/* Header */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-6">

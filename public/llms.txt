@@ -12,7 +12,7 @@
 
 ## Learn & engage
 
-- [Blog](https://agentruntime.io/blog): Product updates, engineering notes, and guides (Markdown posts under `/blog/:slug`).
+- [Blog](https://agentruntime.io/blog): Product updates, engineering notes, and guides; [RSS feed](https://agentruntime.io/blog/rss.xml) lists all posts.
 - [Documentation hub](https://agentruntime.io/docs): On-site documentation overview and links to concepts (not a full API reference host by itself).
 - [Contact](https://agentruntime.io/contact): Sales, support, and general inquiries (form and contact options as configured).
 - [Waitlist](https://agentruntime.io/waitlist): Early access signup when offered.

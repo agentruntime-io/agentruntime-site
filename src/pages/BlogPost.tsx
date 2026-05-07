@@ -8,6 +8,7 @@ import { BLOG_POSTS, getPostBySlug } from "@/blog/posts";
 import { type BlogTag } from "@/blog/types";
 import { extractHeadings } from "@/legal/utils";
 import { Seo } from "@/components/Seo";
+import { BlogPostJsonLd } from "@/components/BlogPostJsonLd";
 
 const TAG_COLORS: Record<BlogTag, string> = {
   Infrastructure: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
@@ -38,13 +39,19 @@ const BlogPost = () => {
     (p) => p.slug !== post.slug && p.tags?.some((t) => post.tags?.includes(t))
   ).slice(0, 3);
 
+  const isoPublished = `${post.publishedAt}T12:00:00.000Z`;
+
   return (
     <div className="min-h-screen bg-background">
       <Seo
         title={post.title}
         description={post.description}
         canonicalPath={`/blog/${post.slug}`}
+        ogType="article"
+        articlePublishedTime={isoPublished}
+        {...(post.coverImage ? { ogImage: post.coverImage } : {})}
       />
+      <BlogPostJsonLd post={post} />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         {/* Back */}

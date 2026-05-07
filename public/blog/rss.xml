@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AgentRuntime Blog</title>
+    <link>https://agentruntime.io/blog</link>
+    <description>Product updates, engineering notes, and practical guidance for running AI agents in production on AgentRuntime.</description>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 06 May 2026 06:28:01 GMT</lastBuildDate>
+    <atom:link href="https://agentruntime.io/blog/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Prompt Engineering for Production: Beyond &apos;It Worked Once&apos;</title>
+      <link>https://agentruntime.io/blog/prompt-engineering-for-production</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/prompt-engineering-for-production</guid>
+      <pubDate>Thu, 07 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Prompts are code. Version them, test them, review them. The production prompt engineering discipline that makes AI workflows reliable.]]></description>
+    </item>
+    <item>
+      <title>How to Build a Multi-Agent System That Actually Works</title>
+      <link>https://agentruntime.io/blog/multi-agent-systems</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/multi-agent-systems</guid>
+      <pubDate>Thu, 07 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[The orchestrator pattern, communication strategies, shared state, and failure isolation for multi-agent AI architectures.]]></description>
+    </item>
+    <item>
+      <title>AI Agents and PII: Data Handling Patterns That Keep You Compliant</title>
+      <link>https://agentruntime.io/blog/pii-data-handling</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/pii-data-handling</guid>
+      <pubDate>Thu, 07 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Mapping data flows, LLM provider DPAs, PII minimization in prompts, and retention policies for run state — what every AI workflow team needs to get right.]]></description>
+    </item>
+    <item>
+      <title>Prompt Injection Attacks: How to Defend AI Workflows</title>
+      <link>https://agentruntime.io/blog/prompt-injection-defense</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/prompt-injection-defense</guid>
+      <pubDate>Thu, 07 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Structural separation, output validation, privilege separation, and monitoring — the four defense layers against prompt injection in production AI systems.]]></description>
+    </item>
+    <item>
+      <title>Zero-Downtime Deployments for AI Workflows</title>
+      <link>https://agentruntime.io/blog/zero-downtime-workflow-deployments</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/zero-downtime-workflow-deployments</guid>
+      <pubDate>Thu, 07 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Drain strategies, version-aware execution, and backward-compatible migrations — how to deploy new workflow versions without losing in-flight runs.]]></description>
+    </item>
+    <item>
+      <title>Provider Portability: Building LLM-Agnostic AI Workflows</title>
+      <link>https://agentruntime.io/blog/provider-portability</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/provider-portability</guid>
+      <pubDate>Thu, 07 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[The abstraction layer, prompt portability, production failover, and cost arbitrage that come from not coupling tightly to a single LLM provider.]]></description>
+    </item>
+    <item>
+      <title>Queue Design for AI Workloads: Why Standard Patterns Need Adjustment</title>
+      <link>https://agentruntime.io/blog/queue-design-for-ai-workloads</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/queue-design-for-ai-workloads</guid>
+      <pubDate>Thu, 07 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Cost heterogeneity, LLM rate limit back-pressure, priority queuing, fan-out management, and dead-letter observability for AI workflow queues.]]></description>
+    </item>
+    <item>
+      <title>Workflow Debugging: How to Find What Broke</title>
+      <link>https://agentruntime.io/blog/workflow-debugging</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/workflow-debugging</guid>
+      <pubDate>Thu, 07 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[The debugging hierarchy, step replay, structured error classification, and cross-run correlation — the observability stack that makes AI workflow debugging systematic.]]></description>
+    </item>
+    <item>
+      <title>Building an AI Research Assistant with AgentRuntime</title>
+      <link>https://agentruntime.io/blog/building-ai-research-assistant</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/building-ai-research-assistant</guid>
+      <pubDate>Thu, 07 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Query decomposition, parallel information gathering, synthesis, and citation annotation — the four phases of a production AI research workflow.]]></description>
+    </item>
+    <item>
+      <title>Building an AI Invoice Processing Pipeline</title>
+      <link>https://agentruntime.io/blog/invoice-processing-pipeline</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/invoice-processing-pipeline</guid>
+      <pubDate>Thu, 07 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Intake, extraction, PO matching, GL coding, and approval routing — how to build an AP automation pipeline that handles real-world invoice variance reliably.]]></description>
+    </item>
+    <item>
+      <title>AI Agents for HR: Resume Screening and Interview Scheduling</title>
+      <link>https://agentruntime.io/blog/hr-automation-with-ai</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/hr-automation-with-ai</guid>
+      <pubDate>Thu, 07 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[The right way to build AI-assisted hiring workflows: scoring for human review, scheduling automation, and the compliance layer that makes it legally deployable.]]></description>
+    </item>
+    <item>
+      <title>AI-Powered Content Moderation: Building Systems That Scale</title>
+      <link>https://agentruntime.io/blog/ai-content-moderation</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/ai-content-moderation</guid>
+      <pubDate>Thu, 07 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Layered classification, context-aware moderation, appeal workflows, and the dual error trade-off — how to build content moderation that is both scalable and fair.]]></description>
+    </item>
+    <item>
+      <title>Building a Content Generation Pipeline That Maintains Quality at Scale</title>
+      <link>https://agentruntime.io/blog/content-generation-pipeline</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/content-generation-pipeline</guid>
+      <pubDate>Thu, 07 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Brief generation, differentiation injection, quality evaluation, and brand voice enforcement — the infrastructure behind consistent AI content at volume.]]></description>
+    </item>
+    <item>
+      <title>AI Agents for E-Commerce: Automating Order Management</title>
+      <link>https://agentruntime.io/blog/ecommerce-order-automation</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/ecommerce-order-automation</guid>
+      <pubDate>Thu, 07 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Fraud review, exception handling, customer inquiry triage, and returns processing — where AI adds value in order management workflows.]]></description>
+    </item>
+    <item>
+      <title>Building an AI Monitoring Pipeline: Using Agents to Watch Your Systems</title>
+      <link>https://agentruntime.io/blog/ai-monitoring-pipeline</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/ai-monitoring-pipeline</guid>
+      <pubDate>Thu, 07 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Why threshold alerting misses complex incidents, and how LLM correlation analysis detects multi-signal degradation before individual metrics cross thresholds.]]></description>
+    </item>
+    <item>
+      <title>The Cold Start Problem for AI Agents: What Breaks Before You Have Data</title>
+      <link>https://agentruntime.io/blog/cold-start-problem</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/cold-start-problem</guid>
+      <pubDate>Thu, 07 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Over-automation risk, edge case distribution gaps, shadow mode, and gradual rollout thresholds — how to reach steady-state reliability without a painful cold start.]]></description>
+    </item>
+    <item>
+      <title>Measuring AI Workflow ROI: The Metrics That Actually Matter</title>
+      <link>https://agentruntime.io/blog/measuring-ai-workflow-roi</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/measuring-ai-workflow-roi</guid>
+      <pubDate>Thu, 07 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Baseline cost, quality-adjusted throughput, time-to-value, and what to do when the ROI is negative — a rigorous framework for AI investment measurement.]]></description>
+    </item>
+    <item>
+      <title>Why Workflow-Level Tracing Beats Function-Level Logging for AI Systems</title>
+      <link>https://agentruntime.io/blog/ai-workflow-tracing-vs-logging</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/ai-workflow-tracing-vs-logging</guid>
+      <pubDate>Thu, 07 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Logging tells you what happened at a line of code. Tracing tells you what happened during an entire operation. For AI workflows, the difference is the difference between debugging and guessing.]]></description>
+    </item>
+    <item>
+      <title>Retry Logic for AI Agents: Beyond try/catch</title>
+      <link>https://agentruntime.io/blog/retry-logic-for-ai-agents</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/retry-logic-for-ai-agents</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Why naive retries cause duplicate actions in AI workflows, and how idempotency keys, exponential backoff, and dead-letter queues make retries safe.]]></description>
+    </item>
+    <item>
+      <title>The Agent Memory Problem: State, Context, and Recall</title>
+      <link>https://agentruntime.io/blog/agent-memory-and-state</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/agent-memory-and-state</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Working memory, run memory, and long-term memory are three different problems. Most agents conflate them — and pay the price at scale.]]></description>
+    </item>
+    <item>
+      <title>Rate Limits Are Not Your Problem — Until They Are</title>
+      <link>https://agentruntime.io/blog/rate-limits-and-cost-control</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/rate-limits-and-cost-control</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[How LLM API rate limits work, why they become production problems, and the strategies for managing cost and throughput at scale.]]></description>
+    </item>
+    <item>
+      <title>How to Test AI Workflows Before They Hit Production</title>
+      <link>https://agentruntime.io/blog/testing-ai-workflows</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/testing-ai-workflows</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[A four-layer testing strategy for AI workflows: unit tests, mocked integration tests, snapshot tests, and evaluation harnesses.]]></description>
+    </item>
+    <item>
+      <title>Timeouts and Deadlines for AI Agents: Setting SLAs That Actually Hold</title>
+      <link>https://agentruntime.io/blog/timeouts-and-deadlines</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/timeouts-and-deadlines</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[The difference between timeouts and deadlines, how the stuck-workflow problem emerges, and what a production timeout strategy looks like.]]></description>
+    </item>
+    <item>
+      <title>Structured Output from LLMs: Why JSON Mode Is Not Enough</title>
+      <link>https://agentruntime.io/blog/structured-output-from-llms</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/structured-output-from-llms</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[JSON mode guarantees valid JSON, not correct JSON. Schema validation, structured output APIs, and retry-on-failure patterns for reliable LLM output.]]></description>
+    </item>
+    <item>
+      <title>From Notebook to Production: The AI Agent Deployment Gap</title>
+      <link>https://agentruntime.io/blog/from-notebook-to-production</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/from-notebook-to-production</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[What a Jupyter notebook doesn't model — concurrency, partial failures, state persistence, observability — and the migration checklist for getting to production.]]></description>
+    </item>
+    <item>
+      <title>Event-Driven AI Workflows: Building Agents That React</title>
+      <link>https://agentruntime.io/blog/event-driven-ai-workflows</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/event-driven-ai-workflows</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Why polling breaks at scale, how event queues and webhooks work with AI workflows, and why idempotency is non-negotiable for event-driven systems.]]></description>
+    </item>
+    <item>
+      <title>Choosing the Right LLM for Each Step in Your Workflow</title>
+      <link>https://agentruntime.io/blog/choosing-the-right-llm-per-step</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/choosing-the-right-llm-per-step</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[A tiered model selection strategy for AI workflows: when frontier models are worth it, when they are not, and how latency changes the calculus.]]></description>
+    </item>
+    <item>
+      <title>Building a Lead Enrichment Pipeline with AgentRuntime</title>
+      <link>https://agentruntime.io/blog/building-lead-enrichment-pipeline</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/building-lead-enrichment-pipeline</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[A five-stage lead enrichment workflow: intake, company research, ICP scoring, personalization signals, and CRM write-back — with the reliability patterns that make it production-ready.]]></description>
+    </item>
+    <item>
+      <title>Workflow as Code vs. Workflow as Config: What the Trade-off Actually Is</title>
+      <link>https://agentruntime.io/blog/workflow-as-code-vs-config</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/workflow-as-code-vs-config</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[YAML vs code for defining AI workflows — the genuine trade-offs, why visual-first tools are often the worst of both worlds, and how to choose.]]></description>
+    </item>
+    <item>
+      <title>Building a Document Processing Pipeline with AgentRuntime</title>
+      <link>https://agentruntime.io/blog/document-processing-pipeline</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/document-processing-pipeline</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[A five-stage production pipeline for processing documents with AI: ingestion, chunking, extraction, validation, and output routing — with the reliability patterns that matter at scale.]]></description>
+    </item>
+    <item>
+      <title>Context Window Management at Scale: What Breaks and How to Fix It</title>
+      <link>https://agentruntime.io/blog/context-window-management</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/context-window-management</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Larger context windows don't eliminate the need to manage context deliberately. The three failure modes and the strategies that fix them.]]></description>
+    </item>
+    <item>
+      <title>Graceful Degradation in AI Systems: When the Model Is Not Available</title>
+      <link>https://agentruntime.io/blog/graceful-degradation</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/graceful-degradation</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Circuit breakers, fallback strategies, and the failure spectrum for AI workflows — how to fail informatively and partially rather than completely.]]></description>
+    </item>
+    <item>
+      <title>Webhook Security for AI Workflows: What Most Teams Miss</title>
+      <link>https://agentruntime.io/blog/webhook-security</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/webhook-security</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Signature verification, replay attack prevention, and idempotency for webhook-triggered AI workflows — the four controls every handler needs.]]></description>
+    </item>
+    <item>
+      <title>The Hidden Costs of Self-Hosting LLMs</title>
+      <link>https://agentruntime.io/blog/self-hosted-llm-tradeoffs</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/self-hosted-llm-tradeoffs</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[GPU infrastructure, inference engineering, and model update overhead — the complete cost model most teams miss before deciding to self-host.]]></description>
+    </item>
+    <item>
+      <title>Building an AI Code Review Agent: What Actually Works</title>
+      <link>https://agentruntime.io/blog/ai-code-review-agent</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/ai-code-review-agent</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Why most code review bots get disabled and how to build one that gets adopted — narrow scope, confidence filtering, and a feedback loop.]]></description>
+    </item>
+    <item>
+      <title>When to Chain LLM Calls and When Not To</title>
+      <link>https://agentruntime.io/blog/chaining-vs-single-step</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/chaining-vs-single-step</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Chaining works for separation of concerns, not for hoping a model can handle complexity in pieces. When multi-step helps and when it hurts.]]></description>
+    </item>
+    <item>
+      <title>SLA Design for AI-Powered Products: Setting Expectations That Hold</title>
+      <link>https://agentruntime.io/blog/sla-design-for-ai-products</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/sla-design-for-ai-products</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Availability, latency, quality, and consistency — the four SLA dimensions for AI products, and why traditional uptime metrics are insufficient.]]></description>
+    </item>
+    <item>
+      <title>AI Agents for Compliance: Why Auditability Is the Whole Game</title>
+      <link>https://agentruntime.io/blog/ai-agents-for-compliance</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/ai-agents-for-compliance</guid>
+      <pubDate>Wed, 06 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[In compliance, the audit trail is the deliverable. What that means for AI workflow infrastructure: immutable records, policy versioning, and mandatory human review.]]></description>
+    </item>
+    <item>
+      <title>AgentRuntime vs. DIY Orchestration: What You Are Actually Building</title>
+      <link>https://agentruntime.io/blog/agentruntime-vs-diy-orchestration</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/agentruntime-vs-diy-orchestration</guid>
+      <pubDate>Tue, 05 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[An honest account of what production AI agent orchestration requires — and why DIY implementations accumulate hidden costs faster than most teams expect.]]></description>
+    </item>
+    <item>
+      <title>Versioning AI Workflows: Why Immutability Matters</title>
+      <link>https://agentruntime.io/blog/versioning-ai-workflows</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/versioning-ai-workflows</guid>
+      <pubDate>Tue, 05 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Why mutable workflow definitions create debugging nightmares, compliance gaps, and rollback problems — and what immutable versioning looks like in practice.]]></description>
+    </item>
+    <item>
+      <title>Credential Management for AI Agents: Beyond Environment Variables</title>
+      <link>https://agentruntime.io/blog/credential-management-for-ai-agents</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/credential-management-for-ai-agents</guid>
+      <pubDate>Tue, 05 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Why environment variables are the wrong answer for AI agent credentials — and the four properties of a production-grade secrets architecture.]]></description>
+    </item>
+    <item>
+      <title>Building a Customer Support Automation with AgentRuntime</title>
+      <link>https://agentruntime.io/blog/building-customer-support-automation</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/building-customer-support-automation</guid>
+      <pubDate>Tue, 05 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[A step-by-step walkthrough of a production customer support workflow: classification, CRM enrichment, LLM drafting, human review, and escalation.]]></description>
+    </item>
+    <item>
+      <title>Parallel Execution in AI Workflows: When to Fan Out and When Not To</title>
+      <link>https://agentruntime.io/blog/parallel-execution-in-ai-workflows</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/parallel-execution-in-ai-workflows</guid>
+      <pubDate>Tue, 05 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[The fan-out/fan-in pattern, nested runs for batch processing, failure handling strategies, and rate limit pitfalls for parallel AI workflows.]]></description>
+    </item>
+    <item>
+      <title>Multi-Tenant AI Infrastructure: Isolating Workflows Across Customers</title>
+      <link>https://agentruntime.io/blog/multi-tenant-ai-infrastructure</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/multi-tenant-ai-infrastructure</guid>
+      <pubDate>Tue, 05 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[What multi-tenancy means for AI workflow infrastructure, why naive implementations fail, and the three architectural decisions to get right from the start.]]></description>
+    </item>
+    <item>
+      <title>Observability for AI Agents: What to Trace and Why</title>
+      <link>https://agentruntime.io/blog/observability-for-ai-agents</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/observability-for-ai-agents</guid>
+      <pubDate>Mon, 04 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[The three layers of observability for AI workflows — run-level traces, step-level spans, and structured logs — and the questions each one lets you answer.]]></description>
+    </item>
+    <item>
+      <title>Simulate Before You Deploy: Why Pre-Flight Validation Saves Production Incidents</title>
+      <link>https://agentruntime.io/blog/simulate-before-you-deploy</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/simulate-before-you-deploy</guid>
+      <pubDate>Sun, 03 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Schema validation, dependency checks, and graph linting for AI workflows — why simulation is the missing step between development and production.]]></description>
+    </item>
+    <item>
+      <title>Human-in-the-Loop: How to Build Approval Gates Into AI Workflows</title>
+      <link>https://agentruntime.io/blog/human-in-the-loop-ai-workflows</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/human-in-the-loop-ai-workflows</guid>
+      <pubDate>Sat, 02 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Three HITL patterns for AI workflows — approve before irreversible action, review on threshold, and async audit — with the infrastructure they require.]]></description>
+    </item>
+    <item>
+      <title>What Is MCP and Why It Changes How AI Agents Use Tools</title>
+      <link>https://agentruntime.io/blog/what-is-mcp-and-why-it-matters</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/what-is-mcp-and-why-it-matters</guid>
+      <pubDate>Fri, 01 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Model Context Protocol explained: what it is, why it was needed, and what native MCP support means for production agent infrastructure.]]></description>
+    </item>
+    <item>
+      <title>Why AI Agents Fail in Production (And What to Do About It)</title>
+      <link>https://agentruntime.io/blog/why-ai-agents-fail-in-production</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/why-ai-agents-fail-in-production</guid>
+      <pubDate>Tue, 28 Apr 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[The four infrastructure failure modes that break AI agents in production — and the patterns that fix them.]]></description>
+    </item>
+    <item>
+      <title>Introducing the AgentRuntime blog</title>
+      <link>https://agentruntime.io/blog/introducing-the-agentruntime-blog</link>
+      <guid isPermaLink="true">https://agentruntime.io/blog/introducing-the-agentruntime-blog</guid>
+      <pubDate>Mon, 20 Apr 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Product updates, engineering notes, and practical guidance for running AI agents in production on AgentRuntime.]]></description>
+    </item>
+  </channel>
+</rss>
