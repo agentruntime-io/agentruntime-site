@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Play, CheckCircle, Activity, BarChart3, Settings } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Seo } from "@/components/Seo";
 import { seoCopy } from "@/seo/metadata";
 
@@ -193,12 +194,25 @@ for event in client.runs.stream(run.id):
               Ready to see it in action?
             </h2>
             <p className="text-muted-foreground mb-6">
-              Try our interactive sandbox and see how easy it is to orchestrate AI agents.
+              Watch a walkthrough of AgentRuntime orchestrating a real AI workflow end-to-end.
             </p>
-            <Button variant="hero" size="lg" className="gap-2">
-              <Play className="h-5 w-5" />
-              See Live Demo
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                variant="hero"
+                size="lg"
+                className="gap-2"
+                onClick={() => window.open("https://www.youtube.com/@agentruntime", "_blank", "noopener,noreferrer")}
+              >
+                <Play className="h-5 w-5" />
+                Watch Demo
+              </Button>
+              <Button variant="outline" size="lg" className="gap-2" asChild>
+                <Link to="/waitlist">
+                  Get Early Access
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </div>

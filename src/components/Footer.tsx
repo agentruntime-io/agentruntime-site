@@ -37,6 +37,7 @@ const Footer = () => {
       { label: "How It Works", path: "/how-it-works" },
     ],
     company: [
+      { label: "Blog", path: "/blog" },
       ...(featureFlags.showAboutPage ? [{ label: "About", path: "/about" }] : []),
       { label: "Contact", path: "/contact" },
       ...(featureFlags.showCareersPage ? [{ label: "Careers", path: "/careers" }] : []),
@@ -91,7 +92,7 @@ const Footer = () => {
                     disabled={newsletterStatus === "submitting"}
                   />
                   <Button type="submit" variant="outline" size="sm" disabled={newsletterStatus === "submitting"}>
-                    {newsletterStatus === "submitting" ? "…" : "Subscribe"}
+                    {newsletterStatus === "submitting" ? "..." : "Subscribe"}
                   </Button>
                 </div>
                 {newsletterStatus === "success" && (
@@ -183,10 +184,10 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-sm">
-            © {currentYear} AgentRuntime. All rights reserved.
+            Copyright {currentYear} AgentRuntime. All rights reserved.
           </p>
           <p className="text-muted-foreground text-sm">
-            Built with ❤️ for developers
+            Built for developers
           </p>
         </div>
       </div>

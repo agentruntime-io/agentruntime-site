@@ -11,12 +11,16 @@ export type SeoProps = {
   /** Short page title; ` | ${SITE_NAME}` is appended when missing */
   title: string;
   description?: string;
-  /** Path only, e.g. `/pricing` — canonical and og:url. Omit on error pages. */
+  /** Path only, e.g. `/pricing` - canonical and og:url. Omit on error pages. */
   canonicalPath?: string;
   /** Use for 404, thank-you pages, etc. */
   noindex?: boolean;
   /** Absolute URL or path starting with / (defaults to OG image on SITE_URL) */
   ogImage?: string;
+  /** Open Graph type; blog posts should use `"article"` */
+  ogType?: "website" | "article";
+  /** ISO 8601, e.g. `2026-05-07T12:00:00.000Z`. Used when `ogType === "article"`. */
+  articlePublishedTime?: string;
 };
 
 function absoluteUrl(pathOrUrl: string): string {
@@ -40,6 +44,8 @@ export function Seo({
   canonicalPath,
   noindex = false,
   ogImage,
+  ogType = "website",
+  articlePublishedTime,
 }: SeoProps) {
   const fullTitle = formatTitle(title);
   const canonical =
@@ -59,10 +65,13 @@ export function Seo({
       {canonical !== undefined ? (
         <meta property="og:url" content={canonical} />
       ) : null}
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:image" content={ogImageUrl} />
       <meta property="og:locale" content="en_US" />
+      {ogType === "article" && articlePublishedTime ? (
+        <meta property="article:published_time" content={articlePublishedTime} />
+      ) : null}
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content={TWITTER_HANDLE} />

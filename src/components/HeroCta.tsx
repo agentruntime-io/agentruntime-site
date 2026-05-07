@@ -45,7 +45,7 @@ export const HeroCta = () => {
         </h1>
 
         <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto mb-8 fade-in-up">
-          Run AI agents reliably, safely, and at scale—with full control, visibility, and zero
+          Run AI agents reliably, safely, and at scale - with full control, visibility, and zero
           fragile scripts. Now.
         </p>
 
@@ -71,7 +71,7 @@ export const HeroCta = () => {
 
         <a
           href="#features"
-          className="absolute bottom-8 left-1/2 flex flex-col items-center gap-1 text-white/70 hover:text-white transition-colors duration-200 animate-scroll-cue hidden"
+          className="absolute bottom-8 left-1/2 flex flex-col items-center gap-1 text-white/70 hover:text-white transition-colors duration-200 animate-scroll-cue"
           aria-label="Scroll to features"
         >
           <span className="text-xs font-medium tracking-wider uppercase">Scroll to explore</span>

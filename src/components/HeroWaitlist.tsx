@@ -7,7 +7,7 @@ import { ChevronDown } from "lucide-react";
 import heroBackground from "@/assets/hero-background.jpg";
 import { api } from "@/config/api";
 
-/** Hero variant: split layout — left: badge, headline, subheadline; right: waitlist form. No CTA buttons. */
+/** Hero variant: split layout - left: badge, headline, subheadline; right: waitlist form. No CTA buttons. */
 export const HeroWaitlist = () => {
   const [status, setStatus] = useState<"idle" | "success" | "error" | "submitting">("idle");
 
@@ -91,7 +91,7 @@ export const HeroWaitlist = () => {
           </h1>
 
           <p className="text-xl md:text-2xl text-white/90 fade-in-up">
-            Run AI agents reliably, safely, and at scale—with full control, visibility, and zero
+            Run AI agents reliably, safely, and at scale - with full control, visibility, and zero
             fragile scripts. Now.
           </p>
         </div>
@@ -161,7 +161,7 @@ export const HeroWaitlist = () => {
                   className="w-full"
                   disabled={status === "submitting"}
                 >
-                  {status === "submitting" ? "Joining…" : "Join the waitlist"}
+                  {status === "submitting" ? "Joining..." : "Join the waitlist"}
                 </Button>
                 {status === "success" && (
                   <p className="text-sm text-green-400">You&apos;re on the list! We&apos;ll be in touch.</p>
@@ -181,7 +181,7 @@ export const HeroWaitlist = () => {
 
       <a
         href="#features"
-        className="absolute bottom-8 left-1/2 flex flex-col items-center gap-1 text-white/70 hover:text-white transition-colors duration-200 animate-scroll-cue hidden"
+        className="absolute bottom-8 left-1/2 flex flex-col items-center gap-1 text-white/70 hover:text-white transition-colors duration-200 animate-scroll-cue"
         aria-label="Scroll to features"
       >
         <span className="text-xs font-medium tracking-wider uppercase">Scroll to explore</span>

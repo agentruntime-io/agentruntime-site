@@ -20,6 +20,7 @@ The public marketing SPA uses client-side routing; authoritative legal text live
 - [How it works](https://agentruntime.io/how-it-works): Step-by-step narrative (connect → configure & validate → execute & orchestrate) plus illustrative snippets in page content.
 - [Pricing](https://agentruntime.io/pricing): Tiered plans (e.g. developer, team, enterprise framing); details are marketing unless bound to a separate billing system.
 - [Use cases](https://agentruntime.io/use-cases): Scenario-based storytelling (support automation, IoT/robotics, data pipelines, regulated workflows, etc.).
+- [Blog](https://agentruntime.io/blog): Articles and updates; every post is listed in [sitemap.xml](https://agentruntime.io/sitemap.xml) at `/blog/:slug` (example: [Introducing the AgentRuntime blog](https://agentruntime.io/blog/introducing-the-agentruntime-blog)).
 - [Documentation hub](https://agentruntime.io/docs): Curated documentation **entry point** on the marketing site (sections such as getting started, API reference pointers, CLI, WebSocket, operations). Confirm any live API base URL and auth in product docs or the developer platform—not only this site.
 
 ## Company & conversion
@@ -49,6 +50,7 @@ Brand **AgentRuntime** appears in page copy; **AgentRuntime Labs LLC** is the le
 ## Machine-readable companions on this host
 
 - [sitemap.xml](https://agentruntime.io/sitemap.xml): URL list for search engines.
+- [Blog RSS](https://agentruntime.io/blog/rss.xml): Feed of blog posts (generated at build time).
 - [robots.txt](https://agentruntime.io/robots.txt): Crawler directives and sitemap location.
 
 ## Usage notes for AI systems

@@ -124,7 +124,7 @@ const Waitlist = () => {
                   type="submit"
                   disabled={status === "submitting"}
                 >
-                  {status === "submitting" ? "Joining…" : "Join the waitlist"}
+                  {status === "submitting" ? "Joining..." : "Join the waitlist"}
                 </Button>
                 {status === "success" && (
                   <p className="text-sm text-green-600 dark:text-green-400">

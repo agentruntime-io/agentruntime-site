@@ -13,6 +13,7 @@ import {
   FileText,
   ExternalLink
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import featuresBackground from "@/assets/features-background.jpg";
 import { Seo } from "@/components/Seo";
 import { seoCopy } from "@/seo/metadata";
@@ -138,9 +139,11 @@ const Features = () => {
             <p className="text-muted-foreground mb-6">
               Dive into our comprehensive documentation and start building with AgentRuntime today.
             </p>
-            <Button variant="hero" size="lg" className="gap-2">
-              <ExternalLink className="h-5 w-5" />
-              Explore the Full API
+            <Button variant="hero" size="lg" className="gap-2" asChild>
+              <a href="/api-reference" target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="h-5 w-5" />
+                Explore the Full API
+              </a>
             </Button>
           </div>
         </div>

@@ -1,7 +1,9 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Check, Star, Zap, Crown } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Seo } from "@/components/Seo";
 import { seoCopy } from "@/seo/metadata";
 
@@ -26,6 +28,7 @@ const Pricing = () => {
         "Limited monitoring"
       ],
       cta: "Start Free",
+      ctaPath: "/waitlist?plan=developer",
       popular: false
     },
     {
@@ -48,6 +51,7 @@ const Pricing = () => {
       ],
       limitations: [],
       cta: "Start Team Trial",
+      ctaPath: "/waitlist?plan=team",
       popular: true
     },
     {
@@ -71,6 +75,7 @@ const Pricing = () => {
       ],
       limitations: [],
       cta: "Contact Sales",
+      ctaPath: "/contact?source=enterprise",
       popular: false
     }
   ];
@@ -141,8 +146,9 @@ const Pricing = () => {
                     variant={plan.popular ? "hero" : "outline"} 
                     size="lg" 
                     className="w-full"
+                    asChild
                   >
-                    {plan.cta}
+                    <Link to={plan.ctaPath}>{plan.cta}</Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -179,37 +185,37 @@ const Pricing = () => {
             Frequently Asked Questions
           </h2>
           
-          <div className="space-y-6">
-            <div className="bg-gradient-card p-6 rounded-lg">
-              <h3 className="font-semibold text-foreground mb-2">
+          <Accordion type="single" collapsible className="bg-gradient-card rounded-lg px-6">
+            <AccordionItem value="upgrade">
+              <AccordionTrigger className="text-foreground font-semibold">
                 Can I upgrade or downgrade my plan anytime?
-              </h3>
-              <p className="text-muted-foreground">
-                Yes, you can change your plan at any time. Changes take effect immediately, 
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                Yes, you can change your plan at any time. Changes take effect immediately,
                 and you'll be billed pro-rata for the remainder of your billing cycle.
-              </p>
-            </div>
-            
-            <div className="bg-gradient-card p-6 rounded-lg">
-              <h3 className="font-semibold text-foreground mb-2">
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="limits">
+              <AccordionTrigger className="text-foreground font-semibold">
                 What happens if I exceed my plan limits?
-              </h3>
-              <p className="text-muted-foreground">
-                We'll send you notifications as you approach your limits. You can upgrade 
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                We'll send you notifications as you approach your limits. You can upgrade
                 your plan or purchase additional capacity to avoid any service interruption.
-              </p>
-            </div>
-            
-            <div className="bg-gradient-card p-6 rounded-lg">
-              <h3 className="font-semibold text-foreground mb-2">
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="enterprise">
+              <AccordionTrigger className="text-foreground font-semibold">
                 Do you offer custom enterprise plans?
-              </h3>
-              <p className="text-muted-foreground">
-                Yes, we work with enterprise customers to create custom plans that meet 
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                Yes, we work with enterprise customers to create custom plans that meet
                 their specific requirements, including on-premise deployment and dedicated support.
-              </p>
-            </div>
-          </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </div>
     </div>

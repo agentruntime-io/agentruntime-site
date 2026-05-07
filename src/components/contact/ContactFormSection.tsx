@@ -70,7 +70,7 @@ export const ContactFormSection = ({ formEndpoint, status, onSubmit }: Props) =>
         </div>
 
         <Button variant="hero" size="lg" className="w-full" type="submit" disabled={status === "submitting"}>
-          {status === "submitting" ? "Sending…" : "Send Message"}
+          {status === "submitting" ? "Sending..." : "Send Message"}
         </Button>
 
         {status === "success" && (
@@ -84,7 +84,7 @@ export const ContactFormSection = ({ formEndpoint, status, onSubmit }: Props) =>
             <a href="mailto:hello@agentruntime.io" className="underline hover:text-primary font-medium">
               hello@agentruntime.io
             </a>{" "}
-            — we'll get back to you within one business day.
+            - we'll get back to you within one business day.
           </p>
         )}
 
