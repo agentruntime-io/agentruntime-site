@@ -3,8 +3,12 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown, Code2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroBackground from "@/assets/hero-background.jpg";
+import { featureFlags } from "@/config/featureFlags";
+import { CONSOLE_APP_URL, DOCS_APP_URL } from "@/config/site";
 
-/** Hero variant: centered layout with "Get Started Free" and "See Docs" CTA buttons. */
+const externalProps = { target: "_blank" as const, rel: "noopener noreferrer" as const };
+
+/** Hero variant: centered layout — primary CTA is waitlist or console per featureFlags.showWaitlist. */
 export const HeroCta = () => {
   return (
     <section
@@ -49,12 +53,19 @@ export const HeroCta = () => {
           fragile scripts. Now.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 fade-in-up">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6 fade-in-up flex-wrap">
           <Button variant="hero" size="xl" className="gap-2 dark:shadow-glow" asChild>
-            <Link to="/pricing">
-              Get Started Free
-              <ArrowRight className="h-5 w-5" />
-            </Link>
+            {featureFlags.showWaitlist ? (
+              <Link to="/waitlist">
+                Get Started Free
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+            ) : (
+              <a href={CONSOLE_APP_URL} {...externalProps}>
+                Open Console
+                <ArrowRight className="h-5 w-5" />
+              </a>
+            )}
           </Button>
           <Button
             variant="glass"
@@ -62,12 +73,35 @@ export const HeroCta = () => {
             className="gap-2 bg-white/20 border-white/40 text-white hover:bg-white/30 hover:border-white/50"
             asChild
           >
-            <Link to="/docs">
+            <a href={DOCS_APP_URL} {...externalProps}>
               See Docs
               <Code2 className="h-5 w-5" />
-            </Link>
+            </a>
           </Button>
+          {featureFlags.showWaitlist ? (
+            <Button
+              variant="glass"
+              size="xl"
+              className="gap-2 bg-white/20 border-white/40 text-white hover:bg-white/30 hover:border-white/50"
+              asChild
+            >
+              <a href={CONSOLE_APP_URL} {...externalProps}>
+                Open Console
+                <ArrowRight className="h-5 w-5" />
+              </a>
+            </Button>
+          ) : null}
         </div>
+
+        {featureFlags.showWaitlist ? (
+          <p className="text-white/75 text-sm mb-12 fade-in-up">
+            Waitlist closing soon—join while spots remain.
+          </p>
+        ) : (
+          <p className="text-white/75 text-sm mb-12 fade-in-up">
+            Production runtime — sign in from the console to manage workflows and runs.
+          </p>
+        )}
 
         <a
           href="#features"

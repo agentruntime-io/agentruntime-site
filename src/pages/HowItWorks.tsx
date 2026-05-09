@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Play, CheckCircle, Activity, BarChart3, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
+import { featureFlags } from "@/config/featureFlags";
+import { CONSOLE_APP_URL } from "@/config/site";
 import { Seo } from "@/components/Seo";
 import { seoCopy } from "@/seo/metadata";
 
@@ -207,10 +209,17 @@ for event in client.runs.stream(run.id):
                 Watch Demo
               </Button>
               <Button variant="outline" size="lg" className="gap-2" asChild>
-                <Link to="/waitlist">
-                  Get Early Access
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
+                {featureFlags.showWaitlist ? (
+                  <Link to="/waitlist">
+                    Get Early Access
+                    <ArrowRight className="h-5 w-5" />
+                  </Link>
+                ) : (
+                  <a href={CONSOLE_APP_URL} target="_blank" rel="noopener noreferrer">
+                    Open Console
+                    <ArrowRight className="h-5 w-5" />
+                  </a>
+                )}
               </Button>
             </div>
           </div>

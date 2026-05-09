@@ -17,7 +17,10 @@ const RSS_OUT = join(ROOT, "public", "blog", "rss.xml");
 const SITE = "https://agentruntime.io";
 const SITE_NAME = "AgentRuntime";
 
-const staticEntries = [
+/** Keep aligned with src/config/featureFlags.ts → showWaitlist */
+const SHOW_WAITLIST = false;
+
+const baseStaticEntries = [
   ["/", "weekly", "1"],
   ["/features", "monthly", "0.9"],
   ["/how-it-works", "monthly", "0.9"],
@@ -26,7 +29,6 @@ const staticEntries = [
   ["/docs", "weekly", "0.9"],
   ["/blog", "weekly", "0.8"],
   ["/contact", "monthly", "0.8"],
-  ["/waitlist", "monthly", "0.8"],
   ["/legal", "monthly", "0.5"],
   ["/legal/terms-and-conditions", "yearly", "0.4"],
   ["/legal/privacy-policy", "yearly", "0.4"],
@@ -38,6 +40,8 @@ const staticEntries = [
   ["/legal/developer-platform-license", "yearly", "0.4"],
   ["/legal/service-level-agreement", "yearly", "0.4"],
 ];
+
+const staticEntries = [...baseStaticEntries, ...(SHOW_WAITLIST ? [["/waitlist", "monthly", "0.8"]] : [])];
 
 function escapeXml(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");

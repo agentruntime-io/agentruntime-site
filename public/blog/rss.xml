@@ -5,7 +5,7 @@
     <link>https://agentruntime.io/blog</link>
     <description>Product updates, engineering notes, and practical guidance for running AI agents in production on AgentRuntime.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 06 May 2026 06:28:01 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 09 May 2026 14:21:43 GMT</lastBuildDate>
     <atom:link href="https://agentruntime.io/blog/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>Prompt Engineering for Production: Beyond &apos;It Worked Once&apos;</title>

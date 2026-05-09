@@ -15,7 +15,7 @@ The public marketing SPA uses client-side routing; authoritative legal text live
 
 ## Product & learning (primary pages)
 
-- [Home](https://agentruntime.io/): Primary landing—value proposition “Put your agents to work,” feature summaries, testimonials, CTAs, waitlist or primary conversion paths as configured.
+- [Home](https://agentruntime.io/): Primary landing—value proposition “Put your agents to work,” feature summaries, testimonials, and CTAs (waitlist when enabled, otherwise console).
 - [Features](https://agentruntime.io/features): Deep dive on capabilities: registration, simulation, runtime API, data layer, versioning, monitoring, security, integrations.
 - [How it works](https://agentruntime.io/how-it-works): Step-by-step narrative (connect → configure & validate → execute & orchestrate) plus illustrative snippets in page content.
 - [Pricing](https://agentruntime.io/pricing): Tiered plans (e.g. developer, team, enterprise framing); details are marketing unless bound to a separate billing system.
@@ -26,7 +26,9 @@ The public marketing SPA uses client-side routing; authoritative legal text live
 ## Company & conversion
 
 - [Contact](https://agentruntime.io/contact): Contact form and listed channels; enterprise or support lines may be gated behind feature flags.
-- [Waitlist](https://agentruntime.io/waitlist): Email capture for launches and updates when enabled.
+- [Console](http://console.agentruntime.io/): Primary product UI—sign in to run and manage agents (public URL).
+- [Developer documentation](https://docs.agentruntime.io/): Guides and API reference hosted separately from the marketing site.
+- **Waitlist (`/waitlist`)**: May be enabled for email capture via `featureFlags.showWaitlist`; when disabled the path redirects to `/`.
 - **About (`/about`)** and **Careers (`/careers`)**: Implemented in the app but may be **disabled** in production via `featureFlags.showAboutPage` / `showCareersPage`. When disabled, those paths redirect to `/`. Do not treat them as canonical live URLs until flags are enabled (then add to sitemap).
 
 ## Legal & policies

@@ -2,7 +2,13 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { featureFlags } from "@/config/featureFlags";
+import { CONSOLE_APP_URL, DOCS_APP_URL } from "@/config/site";
 import ThemeToggle from "./ThemeToggle";
+
+type NavRouteItem = { kind: "route"; path: string; label: string };
+type NavExternalItem = { kind: "external"; href: string; label: string };
+type NavItem = NavRouteItem | NavExternalItem;
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,15 +22,23 @@ const Navigation = () => {
   };
 
   /** Primary navigation */
-  const navItems = [
-    { path: "/features", label: "Features" },
-    { path: "/how-it-works", label: "How It Works" },
-    { path: "/pricing", label: "Pricing" },
-    { path: "/use-cases", label: "Use Cases" },
-    { path: "/docs", label: "Documentation" },
-    { path: "/blog", label: "Blog" },
-    { path: "/contact", label: "Contact" },
+  const navItems: NavItem[] = [
+    { kind: "route", path: "/features", label: "Features" },
+    { kind: "route", path: "/how-it-works", label: "How It Works" },
+    { kind: "route", path: "/pricing", label: "Pricing" },
+    { kind: "route", path: "/use-cases", label: "Use Cases" },
+    { kind: "external", href: DOCS_APP_URL, label: "Documentation" },
+    { kind: "route", path: "/blog", label: "Blog" },
+    { kind: "route", path: "/contact", label: "Contact" },
+    { kind: "external", href: CONSOLE_APP_URL, label: "Console" },
   ];
+
+  const navLinkClass = (active: boolean) =>
+    `text-sm font-medium transition-colors duration-200 hover:text-primary dark:hover:glow-text ${
+      active ? "text-primary dark:glow-text" : "text-muted-foreground"
+    }`;
+
+  const externalNavProps = { target: "_blank" as const, rel: "noopener noreferrer" as const };
 
   return (
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-white/80 dark:bg-white/60 dark:border-white/30 dark:space-grid">
@@ -46,17 +60,17 @@ const Navigation = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`text-sm font-medium transition-colors duration-200 hover:text-primary dark:hover:glow-text ${
-                  isActive(item.path) ? "text-primary dark:glow-text" : "text-muted-foreground"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+              {navItems.map((item) =>
+                item.kind === "route" ? (
+                  <Link key={item.path} to={item.path} className={navLinkClass(isActive(item.path))}>
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a key={item.href} href={item.href} className={navLinkClass(false)} {...externalNavProps}>
+                    {item.label}
+                  </a>
+                ),
+              )}
             </div>
           </div>
 
@@ -64,7 +78,13 @@ const Navigation = () => {
           <div className="hidden md:flex items-center space-x-3 ml-auto">
             <ThemeToggle />
             <Button variant="hero" size="sm" className="dark:shadow-glow" asChild>
-              <Link to="/waitlist">Get Started Free</Link>
+              {featureFlags.showWaitlist ? (
+                <Link to="/waitlist">Get Started Free</Link>
+              ) : (
+                <a href={CONSOLE_APP_URL} {...externalNavProps}>
+                  Get Started Free
+                </a>
+              )}
             </Button>
           </div>
 
@@ -89,23 +109,43 @@ const Navigation = () => {
         {isOpen && (
           <div className="md:hidden" id="mobile-nav-menu">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 border-t border-white/80 dark:bg-white/60 dark:border-white/30 dark:space-grid">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`block px-3 py-2 text-base font-medium rounded-md transition-colors duration-200 ${
-                    isActive(item.path)
-                      ? "text-primary bg-primary/10 dark:glow-text dark:bg-primary/20"
-                      : "text-muted-foreground hover:text-primary hover:bg-muted dark:hover:bg-primary/10 dark:hover:glow-text"
-                  }`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navItems.map((item) =>
+                item.kind === "route" ? (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className={`block px-3 py-2 text-base font-medium rounded-md transition-colors duration-200 ${
+                      isActive(item.path)
+                        ? "text-primary bg-primary/10 dark:glow-text dark:bg-primary/20"
+                        : "text-muted-foreground hover:text-primary hover:bg-muted dark:hover:bg-primary/10 dark:hover:glow-text"
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="block px-3 py-2 text-base font-medium rounded-md transition-colors duration-200 text-muted-foreground hover:text-primary hover:bg-muted dark:hover:bg-primary/10 dark:hover:glow-text"
+                    {...externalNavProps}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                ),
+              )}
               <div className="flex flex-col space-y-2 pt-4">
                 <Button variant="hero" size="sm" className="w-full dark:shadow-glow" asChild>
-                  <Link to="/waitlist">Get Started Free</Link>
+                  {featureFlags.showWaitlist ? (
+                    <Link to="/waitlist" onClick={() => setIsOpen(false)}>
+                      Get Started Free
+                    </Link>
+                  ) : (
+                    <a href={CONSOLE_APP_URL} {...externalNavProps} onClick={() => setIsOpen(false)}>
+                      Get Started Free
+                    </a>
+                  )}
                 </Button>
               </div>
             </div>

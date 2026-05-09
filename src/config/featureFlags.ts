@@ -9,13 +9,19 @@
  * `scripts/generate-seo-assets.mjs` (runs at the start of `npm run build`)
  * from `src/blog/posts.ts` slugs plus static routes; omit disabled routes from that script's static list.
  * The prerender script reads the generated sitemap, so stale URLs would also get wrong static HTML.
- * Applies today to **showAboutPage** (`/about`) and **showCareersPage** (`/careers`).
+ * Applies today to **showAboutPage** (`/about`), **showCareersPage** (`/careers`), and **showWaitlist** (`/waitlist`).
  * When you turn a flag on for production, add the URL(s) back to `scripts/generate-seo-assets.mjs` static
  * routes and to `public/llms.txt` / `public/llms-full.txt`, then rebuild.
  */
 
 export const featureFlags = {
-  /** Hero section variant: "cta" = centered with Get Started / See Docs; "waitlist" = split layout with waitlist form on right */
+  /**
+   * `/waitlist` page, hero waitlist form, footer link, and primary CTAs that pointed at the waitlist.
+   * When false, `/waitlist` redirects to `/` and primary conversion CTAs use the console (`CONSOLE_APP_URL`).
+   */
+  showWaitlist: false,
+
+  /** Hero section variant: "cta" = centered CTAs; "waitlist" = split layout with waitlist form (only when showWaitlist is true) */
   heroVariant: "waitlist" as "cta" | "waitlist",
 
   /**

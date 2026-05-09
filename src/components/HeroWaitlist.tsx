@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { ChevronDown } from "lucide-react";
 import heroBackground from "@/assets/hero-background.jpg";
 import { api } from "@/config/api";
+import { CONSOLE_APP_URL, DOCS_APP_URL } from "@/config/site";
 
 /** Hero variant: split layout - left: badge, headline, subheadline; right: waitlist form. No CTA buttons. */
 export const HeroWaitlist = () => {
@@ -94,6 +95,28 @@ export const HeroWaitlist = () => {
             Run AI agents reliably, safely, and at scale - with full control, visibility, and zero
             fragile scripts. Now.
           </p>
+
+          <p className="mt-6 text-sm md:text-base text-white/80 fade-in-up">
+            <a
+              href={DOCS_APP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 hover:text-white transition-colors"
+            >
+              Documentation
+            </a>
+            <span className="mx-2 text-white/50" aria-hidden>
+              ·
+            </span>
+            <a
+              href={CONSOLE_APP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 hover:text-white transition-colors"
+            >
+              Console
+            </a>
+          </p>
         </div>
 
         {/* Right: waitlist form */}
@@ -101,7 +124,7 @@ export const HeroWaitlist = () => {
           <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white dark:bg-white/60 dark:border-white/70">
             <h2 className="text-xl font-semibold text-foreground mb-2">Get early access</h2>
             <p className="text-muted-foreground text-sm mb-6">
-              Join the waitlist and we&apos;ll notify you when we&apos;re ready for you.
+              Waitlist closing soon—join now and we&apos;ll notify you when we&apos;re ready for you.
             </p>
 
             {api.waitlist ? (

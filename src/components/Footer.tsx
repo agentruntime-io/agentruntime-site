@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Github, Linkedin, Twitter } from "lucide-react";
 import { featureFlags } from "@/config/featureFlags";
 import { api } from "@/config/api";
+import { CONSOLE_APP_URL, DOCS_APP_URL } from "@/config/site";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -29,11 +30,20 @@ const Footer = () => {
     }
   };
 
-  const footerLinks = {
+  type FooterLinkItem =
+    | { label: string; path: string }
+    | { label: string; href: string; external: true };
+
+  const footerLinks: {
+    product: FooterLinkItem[];
+    company: FooterLinkItem[];
+    legal: { label: string; path: string }[];
+  } = {
     product: [
       { label: "Features", path: "/features" },
       { label: "Pricing", path: "/pricing" },
-      { label: "Documentation", path: "/docs" },
+      { label: "Console", href: CONSOLE_APP_URL, external: true },
+      { label: "Documentation", href: DOCS_APP_URL, external: true },
       { label: "How It Works", path: "/how-it-works" },
     ],
     company: [
@@ -41,7 +51,7 @@ const Footer = () => {
       ...(featureFlags.showAboutPage ? [{ label: "About", path: "/about" }] : []),
       { label: "Contact", path: "/contact" },
       ...(featureFlags.showCareersPage ? [{ label: "Careers", path: "/careers" }] : []),
-      { label: "Waitlist", path: "/waitlist" },
+      ...(featureFlags.showWaitlist ? [{ label: "Waitlist", path: "/waitlist" }] : []),
       { label: "Use Cases", path: "/use-cases" },
     ],
     legal: [
@@ -130,13 +140,24 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3">
               {footerLinks.product.map((link) => (
-                <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm dark:hover:glow-text"
-                  >
-                    {link.label}
-                  </Link>
+                <li key={"path" in link ? link.path : link.href}>
+                  {"external" in link ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm dark:hover:glow-text"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.path}
+                      className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm dark:hover:glow-text"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -149,13 +170,24 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
-                <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm dark:hover:glow-text"
-                  >
-                    {link.label}
-                  </Link>
+                <li key={"path" in link ? link.path : link.href}>
+                  {"external" in link ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm dark:hover:glow-text"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.path}
+                      className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm dark:hover:glow-text"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
