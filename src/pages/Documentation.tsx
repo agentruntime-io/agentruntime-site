@@ -15,6 +15,10 @@ import {
 import { Link } from "react-router-dom";
 import { Seo } from "@/components/Seo";
 import { seoCopy } from "@/seo/metadata";
+import { CONSOLE_APP_URL, DOCS_APP_URL } from "@/config/site";
+import { featureFlags } from "@/config/featureFlags";
+
+const externalProps = { target: "_blank" as const, rel: "noopener noreferrer" as const };
 
 const Documentation = () => {
   const sections = [
@@ -95,10 +99,24 @@ const Documentation = () => {
             Comprehensive
             <span className="text-gradient block">Documentation</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto fade-in-up">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto fade-in-up mb-10">
             Everything you need to build, deploy, and scale AI agent workflows. 
             From quickstart guides to advanced integrations.
           </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center fade-in-up">
+            <Button variant="hero" size="lg" className="gap-2" asChild>
+              <a href={DOCS_APP_URL} {...externalProps}>
+                <ExternalLink className="h-5 w-5" />
+                docs.agentruntime.io
+              </a>
+            </Button>
+            <Button variant="outline" size="lg" className="gap-2" asChild>
+              <a href={CONSOLE_APP_URL} {...externalProps}>
+                Open Console
+                <ExternalLink className="h-5 w-5" />
+              </a>
+            </Button>
+          </div>
         </div>
 
         {/* Main Documentation Sections */}
@@ -242,10 +260,17 @@ const Documentation = () => {
                 </Link>
               </Button>
               <Button variant="outline" size="lg" className="gap-2" asChild>
-                <Link to="/waitlist?source=docs">
-                  <ExternalLink className="h-5 w-5" />
-                  Join Community
-                </Link>
+                {featureFlags.showWaitlist ? (
+                  <Link to="/waitlist?source=docs">
+                    <ExternalLink className="h-5 w-5" />
+                    Join Community
+                  </Link>
+                ) : (
+                  <a href={CONSOLE_APP_URL} {...externalProps}>
+                    <ExternalLink className="h-5 w-5" />
+                    Open Console
+                  </a>
+                )}
               </Button>
             </div>
           </div>

@@ -77,7 +77,8 @@ const Waitlist = () => {
             Join the Waitlist
           </h1>
           <p className="text-xl text-muted-foreground mb-8">
-            Be the first to know when we launch. Get early access and exclusive updates.
+            Waitlist closing soon—we&apos;re onboarding our final wave. Reserve your spot for early
+            access and product updates.
           </p>
 
           <Card className="text-left">

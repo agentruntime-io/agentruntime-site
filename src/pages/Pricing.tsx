@@ -4,8 +4,12 @@ import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Check, Star, Zap, Crown } from "lucide-react";
 import { Link } from "react-router-dom";
+import { featureFlags } from "@/config/featureFlags";
+import { CONSOLE_APP_URL } from "@/config/site";
 import { Seo } from "@/components/Seo";
 import { seoCopy } from "@/seo/metadata";
+
+const externalProps = { target: "_blank" as const, rel: "noopener noreferrer" as const };
 
 const Pricing = () => {
   const plans = [
@@ -148,7 +152,18 @@ const Pricing = () => {
                     className="w-full"
                     asChild
                   >
-                    <Link to={plan.ctaPath}>{plan.cta}</Link>
+                    {!plan.ctaPath.startsWith("/waitlist") || featureFlags.showWaitlist ? (
+                      <Link to={plan.ctaPath}>{plan.cta}</Link>
+                    ) : (
+                      <a
+                        href={`${CONSOLE_APP_URL}${
+                          plan.ctaPath.includes("?") ? plan.ctaPath.slice(plan.ctaPath.indexOf("?")) : ""
+                        }`}
+                        {...externalProps}
+                      >
+                        {plan.cta}
+                      </a>
+                    )}
                   </Button>
                 </CardContent>
               </Card>

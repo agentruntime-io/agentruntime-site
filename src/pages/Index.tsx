@@ -67,8 +67,12 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Seo {...seoCopy.home} canonicalPath="/" />
       <HomeJsonLd />
-      {/* Hero Section - variant controlled by featureFlags.heroVariant */}
-      {featureFlags.heroVariant === "waitlist" ? <HeroWaitlist /> : <HeroCta />}
+      {/* Hero: waitlist split layout only when showWaitlist && heroVariant === "waitlist"; otherwise HeroCta (console/docs CTAs) */}
+      {featureFlags.showWaitlist && featureFlags.heroVariant === "waitlist" ? (
+        <HeroWaitlist />
+      ) : (
+        <HeroCta />
+      )}
 
       {/* Features Section */}
       <section id="features" className="py-20 bg-background dark:space-grid">

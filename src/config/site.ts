@@ -6,6 +6,10 @@ export const SITE_URL = "https://agentruntime.io";
 export const SITE_NAME = "AgentRuntime";
 export const TWITTER_HANDLE = "@agentruntime";
 
+/** Hosted product surfaces (outside the marketing SPA) */
+export const DOCS_APP_URL = "https://docs.agentruntime.io/";
+export const CONSOLE_APP_URL = "http://console.agentruntime.io/";
+
 /** Default description when a page omits a custom one */
 export const DEFAULT_DESCRIPTION =
   "Stop experimenting. Put your agents to work. Run AI agents reliably, safely, at scale - now. Build production-ready agent workflows with confidence.";

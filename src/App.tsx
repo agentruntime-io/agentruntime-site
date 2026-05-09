@@ -60,7 +60,10 @@ const App = () => (
                       <Route path="/docs" element={<Documentation />} />
                       <Route path="/about" element={featureFlags.showAboutPage ? <About /> : <Navigate to="/" replace />} />
                       <Route path="/contact" element={<Contact />} />
-                      <Route path="/waitlist" element={<Waitlist />} />
+                      <Route
+                        path="/waitlist"
+                        element={featureFlags.showWaitlist ? <Waitlist /> : <Navigate to="/" replace />}
+                      />
                       <Route
                         path="/careers"
                         element={featureFlags.showCareersPage ? <Careers /> : <Navigate to="/" replace />}
