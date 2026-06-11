@@ -2,10 +2,10 @@
  * Emit `public/sitemap.xml` and `public/blog/rss.xml` from static routes + `src/blog/posts.ts`.
  * Run before `vite build` (see package.json). Keep static route list aligned with App.tsx + featureFlags.
  */
-import { writeFileSync } from "node:fs";
+import { writeFileSync, existsSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { parseBlogPosts } from "./parse-blog-posts.mjs";
+import { coverImageWebp800Path, parseBlogPosts } from "./parse-blog-posts.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -62,6 +62,37 @@ function rfc822Date(isoDate) {
   return d.toUTCString();
 }
 
+/** Prefer build-time WebP cover; fall back to committed PNG for local `generate:sitemap` runs. */
+function rssEnclosureForCover(coverPath) {
+  const webpPath = coverImageWebp800Path(coverPath);
+  const webpAbs = join(ROOT, "public", webpPath.slice(1));
+  if (existsSync(webpAbs)) {
+    return {
+      url: `${SITE}${webpPath}`,
+      length: statSync(webpAbs).size,
+      type: "image/webp",
+    };
+  }
+
+  const pngAbs = join(ROOT, "public", coverPath.slice(1));
+  if (existsSync(pngAbs)) {
+    return {
+      url: `${SITE}${coverPath}`,
+      length: statSync(pngAbs).size,
+      type: "image/png",
+    };
+  }
+
+  return null;
+}
+
+function enclosureXml(enclosure) {
+  if (!enclosure) {
+    return "";
+  }
+  return `      <enclosure url="${escapeXml(enclosure.url)}" length="${enclosure.length}" type="${escapeXml(enclosure.type)}"/>`;
+}
+
 const buildDay = new Date().toISOString().slice(0, 10);
 const blogPosts = parseBlogPosts(POSTS_TS);
 
@@ -107,6 +138,7 @@ const itemsXml = sorted
     const link = `${SITE}/blog/${p.slug}`;
     const pub = rfc822Date(p.publishedAt);
     const desc = escapeCdata(p.description || p.title);
+    const enclosure = enclosureXml(rssEnclosureForCover(p.coverImage));
     return [
       `    <item>`,
       `      <title>${escapeXml(p.title)}</title>`,
@@ -114,8 +146,11 @@ const itemsXml = sorted
       `      <guid isPermaLink="true">${escapeXml(link)}</guid>`,
       `      <pubDate>${pub}</pubDate>`,
       `      <description><![CDATA[${desc}]]></description>`,
+      enclosure,
       `    </item>`,
-    ].join("\n");
+    ]
+      .filter(Boolean)
+      .join("\n");
   })
   .join("\n");
 

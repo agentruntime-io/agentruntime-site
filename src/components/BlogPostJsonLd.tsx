@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { company } from "@/config/company";
 import type { BlogPost } from "@/blog/types";
 import { OG_IMAGE_PATH, SITE_NAME, SITE_URL } from "@/config/site";
+import { getBlogCoverOgPath } from "@/lib/blogCoverImage";
 
 /**
  * BlogPosting + BreadcrumbList for article pages (`@graph` so publishers can coexist with breadcrumbs).
@@ -9,7 +10,9 @@ import { OG_IMAGE_PATH, SITE_NAME, SITE_URL } from "@/config/site";
 export function BlogPostJsonLd({ post }: { post: BlogPost }) {
   const url = `${SITE_URL}/blog/${post.slug}`;
   const datePublished = `${post.publishedAt}T12:00:00.000Z`;
-  const images = post.coverImage ? [`${SITE_URL}${post.coverImage}`] : [`${SITE_URL}${OG_IMAGE_PATH}`];
+  const images = post.coverImage
+    ? [`${SITE_URL}${getBlogCoverOgPath(post.coverImage)}`]
+    : [`${SITE_URL}${OG_IMAGE_PATH}`];
 
   const publisher = {
     "@type": "Organization",
