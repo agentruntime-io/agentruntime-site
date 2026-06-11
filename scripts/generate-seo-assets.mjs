@@ -14,7 +14,7 @@ const SITEMAP_OUT = join(ROOT, "public", "sitemap.xml");
 const RSS_OUT = join(ROOT, "public", "blog", "rss.xml");
 
 /** Must stay aligned with src/config/site.ts */
-const SITE = "https://agentruntime.io";
+const SITE = "https://www.agentruntime.io";
 const SITE_NAME = "AgentRuntime";
 
 /** Keep aligned with src/config/featureFlags.ts → showWaitlist */

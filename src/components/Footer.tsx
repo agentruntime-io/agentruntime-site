@@ -4,6 +4,7 @@ import { Github, Linkedin, Twitter } from "lucide-react";
 import { featureFlags } from "@/config/featureFlags";
 import { api } from "@/config/api";
 import { CONSOLE_APP_URL, DOCS_APP_URL } from "@/config/site";
+import { FOOTER_FEATURED_SLUGS, getFeaturedPosts } from "@/blog/featuredPosts";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -37,6 +38,7 @@ const Footer = () => {
   const footerLinks: {
     product: FooterLinkItem[];
     company: FooterLinkItem[];
+    blog: FooterLinkItem[];
     legal: { label: string; path: string }[];
   } = {
     product: [
@@ -54,6 +56,10 @@ const Footer = () => {
       ...(featureFlags.showWaitlist ? [{ label: "Waitlist", path: "/waitlist" }] : []),
       { label: "Use Cases", path: "/use-cases" },
     ],
+    blog: getFeaturedPosts(FOOTER_FEATURED_SLUGS).map((post) => ({
+      label: post.title,
+      path: `/blog/${post.slug}`,
+    })),
     legal: [
       { label: "Legal", path: "/legal" },
       { label: "Privacy Policy", path: "/legal/privacy-policy" },
@@ -70,7 +76,7 @@ const Footer = () => {
   return (
     <footer className="bg-background border-t border-border dark:space-grid">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center space-x-2 group mb-4">
@@ -188,6 +194,25 @@ const Footer = () => {
                       {link.label}
                     </Link>
                   )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Popular blog posts */}
+          <div>
+            <h3 className="font-semibold text-foreground mb-4 text-sm uppercase tracking-wider">
+              From the blog
+            </h3>
+            <ul className="space-y-3">
+              {footerLinks.blog.map((link) => (
+                <li key={link.path}>
+                  <Link
+                    to={link.path}
+                    className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm dark:hover:glow-text line-clamp-2"
+                  >
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://agentruntime.io/sitemap.xml
+Sitemap: https://www.agentruntime.io/sitemap.xml

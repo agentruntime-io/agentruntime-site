@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import { featureFlags } from "@/config/featureFlags";
 import { CONSOLE_APP_URL, DOCS_APP_URL } from "@/config/site";
 import ThemeToggle from "./ThemeToggle";
+import { NavBlogMenu } from "./blog/NavBlogMenu";
 
 type NavRouteItem = { kind: "route"; path: string; label: string };
 type NavExternalItem = { kind: "external"; href: string; label: string };
@@ -61,7 +62,14 @@ const Navigation = () => {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) =>
-                item.kind === "route" ? (
+                item.kind === "route" && item.path === "/blog" ? (
+                  <NavBlogMenu
+                    key={item.path}
+                    active={isActive(item.path)}
+                    linkClass={navLinkClass}
+                    layout="desktop"
+                  />
+                ) : item.kind === "route" ? (
                   <Link key={item.path} to={item.path} className={navLinkClass(isActive(item.path))}>
                     {item.label}
                   </Link>
@@ -110,7 +118,15 @@ const Navigation = () => {
           <div className="md:hidden" id="mobile-nav-menu">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 border-t border-white/80 dark:bg-white/60 dark:border-white/30 dark:space-grid">
               {navItems.map((item) =>
-                item.kind === "route" ? (
+                item.kind === "route" && item.path === "/blog" ? (
+                  <NavBlogMenu
+                    key={item.path}
+                    active={isActive(item.path)}
+                    linkClass={navLinkClass}
+                    layout="mobile"
+                    onNavigate={() => setIsOpen(false)}
+                  />
+                ) : item.kind === "route" ? (
                   <Link
                     key={item.path}
                     to={item.path}

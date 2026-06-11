@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { featureFlags } from "@/config/featureFlags";
 import { api } from "@/config/api";
+import { SITE_URL } from "@/config/site";
 import { ContactHero } from "@/components/contact/ContactHero";
 import { ContactFormSection } from "@/components/contact/ContactFormSection";
 import { ContactDetailsColumn, type ContactMethodItem } from "@/components/contact/ContactDetailsColumn";
@@ -39,8 +40,8 @@ const Contact = () => {
         : (String(formData.get("subject") ?? "").trim() || "AgentRuntime contact request");
 
       const footerSuffix = isEnterpriseSource
-        ? "\n\nSource: Enterprise (Billing CTA)\nShared via agentruntime.io/contact"
-        : "\n\nShared via agentruntime.io/contact";
+        ? `\n\nSource: Enterprise (Billing CTA)\nShared via ${SITE_URL}/contact`
+        : `\n\nShared via ${SITE_URL}/contact`;
 
       const payload: Record<string, string> = {
         _subject: subject,
