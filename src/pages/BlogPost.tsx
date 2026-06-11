@@ -9,6 +9,9 @@ import { type BlogTag } from "@/blog/types";
 import { extractHeadings } from "@/legal/utils";
 import { Seo } from "@/components/Seo";
 import { BlogPostJsonLd } from "@/components/BlogPostJsonLd";
+import { BlogCoverImage } from "@/components/blog/BlogCoverImage";
+import { getBlogCoverOgPath } from "@/lib/blogCoverImage";
+import { blogRestoreScrollState } from "@/lib/blogScrollRestoration";
 
 const TAG_COLORS: Record<BlogTag, string> = {
   Infrastructure: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
@@ -49,7 +52,7 @@ const BlogPost = () => {
         canonicalPath={`/blog/${post.slug}`}
         ogType="article"
         articlePublishedTime={isoPublished}
-        {...(post.coverImage ? { ogImage: post.coverImage } : {})}
+        {...(post.coverImage ? { ogImage: getBlogCoverOgPath(post.coverImage) } : {})}
       />
       <BlogPostJsonLd post={post} />
 
@@ -57,6 +60,7 @@ const BlogPost = () => {
         {/* Back */}
         <Link
           to="/blog"
+          state={blogRestoreScrollState}
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8 text-sm"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -93,9 +97,10 @@ const BlogPost = () => {
 
             {/* Cover image — only rendered when present */}
             {post.coverImage && (
-              <img
-                src={post.coverImage}
+              <BlogCoverImage
+                coverImage={post.coverImage}
                 alt={post.title}
+                variant="article"
                 className="w-full rounded-xl object-cover mb-10 max-h-96"
               />
             )}

@@ -18,6 +18,7 @@ import ctaBackground from "@/assets/cta-background.jpg";
 import { HeroCta } from "@/components/HeroCta";
 import { HeroWaitlist } from "@/components/HeroWaitlist";
 import { FeaturedBlogLinks } from "@/components/blog/FeaturedBlogLinks";
+import { BlogIndexLink } from "@/components/blog/BlogIndexLink";
 import { HOME_FEATURED_SLUGS, getFeaturedPosts } from "@/blog/featuredPosts";
 import { featureFlags } from "@/config/featureFlags";
 import { HomeJsonLd } from "@/components/HomeJsonLd";
@@ -293,10 +294,10 @@ const Index = () => {
               </p>
             </div>
             <Button variant="outline" size="lg" className="gap-2 shrink-0" asChild>
-              <Link to="/blog">
+              <BlogIndexLink>
                 View all posts
                 <ArrowRight className="h-4 w-4" />
-              </Link>
+              </BlogIndexLink>
             </Button>
           </div>
           <FeaturedBlogLinks posts={featuredBlogPosts} variant="home" />

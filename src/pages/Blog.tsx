@@ -5,12 +5,12 @@ import { format } from "date-fns";
 import { BLOG_POSTS } from "@/blog/posts";
 import { FEATURED_BLOG_SLUGS, getFeaturedPosts, isFeaturedBlogSlug } from "@/blog/featuredPosts";
 import { FeaturedBlogLinks } from "@/components/blog/FeaturedBlogLinks";
+import { BlogCoverImage } from "@/components/blog/BlogCoverImage";
 import { type BlogTag } from "@/blog/types";
 import { Seo } from "@/components/Seo";
 import { seoCopy } from "@/seo/metadata";
 import { Badge } from "@/components/ui/badge";
-import { SITE_URL } from "@/config/site";
-import { BreadcrumbListJsonLd } from "@/components/BreadcrumbListJsonLd";
+import { BlogListJsonLd } from "@/components/BlogListJsonLd";
 
 const TAG_COLORS: Record<BlogTag, string> = {
   Infrastructure: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
@@ -52,15 +52,16 @@ const Blog = () => {
     return true;
   });
 
+  const orderedPosts = [
+    ...(hero ? [hero] : []),
+    ...(showStartHere ? startHerePosts : []),
+    ...rest,
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Seo {...seoCopy.blog} canonicalPath="/blog" />
-      <BreadcrumbListJsonLd
-        items={[
-          { name: "Home", item: SITE_URL },
-          { name: "Blog", item: `${SITE_URL}/blog` },
-        ]}
-      />
+      <BlogListJsonLd posts={orderedPosts} description={seoCopy.blog.description} />
 
       {/* Header */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-6">
@@ -110,9 +111,10 @@ const Blog = () => {
           >
             {/* Cover image — only rendered when present */}
             {hero.coverImage && (
-              <img
-                src={hero.coverImage}
+              <BlogCoverImage
+                coverImage={hero.coverImage}
                 alt={hero.title}
+                variant="hero"
                 className="w-full h-56 md:h-72 object-cover"
                 fetchPriority="high"
               />
@@ -173,9 +175,10 @@ const Blog = () => {
               >
                 {/* Cover image — only rendered when present */}
                 {post.coverImage && (
-                  <img
-                    src={post.coverImage}
+                  <BlogCoverImage
+                    coverImage={post.coverImage}
                     alt={post.title}
+                    variant="grid"
                     className="w-full h-36 object-cover"
                     loading="lazy"
                   />

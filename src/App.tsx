@@ -7,6 +7,7 @@ import { ThemeProvider } from "next-themes";
 import { lazy, Suspense } from "react";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
+import { ScrollManager } from "./components/ScrollManager";
 import { featureFlags } from "@/config/featureFlags";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -37,6 +38,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollManager />
           <Routes>
             {/* Full-viewport route — no site nav or footer */}
             <Route path="/api-reference" element={

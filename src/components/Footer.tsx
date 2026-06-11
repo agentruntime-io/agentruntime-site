@@ -5,6 +5,7 @@ import { featureFlags } from "@/config/featureFlags";
 import { api } from "@/config/api";
 import { CONSOLE_APP_URL, DOCS_APP_URL } from "@/config/site";
 import { FOOTER_FEATURED_SLUGS, getFeaturedPosts } from "@/blog/featuredPosts";
+import { BlogIndexLink } from "@/components/blog/BlogIndexLink";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -186,6 +187,12 @@ const Footer = () => {
                     >
                       {link.label}
                     </a>
+                  ) : link.path === "/blog" ? (
+                    <BlogIndexLink
+                      className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm dark:hover:glow-text"
+                    >
+                      {link.label}
+                    </BlogIndexLink>
                   ) : (
                     <Link
                       to={link.path}
