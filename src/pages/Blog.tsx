@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { format } from "date-fns";
 import { BLOG_POSTS } from "@/blog/posts";
+import { FEATURED_BLOG_SLUGS, getFeaturedPosts, isFeaturedBlogSlug } from "@/blog/featuredPosts";
+import { FeaturedBlogLinks } from "@/components/blog/FeaturedBlogLinks";
 import { type BlogTag } from "@/blog/types";
 import { Seo } from "@/components/Seo";
 import { seoCopy } from "@/seo/metadata";
@@ -33,7 +35,22 @@ const Blog = () => {
     ? BLOG_POSTS.filter((p) => p.tags?.includes(activeTag))
     : BLOG_POSTS;
 
-  const [featured, ...rest] = filtered;
+  const showStartHere = activeTag === null;
+  const curatedFeatured = showStartHere ? getFeaturedPosts() : [];
+  const startHerePosts = curatedFeatured.slice(1);
+  const featuredSlugs = new Set(FEATURED_BLOG_SLUGS);
+
+  const hero = (showStartHere ? curatedFeatured[0] : undefined) ?? filtered[0];
+
+  const rest = filtered.filter((p) => {
+    if (p.slug === hero?.slug) {
+      return false;
+    }
+    if (showStartHere && featuredSlugs.has(p.slug)) {
+      return false;
+    }
+    return true;
+  });
 
   return (
     <div className="min-h-screen bg-background">
@@ -86,22 +103,28 @@ const Blog = () => {
         )}
 
         {/* Featured post — largest card */}
-        {featured && (
+        {hero && (
           <Link
-            to={`/blog/${featured.slug}`}
+            to={`/blog/${hero.slug}`}
             className="group block mb-10 rounded-2xl border border-border bg-card hover:border-primary/40 hover:shadow-lg transition-all duration-200 overflow-hidden"
           >
             {/* Cover image — only rendered when present */}
-            {featured.coverImage && (
+            {hero.coverImage && (
               <img
-                src={featured.coverImage}
-                alt={featured.title}
+                src={hero.coverImage}
+                alt={hero.title}
                 className="w-full h-56 md:h-72 object-cover"
+                fetchPriority="high"
               />
             )}
             <div className="p-6 md:p-8">
               <div className="flex flex-wrap items-center gap-2 mb-4">
-                {featured.tags?.map((tag) => (
+                {showStartHere && isFeaturedBlogSlug(hero.slug) ? (
+                  <Badge variant="secondary" className="text-xs">
+                    Featured
+                  </Badge>
+                ) : null}
+                {hero.tags?.map((tag) => (
                   <span
                     key={tag}
                     className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${TAG_COLORS[tag]}`}
@@ -110,22 +133,33 @@ const Blog = () => {
                   </span>
                 ))}
                 <span className="text-xs text-muted-foreground">
-                  {format(new Date(featured.publishedAt + "T12:00:00"), "MMMM d, yyyy")}
+                  {format(new Date(hero.publishedAt + "T12:00:00"), "MMMM d, yyyy")}
                 </span>
                 <span className="text-xs text-muted-foreground">·</span>
-                <span className="text-xs text-muted-foreground">{readTime(featured.content)}</span>
+                <span className="text-xs text-muted-foreground">{readTime(hero.content)}</span>
               </div>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground group-hover:text-primary transition-colors mb-3 leading-snug">
-                {featured.title}
+                {hero.title}
               </h2>
               <p className="text-muted-foreground text-base leading-relaxed mb-4 max-w-2xl">
-                {featured.description}
+                {hero.description}
               </p>
               <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
                 Read post <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
             </div>
           </Link>
+        )}
+
+        {/* Start here — curated guides */}
+        {showStartHere && startHerePosts.length > 0 && (
+          <div className="mb-10">
+            <h2 className="text-lg font-semibold text-foreground mb-1">Start here</h2>
+            <p className="text-sm text-muted-foreground mb-4">
+              Essential reading for production AI agents and workflows.
+            </p>
+            <FeaturedBlogLinks posts={startHerePosts} variant="start-here" />
+          </div>
         )}
 
         {/* Remaining posts — 2-column grid */}
@@ -143,6 +177,7 @@ const Blog = () => {
                     src={post.coverImage}
                     alt={post.title}
                     className="w-full h-36 object-cover"
+                    loading="lazy"
                   />
                 )}
                 <div className="flex flex-col flex-1 p-5">

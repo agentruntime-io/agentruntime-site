@@ -13,5 +13,9 @@ export default defineConfig(() => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+    dedupe: ["@scalar/typebox"],
+  },
+  optimizeDeps: {
+    include: ["@scalar/api-reference", "@scalar/typebox", "@scalar/typebox/value"],
   },
 }));

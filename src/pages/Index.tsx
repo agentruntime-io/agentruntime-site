@@ -17,12 +17,16 @@ import workflowBackground from "@/assets/workflow-background.jpg";
 import ctaBackground from "@/assets/cta-background.jpg";
 import { HeroCta } from "@/components/HeroCta";
 import { HeroWaitlist } from "@/components/HeroWaitlist";
+import { FeaturedBlogLinks } from "@/components/blog/FeaturedBlogLinks";
+import { HOME_FEATURED_SLUGS, getFeaturedPosts } from "@/blog/featuredPosts";
 import { featureFlags } from "@/config/featureFlags";
 import { HomeJsonLd } from "@/components/HomeJsonLd";
 import { Seo } from "@/components/Seo";
 import { seoCopy } from "@/seo/metadata";
 
 const Index = () => {
+  const featuredBlogPosts = getFeaturedPosts(HOME_FEATURED_SLUGS);
+
   const features = [
     {
       icon: Code2,
@@ -275,6 +279,29 @@ const Index = () => {
           </div>
         </section>
       )}
+
+      {/* Featured blog posts — internal links for crawlers and readers */}
+      <section className="py-20 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
+                From the blog
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl">
+                Production patterns and guides for building reliable AI agent workflows.
+              </p>
+            </div>
+            <Button variant="outline" size="lg" className="gap-2 shrink-0" asChild>
+              <Link to="/blog">
+                View all posts
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+          <FeaturedBlogLinks posts={featuredBlogPosts} variant="home" />
+        </div>
+      </section>
 
       {/* Final CTA Section with Background */}
       <section 

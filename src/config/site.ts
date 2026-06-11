@@ -2,7 +2,7 @@
  * Canonical site URL and defaults for SEO (meta, Open Graph, Twitter, JSON-LD).
  * Update SITE_URL if the production domain changes.
  */
-export const SITE_URL = "https://agentruntime.io";
+export const SITE_URL = "https://www.agentruntime.io";
 export const SITE_NAME = "AgentRuntime";
 export const TWITTER_HANDLE = "@agentruntime";
 
