@@ -22,11 +22,11 @@ const SHOW_WAITLIST = false;
 
 const baseStaticEntries = [
   ["/", "weekly", "1"],
-  ["/features", "monthly", "0.9"],
-  ["/how-it-works", "monthly", "0.9"],
-  ["/pricing", "monthly", "0.9"],
-  ["/use-cases", "monthly", "0.8"],
-  ["/docs", "weekly", "0.9"],
+  ["/platform", "monthly", "0.9"],
+  ["/workflows", "monthly", "0.9"],
+  ["/developers", "monthly", "0.9"],
+  ["/enterprise", "monthly", "0.8"],
+  ["/company", "monthly", "0.7"],
   ["/blog", "weekly", "0.8"],
   ["/contact", "monthly", "0.8"],
   ["/legal", "monthly", "0.5"],

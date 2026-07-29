@@ -1,6 +1,6 @@
 # AgentRuntime Marketing Site
 
-Public marketing website for [AgentRuntime](https://www.agentruntime.io) — API-first runtime for orchestrating AI agents at scale.
+Public marketing website for [AgentRuntime](https://www.agentruntime.io) — production infrastructure for AI workflows that cross agents, tools, business rules, and people.
 
 ## Tech Stack
 
@@ -16,6 +16,10 @@ Public marketing website for [AgentRuntime](https://www.agentruntime.io) — API
 npm install
 npm run dev
 ```
+
+Primary marketing routes are `/platform`, `/workflows`, `/developers`,
+`/enterprise`, `/company`, and `/contact`. Legacy campaign routes redirect to
+the closest current page.
 
 ## Build
 
