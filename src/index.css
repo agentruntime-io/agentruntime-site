@@ -2,56 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-/* AgentRuntime Design System - Professional sky-inspired theme */
+/* AgentRuntime base design system. Core marketing pages use the editorial
+   tokens in styles/marketing.css; these values keep blog/legal surfaces aligned. */
 
 @layer base {
   :root {
-    /* Sky-inspired background colors */
-    --background: 210 20% 98%;
-    --foreground: 222 84% 4.9%;
+    --background: 40 20% 93%;
+    --foreground: 60 4% 9%;
 
-    /* Card and surface colors */
-    --card: 0 0% 100%;
-    --card-foreground: 222 84% 4.9%;
+    --card: 40 25% 97%;
+    --card-foreground: 60 4% 9%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 84% 4.9%;
+    --popover: 40 25% 97%;
+    --popover-foreground: 60 4% 9%;
 
-    /* Brand colors - professional blues */
-    --primary: 213 94% 68%;
+    --primary: 11 100% 61%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 38 20% 89%;
+    --secondary-foreground: 60 4% 9%;
 
-    /* Muted colors for subtle elements */
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 38 18% 90%;
+    --muted-foreground: 45 5% 40%;
 
-    /* Accent colors */
-    --accent: 213 94% 68%;
+    --accent: 11 100% 61%;
     --accent-foreground: 0 0% 100%;
 
     /* Destructive colors */
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    /* Border and input colors */
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 213 94% 68%;
+    --border: 40 10% 82%;
+    --input: 40 10% 82%;
+    --ring: 11 100% 61%;
 
     /* Design tokens */
     --radius: 0.75rem;
     
     /* Custom gradients */
-    --gradient-sky: linear-gradient(135deg, hsl(213 94% 68%) 0%, hsl(201 79% 56%) 50%, hsl(210 40% 96%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(213 94% 68% / 0.1) 0%, hsl(210 20% 98%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(210 40% 98%) 100%);
+    --gradient-sky: linear-gradient(135deg, hsl(11 100% 61%) 0%, hsl(19 85% 67%) 45%, hsl(40 20% 93%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(11 100% 61% / 0.08) 0%, hsl(40 20% 93%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(40 25% 98%) 0%, hsl(38 20% 94%) 100%);
     
     /* Shadows */
-    --shadow-elegant: 0 10px 40px -10px hsl(213 94% 68% / 0.15);
-    --shadow-card: 0 4px 20px -4px hsl(213 94% 68% / 0.1);
+    --shadow-elegant: 0 10px 40px -10px hsl(11 55% 35% / 0.16);
+    --shadow-card: 0 4px 20px -4px hsl(30 20% 25% / 0.1);
     
     /* Animation variables */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

@@ -5,9 +5,34 @@
 
 export const seoCopy = {
   home: {
-    title: "Put Your Agents to Work",
+    title: "Run AI Workflows in Production",
     description:
-      "Stop experimenting. Put your agents to work. Run AI agents reliably, safely, at scale - now. Build production-ready agent workflows with confidence.",
+      "Connect AI agents, tools, business rules, and people in reliable, stateful workflows built for real production operations.",
+  },
+  platform: {
+    title: "AI Workflow Runtime",
+    description:
+      "Explore the stateful, observable AgentRuntime execution platform for AI agents, tools, deterministic rules, and human decisions.",
+  },
+  workflows: {
+    title: "Production AI Workflows",
+    description:
+      "See how AgentRuntime coordinates agents, tools, rules, and people across customer operations, support, finance, and embedded agent products.",
+  },
+  developers: {
+    title: "Developers",
+    description:
+      "Build production agent workflows with AgentRuntime APIs, SDKs, MCP tools, events, stateful execution, and end-to-end observability.",
+  },
+  enterprise: {
+    title: "Enterprise AI Workflow Control",
+    description:
+      "Govern AI workflow execution with explicit permissions, human approvals, auditability, policies, and operational visibility.",
+  },
+  company: {
+    title: "Company",
+    description:
+      "Learn why AgentRuntime is building the production execution layer for AI workflows that cross tools, business rules, and people.",
   },
   features: {
     title: "Features",
@@ -40,9 +65,9 @@ export const seoCopy = {
       "Mission, team, and values behind AgentRuntime - building dependable infrastructure for AI agent orchestration.",
   },
   contact: {
-    title: "Contact",
+    title: "Discuss a Workflow",
     description:
-      "Reach the AgentRuntime team for product questions, partnerships, support, and enterprise engagements.",
+      "Bring AgentRuntime one workflow, agent product, or production execution problem and start a technical conversation with the team.",
   },
   waitlist: {
     title: "Join the Waitlist",

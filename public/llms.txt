@@ -1,28 +1,28 @@
 # AgentRuntime
 
-> Production infrastructure to register, simulate, compile, run, and monitor AI agents at scale. Marketing site for AgentRuntime (agentruntime.io).
+> Production infrastructure for AI workflows that cross agents, tools, business rules, and people. Marketing site for AgentRuntime (agentruntime.io).
 
 ## Product
 
-- [Home](https://www.agentruntime.io/): Product positioning, hero, feature highlights, social proof, and CTAs.
-- [Features](https://www.agentruntime.io/features): Agent registration, simulation & compile, runtime API, observability, security, and integrations.
-- [How it works](https://www.agentruntime.io/how-it-works): End-to-end flow—connect agents, validate, execute, and orchestrate with tracing.
-- [Pricing](https://www.agentruntime.io/pricing): Plans from developer through enterprise (illustrative marketing tiers).
-- [Use cases](https://www.agentruntime.io/use-cases): Industry-style examples (support, IoT, data pipelines, finance, etc.).
+- [Home](https://www.agentruntime.io/): Positioning and execution model for reliable production AI work.
+- [Platform](https://www.agentruntime.io/platform): Stateful execution, conditional control, waits, recovery, observability, and governance.
+- [Workflows](https://www.agentruntime.io/workflows): Operational patterns for customer onboarding, support, finance, and embedded agents.
+- [Developers](https://www.agentruntime.io/developers): APIs, SDKs, MCP tools, events, and the execution lifecycle.
+- [Enterprise](https://www.agentruntime.io/enterprise): Permissions, approvals, policy controls, auditability, and adoption path.
 
 ## Learn & engage
 
 - [Blog](https://www.agentruntime.io/blog): Product updates, engineering notes, and guides; [RSS feed](https://www.agentruntime.io/blog/rss.xml) lists all posts.
-- [Documentation hub](https://www.agentruntime.io/docs): On-site documentation overview and links to concepts (not a full API reference host by itself).
-- [Contact](https://www.agentruntime.io/contact): Sales, support, and general inquiries (form and contact options as configured).
-- [Console](http://console.agentruntime.io/): Sign in to manage workflows, agents, and runs (primary product UI).
+- [Company](https://www.agentruntime.io/company): Founding thesis, product principles, and the teams AgentRuntime is built to serve.
+- [Contact](https://www.agentruntime.io/contact): Share a workflow, agent product, or production execution problem with the team.
+- [Console](https://console.agentruntime.io/): Sign in to manage workflows, agents, and runs (primary product UI).
 - [Developer documentation](https://docs.agentruntime.io/): Guides and API reference for the runtime.
 
 ## Company & trust
 
 - [Legal index](https://www.agentruntime.io/legal): Index of policies and agreements.
 
-**Routes gated in production:** `/about`, `/careers`, and `/waitlist` exist in code but may be disabled via `featureFlags` (`showAboutPage`, `showCareersPage`, `showWaitlist`); add them back to sitemap and `llms.txt` when enabled.
+**Routes gated in production:** `/careers` and `/waitlist` exist in code but may be disabled via `featureFlags`; add them back to sitemap and `llms.txt` when enabled.
 
 ## Optional / extended index
 
