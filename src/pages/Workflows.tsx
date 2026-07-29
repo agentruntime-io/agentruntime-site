@@ -21,6 +21,7 @@ const workflowPatterns = [
     visual: {
       title: "Customer onboarding",
       status: "Active",
+      outcome: "One visible run from CRM event to customer launch.",
       rows: [
         { left: "CRM event", right: "Research agent" },
         { left: "Choose path", right: "Create workspace" },
@@ -46,6 +47,7 @@ const workflowPatterns = [
     visual: {
       title: "Issue resolution",
       status: "Running",
+      outcome: "Routine cases resolve; exceptions arrive with context.",
       rows: [
         { left: "Ticket arrives", right: "Gather account state" },
         {
@@ -75,6 +77,7 @@ const workflowPatterns = [
     visual: {
       title: "Expense review",
       status: "Waiting",
+      outcome: "Every check and approval remains attached to the request.",
       rows: [
         { left: "Document intake", right: "Extract and validate" },
         {
@@ -99,6 +102,7 @@ const workflowPatterns = [
     visual: {
       title: "Embedded research agent",
       status: "API",
+      outcome: "The product receives a validated result without owning the runtime.",
       rows: [
         { left: "Product request", right: "Workflow API" },
         { left: "Parallel tools", right: "Synthesis" },
@@ -157,11 +161,16 @@ export default function Workflows() {
                 <span className="marketing-pill">{workflow.pill}</span>
                 <h3>{workflow.title}</h3>
                 <p>{workflow.description}</p>
-                <ul className="marketing-outcome-list">
-                  {workflow.outcomes.map((outcome) => (
-                    <li key={outcome}>{outcome}</li>
-                  ))}
-                </ul>
+                <div className="marketing-outcomes">
+                  <div className="marketing-outcomes-label">
+                    Operational outcomes
+                  </div>
+                  <ul className="marketing-outcome-list">
+                    {workflow.outcomes.map((outcome) => (
+                      <li key={outcome}>{outcome}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
               <WorkflowVisual {...workflow.visual} />
             </article>

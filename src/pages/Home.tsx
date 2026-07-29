@@ -52,6 +52,25 @@ const executionModel = [
   },
 ];
 
+const runtimeOutcomes = [
+  {
+    label: "State",
+    value: "Survives waits and handoffs",
+  },
+  {
+    label: "Ownership",
+    value: "Stays explicit at every decision",
+  },
+  {
+    label: "Exceptions",
+    value: "Become designed execution paths",
+  },
+  {
+    label: "History",
+    value: "Remains connected in one timeline",
+  },
+];
+
 export default function Home() {
   return (
     <div className="marketing-page">
@@ -86,6 +105,37 @@ export default function Home() {
       </section>
 
       <ProductStage />
+
+      <section
+        className="marketing-outcome-band"
+        aria-labelledby="runtime-outcomes-title"
+      >
+        <div className="marketing-container">
+          <div className="marketing-outcome-band-header">
+            <div>
+              <div className="marketing-section-label">
+                What the runtime preserves
+              </div>
+              <h2 id="runtime-outcomes-title">
+                The process stays coherent when the work changes hands.
+              </h2>
+            </div>
+            <p>
+              Designed into every run, independent of which agent, tool, or
+              person acts next.
+            </p>
+          </div>
+          <div className="marketing-outcome-metrics">
+            {runtimeOutcomes.map((outcome, index) => (
+              <div className="marketing-outcome-metric" key={outcome.label}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{outcome.label}</strong>
+                <p>{outcome.value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="marketing-section">
         <div className="marketing-container">

@@ -80,7 +80,7 @@ export default function ContactMarketing() {
       <section className="marketing-section" data-flush-top="true">
         <div className="marketing-container">
           <div className="marketing-contact-grid">
-            <div className="marketing-contact-stack">
+            <div className="marketing-contact-stack marketing-contact-support">
               <div className="marketing-contact-card">
                 <h3>What to bring</h3>
                 <p>A rough description is enough. The most useful details are:</p>
@@ -103,7 +103,7 @@ export default function ContactMarketing() {
               </div>
             </div>
 
-            <div className="marketing-contact-card">
+            <div className="marketing-contact-card marketing-contact-form-card">
               <h3>Tell us about the work</h3>
               <p>
                 Describe the current process in plain language. We will reply with

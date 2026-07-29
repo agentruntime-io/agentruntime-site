@@ -127,59 +127,70 @@ export default function Platform() {
                 <strong>AgentRuntime execution plane</strong>
                 <span className="marketing-status">● Run active</span>
               </div>
-              <div className="marketing-architecture-row">
-                <div className="marketing-architecture-box">
-                  <strong>API &amp; webhooks</strong>
-                  <span>
-                    Product events, external systems, and inbound requests.
-                  </span>
+              <div className="marketing-architecture-flow">
+                <div className="marketing-architecture-row">
+                  <div className="marketing-architecture-box">
+                    <strong>API &amp; webhooks</strong>
+                    <span>
+                      Product events, external systems, and inbound requests.
+                    </span>
+                  </div>
+                  <div className="marketing-architecture-box">
+                    <strong>Schedules</strong>
+                    <span>Recurring and time-based operational work.</span>
+                  </div>
+                  <div className="marketing-architecture-box">
+                    <strong>Human actions</strong>
+                    <span>Approvals, inputs, and exception resolution.</span>
+                  </div>
+                  <div className="marketing-architecture-box">
+                    <strong>Agent requests</strong>
+                    <span>Calls from applications and interfaces.</span>
+                  </div>
                 </div>
-                <div className="marketing-architecture-box">
-                  <strong>Schedules</strong>
-                  <span>Recurring and time-based operational work.</span>
+                <div className="marketing-architecture-connector">
+                  <span>enters one governed run</span>
                 </div>
-                <div className="marketing-architecture-box">
-                  <strong>Human actions</strong>
-                  <span>Approvals, inputs, and exception resolution.</span>
+                <div className="marketing-architecture-layer">
+                  <strong>Workflow runtime</strong>
+                  <p>
+                    State • conditions • parallel groups • waits • retries •
+                    validation • context • execution rounds
+                  </p>
                 </div>
-                <div className="marketing-architecture-box">
-                  <strong>Agent requests</strong>
-                  <span>Calls from applications and interfaces.</span>
+                <div className="marketing-architecture-connector">
+                  <span>routes each step</span>
                 </div>
-              </div>
-              <div className="marketing-architecture-layer">
-                <strong>Workflow runtime</strong>
-                <p>
-                  State • conditions • parallel groups • waits • retries •
-                  validation • context • execution rounds
-                </p>
-              </div>
-              <div className="marketing-architecture-row">
-                <div className="marketing-architecture-box">
-                  <strong>Models</strong>
-                  <span>Use the right model for each task and policy.</span>
+                <div className="marketing-architecture-row">
+                  <div className="marketing-architecture-box">
+                    <strong>Models</strong>
+                    <span>Use the right model for each task and policy.</span>
+                  </div>
+                  <div className="marketing-architecture-box">
+                    <strong>Tools &amp; MCP</strong>
+                    <span>
+                      Business software, internal APIs, and first-party tools.
+                    </span>
+                  </div>
+                  <div className="marketing-architecture-box">
+                    <strong>People</strong>
+                    <span>Specific owners, roles, and teams.</span>
+                  </div>
+                  <div className="marketing-architecture-box">
+                    <strong>Business systems</strong>
+                    <span>Data, actions, and existing operating logic.</span>
+                  </div>
                 </div>
-                <div className="marketing-architecture-box">
-                  <strong>Tools &amp; MCP</strong>
-                  <span>
-                    Business software, internal APIs, and first-party tools.
-                  </span>
+                <div className="marketing-architecture-connector">
+                  <span>records every transition</span>
                 </div>
-                <div className="marketing-architecture-box">
-                  <strong>People</strong>
-                  <span>Specific owners, roles, and teams.</span>
+                <div className="marketing-architecture-layer">
+                  <strong>Control and observability</strong>
+                  <p>
+                    Secrets • permissions • traces • timelines • audit • replay •
+                    dependency visibility
+                  </p>
                 </div>
-                <div className="marketing-architecture-box">
-                  <strong>Business systems</strong>
-                  <span>Data, actions, and existing operating logic.</span>
-                </div>
-              </div>
-              <div className="marketing-architecture-layer">
-                <strong>Control and observability</strong>
-                <p>
-                  Secrets • permissions • traces • timelines • audit • replay •
-                  dependency visibility
-                </p>
               </div>
             </div>
           </div>

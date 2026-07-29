@@ -182,9 +182,16 @@ export default function Enterprise() {
             </div>
             {comparisonRows.map(([question, traditional, runtime]) => (
               <div className="marketing-compare-row" key={question}>
-                <div>{question}</div>
-                <div className="marketing-dash">{traditional}</div>
-                <div className="marketing-check">{runtime}</div>
+                <div data-label="Operational question">{question}</div>
+                <div
+                  className="marketing-dash"
+                  data-label="Traditional agent request"
+                >
+                  {traditional}
+                </div>
+                <div className="marketing-check" data-label="AgentRuntime run">
+                  {runtime}
+                </div>
               </div>
             ))}
           </div>

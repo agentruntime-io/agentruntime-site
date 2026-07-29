@@ -9,19 +9,17 @@ import { BlogCoverImage } from "@/components/blog/BlogCoverImage";
 import { type BlogTag } from "@/blog/types";
 import { Seo } from "@/components/Seo";
 import { seoCopy } from "@/seo/metadata";
-import { Badge } from "@/components/ui/badge";
 import { BlogListJsonLd } from "@/components/BlogListJsonLd";
+import { Eyebrow } from "@/components/marketing/MarketingPrimitives";
 
-const TAG_COLORS: Record<BlogTag, string> = {
-  Infrastructure: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
-  "How-to":       "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20",
-  "Deep Dive":    "bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/20",
-  Security:       "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20",
-  "Use Case":     "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
-  Product:        "bg-primary/10 text-primary border-primary/20",
-};
-
-const ALL_TAGS = Object.keys(TAG_COLORS) as BlogTag[];
+const ALL_TAGS: BlogTag[] = [
+  "Infrastructure",
+  "How-to",
+  "Deep Dive",
+  "Security",
+  "Use Case",
+  "Product",
+];
 
 function readTime(content: string) {
   const words = content.trim().split(/\s+/).length;
@@ -59,26 +57,31 @@ const Blog = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="marketing-page marketing-blog-page">
       <Seo {...seoCopy.blog} canonicalPath="/blog" />
-      <BlogListJsonLd posts={orderedPosts} description={seoCopy.blog.description} />
+      <BlogListJsonLd
+        posts={orderedPosts}
+        description={seoCopy.blog.description}
+      />
 
-      {/* Header */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-6">
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Blog</h1>
-          <p className="text-muted-foreground max-w-xl">
-            Engineering notes, production patterns, and guidance for building with AI agents.
+      <header className="marketing-blog-header">
+        <div className="marketing-container">
+          <Eyebrow>Field notes</Eyebrow>
+          <h1>Ideas for operating AI beyond the prototype.</h1>
+          <p>
+            Engineering notes, production patterns, and guidance for building
+            with AI agents.
           </p>
 
-          {/* Tag filter */}
-          <div className="flex flex-wrap gap-2 mt-5">
+          <div
+            className="marketing-blog-filters"
+            aria-label="Filter posts by topic"
+          >
             <button
               onClick={() => setActiveTag(null)}
-              className={`px-3 py-1 rounded-full text-sm font-medium border transition-colors ${
-                activeTag === null
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "bg-transparent text-muted-foreground border-border hover:border-primary/40 hover:text-foreground"
-              }`}
+              className="marketing-blog-filter"
+              data-active={activeTag === null}
+              type="button"
             >
               All
             </button>
@@ -86,130 +89,125 @@ const Blog = () => {
               <button
                 key={tag}
                 onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-                className={`px-3 py-1 rounded-full text-sm font-medium border transition-colors ${
-                  activeTag === tag
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : `bg-transparent border-border hover:border-primary/40 ${TAG_COLORS[tag]}`
-                }`}
+                className="marketing-blog-filter"
+                data-active={activeTag === tag}
+                type="button"
               >
                 {tag}
               </button>
             ))}
           </div>
-      </div>
+        </div>
+      </header>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-14">
+      <div className="marketing-container marketing-blog-content">
         {filtered.length === 0 && (
-          <p className="text-muted-foreground text-center py-16">No posts in this category yet.</p>
+          <p className="marketing-blog-empty">No posts in this category yet.</p>
         )}
 
-        {/* Featured post — largest card */}
         {hero && (
           <Link
             to={`/blog/${hero.slug}`}
-            className="group block mb-10 rounded-2xl border border-border bg-card hover:border-primary/40 hover:shadow-lg transition-all duration-200 overflow-hidden"
+            className="marketing-blog-featured"
           >
-            {/* Cover image — only rendered when present */}
             {hero.coverImage && (
               <BlogCoverImage
                 coverImage={hero.coverImage}
                 alt={hero.title}
                 variant="hero"
-                className="w-full h-56 md:h-72 object-cover"
+                className="marketing-blog-featured-image"
                 fetchPriority="high"
               />
             )}
-            <div className="p-6 md:p-8">
-              <div className="flex flex-wrap items-center gap-2 mb-4">
+            <div className="marketing-blog-featured-body">
+              <div className="marketing-blog-meta">
                 {showStartHere && isFeaturedBlogSlug(hero.slug) ? (
-                  <Badge variant="secondary" className="text-xs">
+                  <span className="marketing-blog-tag" data-accent="true">
                     Featured
-                  </Badge>
+                  </span>
                 ) : null}
                 {hero.tags?.map((tag) => (
-                  <span
-                    key={tag}
-                    className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${TAG_COLORS[tag]}`}
-                  >
+                  <span className="marketing-blog-tag" key={tag}>
                     {tag}
                   </span>
                 ))}
-                <span className="text-xs text-muted-foreground">
-                  {format(new Date(hero.publishedAt + "T12:00:00"), "MMMM d, yyyy")}
+                <span>
+                  {format(
+                    new Date(hero.publishedAt + "T12:00:00"),
+                    "MMMM d, yyyy",
+                  )}
                 </span>
-                <span className="text-xs text-muted-foreground">·</span>
-                <span className="text-xs text-muted-foreground">{readTime(hero.content)}</span>
+                <span>·</span>
+                <span>{readTime(hero.content)}</span>
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground group-hover:text-primary transition-colors mb-3 leading-snug">
-                {hero.title}
-              </h2>
-              <p className="text-muted-foreground text-base leading-relaxed mb-4 max-w-2xl">
-                {hero.description}
-              </p>
-              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+              <h2>{hero.title}</h2>
+              <p>{hero.description}</p>
+              <span className="marketing-blog-read-link">
                 Read post <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
             </div>
           </Link>
         )}
 
-        {/* Start here — curated guides */}
         {showStartHere && startHerePosts.length > 0 && (
-          <div className="mb-10">
-            <h2 className="text-lg font-semibold text-foreground mb-1">Start here</h2>
-            <p className="text-sm text-muted-foreground mb-4">
+          <section className="marketing-blog-start-here">
+            <div className="marketing-section-label">Start here</div>
+            <h2>Build the production foundation first.</h2>
+            <p>
               Essential reading for production AI agents and workflows.
             </p>
             <FeaturedBlogLinks posts={startHerePosts} variant="start-here" />
-          </div>
+          </section>
         )}
 
-        {/* Remaining posts — 2-column grid */}
         {rest.length > 0 && (
-          <div className="grid sm:grid-cols-2 gap-5">
-            {rest.map((post) => (
-              <Link
-                key={post.slug}
-                to={`/blog/${post.slug}`}
-                className="group flex flex-col rounded-xl border border-border bg-card hover:border-primary/40 hover:shadow-md transition-all duration-200 overflow-hidden"
-              >
-                {/* Cover image — only rendered when present */}
-                {post.coverImage && (
-                  <BlogCoverImage
-                    coverImage={post.coverImage}
-                    alt={post.title}
-                    variant="grid"
-                    className="w-full h-36 object-cover"
-                    loading="lazy"
-                  />
-                )}
-                <div className="flex flex-col flex-1 p-5">
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    {post.tags?.map((tag) => (
-                      <span
-                        key={tag}
-                        className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium border ${TAG_COLORS[tag]}`}
-                      >
-                        {tag}
+          <section className="marketing-blog-library">
+            <div className="marketing-section-label">
+              {activeTag ? `${activeTag} notes` : "Latest notes"}
+            </div>
+            <div className="marketing-blog-grid">
+              {rest.map((post) => (
+                <Link
+                  key={post.slug}
+                  to={`/blog/${post.slug}`}
+                  className="marketing-blog-card"
+                >
+                  {post.coverImage && (
+                    <BlogCoverImage
+                      coverImage={post.coverImage}
+                      alt={post.title}
+                      variant="grid"
+                      className="marketing-blog-card-image"
+                      loading="lazy"
+                    />
+                  )}
+                  <div className="marketing-blog-card-body">
+                    <div className="marketing-blog-meta">
+                      {post.tags?.map((tag) => (
+                        <span className="marketing-blog-tag" key={tag}>
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <h2>{post.title}</h2>
+                    <p>{post.description}</p>
+                    <div className="marketing-blog-card-footer">
+                      <span>
+                        {format(
+                          new Date(post.publishedAt + "T12:00:00"),
+                          "MMM d, yyyy",
+                        )}
                       </span>
-                    ))}
+                      <span className="marketing-blog-read-link">
+                        Read{" "}
+                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                      </span>
+                    </div>
                   </div>
-                  <h2 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-2 leading-snug">
-                    {post.title}
-                  </h2>
-                  <p className="text-sm text-muted-foreground line-clamp-2 flex-1 mb-4">
-                    {post.description}
-                  </p>
-                  <div className="flex items-center justify-between text-xs text-muted-foreground mt-auto pt-3 border-t border-border">
-                    <span>{format(new Date(post.publishedAt + "T12:00:00"), "MMM d, yyyy")}</span>
-                    <span className="flex items-center gap-1 text-primary font-medium">
-                      Read <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+                </Link>
+              ))}
+            </div>
+          </section>
         )}
       </div>
     </div>

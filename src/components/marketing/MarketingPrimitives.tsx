@@ -122,6 +122,7 @@ export function CallToAction({
 type WorkflowVisualProps = {
   title: string;
   status: string;
+  outcome?: string;
   rows: Array<{
     left: string;
     connector?: string;
@@ -133,37 +134,51 @@ type WorkflowVisualProps = {
 export function WorkflowVisual({
   title,
   status,
+  outcome,
   rows,
 }: WorkflowVisualProps) {
   return (
     <div
       className="marketing-workflow-visual"
       role="img"
-      aria-label={`${title} workflow. Status: ${status}.`}
+      aria-label={`${title} workflow. Status: ${status}.${outcome ? ` Outcome: ${outcome}` : ""}`}
     >
       <div className="marketing-ui-header">
         <strong>{title}</strong>
-        <span className="marketing-status">{status}</span>
+        <span className="marketing-status" data-status={status.toLowerCase()}>
+          {status}
+        </span>
       </div>
-      {rows.map((row) => (
-        <div className="marketing-flow-line" key={`${row.left}-${row.right}`}>
-          <div
-            className="marketing-flow-step"
-            data-hot={row.hot === "left" || undefined}
-          >
-            {row.left}
+      <div className="marketing-workflow-timeline">
+        {rows.map((row, index) => (
+          <div className="marketing-flow-line" key={`${row.left}-${row.right}`}>
+            <span className="marketing-flow-index" aria-hidden="true">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <div
+              className="marketing-flow-step"
+              data-hot={row.hot === "left" || undefined}
+            >
+              {row.left}
+            </div>
+            <span className="marketing-flow-arrow" aria-hidden="true">
+              {row.connector ?? "→"}
+            </span>
+            <div
+              className="marketing-flow-step"
+              data-hot={row.hot === "right" || undefined}
+            >
+              {row.right}
+            </div>
           </div>
-          <span className="marketing-flow-arrow" aria-hidden="true">
-            {row.connector ?? "→"}
-          </span>
-          <div
-            className="marketing-flow-step"
-            data-hot={row.hot === "right" || undefined}
-          >
-            {row.right}
-          </div>
+        ))}
+      </div>
+      {outcome && (
+        <div className="marketing-workflow-outcome">
+          <span>Run outcome</span>
+          <strong>{outcome}</strong>
         </div>
-      ))}
+      )}
     </div>
   );
 }
@@ -285,6 +300,10 @@ export function ProductStage() {
                     <p>{node.description}</p>
                   </div>
                 ))}
+              </div>
+              <div className="marketing-mobile-flow-summary">
+                Research, decision, and tool steps stay attached to the same
+                observable run.
               </div>
             </div>
 

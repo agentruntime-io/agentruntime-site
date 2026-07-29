@@ -34,18 +34,19 @@ export function FeaturedBlogLinks({ posts, variant = "home" }: FeaturedBlogLinks
 
   if (variant === "start-here") {
     return (
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {posts.map((post) => (
+      <div className="marketing-blog-guide-grid">
+        {posts.map((post, index) => (
           <Link
             key={post.slug}
             to={`/blog/${post.slug}`}
-            className="group rounded-xl border border-border bg-card p-5 hover:border-primary/40 hover:shadow-md transition-all duration-200"
+            className="marketing-blog-guide"
           >
-            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-2 leading-snug line-clamp-2">
-              {post.title}
-            </h3>
-            <p className="text-sm text-muted-foreground line-clamp-2 mb-3">{post.description}</p>
-            <span className="inline-flex items-center gap-1 text-xs font-medium text-primary">
+            <span className="marketing-blog-guide-index" aria-hidden="true">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <h3>{post.title}</h3>
+            <p>{post.description}</p>
+            <span className="marketing-blog-read-link">
               Read <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
             </span>
           </Link>
