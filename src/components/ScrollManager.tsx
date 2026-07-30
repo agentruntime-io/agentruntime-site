@@ -31,9 +31,23 @@ export function ScrollManager() {
     }
 
     let clearRestoreRetry: (() => void) | undefined;
+    let hashFrame: number | undefined;
 
     if (hash) {
-      document.querySelector(hash)?.scrollIntoView();
+      let attempts = 0;
+      const scrollToHash = () => {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView();
+          return;
+        }
+
+        attempts += 1;
+        if (attempts < 60) {
+          hashFrame = window.requestAnimationFrame(scrollToHash);
+        }
+      };
+      scrollToHash();
     } else if (pathname === BLOG_INDEX) {
       if (scrollState.scrollToTop) {
         clearBlogListScroll();
@@ -53,7 +67,12 @@ export function ScrollManager() {
     }
 
     prevPathnameRef.current = pathname;
-    return () => clearRestoreRetry?.();
+    return () => {
+      clearRestoreRetry?.();
+      if (hashFrame !== undefined) {
+        window.cancelAnimationFrame(hashFrame);
+      }
+    };
   }, [location, navigationType]);
 
   return null;

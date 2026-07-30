@@ -121,6 +121,186 @@
   background: var(--marketing-text);
 }
 
+.marketing-nav-group {
+  position: relative;
+  height: 72px;
+  display: flex;
+  align-items: center;
+}
+
+.marketing-nav-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.marketing-nav-trigger[data-active="true"] {
+  color: var(--marketing-text);
+}
+
+.marketing-nav-trigger[data-active="true"]::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 18px;
+  left: 0;
+  height: 1px;
+  background: var(--marketing-text);
+}
+
+.marketing-nav-trigger svg {
+  transition: transform 150ms ease;
+}
+
+.marketing-nav-trigger[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+.marketing-nav-dropdown {
+  position: absolute;
+  top: 64px;
+  left: 50%;
+  z-index: 70;
+  width: 650px;
+  padding: 10px;
+  visibility: hidden;
+  color: var(--marketing-text);
+  background: rgba(250, 248, 243, 0.99);
+  border: 1px solid var(--marketing-border-strong);
+  border-radius: 18px;
+  box-shadow: 0 28px 70px rgba(29, 27, 22, 0.17);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -8px);
+  transition:
+    opacity 150ms ease,
+    transform 150ms ease,
+    visibility 150ms ease;
+}
+
+.marketing-nav-dropdown[data-kind="solutions"] {
+  width: 760px;
+}
+
+.marketing-nav-dropdown[data-open="true"] {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+.marketing-nav-dropdown-head {
+  padding: 16px 16px 20px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid var(--marketing-border);
+}
+
+.marketing-nav-dropdown-head > div {
+  display: grid;
+  gap: 5px;
+}
+
+.marketing-nav-dropdown-head > div > span,
+.marketing-nav-column-label,
+.marketing-nav-product-grid a > span {
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.marketing-nav-dropdown-head strong {
+  font-size: 16px;
+  letter-spacing: -0.025em;
+}
+
+.marketing-nav-dropdown-head > a {
+  color: #a83e28;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.marketing-nav-product-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.marketing-nav-product-grid a {
+  min-height: 140px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--marketing-border);
+  border-bottom: 1px solid var(--marketing-border);
+  transition: background 150ms ease;
+}
+
+.marketing-nav-product-grid a:nth-child(even) {
+  border-right: 0;
+}
+
+.marketing-nav-product-grid a:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+.marketing-nav-product-grid a:hover,
+.marketing-nav-solution-columns a:hover {
+  background: rgba(23, 23, 21, 0.035);
+}
+
+.marketing-nav-product-grid a strong {
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+.marketing-nav-product-grid a small,
+.marketing-nav-solution-columns a small {
+  margin-top: 6px;
+  display: block;
+  color: var(--marketing-muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.marketing-nav-solution-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.marketing-nav-solution-columns > div {
+  padding: 18px 10px 10px;
+}
+
+.marketing-nav-solution-columns > div:first-child {
+  border-right: 1px solid var(--marketing-border);
+}
+
+.marketing-nav-column-label {
+  margin: 0 7px 10px;
+  display: block;
+}
+
+.marketing-nav-solution-columns a {
+  padding: 10px 8px;
+  display: block;
+  border-radius: 9px;
+  transition: background 150ms ease;
+}
+
+.marketing-nav-solution-columns a strong {
+  display: block;
+  font-size: 13px;
+}
+
 .marketing-nav-actions {
   display: flex;
   align-items: center;
@@ -207,6 +387,8 @@
 .marketing-mobile-menu {
   display: none;
   padding: 0 0 20px;
+  max-height: calc(100vh - 72px);
+  overflow-y: auto;
 }
 
 .marketing-mobile-menu[data-open="true"] {
@@ -221,6 +403,59 @@
 
 .marketing-mobile-menu a:hover {
   color: var(--marketing-text);
+}
+
+.marketing-mobile-nav-group {
+  border-top: 1px solid var(--marketing-border);
+}
+
+.marketing-mobile-nav-group summary {
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--marketing-text);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 650;
+  list-style: none;
+}
+
+.marketing-mobile-nav-group summary::-webkit-details-marker {
+  display: none;
+}
+
+.marketing-mobile-nav-group summary svg {
+  transition: transform 150ms ease;
+}
+
+.marketing-mobile-nav-group[open] summary svg {
+  transform: rotate(180deg);
+}
+
+.marketing-mobile-nav-group > div {
+  padding: 0 12px 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 10px;
+}
+
+.marketing-mobile-menu .marketing-mobile-nav-group a {
+  padding: 11px 8px;
+  border-top: 0;
+  font-size: 13px;
+}
+
+.marketing-mobile-nav-label {
+  grid-column: 1 / -1;
+  padding: 14px 8px 5px;
+  color: var(--marketing-muted);
+  border-top: 1px solid var(--marketing-border);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .marketing-mobile-actions {
@@ -251,6 +486,32 @@
 
 .marketing-page-hero[data-centered="true"] {
   text-align: center;
+}
+
+.marketing-page-hero[data-has-aside="true"] {
+  padding: 88px 0 76px;
+}
+
+.marketing-page-hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(410px, 0.85fr);
+  align-items: center;
+  gap: clamp(52px, 6vw, 92px);
+}
+
+.marketing-page-hero-main,
+.marketing-page-hero-aside {
+  min-width: 0;
+}
+
+.marketing-page-hero[data-has-aside="true"] h1 {
+  max-width: 760px;
+  font-size: clamp(52px, 5.8vw, 82px);
+}
+
+.marketing-page-hero[data-has-aside="true"] .marketing-page-copy {
+  max-width: 680px;
+  font-size: clamp(17px, 1.65vw, 21px);
 }
 
 .marketing-eyebrow {
@@ -1211,6 +1472,11 @@
   border-right: 0;
 }
 
+.marketing-logo-cell:hover {
+  color: #f4f0e7;
+  background: rgba(255, 255, 255, 0.04);
+}
+
 .marketing-table {
   margin-top: 58px;
   overflow: hidden;
@@ -1372,6 +1638,1910 @@
 
 .marketing-form-status[data-status="error"] {
   color: #a53726;
+}
+
+.marketing-catalog-heading,
+.marketing-integration-directory-head {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  align-items: end;
+  gap: 56px;
+}
+
+.marketing-catalog-heading .marketing-section-label,
+.marketing-integration-directory-head .marketing-section-label {
+  margin-bottom: 16px;
+}
+
+.marketing-catalog-heading > p,
+.marketing-integration-directory-head > p {
+  margin: 0;
+  color: var(--marketing-muted);
+  line-height: 1.62;
+}
+
+.marketing-inline-link {
+  width: fit-content;
+  color: #a83e28;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.marketing-inline-link:hover {
+  color: #7c2c1c;
+}
+
+.marketing-product-index {
+  margin-top: 54px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--marketing-border);
+  border-left: 1px solid var(--marketing-border);
+}
+
+.marketing-product-index-item {
+  position: relative;
+  min-height: 275px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--marketing-border);
+  border-bottom: 1px solid var(--marketing-border);
+  transition: background 150ms ease;
+}
+
+.marketing-product-index-item:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.marketing-product-index-item > span,
+.marketing-audience-preview-row > span,
+.marketing-audience-card > span {
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+}
+
+.marketing-product-index-item > div {
+  margin-top: auto;
+}
+
+.marketing-product-index-item small {
+  display: block;
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.marketing-product-index-item strong {
+  margin-top: 8px;
+  display: block;
+  font-size: 23px;
+  letter-spacing: -0.035em;
+}
+
+.marketing-product-index-item p {
+  margin: 11px 0 0;
+  color: var(--marketing-muted);
+  font-size: 13px;
+  line-height: 1.52;
+}
+
+.marketing-product-index-item > b {
+  position: absolute;
+  top: 22px;
+  right: 23px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.marketing-audience-preview {
+  margin-top: 50px;
+  border-top: 1px solid var(--marketing-border-strong);
+}
+
+.marketing-audience-preview-row {
+  padding: 24px 4px;
+  display: grid;
+  grid-template-columns: 60px 0.65fr 1fr 24px;
+  align-items: center;
+  gap: 22px;
+  border-bottom: 1px solid var(--marketing-border);
+  transition: background 150ms ease, padding 150ms ease;
+}
+
+.marketing-audience-preview-row:hover {
+  padding-right: 12px;
+  padding-left: 12px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.marketing-audience-preview-row strong {
+  font-size: 16px;
+}
+
+.marketing-audience-preview-row p {
+  margin: 0;
+  color: var(--marketing-muted);
+  font-size: 14px;
+}
+
+.marketing-audience-preview-row b {
+  font-size: 15px;
+  font-weight: 500;
+  text-align: right;
+}
+
+.marketing-audience-grid {
+  margin-top: 52px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--marketing-border);
+  border-left: 1px solid var(--marketing-border);
+}
+
+.marketing-audience-card {
+  min-height: 230px;
+  padding: 27px;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 18px;
+  border-right: 1px solid var(--marketing-border);
+  border-bottom: 1px solid var(--marketing-border);
+}
+
+.marketing-audience-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.marketing-audience-card:last-child:nth-child(odd) > div {
+  max-width: 720px;
+}
+
+.marketing-audience-card p {
+  margin: 0;
+  color: #a83e28;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.marketing-audience-card h3 {
+  margin: 30px 0 10px;
+  font-size: 25px;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+.marketing-audience-card small {
+  display: block;
+  color: var(--marketing-muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.marketing-detail-index {
+  margin-top: 52px;
+  display: grid;
+  border-top: 1px solid var(--marketing-border);
+  border-left: 1px solid var(--marketing-border);
+}
+
+.marketing-detail-index[data-columns="4"] {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.marketing-detail-index[data-columns="5"] {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.marketing-detail-index a {
+  position: relative;
+  min-height: 160px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--marketing-border);
+  border-bottom: 1px solid var(--marketing-border);
+  transition: background 150ms ease;
+}
+
+.marketing-detail-index a:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.marketing-detail-index a > span,
+.marketing-detail-index a > small {
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+}
+
+.marketing-detail-index a > small {
+  margin-top: auto;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.marketing-detail-index a > strong {
+  margin-top: 8px;
+  max-width: 170px;
+  font-size: 17px;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.marketing-detail-index a > b {
+  position: absolute;
+  top: 18px;
+  right: 19px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.marketing-detail-list {
+  margin-top: 42px;
+}
+
+.marketing-detail-section {
+  padding: 92px 0;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: 80px;
+  border-top: 1px solid var(--marketing-border);
+}
+
+.marketing-detail-section[data-reverse="true"] > .marketing-detail-copy {
+  order: 2;
+}
+
+.marketing-detail-section[data-reverse="true"] > :last-child {
+  order: 1;
+}
+
+.marketing-detail-kicker {
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.marketing-detail-kicker span + span {
+  padding-left: 13px;
+  border-left: 1px solid var(--marketing-border-strong);
+}
+
+.marketing-detail-copy h3 {
+  margin: 0;
+  font-size: clamp(42px, 4.6vw, 62px);
+  font-weight: 560;
+  letter-spacing: -0.052em;
+  line-height: 1;
+}
+
+.marketing-detail-copy > p {
+  margin: 18px 0 0;
+  color: var(--marketing-muted);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.marketing-detail-copy > .marketing-detail-lead {
+  color: var(--marketing-text);
+  font-size: 25px;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+
+.marketing-detail-cta {
+  margin-top: 28px;
+}
+
+.marketing-product-panel {
+  min-height: 440px;
+  padding: 25px;
+  color: #f4f0e7;
+  background: #1a1a18;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  box-shadow: 0 25px 55px rgba(33, 28, 18, 0.15);
+}
+
+.marketing-product-panel-header,
+.marketing-product-panel-footer,
+.marketing-audience-fit-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.marketing-product-panel-header > span,
+.marketing-product-panel-footer small,
+.marketing-audience-fit-header > span,
+.marketing-audience-start > span {
+  color: #969289;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.marketing-product-panel-header > strong {
+  font-size: 13px;
+}
+
+.marketing-product-panel-rows {
+  margin-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.marketing-product-panel-rows > button {
+  width: 100%;
+  min-height: 70px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 34px 92px minmax(0, 1fr) 22px;
+  align-items: center;
+  gap: 13px;
+  color: inherit;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: background 150ms ease, padding 150ms ease;
+}
+
+.marketing-product-panel-rows > button:hover,
+.marketing-product-panel-rows > button[data-active="true"] {
+  padding-right: 10px;
+  padding-left: 10px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.marketing-product-panel-rows > button:focus-visible {
+  outline: 2px solid #e36a50;
+  outline-offset: -2px;
+}
+
+.marketing-product-panel-rows span,
+.marketing-product-panel-rows small {
+  color: #969289;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+}
+
+.marketing-product-panel-rows strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.marketing-product-panel-rows b {
+  width: 19px;
+  height: 19px;
+  display: grid;
+  place-items: center;
+  color: #8bd5a1;
+  background: rgba(98, 199, 128, 0.12);
+  border-radius: 50%;
+  font-size: 10px;
+}
+
+.marketing-product-panel-rows button[data-active="false"] b {
+  color: #77736b;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.marketing-product-panel-detail {
+  min-height: 96px;
+  margin-top: 20px;
+  padding: 17px;
+  background: #222220;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.marketing-product-panel-detail span {
+  color: #969289;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.marketing-product-panel-detail p {
+  margin: 9px 0 0;
+  color: #d5d1c8;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.marketing-product-panel-footer {
+  margin-top: 25px;
+}
+
+.marketing-product-panel-footer small {
+  text-align: right;
+  text-transform: none;
+}
+
+.marketing-audience-fit-panel {
+  padding: 27px;
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid var(--marketing-border);
+  border-radius: 20px;
+}
+
+.marketing-audience-fit-header {
+  padding-bottom: 21px;
+}
+
+.marketing-audience-fit-header > span,
+.marketing-audience-start > span {
+  color: var(--marketing-muted);
+}
+
+.marketing-audience-fit-header > strong {
+  font-size: 14px;
+}
+
+.marketing-audience-fit-panel ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--marketing-border);
+}
+
+.marketing-audience-fit-panel li {
+  min-height: 70px;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid var(--marketing-border);
+}
+
+.marketing-audience-fit-panel li > span {
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+}
+
+.marketing-audience-fit-panel li > strong {
+  font-size: 15px;
+}
+
+.marketing-audience-start {
+  margin-top: 22px;
+  padding: 20px;
+  color: #f4f0e7;
+  background: #1a1a18;
+  border-radius: 13px;
+}
+
+.marketing-audience-start > span {
+  color: #969289;
+}
+
+.marketing-audience-start p {
+  margin: 10px 0 0;
+  color: var(--marketing-dark-muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.marketing-solution-scenario {
+  margin-top: 24px;
+  padding-top: 23px;
+  border-top: 1px solid var(--marketing-border);
+}
+
+.marketing-solution-scenario > span {
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.marketing-solution-scenario > strong {
+  margin-top: 9px;
+  display: block;
+  font-size: 18px;
+  letter-spacing: -0.025em;
+}
+
+.marketing-solution-scenario ol {
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: marketing-scenario;
+  border-top: 1px solid var(--marketing-border);
+}
+
+.marketing-solution-scenario li {
+  padding: 12px 0 12px 38px;
+  position: relative;
+  min-height: 0;
+  display: block;
+  color: var(--marketing-muted);
+  border-bottom: 1px solid var(--marketing-border);
+  font-size: 13px;
+  line-height: 1.45;
+  counter-increment: marketing-scenario;
+}
+
+.marketing-solution-scenario li::before {
+  content: "0" counter(marketing-scenario);
+  position: absolute;
+  top: 13px;
+  left: 0;
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+}
+
+.marketing-solution-scenario > p {
+  margin: 17px 0 0;
+  color: var(--marketing-muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.marketing-solution-scenario > p b {
+  color: var(--marketing-text);
+}
+
+.marketing-card[id],
+.marketing-audience-card[id],
+.marketing-detail-section[id],
+.marketing-use-case[id],
+.marketing-section[id] {
+  scroll-margin-top: 94px;
+}
+
+.marketing-featured-integrations {
+  margin-top: 52px;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  border-top: 1px solid var(--marketing-border);
+  border-left: 1px solid var(--marketing-border);
+}
+
+.marketing-featured-integrations > a {
+  min-height: 112px;
+  padding: 17px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  border-right: 1px solid var(--marketing-border);
+  border-bottom: 1px solid var(--marketing-border);
+}
+
+.marketing-featured-integrations > a:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.marketing-featured-integrations > a > span,
+.marketing-integration-mark {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  color: #f6f2e9;
+  background: var(--marketing-dark);
+  border-radius: 10px;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+}
+
+.marketing-featured-integrations strong {
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.marketing-integration-mark[data-logo="true"] {
+  background: #fff;
+  border: 1px solid var(--marketing-border);
+}
+
+.marketing-integration-mark[data-logo="true"] img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  object-fit: contain;
+}
+
+.marketing-home-integrations .marketing-button {
+  margin-top: 28px;
+}
+
+.marketing-section-action {
+  margin: 24px 0 42px;
+}
+
+.marketing-integrations-section {
+  padding-top: 82px;
+}
+
+.marketing-integration-directory-head h2 {
+  font-size: clamp(38px, 4.8vw, 64px);
+}
+
+.marketing-integrations-toolbar {
+  margin-top: 46px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--marketing-border);
+  border-radius: 16px;
+}
+
+.marketing-integration-search {
+  width: min(100%, 460px);
+  min-height: 48px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--marketing-muted);
+  background: var(--marketing-surface);
+  border: 1px solid var(--marketing-border-strong);
+  border-radius: 10px;
+}
+
+.marketing-integration-search:focus-within {
+  border-color: rgba(255, 90, 54, 0.65);
+  box-shadow: 0 0 0 3px rgba(255, 90, 54, 0.12);
+}
+
+.marketing-integration-search input {
+  width: 100%;
+  padding: 0;
+  color: var(--marketing-text);
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font-size: 14px;
+}
+
+.marketing-integration-search input::placeholder {
+  color: #89867e;
+}
+
+.marketing-integration-filters {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.marketing-integration-filters button {
+  min-height: 34px;
+  padding: 0 12px;
+  color: var(--marketing-muted);
+  background: transparent;
+  border: 1px solid var(--marketing-border);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 650;
+  transition: color 150ms ease, background 150ms ease, border-color 150ms ease;
+}
+
+.marketing-integration-filters button:hover {
+  color: var(--marketing-text);
+  border-color: var(--marketing-border-strong);
+}
+
+.marketing-integration-filters button[data-active="true"] {
+  color: #fff;
+  background: var(--marketing-dark);
+  border-color: var(--marketing-dark);
+}
+
+.marketing-integration-filters button:focus-visible,
+.marketing-integration-results button:focus-visible,
+.marketing-integration-search:focus-within {
+  outline: 3px solid rgba(255, 90, 54, 0.23);
+  outline-offset: 2px;
+}
+
+.marketing-integration-results {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  color: var(--marketing-muted);
+  border-bottom: 1px solid var(--marketing-border);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.marketing-integration-results button {
+  padding: 0;
+  color: #a83e28;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  text-transform: inherit;
+}
+
+.marketing-integration-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-left: 1px solid var(--marketing-border);
+}
+
+.marketing-integration-card {
+  min-height: 164px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-content: start;
+  gap: 15px;
+  border-right: 1px solid var(--marketing-border);
+  border-bottom: 1px solid var(--marketing-border);
+  transition: background 150ms ease;
+}
+
+.marketing-integration-card:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.marketing-integration-card:focus-visible {
+  position: relative;
+  z-index: 1;
+  outline: 3px solid rgba(255, 90, 54, 0.35);
+  outline-offset: -3px;
+}
+
+.marketing-integration-card h3 {
+  margin: 3px 0 6px;
+  font-size: 17px;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.marketing-integration-card p {
+  margin: 0;
+  color: var(--marketing-muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.marketing-integration-status {
+  grid-column: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: end;
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.marketing-integration-status i {
+  width: 6px;
+  height: 6px;
+  display: block;
+  background: #318b50;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(49, 139, 80, 0.11);
+}
+
+.marketing-integration-hero-visual {
+  position: relative;
+  padding: 26px 24px 19px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 90% 18%,
+      rgba(70, 224, 213, 0.19),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 10% 82%,
+      rgba(79, 129, 255, 0.14),
+      transparent 35%
+    ),
+    rgba(255, 255, 255, 0.47);
+  border: 1px solid rgba(39, 41, 36, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 26px 70px rgba(33, 28, 18, 0.11);
+}
+
+.marketing-integration-hero-visual::before {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(36, 39, 35, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(36, 39, 35, 0.035) 1px, transparent 1px);
+  background-size: 24px 24px;
+  content: "";
+  mask-image: linear-gradient(to bottom, #000, transparent 86%);
+}
+
+.marketing-integration-route {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 76px 94px minmax(220px, 1fr);
+  align-items: center;
+  gap: 28px;
+}
+
+.marketing-integration-source-stack {
+  position: relative;
+  display: grid;
+  gap: 7px;
+}
+
+.marketing-integration-source-stack::after {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 4px);
+  width: 24px;
+  border-top: 1px solid rgba(37, 40, 35, 0.3);
+  content: "";
+}
+
+.marketing-integration-source-stack > span {
+  min-width: 0;
+  height: 34px;
+  padding: 4px 7px 4px 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(37, 40, 35, 0.12);
+  border-radius: 9px;
+  box-shadow: 0 7px 18px rgba(33, 28, 18, 0.06);
+}
+
+.marketing-integration-source-stack b {
+  width: 25px;
+  height: 25px;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  color: #403f3a;
+  background: #f4f1e9;
+  border-radius: 7px;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 7px;
+  font-weight: 650;
+}
+
+.marketing-integration-source-stack small {
+  overflow: hidden;
+  color: #65635d;
+  font-size: 8px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.marketing-integration-runtime-node {
+  position: relative;
+  min-height: 94px;
+  padding: 12px 8px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 8px;
+  text-align: center;
+  background: #1c1d1a;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 16px;
+  box-shadow: 0 15px 32px rgba(24, 25, 22, 0.18);
+}
+
+.marketing-integration-runtime-node::after {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 5px);
+  width: 23px;
+  color: rgba(37, 40, 35, 0.5);
+  content: "→";
+  font-size: 16px;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+
+.marketing-integration-runtime-node img {
+  width: 27px;
+  height: 27px;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+.marketing-integration-runtime-node small,
+.marketing-integration-runtime-node strong {
+  display: block;
+}
+
+.marketing-integration-runtime-node small {
+  margin-bottom: 3px;
+  color: #85867e;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 6px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.marketing-integration-runtime-node strong {
+  color: #f8f5ec;
+  font-size: 9px;
+  letter-spacing: -0.02em;
+}
+
+.marketing-integration-summary-card {
+  min-width: 0;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.93);
+  border: 1px solid rgba(37, 40, 35, 0.11);
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(33, 28, 18, 0.12);
+}
+
+.marketing-integration-summary-card header {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.marketing-integration-summary-logo {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  border: 1px solid rgba(37, 40, 35, 0.11);
+  border-radius: 11px;
+}
+
+.marketing-integration-summary-logo img {
+  width: 25px;
+  height: 25px;
+  display: block;
+  object-fit: contain;
+}
+
+.marketing-integration-summary-card header small,
+.marketing-integration-summary-card header strong {
+  display: block;
+}
+
+.marketing-integration-summary-card header small {
+  margin-bottom: 3px;
+  color: #838078;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 7px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.marketing-integration-summary-card header strong {
+  color: #23231f;
+  font-size: 16px;
+  letter-spacing: -0.03em;
+}
+
+.marketing-integration-summary-card header > b {
+  padding: 5px 6px;
+  color: #2f7253;
+  background: rgba(60, 158, 109, 0.09);
+  border: 1px solid rgba(60, 158, 109, 0.2);
+  border-radius: 5px;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 6px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.marketing-integration-summary-card > p {
+  margin: 15px 0 17px;
+  color: #69675f;
+  font-size: 10px;
+  line-height: 1.52;
+}
+
+.marketing-integration-summary-card dl {
+  margin: 0;
+  padding-top: 13px;
+  display: grid;
+  grid-template-columns: 0.72fr 1.28fr;
+  border-top: 1px solid rgba(37, 40, 35, 0.1);
+}
+
+.marketing-integration-summary-card dl > div {
+  min-width: 0;
+}
+
+.marketing-integration-summary-card dl > div + div {
+  padding-left: 13px;
+  border-left: 1px solid rgba(37, 40, 35, 0.1);
+}
+
+.marketing-integration-summary-card dt {
+  margin-bottom: 3px;
+  color: #24241f;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: -0.025em;
+}
+
+.marketing-integration-summary-card dl > div:first-child dt {
+  font-size: 20px;
+  line-height: 0.9;
+}
+
+.marketing-integration-summary-card dd {
+  margin: 0;
+  color: #858279;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 7px;
+  letter-spacing: 0.05em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.marketing-integration-hero-visual > p {
+  position: relative;
+  z-index: 1;
+  margin: 17px 4px 0;
+  color: #6f6d65;
+  font-size: 9px;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.marketing-integration-detail-overview,
+.marketing-integration-readiness {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: 80px;
+}
+
+.marketing-integration-identity {
+  margin-bottom: 55px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.marketing-integration-identity .marketing-integration-mark {
+  width: 52px;
+  height: 52px;
+  font-size: 12px;
+}
+
+.marketing-integration-identity small,
+.marketing-integration-identity strong {
+  display: block;
+}
+
+.marketing-integration-identity small {
+  margin-bottom: 5px;
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.marketing-integration-identity strong {
+  font-size: 20px;
+  letter-spacing: -0.025em;
+}
+
+.marketing-integration-flow {
+  min-height: 520px;
+  padding: 25px;
+  color: #f4f0e7;
+  background: #1a1a18;
+  border-radius: 20px;
+  box-shadow: 0 25px 55px rgba(33, 28, 18, 0.15);
+}
+
+.marketing-integration-flow-steps {
+  margin-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.marketing-integration-flow-steps > div {
+  min-height: 82px;
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.marketing-integration-flow-steps > div > span {
+  color: #969289;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+}
+
+.marketing-integration-flow-steps strong,
+.marketing-integration-flow-steps small {
+  display: block;
+}
+
+.marketing-integration-flow-steps strong {
+  font-size: 14px;
+}
+
+.marketing-integration-flow-steps small {
+  margin-top: 5px;
+  color: #aaa69d;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.marketing-integration-flow > p {
+  margin: 24px 0 0;
+  color: #969289;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.marketing-integration-readiness {
+  align-items: start;
+}
+
+.marketing-integration-readiness ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--marketing-border);
+}
+
+.marketing-integration-readiness li {
+  min-height: 95px;
+  padding: 20px 0;
+  display: grid;
+  grid-template-columns: 45px 1fr;
+  align-items: center;
+  gap: 18px;
+  border-bottom: 1px solid var(--marketing-border);
+}
+
+.marketing-integration-readiness li span {
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+}
+
+.marketing-integration-readiness li strong {
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+
+.marketing-related-integrations {
+  margin-top: 92px;
+  padding-top: 55px;
+  border-top: 1px solid var(--marketing-border);
+}
+
+.marketing-related-integrations > div:last-child {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--marketing-border);
+  border-left: 1px solid var(--marketing-border);
+}
+
+.marketing-related-integrations a {
+  min-height: 110px;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: 40px 1fr 18px;
+  align-items: center;
+  gap: 12px;
+  border-right: 1px solid var(--marketing-border);
+  border-bottom: 1px solid var(--marketing-border);
+  transition: background 150ms ease;
+}
+
+.marketing-related-integrations a:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.marketing-related-integrations a > strong {
+  font-size: 14px;
+}
+
+.marketing-related-integrations a > b {
+  font-size: 13px;
+  font-weight: 500;
+  text-align: right;
+}
+
+.marketing-integration-logo {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  background: #fff;
+  border: 1px solid var(--marketing-border);
+  border-radius: 15px;
+  box-shadow: 0 12px 28px rgba(33, 28, 18, 0.08);
+}
+
+.marketing-integration-logo img {
+  width: 34px;
+  height: 34px;
+  display: block;
+  object-fit: contain;
+}
+
+.marketing-integration-evidence-overview,
+.marketing-blueprint-overview {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: start;
+  gap: 78px;
+}
+
+.marketing-integration-fact-grid,
+.marketing-blueprint-facts {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--marketing-border);
+  border-left: 1px solid var(--marketing-border);
+}
+
+.marketing-integration-fact-grid > div,
+.marketing-blueprint-facts > div {
+  min-height: 190px;
+  padding: 24px;
+  border-right: 1px solid var(--marketing-border);
+  border-bottom: 1px solid var(--marketing-border);
+}
+
+.marketing-integration-fact-grid dt,
+.marketing-blueprint-facts dt {
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.marketing-integration-fact-grid dd,
+.marketing-blueprint-facts dd {
+  margin: 24px 0 0;
+  font-size: 24px;
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+}
+
+.marketing-integration-fact-grid p {
+  margin: 12px 0 0;
+  color: var(--marketing-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.marketing-blueprint-facts dd {
+  font-size: 19px;
+  line-height: 1.25;
+}
+
+.marketing-blueprint-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.62fr);
+  align-items: end;
+  gap: 72px;
+}
+
+.marketing-blueprint-section-head > p {
+  margin: 0;
+  color: var(--marketing-muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.marketing-section[data-tone="dark"] .marketing-blueprint-section-head > p {
+  color: var(--marketing-dark-muted);
+}
+
+.marketing-integration-tool-grid {
+  margin-top: 52px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--marketing-border);
+  border-left: 1px solid var(--marketing-border);
+}
+
+.marketing-integration-tool-grid article {
+  min-height: 290px;
+  padding: 21px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--marketing-border);
+  border-bottom: 1px solid var(--marketing-border);
+}
+
+.marketing-integration-tool-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+}
+
+.marketing-integration-tool-head span:last-child {
+  padding: 5px 8px;
+  color: #32603c;
+  background: rgba(49, 139, 80, 0.09);
+  border-radius: 999px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.marketing-integration-tool-head span[data-access="write"] {
+  color: #8b3d2b;
+  background: rgba(255, 90, 54, 0.1);
+}
+
+.marketing-integration-tool-grid article > small {
+  margin-top: auto;
+  padding-top: 34px;
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.marketing-integration-tool-grid h3 {
+  margin: 10px 0 0;
+  font-size: 19px;
+  letter-spacing: -0.03em;
+}
+
+.marketing-integration-tool-grid p {
+  margin: 10px 0 0;
+  color: var(--marketing-muted);
+  font-size: 12px;
+  line-height: 1.52;
+}
+
+.marketing-integration-tool-grid code {
+  margin-top: 24px;
+  color: #8d3927;
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+
+.marketing-integration-blueprint-band {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  align-items: center;
+  gap: 90px;
+}
+
+.marketing-integration-blueprint-band h2 {
+  max-width: 620px;
+}
+
+.marketing-integration-blueprint-band > div > p {
+  max-width: 600px;
+  margin: 24px 0 0;
+  color: var(--marketing-dark-muted);
+  line-height: 1.65;
+}
+
+.marketing-integration-blueprint-band .marketing-button {
+  margin-top: 30px;
+}
+
+.marketing-integration-blueprint-band ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.marketing-integration-blueprint-band li {
+  min-height: 78px;
+  display: grid;
+  grid-template-columns: 42px 82px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.marketing-integration-blueprint-band li > span,
+.marketing-integration-blueprint-band li > small {
+  color: #969289;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.marketing-integration-blueprint-band li > strong {
+  font-size: 15px;
+  letter-spacing: -0.015em;
+}
+
+.marketing-integration-evidence-grid,
+.marketing-blueprint-guardrails,
+.marketing-blueprint-io,
+.marketing-blueprint-connections {
+  margin-top: 52px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.marketing-integration-evidence-grid article {
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid var(--marketing-border);
+  border-radius: 16px;
+}
+
+.marketing-integration-evidence-grid article[data-tone="caution"] {
+  background: rgba(255, 90, 54, 0.05);
+  border-color: rgba(168, 62, 40, 0.25);
+}
+
+.marketing-blueprint-column-label {
+  display: block;
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.marketing-integration-evidence-grid ul,
+.marketing-blueprint-io ul {
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--marketing-border);
+}
+
+.marketing-integration-evidence-grid li,
+.marketing-blueprint-io li {
+  padding: 15px 0 15px 25px;
+  position: relative;
+  color: var(--marketing-muted);
+  border-bottom: 1px solid var(--marketing-border);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.marketing-integration-evidence-grid li::before,
+.marketing-blueprint-io li::before {
+  content: "↳";
+  position: absolute;
+  left: 0;
+  color: var(--marketing-accent);
+}
+
+.marketing-integration-config {
+  margin-top: 84px;
+  padding-top: 62px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.76fr) minmax(0, 1.24fr);
+  align-items: start;
+  gap: 82px;
+  border-top: 1px solid var(--marketing-border);
+}
+
+.marketing-integration-config h3 {
+  margin: 14px 0 0;
+  font-size: clamp(30px, 3.5vw, 46px);
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+}
+
+.marketing-integration-config > div > p {
+  margin: 19px 0 0;
+  color: var(--marketing-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.marketing-integration-scope-list {
+  margin: 24px 0 27px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.marketing-integration-scope-list code {
+  padding: 7px 9px;
+  color: var(--marketing-text);
+  background: rgba(255, 255, 255, 0.32);
+  border: 1px solid var(--marketing-border);
+  border-radius: 7px;
+  font-size: 10px;
+}
+
+.marketing-integration-config dl {
+  margin: 0;
+  border-top: 1px solid var(--marketing-border);
+}
+
+.marketing-integration-config dl > div {
+  min-height: 106px;
+  padding: 21px 0;
+  border-bottom: 1px solid var(--marketing-border);
+}
+
+.marketing-integration-config dt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.marketing-integration-config dt code {
+  color: #8d3927;
+  font-size: 11px;
+}
+
+.marketing-integration-config dt span {
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.marketing-integration-config dd {
+  margin: 11px 0 0;
+  color: var(--marketing-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.marketing-blueprint-problem {
+  margin-top: 82px;
+  padding-top: 58px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 78px;
+  border-top: 1px solid var(--marketing-border);
+}
+
+.marketing-blueprint-problem h3 {
+  max-width: 580px;
+  margin: 14px 0 0;
+  font-size: clamp(32px, 4vw, 52px);
+  letter-spacing: -0.05em;
+  line-height: 1.04;
+}
+
+.marketing-blueprint-problem ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--marketing-border);
+}
+
+.marketing-blueprint-problem li {
+  padding: 21px 0 21px 42px;
+  position: relative;
+  color: var(--marketing-muted);
+  border-bottom: 1px solid var(--marketing-border);
+  font-size: 14px;
+  line-height: 1.55;
+  counter-increment: blueprint-problem;
+}
+
+.marketing-blueprint-problem ul {
+  counter-reset: blueprint-problem;
+}
+
+.marketing-blueprint-problem li::before {
+  content: "0" counter(blueprint-problem);
+  position: absolute;
+  top: 23px;
+  left: 0;
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+}
+
+.marketing-blueprint-graph {
+  margin: 58px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--marketing-border-strong);
+}
+
+.marketing-blueprint-graph > li {
+  min-height: 150px;
+  padding: 26px 0;
+  position: relative;
+  display: grid;
+  grid-template-columns: 52px 105px minmax(0, 1fr);
+  align-items: start;
+  gap: 21px;
+  border-bottom: 1px solid var(--marketing-border);
+}
+
+.marketing-blueprint-graph > li::before {
+  content: "";
+  position: absolute;
+  top: 58px;
+  bottom: -59px;
+  left: 18px;
+  width: 1px;
+  background: var(--marketing-border-strong);
+}
+
+.marketing-blueprint-graph > li:last-child::before {
+  display: none;
+}
+
+.marketing-blueprint-step-index {
+  width: 37px;
+  height: 37px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  background: var(--marketing-dark);
+  border-radius: 50%;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+}
+
+.marketing-blueprint-step-type {
+  padding-top: 11px;
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.marketing-blueprint-step-copy h3 {
+  margin: 4px 0 0;
+  font-size: 24px;
+  letter-spacing: -0.035em;
+}
+
+.marketing-blueprint-step-copy p {
+  max-width: 780px;
+  margin: 11px 0 0;
+  color: var(--marketing-muted);
+  font-size: 14px;
+  line-height: 1.58;
+}
+
+.marketing-blueprint-step-copy > small {
+  max-width: 780px;
+  margin-top: 9px;
+  display: block;
+  color: #8d3927;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.marketing-blueprint-tool-names {
+  margin-top: 13px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.marketing-blueprint-tool-names code {
+  padding: 6px 8px;
+  color: #8d3927;
+  background: rgba(255, 90, 54, 0.06);
+  border: 1px solid rgba(168, 62, 40, 0.18);
+  border-radius: 6px;
+  font-size: 9px;
+}
+
+.marketing-blueprint-step-connector {
+  width: fit-content;
+  margin-top: 12px;
+  display: inline-flex;
+  color: #8d3927;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.marketing-blueprint-step-connector:hover {
+  color: #67281b;
+}
+
+.marketing-blueprint-guardrails article {
+  background: rgba(255, 255, 255, 0.24);
+  border: 1px solid var(--marketing-border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.marketing-blueprint-guardrails article > span {
+  padding: 18px 22px;
+  display: block;
+  color: var(--marketing-muted);
+  border-bottom: 1px solid var(--marketing-border);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.marketing-blueprint-guardrails section {
+  min-height: 174px;
+  padding: 22px;
+  border-bottom: 1px solid var(--marketing-border);
+}
+
+.marketing-blueprint-guardrails section:last-child {
+  border-bottom: 0;
+}
+
+.marketing-blueprint-guardrails section small {
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+}
+
+.marketing-blueprint-guardrails h3 {
+  margin: 17px 0 0;
+  font-size: 19px;
+  letter-spacing: -0.025em;
+}
+
+.marketing-blueprint-guardrails p {
+  margin: 10px 0 0;
+  color: var(--marketing-muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.marketing-blueprint-io {
+  margin-top: 72px;
+  padding-top: 58px;
+  gap: 70px;
+  border-top: 1px solid var(--marketing-border);
+}
+
+.marketing-blueprint-io article {
+  min-width: 0;
+}
+
+.marketing-blueprint-connections {
+  gap: 64px;
+}
+
+.marketing-section[data-tone="dark"] .marketing-blueprint-column-label {
+  color: #918e86;
+}
+
+.marketing-blueprint-connection {
+  min-height: 160px;
+  margin-top: 18px;
+  padding: 22px;
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 17px;
+  color: #f4f0e7;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.marketing-blueprint-connection:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.marketing-blueprint-connection small,
+.marketing-blueprint-connection strong,
+.marketing-blueprint-connection p {
+  display: block;
+}
+
+.marketing-blueprint-connection small {
+  color: #969289;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.marketing-blueprint-connection strong {
+  margin-top: 6px;
+  font-size: 20px;
+}
+
+.marketing-blueprint-connection p {
+  margin: 8px 0 0;
+  color: var(--marketing-dark-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.marketing-blueprint-connection > b {
+  font-weight: 500;
+}
+
+.marketing-blueprint-surface-links {
+  margin-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.marketing-blueprint-surface-links a {
+  min-height: 86px;
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 14px;
+  color: #f4f0e7;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.marketing-blueprint-surface-links small {
+  color: #969289;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+.marketing-blueprint-surface-links strong {
+  font-size: 15px;
+}
+
+.marketing-blueprint-surface-links span {
+  text-align: right;
+}
+
+.marketing-integration-empty {
+  padding: 84px 24px;
+  text-align: center;
+  border-bottom: 1px solid var(--marketing-border);
+}
+
+.marketing-integration-empty strong {
+  font-size: 24px;
+  letter-spacing: -0.03em;
+}
+
+.marketing-integration-empty p {
+  margin: 10px 0 0;
+  color: var(--marketing-muted);
 }
 
 .marketing-blog-header {
@@ -1735,6 +3905,17 @@
   line-height: 1.55;
 }
 
+.marketing-footer-brand .marketing-footer-email {
+  margin-top: 8px;
+  display: inline-block;
+  color: var(--marketing-muted);
+  font-size: 13px;
+}
+
+.marketing-footer-brand .marketing-footer-email:hover {
+  color: var(--marketing-text);
+}
+
 .marketing-footer-column h4 {
   margin: 3px 0 16px;
   font-size: 13px;
@@ -1763,6 +3944,15 @@
 }
 
 @media (max-width: 1140px) {
+  .marketing-page-hero-layout {
+    grid-template-columns: 1fr;
+    gap: 58px;
+  }
+
+  .marketing-page-hero-aside {
+    width: min(100%, 680px);
+  }
+
   .marketing-nav-links,
   .marketing-nav-actions .marketing-button-secondary {
     display: none;
@@ -1791,11 +3981,62 @@
     grid-column: 1 / -1;
   }
 
+  .marketing-product-index {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .marketing-detail-index[data-columns="4"],
+  .marketing-detail-index[data-columns="5"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .marketing-featured-integrations {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .marketing-integration-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .marketing-integration-detail-overview,
+  .marketing-integration-readiness,
+  .marketing-integration-evidence-overview,
+  .marketing-blueprint-overview,
+  .marketing-blueprint-section-head,
+  .marketing-integration-blueprint-band,
+  .marketing-integration-config,
+  .marketing-blueprint-problem {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .marketing-integration-tool-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .marketing-blueprint-connections {
+    grid-template-columns: 1fr;
+  }
+
+  .marketing-related-integrations > div:last-child {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .marketing-split,
   .marketing-split[data-reverse="true"],
+  .marketing-detail-section,
   .marketing-use-case,
   .marketing-contact-grid {
     grid-template-columns: 1fr;
+  }
+
+  .marketing-detail-section {
+    gap: 42px;
+  }
+
+  .marketing-detail-section[data-reverse="true"] > .marketing-detail-copy,
+  .marketing-detail-section[data-reverse="true"] > :last-child {
+    order: initial;
   }
 
   .marketing-contact-form-card {
@@ -1833,9 +4074,56 @@
     display: none;
   }
 
+  .marketing-mobile-nav-group > div {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .marketing-hero,
   .marketing-page-hero {
     padding-top: 74px;
+  }
+
+  .marketing-page-hero[data-has-aside="true"] {
+    padding: 64px 0;
+  }
+
+  .marketing-page-hero-layout {
+    gap: 44px;
+  }
+
+  .marketing-page-hero-aside {
+    width: 100%;
+  }
+
+  .marketing-integration-hero-visual {
+    padding: 18px 17px 16px;
+    border-radius: 20px;
+  }
+
+  .marketing-integration-route {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 30px 28px;
+  }
+
+  .marketing-integration-source-stack {
+    width: min(100%, 124px);
+  }
+
+  .marketing-integration-runtime-node {
+    width: min(100%, 124px);
+    justify-self: end;
+  }
+
+  .marketing-integration-runtime-node::after {
+    top: calc(100% + 7px);
+    left: 50%;
+    width: auto;
+    content: "↓";
+    transform: translateX(-50%);
+  }
+
+  .marketing-integration-summary-card {
+    grid-column: 1 / -1;
   }
 
   .marketing-hero {
@@ -1904,6 +4192,199 @@
   .marketing-grid-3 > :last-child:nth-child(odd),
   .marketing-ruled-grid[data-columns="3"] > :last-child:nth-child(odd) {
     grid-column: auto;
+  }
+
+  .marketing-catalog-heading,
+  .marketing-integration-directory-head {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .marketing-product-index,
+  .marketing-audience-grid,
+  .marketing-integration-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .marketing-detail-index[data-columns="4"],
+  .marketing-detail-index[data-columns="5"] {
+    grid-template-columns: 1fr;
+  }
+
+  .marketing-detail-index a {
+    min-height: 125px;
+  }
+
+  .marketing-detail-section {
+    padding: 68px 0;
+  }
+
+  .marketing-detail-copy > .marketing-detail-lead {
+    font-size: 22px;
+  }
+
+  .marketing-product-panel {
+    min-height: 0;
+    padding: 18px;
+  }
+
+  .marketing-product-panel-rows > button {
+    grid-template-columns: 30px 78px minmax(0, 1fr) 20px;
+    gap: 9px;
+  }
+
+  .marketing-product-panel-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .marketing-product-panel-footer small {
+    text-align: left;
+  }
+
+  .marketing-audience-fit-panel {
+    padding: 20px;
+  }
+
+  .marketing-product-index-item {
+    min-height: 220px;
+  }
+
+  .marketing-audience-card:last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+
+  .marketing-audience-preview-row {
+    padding: 20px 4px;
+    grid-template-columns: 34px minmax(0, 1fr) 20px;
+    gap: 12px;
+  }
+
+  .marketing-audience-preview-row > span {
+    grid-row: 1 / 3;
+  }
+
+  .marketing-audience-preview-row > strong {
+    grid-column: 2;
+  }
+
+  .marketing-audience-preview-row > p {
+    grid-column: 2;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .marketing-audience-preview-row > b {
+    grid-row: 1 / 3;
+    grid-column: 3;
+  }
+
+  .marketing-featured-integrations {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .marketing-integration-filters {
+    margin-right: -20px;
+    padding-right: 20px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .marketing-integration-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .marketing-integration-filters button {
+    flex: 0 0 auto;
+  }
+
+  .marketing-integration-card {
+    min-height: 138px;
+  }
+
+  .marketing-integration-flow {
+    min-height: 0;
+    padding: 19px;
+  }
+
+  .marketing-integration-fact-grid,
+  .marketing-blueprint-facts,
+  .marketing-integration-tool-grid,
+  .marketing-integration-evidence-grid,
+  .marketing-blueprint-guardrails,
+  .marketing-blueprint-io,
+  .marketing-blueprint-connections {
+    grid-template-columns: 1fr;
+  }
+
+  .marketing-integration-fact-grid > div,
+  .marketing-blueprint-facts > div {
+    min-height: 150px;
+  }
+
+  .marketing-integration-tool-grid article {
+    min-height: 250px;
+  }
+
+  .marketing-integration-blueprint-band li {
+    grid-template-columns: 32px 70px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .marketing-blueprint-graph > li {
+    min-height: 0;
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .marketing-blueprint-graph > li::before {
+    left: 18px;
+  }
+
+  .marketing-blueprint-step-index {
+    grid-row: 1 / 3;
+  }
+
+  .marketing-blueprint-step-type,
+  .marketing-blueprint-step-copy {
+    grid-column: 2;
+  }
+
+  .marketing-blueprint-step-type {
+    padding-top: 7px;
+  }
+
+  .marketing-blueprint-step-copy h3 {
+    margin-top: 0;
+    font-size: 21px;
+  }
+
+  .marketing-blueprint-guardrails section {
+    min-height: 0;
+  }
+
+  .marketing-integration-config {
+    margin-top: 66px;
+    padding-top: 48px;
+  }
+
+  .marketing-integration-config dt {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .marketing-integration-identity {
+    margin-bottom: 38px;
+  }
+
+  .marketing-related-integrations {
+    margin-top: 70px;
+  }
+
+  .marketing-related-integrations > div:last-child {
+    grid-template-columns: 1fr;
   }
 
   .marketing-card {
@@ -2056,6 +4537,41 @@
   .marketing-mobile-actions,
   .marketing-flow {
     grid-template-columns: 1fr;
+  }
+
+  .marketing-mobile-nav-group > div {
+    grid-template-columns: 1fr;
+  }
+
+  .marketing-product-panel-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .marketing-product-panel-rows > button {
+    padding: 14px 0;
+    grid-template-columns: 28px minmax(0, 1fr) 20px;
+    align-items: start;
+  }
+
+  .marketing-product-panel-rows > button:hover,
+  .marketing-product-panel-rows > button[data-active="true"] {
+    padding: 14px 8px;
+  }
+
+  .marketing-product-panel-rows > button > span {
+    grid-row: 1 / 3;
+  }
+
+  .marketing-product-panel-rows > button > small,
+  .marketing-product-panel-rows > button > strong {
+    grid-column: 2;
+  }
+
+  .marketing-product-panel-rows > button > b {
+    grid-row: 1 / 3;
+    grid-column: 3;
   }
 
   .marketing-app,

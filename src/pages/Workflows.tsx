@@ -4,10 +4,16 @@ import {
   PageHero,
   WorkflowVisual,
 } from "@/components/marketing/MarketingPrimitives";
+import {
+  solutionAudiences,
+  workflowSolutions,
+} from "@/lib/marketingCatalog";
 import { seoCopy } from "@/seo/metadata";
+import { Link } from "react-router-dom";
 
 const workflowPatterns = [
   {
+    id: "customer-onboarding",
     pill: "Customer operations",
     title:
       "Onboard every customer without rebuilding the checklist each time.",
@@ -34,6 +40,7 @@ const workflowPatterns = [
     },
   },
   {
+    id: "support-operations",
     pill: "Support operations",
     title:
       "Resolve routine cases automatically and escalate with the full context.",
@@ -64,6 +71,36 @@ const workflowPatterns = [
     },
   },
   {
+    id: "incident-response",
+    pill: "Engineering operations",
+    title:
+      "Turn an alert into one owned response path instead of another noisy channel.",
+    description:
+      "Normalize the alert, apply explicit severity rules, open a Slack response thread, pause for human authority, and preserve failures and decisions on the same execution timeline.",
+    outcomes: [
+      "One durable trace from alert receipt to resolution",
+      "Explicit incident ownership and human authority",
+      "Visible recovery when context or tool access fails",
+    ],
+    visual: {
+      title: "Incident response",
+      status: "Blueprint",
+      outcome:
+        "Slack coordinates people while AgentRuntime retains execution state.",
+      rows: [
+        { left: "Alert event", right: "Prepare context" },
+        { left: "Severity rules", right: "Slack incident thread" },
+        {
+          left: "Human authority",
+          right: "Resolution record",
+          hot: "left" as const,
+        },
+      ],
+    },
+    detailTo: "/solutions/incident-response",
+  },
+  {
+    id: "finance-approvals",
     pill: "Finance and administration",
     title:
       "Move documents, checks, and approvals through one controlled process.",
@@ -90,6 +127,7 @@ const workflowPatterns = [
     },
   },
   {
+    id: "embedded-agents",
     pill: "Product-embedded agents",
     title: "Give your product an agent without making your product the runtime.",
     description:
@@ -136,27 +174,141 @@ const firstWorkflowSignals = [
 export default function Workflows() {
   return (
     <div className="marketing-page">
-      <Seo {...seoCopy.workflows} canonicalPath="/workflows" />
+      <Seo {...seoCopy.solutions} canonicalPath="/solutions" />
       <PageHero
         centered
-        eyebrow="Workflows"
+        eyebrow="Solutions"
         title="Start where work already crosses systems and people."
         description="The best first workflow is repetitive enough to matter, complex enough to resist rigid automation, and important enough to require control."
         primary={{ label: "Map a workflow →", to: "/contact" }}
-        secondary={{ label: "See examples", to: "/workflows#examples" }}
+        secondary={{ label: "See examples", to: "/solutions#examples" }}
       />
 
       <section
         className="marketing-section"
         data-flush-top="true"
+        id="who-its-for"
+      >
+        <div className="marketing-container">
+          <div className="marketing-section-label">Who AgentRuntime is for</div>
+          <h2>One execution layer for the teams building and operating AI work.</h2>
+          <p className="marketing-section-intro">
+            Start from the responsibility your team owns, then connect the
+            systems, decisions, and people required to carry it through.
+          </p>
+
+          <nav
+            className="marketing-detail-index"
+            data-columns="5"
+            aria-label="Solutions by team"
+          >
+            {solutionAudiences.map((audience, index) => (
+              <Link to={`/solutions#${audience.id}`} key={audience.id}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <small>By team</small>
+                <strong>{audience.label}</strong>
+                <b aria-hidden="true">↓</b>
+              </Link>
+            ))}
+          </nav>
+
+          <div className="marketing-detail-list">
+            {solutionAudiences.map((audience, index) => (
+              <article
+                className="marketing-detail-section marketing-audience-detail"
+                data-reverse={index % 2 === 1}
+                id={audience.id}
+                key={audience.id}
+              >
+                <div className="marketing-detail-copy">
+                  <div className="marketing-detail-kicker">
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <span>By team</span>
+                  </div>
+                  <h3>{audience.label}</h3>
+                  <p className="marketing-detail-lead">{audience.title}</p>
+                  <p>{audience.detail}</p>
+                  <Link
+                    className="marketing-button marketing-button-secondary marketing-detail-cta"
+                    to={`/contact?solution=${audience.id}`}
+                  >
+                    {audience.ctaLabel}
+                  </Link>
+                </div>
+
+                <div className="marketing-audience-fit-panel">
+                  <div className="marketing-audience-fit-header">
+                    <span>Where it fits</span>
+                    <strong>{audience.label}</strong>
+                  </div>
+                  <ul>
+                    {audience.useCases.map((useCase, useCaseIndex) => (
+                      <li key={useCase}>
+                        <span>{String(useCaseIndex + 1).padStart(2, "0")}</span>
+                        <strong>{useCase}</strong>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="marketing-audience-start">
+                    <span>Best first move</span>
+                    <p>{audience.startingPoint}</p>
+                  </div>
+                  <div className="marketing-solution-scenario">
+                    <span>Illustrative scenario</span>
+                    <strong>{audience.scenario.title}</strong>
+                    <ol>
+                      {audience.scenario.steps.map((step) => (
+                        <li key={step}>{step}</li>
+                      ))}
+                    </ol>
+                    <p>
+                      <b>Operational result:</b> {audience.scenario.outcome}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="marketing-section"
+        data-tone="soft"
         id="examples"
       >
         <div className="marketing-container">
-          <div className="marketing-section-label">Workflow patterns</div>
+          <div className="marketing-section-label">
+            Illustrative workflow scenarios
+          </div>
           <h2>Use AgentRuntime where decisions, tools, and ownership meet.</h2>
+          <p className="marketing-section-intro">
+            These scenarios show how the execution model can fit operational
+            work. They are product examples, not customer case studies or
+            performance claims.
+          </p>
+
+          <nav
+            className="marketing-detail-index"
+            data-columns="5"
+            aria-label="Solutions by workflow"
+          >
+            {workflowSolutions.map((solution, index) => (
+              <Link to={solution.to} key={solution.id}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <small>By workflow</small>
+                <strong>{solution.label}</strong>
+                <b aria-hidden="true">↓</b>
+              </Link>
+            ))}
+          </nav>
 
           {workflowPatterns.map((workflow) => (
-            <article className="marketing-use-case" key={workflow.title}>
+            <article
+              className="marketing-use-case"
+              id={workflow.id}
+              key={workflow.title}
+            >
               <div>
                 <span className="marketing-pill">{workflow.pill}</span>
                 <h3>{workflow.title}</h3>
@@ -171,6 +323,18 @@ export default function Workflows() {
                     ))}
                   </ul>
                 </div>
+                <Link
+                  className="marketing-button marketing-button-secondary marketing-detail-cta"
+                  to={
+                    "detailTo" in workflow
+                      ? workflow.detailTo
+                      : `/contact?workflow=${workflow.id}`
+                  }
+                >
+                  {"detailTo" in workflow
+                    ? "Explore the blueprint →"
+                    : "Map this workflow →"}
+                </Link>
               </div>
               <WorkflowVisual {...workflow.visual} />
             </article>

@@ -20,13 +20,34 @@ export function MarketingFooter() {
               Production infrastructure for AI workflows that cross agents,
               tools, business rules, and people.
             </p>
+            <a
+              className="marketing-footer-email"
+              href="mailto:hello@agentruntime.io"
+            >
+              hello@agentruntime.io
+            </a>
           </div>
 
           <div className="marketing-footer-column">
             <h4>Product</h4>
-            <Link to="/platform">Platform</Link>
-            <Link to="/workflows">Workflows</Link>
+            <Link to="/platform">Product overview</Link>
+            <Link to="/platform#workflow-studio">Workflow Studio</Link>
+            <Link to="/platform#command-center">Command Center</Link>
+            <Link to="/integrations">Integrations</Link>
             <Link to="/enterprise">Enterprise</Link>
+          </div>
+
+          <div className="marketing-footer-column">
+            <h4>Solutions</h4>
+            <Link to="/solutions">All solutions</Link>
+            <Link to="/solutions#product-engineering">
+              Product &amp; engineering
+            </Link>
+            <Link to="/solutions#operations">Operations</Link>
+            <Link to="/solutions#customer-teams">Customer teams</Link>
+            <Link to="/solutions#implementation-partners">
+              Implementation partners
+            </Link>
           </div>
 
           <div className="marketing-footer-column">
@@ -43,6 +64,9 @@ export function MarketingFooter() {
             <Link to="/company">About</Link>
             <Link to="/blog">Blog</Link>
             <Link to="/contact">Contact</Link>
+            <a href={CONSOLE_APP_URL} {...externalProps}>
+              Open console ↗
+            </a>
           </div>
 
           <div className="marketing-footer-column">
@@ -50,17 +74,6 @@ export function MarketingFooter() {
             <Link to="/legal">Legal</Link>
             <Link to="/legal/privacy-policy">Privacy</Link>
             <Link to="/legal/terms-and-conditions">Terms</Link>
-          </div>
-
-          <div className="marketing-footer-column">
-            <h4>Start</h4>
-            <a href={CONSOLE_APP_URL} {...externalProps}>
-              Open console ↗
-            </a>
-            <Link to="/contact">Book a conversation</Link>
-            <a href="mailto:hello@agentruntime.io">
-              hello@agentruntime.io
-            </a>
           </div>
         </div>
 
