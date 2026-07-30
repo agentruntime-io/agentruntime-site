@@ -71,6 +71,35 @@ const workflowPatterns = [
     },
   },
   {
+    id: "incident-response",
+    pill: "Engineering operations",
+    title:
+      "Turn an alert into one owned response path instead of another noisy channel.",
+    description:
+      "Normalize the alert, apply explicit severity rules, open a Slack response thread, pause for human authority, and preserve failures and decisions on the same execution timeline.",
+    outcomes: [
+      "One durable trace from alert receipt to resolution",
+      "Explicit incident ownership and human authority",
+      "Visible recovery when context or tool access fails",
+    ],
+    visual: {
+      title: "Incident response",
+      status: "Blueprint",
+      outcome:
+        "Slack coordinates people while AgentRuntime retains execution state.",
+      rows: [
+        { left: "Alert event", right: "Prepare context" },
+        { left: "Severity rules", right: "Slack incident thread" },
+        {
+          left: "Human authority",
+          right: "Resolution record",
+          hot: "left" as const,
+        },
+      ],
+    },
+    detailTo: "/solutions/incident-response",
+  },
+  {
     id: "finance-approvals",
     pill: "Finance and administration",
     title:
@@ -261,11 +290,11 @@ export default function Workflows() {
 
           <nav
             className="marketing-detail-index"
-            data-columns="4"
+            data-columns="5"
             aria-label="Solutions by workflow"
           >
             {workflowSolutions.map((solution, index) => (
-              <Link to={`/solutions#${solution.id}`} key={solution.id}>
+              <Link to={solution.to} key={solution.id}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <small>By workflow</small>
                 <strong>{solution.label}</strong>
@@ -296,9 +325,15 @@ export default function Workflows() {
                 </div>
                 <Link
                   className="marketing-button marketing-button-secondary marketing-detail-cta"
-                  to={`/contact?workflow=${workflow.id}`}
+                  to={
+                    "detailTo" in workflow
+                      ? workflow.detailTo
+                      : `/contact?workflow=${workflow.id}`
+                  }
                 >
-                  Map this workflow →
+                  {"detailTo" in workflow
+                    ? "Explore the blueprint →"
+                    : "Map this workflow →"}
                 </Link>
               </div>
               <WorkflowVisual {...workflow.visual} />

@@ -17,6 +17,7 @@ const queryClient = new QueryClient();
 const Home = lazy(() => import("./pages/Home"));
 const Platform = lazy(() => import("./pages/Platform"));
 const Workflows = lazy(() => import("./pages/Workflows"));
+const SolutionDetail = lazy(() => import("./pages/SolutionDetail"));
 const Integrations = lazy(() => import("./pages/Integrations"));
 const IntegrationDetail = lazy(() => import("./pages/IntegrationDetail"));
 const Developers = lazy(() => import("./pages/Developers"));
@@ -63,6 +64,7 @@ const App = () => (
                       <Route path="/" element={<Home />} />
                       <Route path="/platform" element={<Platform />} />
                       <Route path="/solutions" element={<Workflows />} />
+                      <Route path="/solutions/:slug" element={<SolutionDetail />} />
                       <Route path="/integrations" element={<Integrations />} />
                       <Route path="/integrations/:slug" element={<IntegrationDetail />} />
                       <Route path="/developers" element={<Developers />} />

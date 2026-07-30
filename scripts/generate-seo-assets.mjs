@@ -11,6 +11,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 const POSTS_TS = join(ROOT, "src", "blog", "posts.ts");
 const MARKETING_CATALOG_TS = join(ROOT, "src", "lib", "marketingCatalog.ts");
+const WORKFLOW_BLUEPRINTS_TS = join(
+  ROOT,
+  "src",
+  "lib",
+  "workflowBlueprints.ts",
+);
 const SITEMAP_OUT = join(ROOT, "public", "sitemap.xml");
 const RSS_OUT = join(ROOT, "public", "blog", "rss.xml");
 
@@ -39,6 +45,27 @@ function parseIntegrationSlugs(path) {
   );
 }
 
+function parseWorkflowBlueprintSlugs(path) {
+  const source = readFileSync(path, "utf8");
+  const blueprintsBlock = source.match(
+    /export const workflowBlueprints = \[([\s\S]*?)\]\s+satisfies readonly WorkflowBlueprint\[\];/,
+  );
+
+  if (!blueprintsBlock) {
+    console.error(
+      "generate-seo-assets: could not parse workflow blueprints from workflowBlueprints.ts",
+    );
+    process.exit(1);
+  }
+
+  // Blueprint-level fields are indented four spaces by the repository formatter.
+  // Matching at that level avoids nested integration slugs without coupling the
+  // route parser to property order inside each blueprint.
+  return [...blueprintsBlock[1].matchAll(/^ {4}slug:\s*"([^"]+)",?\s*$/gm)].map(
+    (match) => match[1],
+  );
+}
+
 const baseStaticEntries = [
   ["/", "weekly", "1"],
   ["/platform", "monthly", "0.9"],
@@ -63,6 +90,10 @@ const baseStaticEntries = [
 
 const integrationSlugs = parseIntegrationSlugs(MARKETING_CATALOG_TS);
 const integrationSlugSet = new Set(integrationSlugs);
+const workflowBlueprintSlugs = parseWorkflowBlueprintSlugs(
+  WORKFLOW_BLUEPRINTS_TS,
+);
+const workflowBlueprintSlugSet = new Set(workflowBlueprintSlugs);
 
 if (
   integrationSlugs.length === 0 ||
@@ -74,13 +105,29 @@ if (
   process.exit(1);
 }
 
+if (
+  workflowBlueprintSlugs.length === 0 ||
+  workflowBlueprintSlugSet.size !== workflowBlueprintSlugs.length
+) {
+  console.error(
+    "generate-seo-assets: workflow blueprint slugs are empty or contain duplicates",
+  );
+  process.exit(1);
+}
+
 const integrationEntries = integrationSlugs.map((slug) => [
   `/integrations/${slug}`,
   "monthly",
   "0.7",
 ]);
+const workflowBlueprintEntries = workflowBlueprintSlugs.map((slug) => [
+  `/solutions/${slug}`,
+  "monthly",
+  "0.8",
+]);
 const staticEntries = [
   ...baseStaticEntries,
+  ...workflowBlueprintEntries,
   ...integrationEntries,
   ...(SHOW_WAITLIST ? [["/waitlist", "monthly", "0.8"]] : []),
 ];
@@ -214,6 +261,6 @@ const rss = [
 writeFileSync(RSS_OUT, `${rss}\n`, "utf8");
 
 console.log(
-  `generate-seo-assets: sitemap ${smLines.length - 3} URLs (${integrationSlugs.length} integrations, ${blogPosts.length} posts, lastmod on static=${buildDay}) -> ${SITEMAP_OUT}`
+  `generate-seo-assets: sitemap ${smLines.length - 3} URLs (${workflowBlueprintSlugs.length} workflow blueprints, ${integrationSlugs.length} integrations, ${blogPosts.length} posts, lastmod on static=${buildDay}) -> ${SITEMAP_OUT}`
 );
 console.log(`generate-seo-assets: RSS ${sorted.length} items -> ${RSS_OUT}`);

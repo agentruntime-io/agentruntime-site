@@ -6,6 +6,7 @@ import {
   CallToAction,
   PageHero,
 } from "@/components/marketing/MarketingPrimitives";
+import { getIntegrationDetail } from "@/lib/integrationDetails";
 import {
   getIntegrationMark,
   integrationCategories,
@@ -115,26 +116,38 @@ export default function Integrations() {
 
           {filteredIntegrations.length > 0 ? (
             <div className="marketing-integration-grid">
-              {filteredIntegrations.map((integration) => (
-                <Link
-                  className="marketing-integration-card"
-                  to={`/integrations/${integration.slug}`}
-                  aria-label={`View ${integration.name} integration details`}
-                  key={integration.slug}
-                >
-                  <span className="marketing-integration-mark" aria-hidden="true">
-                    {getIntegrationMark(integration.name)}
-                  </span>
-                  <div>
-                    <h3>{integration.name}</h3>
-                    <p>{integration.category}</p>
-                  </div>
-                  <span className="marketing-integration-status">
-                    <i aria-hidden="true" />
-                    View details
-                  </span>
-                </Link>
-              ))}
+              {filteredIntegrations.map((integration) => {
+                const detail = getIntegrationDetail(integration.slug);
+
+                return (
+                  <Link
+                    className="marketing-integration-card"
+                    to={`/integrations/${integration.slug}`}
+                    aria-label={`View ${integration.name} integration details`}
+                    key={integration.slug}
+                  >
+                    <span
+                      className="marketing-integration-mark"
+                      data-logo={detail?.logoPath ? "true" : undefined}
+                      aria-hidden="true"
+                    >
+                      {detail?.logoPath ? (
+                        <img src={detail.logoPath} alt="" />
+                      ) : (
+                        getIntegrationMark(integration.name)
+                      )}
+                    </span>
+                    <div>
+                      <h3>{integration.name}</h3>
+                      <p>{integration.category}</p>
+                    </div>
+                    <span className="marketing-integration-status">
+                      <i aria-hidden="true" />
+                      {detail ? "Evidence profile" : "View details"}
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
           ) : (
             <div className="marketing-integration-empty">

@@ -66,7 +66,9 @@ export function MarketingNavigation() {
   }, [isOpen, openMenu]);
 
   const isProductActive = location.pathname === "/platform";
-  const isSolutionsActive = location.pathname === "/solutions";
+  const isSolutionsActive =
+    location.pathname === "/solutions" ||
+    location.pathname.startsWith("/solutions/");
 
   return (
     <header
@@ -180,7 +182,7 @@ export function MarketingNavigation() {
                     </span>
                     {workflowSolutions.map((solution) => (
                       <Link
-                        to={`/solutions#${solution.id}`}
+                        to={solution.to}
                         key={solution.id}
                         onClick={() => setOpenMenu(null)}
                       >
@@ -273,7 +275,7 @@ export function MarketingNavigation() {
               ))}
               <span className="marketing-mobile-nav-label">By workflow</span>
               {workflowSolutions.map((solution) => (
-                <Link to={`/solutions#${solution.id}`} key={solution.id}>
+                <Link to={solution.to} key={solution.id}>
                   {solution.label}
                 </Link>
               ))}

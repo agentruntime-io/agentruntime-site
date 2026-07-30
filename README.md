@@ -20,7 +20,8 @@ npm run dev
 Primary marketing routes are `/platform`, `/solutions`, `/integrations`,
 `/developers`, `/enterprise`, `/company`, and `/contact`. Legacy campaign routes
 redirect to the closest current page. Catalogued connectors also have
-prerendered detail routes at `/integrations/:slug`.
+prerendered detail routes at `/integrations/:slug`; workflow blueprints use
+prerendered `/solutions/:workflow-slug` routes.
 
 ## Build
 

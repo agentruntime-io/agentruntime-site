@@ -312,21 +312,32 @@ export const workflowSolutions = [
     id: "customer-onboarding",
     label: "Customer onboarding",
     description: "Coordinate research, setup, approvals, and launch.",
+    to: "/solutions#customer-onboarding",
   },
   {
     id: "support-operations",
     label: "Issue resolution",
     description: "Resolve routine cases and escalate with context.",
+    to: "/solutions#support-operations",
+  },
+  {
+    id: "incident-response",
+    label: "Incident response",
+    description:
+      "Coordinate alerts, Slack response, human authority, and recovery.",
+    to: "/solutions/incident-response",
   },
   {
     id: "finance-approvals",
     label: "Finance approvals",
     description: "Keep documents, checks, and authority in one trace.",
+    to: "/solutions#finance-approvals",
   },
   {
     id: "embedded-agents",
     label: "Embedded agents",
     description: "Put durable execution behind your product API.",
+    to: "/solutions#embedded-agents",
   },
 ] as const;
 
