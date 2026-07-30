@@ -5,8 +5,9 @@
 ## Product
 
 - [Home](https://www.agentruntime.io/): Positioning and execution model for reliable production AI work.
-- [Platform](https://www.agentruntime.io/platform): Stateful execution, conditional control, waits, recovery, observability, and governance.
-- [Workflows](https://www.agentruntime.io/workflows): Operational patterns for customer onboarding, support, finance, and embedded agents.
+- [Product](https://www.agentruntime.io/platform): Workflow Studio, Runtime APIs, Command Center, control plane, stateful execution, recovery, observability, and governance.
+- [Solutions](https://www.agentruntime.io/solutions): Intended teams and operational patterns for customer onboarding, support, finance, administration, and embedded agents.
+- [Integrations](https://www.agentruntime.io/integrations): Searchable connector directory for communication, data, developer tools, business software, and model services.
 - [Developers](https://www.agentruntime.io/developers): APIs, SDKs, MCP tools, events, and the execution lifecycle.
 - [Enterprise](https://www.agentruntime.io/enterprise): Permissions, approvals, policy controls, auditability, and adoption path.
 

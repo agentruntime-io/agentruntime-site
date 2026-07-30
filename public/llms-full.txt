@@ -16,8 +16,9 @@ The public marketing SPA uses client-side routing; authoritative legal text live
 ## Product & learning (primary pages)
 
 - [Home](https://www.agentruntime.io/): Primary landing—how AgentRuntime puts AI inside real business processes and routes each step to agents, tools, rules, or people.
-- [Platform](https://www.agentruntime.io/platform): Execution architecture, stateful runtime capabilities, autonomy spectrum, and build/run/observe/govern layers.
-- [Workflows](https://www.agentruntime.io/workflows): Scenario-based patterns for customer onboarding, support, finance, administration, and product-embedded agents.
+- [Product](https://www.agentruntime.io/platform): Workflow Studio, Runtime APIs, Command Center, control plane, execution architecture, stateful runtime capabilities, and the autonomy spectrum.
+- [Solutions](https://www.agentruntime.io/solutions): Intended teams plus scenario-based patterns for customer onboarding, support, finance, administration, and product-embedded agents.
+- [Integrations](https://www.agentruntime.io/integrations): Searchable public connector index covering communication, data, developer tools, business software, model services, and custom MCP/API extension paths. Confirm live availability before production use.
 - [Developers](https://www.agentruntime.io/developers): Backend-first integration, APIs, SDKs, MCP tools, events, identity, and the run lifecycle.
 - [Enterprise](https://www.agentruntime.io/enterprise): Identity, permissions, secrets, data boundaries, execution policies, approvals, and auditability.
 - [Blog](https://www.agentruntime.io/blog): Articles and updates; every post is listed in [sitemap.xml](https://www.agentruntime.io/sitemap.xml) at `/blog/:slug` (example: [Introducing the AgentRuntime blog](https://www.agentruntime.io/blog/introducing-the-agentruntime-blog)).

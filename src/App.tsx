@@ -17,6 +17,7 @@ const queryClient = new QueryClient();
 const Home = lazy(() => import("./pages/Home"));
 const Platform = lazy(() => import("./pages/Platform"));
 const Workflows = lazy(() => import("./pages/Workflows"));
+const Integrations = lazy(() => import("./pages/Integrations"));
 const Developers = lazy(() => import("./pages/Developers"));
 const Enterprise = lazy(() => import("./pages/Enterprise"));
 const Company = lazy(() => import("./pages/Company"));
@@ -60,15 +61,19 @@ const App = () => (
                     <Routes>
                       <Route path="/" element={<Home />} />
                       <Route path="/platform" element={<Platform />} />
-                      <Route path="/workflows" element={<Workflows />} />
+                      <Route path="/solutions" element={<Workflows />} />
+                      <Route path="/integrations" element={<Integrations />} />
                       <Route path="/developers" element={<Developers />} />
                       <Route path="/enterprise" element={<Enterprise />} />
                       <Route path="/company" element={<Company />} />
                       <Route path="/contact" element={<Contact />} />
+                      <Route path="/product" element={<Navigate to="/platform" replace />} />
+                      <Route path="/workflows" element={<Navigate to="/solutions" replace />} />
+                      <Route path="/connectors" element={<Navigate to="/integrations" replace />} />
                       <Route path="/features" element={<Navigate to="/platform" replace />} />
                       <Route path="/how-it-works" element={<Navigate to="/platform" replace />} />
                       <Route path="/pricing" element={<Navigate to="/contact?source=pricing" replace />} />
-                      <Route path="/use-cases" element={<Navigate to="/workflows" replace />} />
+                      <Route path="/use-cases" element={<Navigate to="/solutions" replace />} />
                       <Route path="/docs" element={<Navigate to="/developers" replace />} />
                       <Route path="/about" element={<Navigate to="/company" replace />} />
                       <Route

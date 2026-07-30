@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
 import { Seo } from "@/components/Seo";
 import {
   CallToAction,
   PageHero,
 } from "@/components/marketing/MarketingPrimitives";
 import { DOCS_APP_URL } from "@/config/site";
+import { featuredIntegrations, integrationCount } from "@/lib/marketingCatalog";
 import { seoCopy } from "@/seo/metadata";
 
 const executionLifecycle = [
@@ -156,19 +158,23 @@ export default function Developers() {
             Give agents governed access to business software, internal services,
             and your own tools through a consistent execution layer.
           </p>
-          <div className="marketing-logo-strip" aria-label="Example integrations">
-            {[
-              "Gmail",
-              "Slack",
-              "Google Drive",
-              "Calendar",
-              "Resend",
-              "Your API",
-            ].map((tool) => (
-              <div className="marketing-logo-cell" key={tool}>
-                {tool}
+          <div
+            className="marketing-logo-strip"
+            aria-label="Featured integrations"
+          >
+            {featuredIntegrations.slice(0, 6).map((integration) => (
+              <div className="marketing-logo-cell" key={integration.slug}>
+                {integration.name}
               </div>
             ))}
+          </div>
+          <div className="marketing-section-action">
+            <Link
+              className="marketing-button marketing-button-ghost-dark"
+              to="/integrations"
+            >
+              Browse {integrationCount} catalogued connectors →
+            </Link>
           </div>
           <div className="marketing-grid-3">
             {toolControls.map((control) => (

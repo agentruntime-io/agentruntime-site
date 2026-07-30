@@ -3,7 +3,9 @@ import {
   CallToAction,
   PageHero,
 } from "@/components/marketing/MarketingPrimitives";
+import { productSurfaces } from "@/lib/marketingCatalog";
 import { seoCopy } from "@/seo/metadata";
+import { Link } from "react-router-dom";
 
 const capabilities = [
   {
@@ -61,39 +63,12 @@ const autonomyLevels = [
   },
 ];
 
-const platformLayers = [
-  {
-    pill: "Build",
-    title: "Workflow Studio",
-    description:
-      "Compose agents, tools, decisions, people, and transitions into an executable process.",
-  },
-  {
-    pill: "Run",
-    title: "Runtime APIs",
-    description:
-      "Trigger from products, webhooks, schedules, or internal systems.",
-  },
-  {
-    pill: "Observe",
-    title: "Command center",
-    description:
-      "Inspect runs, dependencies, states, logs, traces, and pending interventions.",
-  },
-  {
-    pill: "Govern",
-    title: "Control plane",
-    description:
-      "Manage secrets, permissions, access boundaries, policies, and audit history.",
-  },
-];
-
 export default function Platform() {
   return (
     <div className="marketing-page">
       <Seo {...seoCopy.platform} canonicalPath="/platform" />
       <PageHero
-        eyebrow="The platform"
+        eyebrow="Product"
         title="One runtime for the whole execution path."
         description="AgentRuntime orchestrates AI agents, tools, deterministic rules, and human decisions as one observable, stateful process."
         primary={{ label: "Discuss your architecture →", to: "/contact" }}
@@ -236,20 +211,83 @@ export default function Platform() {
         </div>
       </section>
 
-      <section className="marketing-section" data-tone="soft">
+      <section
+        className="marketing-section"
+        data-tone="soft"
+        id="product-surfaces"
+      >
         <div className="marketing-container">
-          <div className="marketing-section-label">Platform layers</div>
+          <div className="marketing-section-label">Product surfaces</div>
           <h2>Build, run, observe, and govern in the same system.</h2>
-          <div className="marketing-grid-4">
-            {platformLayers.map((layer) => (
+          <p className="marketing-section-intro">
+            Each surface owns a distinct part of the production lifecycle while
+            sharing the same workflow state, execution history, and control
+            model.
+          </p>
+
+          <nav
+            className="marketing-detail-index"
+            data-columns="4"
+            aria-label="Product sections"
+          >
+            {productSurfaces.map((surface, index) => (
+              <Link to={`/platform#${surface.id}`} key={surface.id}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <small>{surface.stage}</small>
+                <strong>{surface.title}</strong>
+                <b aria-hidden="true">↓</b>
+              </Link>
+            ))}
+          </nav>
+
+          <div className="marketing-detail-list">
+            {productSurfaces.map((surface, index) => (
               <article
-                className="marketing-card"
-                data-compact="true"
-                key={layer.title}
+                className="marketing-detail-section marketing-product-detail"
+                data-reverse={index % 2 === 1}
+                id={surface.id}
+                key={surface.title}
               >
-                <span className="marketing-pill">{layer.pill}</span>
-                <h3>{layer.title}</h3>
-                <p>{layer.description}</p>
+                <div className="marketing-detail-copy">
+                  <div className="marketing-detail-kicker">
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <span>{surface.stage}</span>
+                  </div>
+                  <h3>{surface.title}</h3>
+                  <p className="marketing-detail-lead">{surface.headline}</p>
+                  <p>{surface.detail}</p>
+                  <div className="marketing-outcomes">
+                    <div className="marketing-outcomes-label">
+                      What this surface covers
+                    </div>
+                    <ul className="marketing-outcome-list">
+                      {surface.features.map((feature) => (
+                        <li key={feature}>{feature}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="marketing-product-panel">
+                  <div className="marketing-product-panel-header">
+                    <span>{surface.visual.label}</span>
+                    <strong>{surface.visual.title}</strong>
+                  </div>
+                  <div className="marketing-product-panel-rows">
+                    {surface.visual.rows.map((row, rowIndex) => (
+                      <div key={row.label}>
+                        <span>{String(rowIndex + 1).padStart(2, "0")}</span>
+                        <small>{row.label}</small>
+                        <strong>{row.value}</strong>
+                        <b aria-hidden="true">✓</b>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="marketing-product-panel-footer">
+                    <span className="marketing-status">● Active</span>
+                    <small>{surface.visual.footer}</small>
+                  </div>
+                </div>
               </article>
             ))}
           </div>

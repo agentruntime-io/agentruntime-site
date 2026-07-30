@@ -14,10 +14,15 @@ export const seoCopy = {
     description:
       "Explore the stateful, observable AgentRuntime execution platform for AI agents, tools, deterministic rules, and human decisions.",
   },
-  workflows: {
-    title: "Production AI Workflows",
+  solutions: {
+    title: "AI Workflow Solutions",
     description:
-      "See how AgentRuntime coordinates agents, tools, rules, and people across customer operations, support, finance, and embedded agent products.",
+      "See who AgentRuntime is for and how teams coordinate agents, tools, rules, and people across customer operations, support, finance, and embedded products.",
+  },
+  integrations: {
+    title: "AI Agent Integrations",
+    description:
+      "Browse AgentRuntime connectors for communication, data, developer tools, business software, model services, and production AI workflows.",
   },
   developers: {
     title: "Developers",

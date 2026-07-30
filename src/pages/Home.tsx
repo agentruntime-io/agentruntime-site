@@ -7,6 +7,13 @@ import {
   Eyebrow,
   ProductStage,
 } from "@/components/marketing/MarketingPrimitives";
+import {
+  featuredIntegrations,
+  getIntegrationMark,
+  integrationCount,
+  productSurfaces,
+  solutionAudiences,
+} from "@/lib/marketingCatalog";
 import { seoCopy } from "@/seo/metadata";
 
 const operationalProblems = [
@@ -137,6 +144,38 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="marketing-section marketing-product-index-section">
+        <div className="marketing-container">
+          <div className="marketing-catalog-heading">
+            <div>
+              <div className="marketing-section-label">The product</div>
+              <h2>Four surfaces. One execution model.</h2>
+            </div>
+            <p>
+              Design the workflow, run it through APIs, operate it from a shared
+              queue, and govern every connection.
+            </p>
+          </div>
+          <div className="marketing-product-index">
+            {productSurfaces.map((surface, index) => (
+              <Link
+                to={`/platform#${surface.id}`}
+                className="marketing-product-index-item"
+                key={surface.id}
+              >
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <small>{surface.stage}</small>
+                  <strong>{surface.title}</strong>
+                  <p>{surface.description}</p>
+                </div>
+                <b aria-hidden="true">↗</b>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="marketing-section">
         <div className="marketing-container">
           <div className="marketing-section-label">The operational wall</div>
@@ -184,6 +223,34 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="marketing-section" data-tone="soft">
+        <div className="marketing-container">
+          <div className="marketing-catalog-heading">
+            <div>
+              <div className="marketing-section-label">Who this is for</div>
+              <h2>Start from the responsibility your team already owns.</h2>
+            </div>
+            <Link className="marketing-inline-link" to="/solutions">
+              Explore all solutions <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+          <div className="marketing-audience-preview">
+            {solutionAudiences.map((audience, index) => (
+              <Link
+                to={`/solutions#${audience.id}`}
+                className="marketing-audience-preview-row"
+                key={audience.id}
+              >
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{audience.label}</strong>
+                <p>{audience.title}</p>
+                <b aria-hidden="true">→</b>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="marketing-statement">
         <div className="marketing-container">
           <h2>
@@ -192,6 +259,42 @@ export default function Home() {
               It is to remove people from every step that no longer needs them.
             </span>
           </h2>
+        </div>
+      </section>
+
+      <section className="marketing-section marketing-home-integrations">
+        <div className="marketing-container">
+          <div className="marketing-catalog-heading">
+            <div>
+              <div className="marketing-section-label">
+                {integrationCount} catalogued connectors
+              </div>
+              <h2>Connect the stack you already operate.</h2>
+            </div>
+            <p>
+              Use governed connectors for communication, data, developer tools,
+              business systems, and model services.
+            </p>
+          </div>
+          <div
+            className="marketing-featured-integrations"
+            aria-label="Featured integrations"
+          >
+            {featuredIntegrations.map((integration) => (
+              <div key={integration.slug}>
+                <span aria-hidden="true">
+                  {getIntegrationMark(integration.name)}
+                </span>
+                <strong>{integration.name}</strong>
+              </div>
+            ))}
+          </div>
+          <Link
+            className="marketing-button marketing-button-secondary"
+            to="/integrations"
+          >
+            Browse all integrations →
+          </Link>
         </div>
       </section>
 
@@ -213,9 +316,9 @@ export default function Home() {
               </p>
               <Link
                 className="marketing-button marketing-button-secondary"
-                to="/workflows"
+                to="/solutions"
               >
-                Explore workflows →
+                Explore solutions →
               </Link>
             </article>
             <article

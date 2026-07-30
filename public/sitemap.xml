@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.agentruntime.io/</loc><lastmod>2026-07-29</lastmod><changefreq>weekly</changefreq><priority>1</priority></url>
-  <url><loc>https://www.agentruntime.io/platform</loc><lastmod>2026-07-29</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.agentruntime.io/workflows</loc><lastmod>2026-07-29</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.agentruntime.io/developers</loc><lastmod>2026-07-29</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.agentruntime.io/enterprise</loc><lastmod>2026-07-29</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.agentruntime.io/company</loc><lastmod>2026-07-29</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.agentruntime.io/</loc><lastmod>2026-07-30</lastmod><changefreq>weekly</changefreq><priority>1</priority></url>
+  <url><loc>https://www.agentruntime.io/platform</loc><lastmod>2026-07-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.agentruntime.io/solutions</loc><lastmod>2026-07-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.agentruntime.io/integrations</loc><lastmod>2026-07-30</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.agentruntime.io/developers</loc><lastmod>2026-07-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.agentruntime.io/enterprise</loc><lastmod>2026-07-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentruntime.io/company</loc><lastmod>2026-07-30</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agentruntime.io/blog</loc><lastmod>2026-05-07</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.agentruntime.io/contact</loc><lastmod>2026-07-29</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.agentruntime.io/legal</loc><lastmod>2026-07-29</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.agentruntime.io/legal/terms-and-conditions</loc><lastmod>2026-07-29</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://www.agentruntime.io/legal/privacy-policy</loc><lastmod>2026-07-29</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://www.agentruntime.io/legal/acceptable-use-policy</loc><lastmod>2026-07-29</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://www.agentruntime.io/legal/data-processing-agreement</loc><lastmod>2026-07-29</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://www.agentruntime.io/legal/security-policy</loc><lastmod>2026-07-29</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://www.agentruntime.io/legal/billing-and-credits-policy</loc><lastmod>2026-07-29</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://www.agentruntime.io/legal/ai-usage-policy</loc><lastmod>2026-07-29</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://www.agentruntime.io/legal/developer-platform-license</loc><lastmod>2026-07-29</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://www.agentruntime.io/legal/service-level-agreement</loc><lastmod>2026-07-29</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://www.agentruntime.io/contact</loc><lastmod>2026-07-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentruntime.io/legal</loc><lastmod>2026-07-30</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.agentruntime.io/legal/terms-and-conditions</loc><lastmod>2026-07-30</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://www.agentruntime.io/legal/privacy-policy</loc><lastmod>2026-07-30</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://www.agentruntime.io/legal/acceptable-use-policy</loc><lastmod>2026-07-30</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://www.agentruntime.io/legal/data-processing-agreement</loc><lastmod>2026-07-30</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://www.agentruntime.io/legal/security-policy</loc><lastmod>2026-07-30</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://www.agentruntime.io/legal/billing-and-credits-policy</loc><lastmod>2026-07-30</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://www.agentruntime.io/legal/ai-usage-policy</loc><lastmod>2026-07-30</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://www.agentruntime.io/legal/developer-platform-license</loc><lastmod>2026-07-30</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://www.agentruntime.io/legal/service-level-agreement</loc><lastmod>2026-07-30</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
   <url><loc>https://www.agentruntime.io/blog/introducing-the-agentruntime-blog</loc><lastmod>2026-04-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agentruntime.io/blog/why-ai-agents-fail-in-production</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agentruntime.io/blog/what-is-mcp-and-why-it-matters</loc><lastmod>2026-05-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
