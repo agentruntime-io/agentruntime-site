@@ -93,7 +93,7 @@ export const workflowBlueprints = [
         description:
           "Post a structured incident message to an approved channel and retain the returned message timestamp as workflow state.",
         detail:
-          "Uses the published Slack baseline; this step calls only slack_post_message.",
+          "Posts the coordination message with slack_post_message and retains the returned thread reference.",
         integrationSlug: "slack",
         toolNames: ["slack_post_message"],
       },

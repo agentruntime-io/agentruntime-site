@@ -218,6 +218,10 @@ function EvidenceBackedIntegrationDetail({
   related: readonly Integration[];
 }) {
   const workflowSlug = detail.relatedWorkflowSlugs[0];
+  const connectedServices = detail.connectedServiceSlugs.flatMap((serviceSlug) => {
+    const service = integrations.find((item) => item.slug === serviceSlug);
+    return service ? [service] : [];
+  });
 
   return (
     <div className="marketing-page">
@@ -227,7 +231,7 @@ function EvidenceBackedIntegrationDetail({
         canonicalPath={`/integrations/${integration.slug}`}
       />
       <PageHero
-        eyebrow="Connector evidence profile"
+        eyebrow={`${integration.name} integration`}
         title={detail.headline}
         description={detail.summary}
         primary={
@@ -239,84 +243,31 @@ function EvidenceBackedIntegrationDetail({
             : { label: "Discuss this integration →", to: "/contact" }
         }
         secondary={{ label: "Back to integrations", to: "/integrations" }}
+        aside={
+          <IntegrationHeroSummary
+            connectedServices={connectedServices}
+            detail={detail}
+            integration={integration}
+          />
+        }
       />
 
-      <section
-        className="marketing-section"
-        data-flush-top="true"
-        id="overview"
-      >
-        <div className="marketing-container">
-          <div className="marketing-integration-evidence-overview">
-            <div className="marketing-integration-detail-copy">
-              <div className="marketing-integration-identity">
-                <span className="marketing-integration-logo">
-                  <img src={detail.logoPath} alt="" aria-hidden="true" />
-                </span>
-                <div>
-                  <small>{integration.category} connector</small>
-                  <strong>{integration.name}</strong>
-                </div>
-              </div>
-              <div className="marketing-section-label">Published baseline</div>
-              <h2>
-                {detail.publishedTools.length} tools are published.{" "}
-                {detail.heldToolCount} stay held.
-              </h2>
-              <p className="marketing-section-intro">
-                The public connector contract exposes the{" "}
-                {detail.publishedTools.length} tools below. Additional implemented
-                wires remain held and are not presented as available.
-              </p>
-            </div>
-
-            <dl className="marketing-integration-fact-grid">
-              <div>
-                <dt>Catalog status</dt>
-                <dd>{detail.status.label}</dd>
-                <p>{detail.status.detail}</p>
-              </div>
-              <div>
-                <dt>Published tools</dt>
-                <dd>{detail.publishedTools.length}</dd>
-                <p>Exact wires in the generated connector catalog.</p>
-              </div>
-              <div>
-                <dt>Authentication</dt>
-                <dd>{detail.authentication.label}</dd>
-                <p>{detail.authentication.detail}</p>
-              </div>
-              <div>
-                <dt>Event triggers</dt>
-                <dd>{detail.triggers.label}</dd>
-                <p>{detail.triggers.detail}</p>
-              </div>
-            </dl>
-          </div>
-        </div>
-      </section>
-
-      <section className="marketing-section" data-tone="soft" id="published-tools">
+      <section className="marketing-section" data-tone="soft" id="capabilities">
         <div className="marketing-container">
           <div className="marketing-blueprint-section-head">
             <div>
-              <div className="marketing-section-label">
-                Published catalog contract
-              </div>
-              <h2>
-                {detail.publishedTools.length} published tools for{" "}
-                {integration.name} coordination.
-              </h2>
+              <div className="marketing-section-label">Slack capabilities</div>
+              <h2>Read context and coordinate work in Slack.</h2>
             </div>
             <p>
-              These names and descriptions come from the generated Slack
-              connector catalog. They describe the publishable baseline, not
-              the larger held implementation inventory.
+              List channels and users, read message context, post updates, reply
+              in threads, and add reactions. Available actions depend on the
+              token scopes and workspace access you provide.
             </p>
           </div>
 
           <div className="marketing-integration-tool-grid">
-            {detail.publishedTools.map((tool, index) => (
+            {detail.tools.map((tool, index) => (
               <article key={tool.name}>
                 <div className="marketing-integration-tool-head">
                   <span>{String(index + 1).padStart(2, "0")}</span>
@@ -348,9 +299,9 @@ function EvidenceBackedIntegrationDetail({
                 </div>
                 <h2>Use Slack as the response surface, not the state machine.</h2>
                 <p>
-                  The incident-response blueprint uses only published Slack
-                  baseline operations: post the incident message, keep updates
-                  in its thread, read replies, and record acknowledgements.
+                  The incident-response blueprint uses Slack to post the incident
+                  message, keep updates in its thread, read replies, and record
+                  acknowledgements while AgentRuntime retains workflow state.
                 </p>
                 <Link
                   className="marketing-button marketing-button-light"
@@ -380,55 +331,26 @@ function EvidenceBackedIntegrationDetail({
         </section>
       ) : null}
 
-      <section className="marketing-section" id="readiness">
+      <section className="marketing-section" id="setup">
         <div className="marketing-container">
           <div className="marketing-blueprint-section-head">
             <div>
-              <div className="marketing-section-label">
-                Readiness and configuration
-              </div>
-              <h2>Know what is proven, held, and still environment-specific.</h2>
+              <div className="marketing-section-label">Setup and access</div>
+              <h2>Connect Slack with only the access the workflow needs.</h2>
             </div>
             <p>
-              This profile reports repository evidence without turning
-              structural coverage into a production-readiness claim.
+              {detail.authentication} {detail.workflowStart}
             </p>
-          </div>
-
-          <div className="marketing-integration-evidence-grid">
-            <article>
-              <span className="marketing-blueprint-column-label">
-                Repository evidence
-              </span>
-              <ul>
-                {detail.evidence.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
-            <article data-tone="caution">
-              <span className="marketing-blueprint-column-label">
-                Current limits
-              </span>
-              <ul>
-                {detail.limitations.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
           </div>
 
           <div className="marketing-integration-config">
             <div>
-              <div className="marketing-section-label">
-                Configuration contract
-              </div>
-              <h3>Bring the token, scope, and channel boundary.</h3>
+              <div className="marketing-section-label">Access planning</div>
+              <h3>Choose scopes and a channel boundary.</h3>
               <p>
-                Representative baseline-canary scopes are shown for planning.
-                Private-channel and direct-message patterns can require
-                additional scopes. The exact Slack scopes must match the methods
-                selected for the production workflow.
+                Common scopes are shown for planning. Private-channel and
+                direct-message patterns can require additional access. Match the
+                final scopes to the actions selected for the workflow.
               </p>
               <div className="marketing-integration-scope-list">
                 {detail.representativeScopes.map((scope) => (
@@ -484,7 +406,7 @@ function EvidenceBackedIntegrationDetail({
       <CallToAction
         tone="soft"
         title="Define the Slack boundary before the workflow acts."
-        description="Bring the target channels, required methods, token model, scopes, retry policy, and human decision points. We will map them into a governed execution path."
+        description="Bring the target channels, required actions, token model, scopes, and human decision points. We will map them into a governed execution path."
         primary={{
           label: "Discuss the Slack workflow →",
           to: "/contact?integration=slack",
@@ -498,6 +420,73 @@ function EvidenceBackedIntegrationDetail({
             : undefined
         }
       />
+    </div>
+  );
+}
+
+function IntegrationHeroSummary({
+  connectedServices,
+  detail,
+  integration,
+}: {
+  connectedServices: readonly Integration[];
+  detail: IntegrationDetailRecord;
+  integration: Integration;
+}) {
+  return (
+    <div
+      className="marketing-integration-hero-visual"
+      aria-label={`${integration.name} integration summary`}
+    >
+      <div className="marketing-integration-route">
+        <div
+          className="marketing-integration-source-stack"
+          aria-label="Example connected services"
+        >
+          {connectedServices.map((service) => (
+            <span key={service.slug}>
+              <b aria-hidden="true">{getIntegrationMark(service.name)}</b>
+              <small>{service.name}</small>
+            </span>
+          ))}
+        </div>
+
+        <div className="marketing-integration-runtime-node">
+          <img src="/agentruntime-logo.svg" alt="" aria-hidden="true" />
+          <span>
+            <small>Workflow layer</small>
+            <strong>AgentRuntime</strong>
+          </span>
+        </div>
+
+        <article className="marketing-integration-summary-card">
+          <header>
+            <span className="marketing-integration-summary-logo">
+              <img src={detail.logoPath} alt="" aria-hidden="true" />
+            </span>
+            <span>
+              <small>Integration</small>
+              <strong>{integration.name}</strong>
+            </span>
+            <b>{detail.authLabel}</b>
+          </header>
+          <p>{detail.cardSummary}</p>
+          <dl>
+            <div>
+              <dt>{detail.tools.length}</dt>
+              <dd>{integration.name} actions</dd>
+            </div>
+            <div>
+              <dt>{detail.workflowStartLabel}</dt>
+              <dd>Workflow starts</dd>
+            </div>
+          </dl>
+        </article>
+      </div>
+      <p>
+        Connect {integration.name} with other workflow systems through
+        AgentRuntime instead of wiring each service directly.
+      </p>
     </div>
   );
 }

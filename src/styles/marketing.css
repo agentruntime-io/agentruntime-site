@@ -488,6 +488,32 @@
   text-align: center;
 }
 
+.marketing-page-hero[data-has-aside="true"] {
+  padding: 88px 0 76px;
+}
+
+.marketing-page-hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(410px, 0.85fr);
+  align-items: center;
+  gap: clamp(52px, 6vw, 92px);
+}
+
+.marketing-page-hero-main,
+.marketing-page-hero-aside {
+  min-width: 0;
+}
+
+.marketing-page-hero[data-has-aside="true"] h1 {
+  max-width: 760px;
+  font-size: clamp(52px, 5.8vw, 82px);
+}
+
+.marketing-page-hero[data-has-aside="true"] .marketing-page-copy {
+  max-width: 680px;
+  font-size: clamp(17px, 1.65vw, 21px);
+}
+
 .marketing-eyebrow {
   margin-bottom: 24px;
   display: inline-flex;
@@ -2419,6 +2445,275 @@
   box-shadow: 0 0 0 3px rgba(49, 139, 80, 0.11);
 }
 
+.marketing-integration-hero-visual {
+  position: relative;
+  padding: 26px 24px 19px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 90% 18%,
+      rgba(70, 224, 213, 0.19),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 10% 82%,
+      rgba(79, 129, 255, 0.14),
+      transparent 35%
+    ),
+    rgba(255, 255, 255, 0.47);
+  border: 1px solid rgba(39, 41, 36, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 26px 70px rgba(33, 28, 18, 0.11);
+}
+
+.marketing-integration-hero-visual::before {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(36, 39, 35, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(36, 39, 35, 0.035) 1px, transparent 1px);
+  background-size: 24px 24px;
+  content: "";
+  mask-image: linear-gradient(to bottom, #000, transparent 86%);
+}
+
+.marketing-integration-route {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 76px 94px minmax(220px, 1fr);
+  align-items: center;
+  gap: 28px;
+}
+
+.marketing-integration-source-stack {
+  position: relative;
+  display: grid;
+  gap: 7px;
+}
+
+.marketing-integration-source-stack::after {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 4px);
+  width: 24px;
+  border-top: 1px solid rgba(37, 40, 35, 0.3);
+  content: "";
+}
+
+.marketing-integration-source-stack > span {
+  min-width: 0;
+  height: 34px;
+  padding: 4px 7px 4px 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(37, 40, 35, 0.12);
+  border-radius: 9px;
+  box-shadow: 0 7px 18px rgba(33, 28, 18, 0.06);
+}
+
+.marketing-integration-source-stack b {
+  width: 25px;
+  height: 25px;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  color: #403f3a;
+  background: #f4f1e9;
+  border-radius: 7px;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 7px;
+  font-weight: 650;
+}
+
+.marketing-integration-source-stack small {
+  overflow: hidden;
+  color: #65635d;
+  font-size: 8px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.marketing-integration-runtime-node {
+  position: relative;
+  min-height: 94px;
+  padding: 12px 8px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 8px;
+  text-align: center;
+  background: #1c1d1a;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 16px;
+  box-shadow: 0 15px 32px rgba(24, 25, 22, 0.18);
+}
+
+.marketing-integration-runtime-node::after {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 5px);
+  width: 23px;
+  color: rgba(37, 40, 35, 0.5);
+  content: "→";
+  font-size: 16px;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+
+.marketing-integration-runtime-node img {
+  width: 27px;
+  height: 27px;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+.marketing-integration-runtime-node small,
+.marketing-integration-runtime-node strong {
+  display: block;
+}
+
+.marketing-integration-runtime-node small {
+  margin-bottom: 3px;
+  color: #85867e;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 6px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.marketing-integration-runtime-node strong {
+  color: #f8f5ec;
+  font-size: 9px;
+  letter-spacing: -0.02em;
+}
+
+.marketing-integration-summary-card {
+  min-width: 0;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.93);
+  border: 1px solid rgba(37, 40, 35, 0.11);
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(33, 28, 18, 0.12);
+}
+
+.marketing-integration-summary-card header {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.marketing-integration-summary-logo {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  border: 1px solid rgba(37, 40, 35, 0.11);
+  border-radius: 11px;
+}
+
+.marketing-integration-summary-logo img {
+  width: 25px;
+  height: 25px;
+  display: block;
+  object-fit: contain;
+}
+
+.marketing-integration-summary-card header small,
+.marketing-integration-summary-card header strong {
+  display: block;
+}
+
+.marketing-integration-summary-card header small {
+  margin-bottom: 3px;
+  color: #838078;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 7px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.marketing-integration-summary-card header strong {
+  color: #23231f;
+  font-size: 16px;
+  letter-spacing: -0.03em;
+}
+
+.marketing-integration-summary-card header > b {
+  padding: 5px 6px;
+  color: #2f7253;
+  background: rgba(60, 158, 109, 0.09);
+  border: 1px solid rgba(60, 158, 109, 0.2);
+  border-radius: 5px;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 6px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.marketing-integration-summary-card > p {
+  margin: 15px 0 17px;
+  color: #69675f;
+  font-size: 10px;
+  line-height: 1.52;
+}
+
+.marketing-integration-summary-card dl {
+  margin: 0;
+  padding-top: 13px;
+  display: grid;
+  grid-template-columns: 0.72fr 1.28fr;
+  border-top: 1px solid rgba(37, 40, 35, 0.1);
+}
+
+.marketing-integration-summary-card dl > div {
+  min-width: 0;
+}
+
+.marketing-integration-summary-card dl > div + div {
+  padding-left: 13px;
+  border-left: 1px solid rgba(37, 40, 35, 0.1);
+}
+
+.marketing-integration-summary-card dt {
+  margin-bottom: 3px;
+  color: #24241f;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: -0.025em;
+}
+
+.marketing-integration-summary-card dl > div:first-child dt {
+  font-size: 20px;
+  line-height: 0.9;
+}
+
+.marketing-integration-summary-card dd {
+  margin: 0;
+  color: #858279;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 7px;
+  letter-spacing: 0.05em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.marketing-integration-hero-visual > p {
+  position: relative;
+  z-index: 1;
+  margin: 17px 4px 0;
+  color: #6f6d65;
+  font-size: 9px;
+  line-height: 1.45;
+  text-align: center;
+}
+
 .marketing-integration-detail-overview,
 .marketing-integration-readiness {
   display: grid;
@@ -3649,6 +3944,15 @@
 }
 
 @media (max-width: 1140px) {
+  .marketing-page-hero-layout {
+    grid-template-columns: 1fr;
+    gap: 58px;
+  }
+
+  .marketing-page-hero-aside {
+    width: min(100%, 680px);
+  }
+
   .marketing-nav-links,
   .marketing-nav-actions .marketing-button-secondary {
     display: none;
@@ -3777,6 +4081,49 @@
   .marketing-hero,
   .marketing-page-hero {
     padding-top: 74px;
+  }
+
+  .marketing-page-hero[data-has-aside="true"] {
+    padding: 64px 0;
+  }
+
+  .marketing-page-hero-layout {
+    gap: 44px;
+  }
+
+  .marketing-page-hero-aside {
+    width: 100%;
+  }
+
+  .marketing-integration-hero-visual {
+    padding: 18px 17px 16px;
+    border-radius: 20px;
+  }
+
+  .marketing-integration-route {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 30px 28px;
+  }
+
+  .marketing-integration-source-stack {
+    width: min(100%, 124px);
+  }
+
+  .marketing-integration-runtime-node {
+    width: min(100%, 124px);
+    justify-self: end;
+  }
+
+  .marketing-integration-runtime-node::after {
+    top: calc(100% + 7px);
+    left: 50%;
+    width: auto;
+    content: "↓";
+    transform: translateX(-50%);
+  }
+
+  .marketing-integration-summary-card {
+    grid-column: 1 / -1;
   }
 
   .marketing-hero {

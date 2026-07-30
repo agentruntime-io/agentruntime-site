@@ -1,4 +1,4 @@
-export type PublishedIntegrationTool = {
+export type IntegrationTool = {
   name: string;
   label: string;
   description: string;
@@ -11,29 +11,20 @@ export type IntegrationDetailRecord = {
   logoPath: string;
   headline: string;
   summary: string;
-  status: {
-    label: string;
-    detail: string;
-  };
-  authentication: {
-    label: string;
-    detail: string;
-  };
-  triggers: {
-    label: string;
-    detail: string;
-  };
-  publishedTools: readonly PublishedIntegrationTool[];
-  heldToolCount: number;
+  cardSummary: string;
+  authLabel: string;
+  workflowStartLabel: string;
+  authentication: string;
+  workflowStart: string;
+  tools: readonly IntegrationTool[];
   configuration: readonly {
     key: string;
     requirement: string;
     description: string;
   }[];
   representativeScopes: readonly string[];
-  evidence: readonly string[];
-  limitations: readonly string[];
   docsUrl: string;
+  connectedServiceSlugs: readonly string[];
   relatedWorkflowSlugs: readonly string[];
 };
 
@@ -53,22 +44,15 @@ export const integrationDetails = {
     headline: "Bring governed workflows into Slack.",
     summary:
       "Use Slack as the human coordination surface for durable AgentRuntime workflows: discover accessible channels and users, read conversation context, post messages, reply in threads, and add reactions.",
-    status: {
-      label: "Catalogued baseline",
-      detail:
-        "The generated connector contract currently exposes eight publishable Slack tools. No committed live-canary result is available.",
-    },
-    authentication: {
-      label: "OAuth token",
-      detail:
-        "The connector accepts a Slack bot or user OAuth token (xoxb- or xoxp-). Required scopes depend on the methods used.",
-    },
-    triggers: {
-      label: "Not published",
-      detail:
-        "The current Slack catalog contract publishes tools only; it does not advertise a Slack event-trigger contract.",
-    },
-    publishedTools: [
+    cardSummary:
+      "Coordinate messages, threads, reactions, channels, and users while AgentRuntime keeps the workflow state.",
+    authLabel: "OAuth token",
+    workflowStartLabel: "API + webhook",
+    authentication:
+      "The connector accepts a Slack bot or user OAuth token (xoxb- or xoxp-). Required scopes depend on the methods used.",
+    workflowStart:
+      "Start the workflow from AgentRuntime or an external alert, then use Slack for conversation context, coordination, and updates.",
+    tools: [
       {
         name: "slack_list_channels",
         label: "List accessible channels",
@@ -127,7 +111,6 @@ export const integrationDetails = {
         access: "Write",
       },
     ],
-    heldToolCount: 105,
     configuration: [
       {
         key: "slack_api_token",
@@ -160,19 +143,8 @@ export const integrationDetails = {
       "users:read",
       "reactions:write",
     ],
-    evidence: [
-      "Eight baseline wires are present in the generated connector catalog.",
-      "Registration tests enforce 113 registered wires, eight publishable tools, and 105 held tools.",
-      "Publish-metadata tests require display names and groups for every publishable tool.",
-      "A catalog test verifies that held wires stay outside the published contract.",
-    ],
-    limitations: [
-      "The repository defines an eight-step live-canary suite, but no committed result or canary log is present.",
-      "The 105 held wires must not be presented as currently published tools.",
-      "Slack event triggers are not part of the published catalog contract.",
-      "Runtime availability and workspace scopes must be confirmed before production use.",
-    ],
     docsUrl: "https://api.slack.com/web",
+    connectedServiceSlugs: ["github", "posthog", "gmail"],
     relatedWorkflowSlugs: ["incident-response"],
   },
 } satisfies Record<string, IntegrationDetailRecord>;

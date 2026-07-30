@@ -154,7 +154,7 @@ export default function SolutionDetail() {
                       className="marketing-blueprint-step-connector"
                       to={`/integrations/${step.integrationSlug}`}
                     >
-                      Inspect connector evidence →
+                      View integration details →
                     </Link>
                   ) : null}
                 </div>
@@ -232,12 +232,12 @@ export default function SolutionDetail() {
           <div className="marketing-blueprint-section-head">
             <div>
               <div className="marketing-section-label">Connected system</div>
-              <h2>Connector evidence and runtime surfaces stay linked.</h2>
+              <h2>Integrations and runtime surfaces stay linked.</h2>
             </div>
             <p>
-              The blueprint links to the exact published connector baseline.
-              Availability, scopes, and environment configuration still need to
-              be confirmed before production use.
+              The blueprint links to the integrations used in this path. Confirm
+              workspace access, scopes, and environment configuration before the
+              workflow acts.
             </p>
           </div>
 

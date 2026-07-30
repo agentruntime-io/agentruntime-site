@@ -55,6 +55,7 @@ type PageHeroProps = {
   primary?: MarketingAction;
   secondary?: MarketingAction;
   centered?: boolean;
+  aside?: ReactNode;
 };
 
 export function PageHero({
@@ -64,19 +65,31 @@ export function PageHero({
   primary,
   secondary,
   centered = false,
+  aside,
 }: PageHeroProps) {
   return (
-    <section className="marketing-page-hero" data-centered={centered}>
+    <section
+      className="marketing-page-hero"
+      data-centered={centered}
+      data-has-aside={aside ? "true" : undefined}
+    >
       <div className="marketing-container">
-        <Eyebrow>{eyebrow}</Eyebrow>
-        <h1>{title}</h1>
-        <p className="marketing-page-copy">{description}</p>
-        {(primary || secondary) && (
-          <div className="marketing-hero-actions">
-            {primary && <ActionLink {...primary} variant="primary" />}
-            {secondary && <ActionLink {...secondary} variant="secondary" />}
+        <div className={aside ? "marketing-page-hero-layout" : undefined}>
+          <div className="marketing-page-hero-main">
+            <Eyebrow>{eyebrow}</Eyebrow>
+            <h1>{title}</h1>
+            <p className="marketing-page-copy">{description}</p>
+            {(primary || secondary) && (
+              <div className="marketing-hero-actions">
+                {primary && <ActionLink {...primary} variant="primary" />}
+                {secondary && <ActionLink {...secondary} variant="secondary" />}
+              </div>
+            )}
           </div>
-        )}
+          {aside ? (
+            <div className="marketing-page-hero-aside">{aside}</div>
+          ) : null}
+        </div>
       </div>
     </section>
   );

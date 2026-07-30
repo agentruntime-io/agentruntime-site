@@ -143,7 +143,7 @@ export default function Integrations() {
                     </div>
                     <span className="marketing-integration-status">
                       <i aria-hidden="true" />
-                      {detail ? "Evidence profile" : "View details"}
+                      {detail ? "Connector profile" : "View details"}
                     </span>
                   </Link>
                 );

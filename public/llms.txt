@@ -9,7 +9,7 @@
 - [Solutions](https://www.agentruntime.io/solutions): Intended teams, operational patterns, and detailed workflow blueprints for customer onboarding, support, incident response, finance, administration, and embedded agents.
 - [Incident response blueprint](https://www.agentruntime.io/solutions/incident-response): Illustrative alert-to-resolution graph with Slack coordination, human authority, failure handling, and a durable execution timeline.
 - [Integrations](https://www.agentruntime.io/integrations): Searchable connector directory with detail pages at `/integrations/:slug`, representative workflow patterns, and explicit production-readiness caveats.
-- [Slack integration](https://www.agentruntime.io/integrations/slack): Evidence-backed connector profile distinguishing eight published catalog tools from held implementation inventory; no committed live-canary result is available.
+- [Slack integration](https://www.agentruntime.io/integrations/slack): Connector profile covering Slack workflow capabilities, token-based authentication, access scopes, channel boundaries, and an incident-response example.
 - [Developers](https://www.agentruntime.io/developers): APIs, SDKs, MCP tools, events, and the execution lifecycle.
 - [Enterprise](https://www.agentruntime.io/enterprise): Permissions, approvals, policy controls, auditability, and adoption path.
 
