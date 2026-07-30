@@ -17,10 +17,26 @@ export const productSurfaces = [
       label: "Workflow / customer onboarding",
       title: "Draft v12",
       rows: [
-        { label: "Trigger", value: "Customer created" },
-        { label: "Agent", value: "Research account" },
-        { label: "Decision", value: "Choose onboarding path" },
-        { label: "Human", value: "Review implementation plan" },
+        {
+          label: "Trigger",
+          value: "Customer created",
+          detail: "Starts from a typed CRM event and creates a durable run.",
+        },
+        {
+          label: "Agent",
+          value: "Research account",
+          detail: "Collects the context required by every downstream step.",
+        },
+        {
+          label: "Decision",
+          value: "Choose onboarding path",
+          detail: "Applies explicit account rules to select the correct branch.",
+        },
+        {
+          label: "Human",
+          value: "Review implementation plan",
+          detail: "Pauses for the responsible owner before execution continues.",
+        },
       ],
       footer: "Validated • 6 steps • ready to publish",
     },
@@ -43,10 +59,26 @@ export const productSurfaces = [
       label: "Runtime / active run",
       title: "run_84F2",
       rows: [
-        { label: "Source", value: "Product API" },
-        { label: "Workflow", value: "Account research" },
-        { label: "State", value: "Running · step 4 of 7" },
-        { label: "Next", value: "Wait for policy signal" },
+        {
+          label: "Source",
+          value: "Product API",
+          detail: "The product starts the run without owning its execution loop.",
+        },
+        {
+          label: "Workflow",
+          value: "Account research",
+          detail: "A published workflow version controls the complete execution path.",
+        },
+        {
+          label: "State",
+          value: "Running · step 4 of 7",
+          detail: "Progress and structured events remain available to the caller.",
+        },
+        {
+          label: "Next",
+          value: "Wait for policy signal",
+          detail: "The run can wait and resume without losing context or ownership.",
+        },
       ],
       footer: "State persisted across every transition",
     },
@@ -69,10 +101,26 @@ export const productSurfaces = [
       label: "Operations / intervention queue",
       title: "3 items need attention",
       rows: [
-        { label: "Approval", value: "Implementation plan · 4m" },
-        { label: "Exception", value: "Missing billing contact · 11m" },
-        { label: "Failure", value: "CRM update · retry ready" },
-        { label: "Waiting", value: "Customer documents · 2h" },
+        {
+          label: "Approval",
+          value: "Implementation plan · 4m",
+          detail: "The assigned owner receives the decision and its supporting context.",
+        },
+        {
+          label: "Exception",
+          value: "Missing billing contact · 11m",
+          detail: "Operators see exactly what is missing and which run is blocked.",
+        },
+        {
+          label: "Failure",
+          value: "CRM update · retry ready",
+          detail: "The failed step can be inspected and retried without restarting the run.",
+        },
+        {
+          label: "Waiting",
+          value: "Customer documents · 2h",
+          detail: "Long waits stay visible with an owner, deadline, and next action.",
+        },
       ],
       footer: "Owner, state, and full run history attached",
     },
@@ -95,10 +143,26 @@ export const productSurfaces = [
       label: "Governance / production",
       title: "Policy checks",
       rows: [
-        { label: "Connection", value: "Salesforce · scoped" },
-        { label: "Secret", value: "Production vault · active" },
-        { label: "Action", value: "Refund > $500 · approval" },
-        { label: "Audit", value: "All transitions · retained" },
+        {
+          label: "Connection",
+          value: "Salesforce · scoped",
+          detail: "The workflow receives only the connector access it requires.",
+        },
+        {
+          label: "Secret",
+          value: "Production vault · active",
+          detail: "Credentials remain managed outside workflow definitions and prompts.",
+        },
+        {
+          label: "Action",
+          value: "Refund > $500 · approval",
+          detail: "Sensitive actions pause when policy requires explicit authority.",
+        },
+        {
+          label: "Audit",
+          value: "All transitions · retained",
+          detail: "Configuration and execution decisions remain reviewable.",
+        },
       ],
       footer: "4 controls enforced before execution",
     },
@@ -121,6 +185,17 @@ export const solutionAudiences = [
     ],
     startingPoint:
       "Put one repeatable product task behind Runtime APIs, then add tools and autonomy as its behavior becomes trusted.",
+    scenario: {
+      title: "A research request starts inside the product",
+      steps: [
+        "The product API starts a published workflow",
+        "Agents and tools gather, compare, and validate context",
+        "A structured result streams back while the full run stays observable",
+      ],
+      outcome:
+        "The customer gets a product-native experience while the operating team retains a complete execution timeline.",
+    },
+    ctaLabel: "Plan an embedded product workflow →",
   },
   {
     id: "operations",
@@ -137,6 +212,17 @@ export const solutionAudiences = [
     ],
     startingPoint:
       "Choose a process with frequent handoffs and a clear owner, then model its normal path and most common exception.",
+    scenario: {
+      title: "An account setup leaves the normal path",
+      steps: [
+        "A system event starts the standard setup workflow",
+        "A missing dependency creates a visible exception with an owner",
+        "The run resumes from the same state after the issue is resolved",
+      ],
+      outcome:
+        "Operations sees the normal path and the exception path without coordinating the process in a spreadsheet.",
+    },
+    ctaLabel: "Map an operations workflow →",
   },
   {
     id: "customer-teams",
@@ -153,6 +239,17 @@ export const solutionAudiences = [
     ],
     startingPoint:
       "Start with one high-volume request where agents can prepare the work and people should own the final exception.",
+    scenario: {
+      title: "A support issue needs investigation and judgment",
+      steps: [
+        "The workflow gathers account, product, and support history",
+        "Policy and risk checks determine whether routine action is safe",
+        "Sensitive cases reach the correct person with the investigation attached",
+      ],
+      outcome:
+        "Routine work moves faster while customer-facing teams retain control over consequential decisions.",
+    },
+    ctaLabel: "Design a customer workflow →",
   },
   {
     id: "finance-administration",
@@ -169,6 +266,17 @@ export const solutionAudiences = [
     ],
     startingPoint:
       "Begin with a document-heavy process whose approval thresholds and responsible owners are already defined.",
+    scenario: {
+      title: "An invoice arrives with incomplete supporting data",
+      steps: [
+        "The workflow extracts fields and validates required evidence",
+        "Deterministic thresholds select the approval path",
+        "The responsible approver receives the request and full check history",
+      ],
+      outcome:
+        "The document, checks, authority, and final action remain connected in one trace.",
+    },
+    ctaLabel: "Map a controlled approval flow →",
   },
   {
     id: "implementation-partners",
@@ -185,6 +293,17 @@ export const solutionAudiences = [
     ],
     startingPoint:
       "Turn one repeated delivery pattern into a configurable workflow with explicit extension points for customer systems and policy.",
+    scenario: {
+      title: "A repeatable delivery pattern meets a new client stack",
+      steps: [
+        "The partner starts from a governed workflow accelerator",
+        "Customer connectors and policy boundaries replace defined extension points",
+        "The same runtime provides execution, observability, and intervention",
+      ],
+      outcome:
+        "Delivery remains adaptable without rebuilding the production foundation for every engagement.",
+    },
+    ctaLabel: "Plan a reusable delivery pattern →",
   },
 ] as const;
 

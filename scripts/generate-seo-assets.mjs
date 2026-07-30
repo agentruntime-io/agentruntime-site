@@ -2,7 +2,7 @@
  * Emit `public/sitemap.xml` and `public/blog/rss.xml` from static routes + `src/blog/posts.ts`.
  * Run before `vite build` (see package.json). Keep static route list aligned with App.tsx + featureFlags.
  */
-import { writeFileSync, existsSync, statSync } from "node:fs";
+import { writeFileSync, readFileSync, existsSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { coverImageWebp800Path, parseBlogPosts } from "./parse-blog-posts.mjs";
@@ -10,6 +10,7 @@ import { coverImageWebp800Path, parseBlogPosts } from "./parse-blog-posts.mjs";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 const POSTS_TS = join(ROOT, "src", "blog", "posts.ts");
+const MARKETING_CATALOG_TS = join(ROOT, "src", "lib", "marketingCatalog.ts");
 const SITEMAP_OUT = join(ROOT, "public", "sitemap.xml");
 const RSS_OUT = join(ROOT, "public", "blog", "rss.xml");
 
@@ -19,6 +20,24 @@ const SITE_NAME = "AgentRuntime";
 
 /** Keep aligned with src/config/featureFlags.ts → showWaitlist */
 const SHOW_WAITLIST = false;
+
+function parseIntegrationSlugs(path) {
+  const source = readFileSync(path, "utf8");
+  const integrationsBlock = source.match(
+    /export const integrations = \[([\s\S]*?)\]\s+satisfies readonly Integration\[\];/,
+  );
+
+  if (!integrationsBlock) {
+    console.error(
+      "generate-seo-assets: could not parse integrations from marketingCatalog.ts",
+    );
+    process.exit(1);
+  }
+
+  return [...integrationsBlock[1].matchAll(/\bslug:\s*"([^"]+)"/g)].map(
+    (match) => match[1],
+  );
+}
 
 const baseStaticEntries = [
   ["/", "weekly", "1"],
@@ -42,7 +61,29 @@ const baseStaticEntries = [
   ["/legal/service-level-agreement", "yearly", "0.4"],
 ];
 
-const staticEntries = [...baseStaticEntries, ...(SHOW_WAITLIST ? [["/waitlist", "monthly", "0.8"]] : [])];
+const integrationSlugs = parseIntegrationSlugs(MARKETING_CATALOG_TS);
+const integrationSlugSet = new Set(integrationSlugs);
+
+if (
+  integrationSlugs.length === 0 ||
+  integrationSlugSet.size !== integrationSlugs.length
+) {
+  console.error(
+    "generate-seo-assets: integration slugs are empty or contain duplicates",
+  );
+  process.exit(1);
+}
+
+const integrationEntries = integrationSlugs.map((slug) => [
+  `/integrations/${slug}`,
+  "monthly",
+  "0.7",
+]);
+const staticEntries = [
+  ...baseStaticEntries,
+  ...integrationEntries,
+  ...(SHOW_WAITLIST ? [["/waitlist", "monthly", "0.8"]] : []),
+];
 
 function escapeXml(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
@@ -173,6 +214,6 @@ const rss = [
 writeFileSync(RSS_OUT, `${rss}\n`, "utf8");
 
 console.log(
-  `generate-seo-assets: sitemap ${smLines.length - 3} URLs (${blogPosts.length} posts, lastmod on static=${buildDay}) -> ${SITEMAP_OUT}`
+  `generate-seo-assets: sitemap ${smLines.length - 3} URLs (${integrationSlugs.length} integrations, ${blogPosts.length} posts, lastmod on static=${buildDay}) -> ${SITEMAP_OUT}`
 );
 console.log(`generate-seo-assets: RSS ${sorted.length} items -> ${RSS_OUT}`);

@@ -18,6 +18,7 @@ const Home = lazy(() => import("./pages/Home"));
 const Platform = lazy(() => import("./pages/Platform"));
 const Workflows = lazy(() => import("./pages/Workflows"));
 const Integrations = lazy(() => import("./pages/Integrations"));
+const IntegrationDetail = lazy(() => import("./pages/IntegrationDetail"));
 const Developers = lazy(() => import("./pages/Developers"));
 const Enterprise = lazy(() => import("./pages/Enterprise"));
 const Company = lazy(() => import("./pages/Company"));
@@ -63,6 +64,7 @@ const App = () => (
                       <Route path="/platform" element={<Platform />} />
                       <Route path="/solutions" element={<Workflows />} />
                       <Route path="/integrations" element={<Integrations />} />
+                      <Route path="/integrations/:slug" element={<IntegrationDetail />} />
                       <Route path="/developers" element={<Developers />} />
                       <Route path="/enterprise" element={<Enterprise />} />
                       <Route path="/company" element={<Company />} />

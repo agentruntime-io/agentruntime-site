@@ -163,9 +163,13 @@ export default function Developers() {
             aria-label="Featured integrations"
           >
             {featuredIntegrations.slice(0, 6).map((integration) => (
-              <div className="marketing-logo-cell" key={integration.slug}>
+              <Link
+                className="marketing-logo-cell"
+                to={`/integrations/${integration.slug}`}
+                key={integration.slug}
+              >
                 {integration.name}
-              </div>
+              </Link>
             ))}
           </div>
           <div className="marketing-section-action">

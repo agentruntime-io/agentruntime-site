@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Seo } from "@/components/Seo";
 import {
   CallToAction,
@@ -5,7 +7,6 @@ import {
 } from "@/components/marketing/MarketingPrimitives";
 import { productSurfaces } from "@/lib/marketingCatalog";
 import { seoCopy } from "@/seo/metadata";
-import { Link } from "react-router-dom";
 
 const capabilities = [
   {
@@ -62,6 +63,49 @@ const autonomyLevels = [
       "Trusted processes run end to end with continuous visibility and defined intervention points.",
   },
 ];
+
+type ProductSurface = (typeof productSurfaces)[number];
+
+function ProductSurfaceMockup({ surface }: { surface: ProductSurface }) {
+  const [activeRow, setActiveRow] = useState(0);
+  const selectedRow = surface.visual.rows[activeRow] ?? surface.visual.rows[0];
+
+  return (
+    <div className="marketing-product-panel">
+      <div className="marketing-product-panel-header">
+        <span>{surface.visual.label}</span>
+        <strong>{surface.visual.title}</strong>
+      </div>
+      <div
+        className="marketing-product-panel-rows"
+        aria-label={`Explore the ${surface.title} mockup`}
+      >
+        {surface.visual.rows.map((row, rowIndex) => (
+          <button
+            type="button"
+            data-active={activeRow === rowIndex}
+            aria-pressed={activeRow === rowIndex}
+            onClick={() => setActiveRow(rowIndex)}
+            key={row.label}
+          >
+            <span>{String(rowIndex + 1).padStart(2, "0")}</span>
+            <small>{row.label}</small>
+            <strong>{row.value}</strong>
+            <b aria-hidden="true">{activeRow === rowIndex ? "●" : "○"}</b>
+          </button>
+        ))}
+      </div>
+      <div className="marketing-product-panel-detail" aria-live="polite">
+        <span>{selectedRow.label} selected</span>
+        <p>{selectedRow.detail}</p>
+      </div>
+      <div className="marketing-product-panel-footer">
+        <span className="marketing-status">● Interactive mockup</span>
+        <small>{surface.visual.footer}</small>
+      </div>
+    </div>
+  );
+}
 
 export default function Platform() {
   return (
@@ -268,26 +312,7 @@ export default function Platform() {
                   </div>
                 </div>
 
-                <div className="marketing-product-panel">
-                  <div className="marketing-product-panel-header">
-                    <span>{surface.visual.label}</span>
-                    <strong>{surface.visual.title}</strong>
-                  </div>
-                  <div className="marketing-product-panel-rows">
-                    {surface.visual.rows.map((row, rowIndex) => (
-                      <div key={row.label}>
-                        <span>{String(rowIndex + 1).padStart(2, "0")}</span>
-                        <small>{row.label}</small>
-                        <strong>{row.value}</strong>
-                        <b aria-hidden="true">✓</b>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="marketing-product-panel-footer">
-                    <span className="marketing-status">● Active</span>
-                    <small>{surface.visual.footer}</small>
-                  </div>
-                </div>
+                <ProductSurfaceMockup surface={surface} />
               </article>
             ))}
           </div>

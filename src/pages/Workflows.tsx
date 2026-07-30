@@ -199,6 +199,12 @@ export default function Workflows() {
                   <h3>{audience.label}</h3>
                   <p className="marketing-detail-lead">{audience.title}</p>
                   <p>{audience.detail}</p>
+                  <Link
+                    className="marketing-button marketing-button-secondary marketing-detail-cta"
+                    to={`/contact?solution=${audience.id}`}
+                  >
+                    {audience.ctaLabel}
+                  </Link>
                 </div>
 
                 <div className="marketing-audience-fit-panel">
@@ -218,6 +224,18 @@ export default function Workflows() {
                     <span>Best first move</span>
                     <p>{audience.startingPoint}</p>
                   </div>
+                  <div className="marketing-solution-scenario">
+                    <span>Illustrative scenario</span>
+                    <strong>{audience.scenario.title}</strong>
+                    <ol>
+                      {audience.scenario.steps.map((step) => (
+                        <li key={step}>{step}</li>
+                      ))}
+                    </ol>
+                    <p>
+                      <b>Operational result:</b> {audience.scenario.outcome}
+                    </p>
+                  </div>
                 </div>
               </article>
             ))}
@@ -231,8 +249,15 @@ export default function Workflows() {
         id="examples"
       >
         <div className="marketing-container">
-          <div className="marketing-section-label">Workflow patterns</div>
+          <div className="marketing-section-label">
+            Illustrative workflow scenarios
+          </div>
           <h2>Use AgentRuntime where decisions, tools, and ownership meet.</h2>
+          <p className="marketing-section-intro">
+            These scenarios show how the execution model can fit operational
+            work. They are product examples, not customer case studies or
+            performance claims.
+          </p>
 
           <nav
             className="marketing-detail-index"
@@ -269,6 +294,12 @@ export default function Workflows() {
                     ))}
                   </ul>
                 </div>
+                <Link
+                  className="marketing-button marketing-button-secondary marketing-detail-cta"
+                  to={`/contact?workflow=${workflow.id}`}
+                >
+                  Map this workflow →
+                </Link>
               </div>
               <WorkflowVisual {...workflow.visual} />
             </article>

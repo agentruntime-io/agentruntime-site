@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Seo } from "@/components/Seo";
 import {
   CallToAction,
@@ -115,8 +116,10 @@ export default function Integrations() {
           {filteredIntegrations.length > 0 ? (
             <div className="marketing-integration-grid">
               {filteredIntegrations.map((integration) => (
-                <article
+                <Link
                   className="marketing-integration-card"
+                  to={`/integrations/${integration.slug}`}
+                  aria-label={`View ${integration.name} integration details`}
                   key={integration.slug}
                 >
                   <span className="marketing-integration-mark" aria-hidden="true">
@@ -128,9 +131,9 @@ export default function Integrations() {
                   </div>
                   <span className="marketing-integration-status">
                     <i aria-hidden="true" />
-                    Catalogued
+                    View details
                   </span>
-                </article>
+                </Link>
               ))}
             </div>
           ) : (

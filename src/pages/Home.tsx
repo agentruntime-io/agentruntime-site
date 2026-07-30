@@ -281,12 +281,15 @@ export default function Home() {
             aria-label="Featured integrations"
           >
             {featuredIntegrations.map((integration) => (
-              <div key={integration.slug}>
+              <Link
+                to={`/integrations/${integration.slug}`}
+                key={integration.slug}
+              >
                 <span aria-hidden="true">
                   {getIntegrationMark(integration.name)}
                 </span>
                 <strong>{integration.name}</strong>
-              </div>
+              </Link>
             ))}
           </div>
           <Link
