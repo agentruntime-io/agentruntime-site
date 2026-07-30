@@ -1,35 +1,39 @@
 # AgentRuntime — full llms index
 
-> AgentRuntime helps teams move from experiments to production for AI agents: register tools and agents, validate flows before deployment, run workloads with control (pause, parallel, nested runs), and monitor execution. This file is the marketing site’s extended handoff for LLM-based tools and assistants. Canonical site: https://www.agentruntime.io
+> AgentRuntime connects AI agents, tools, deterministic rules, and people in reliable, stateful workflows built for production operations. This file is the marketing site’s extended handoff for LLM-based tools and assistants. Canonical site: https://www.agentruntime.io
 
 ## What AgentRuntime is (for synthesis)
 
-AgentRuntime is positioned as a **runtime and orchestration layer** for AI agents—not a generic chat UI. Typical capabilities described on the marketing site include:
+AgentRuntime is positioned as a **runtime and orchestration layer** for AI workflows—not a generic chat UI. Typical capabilities described on the marketing site include:
 
-- **Registration & discovery**: Connect agents via API or UI; ingest schemas and dependencies (e.g. OpenAPI/Swagger-oriented workflows in copy).
-- **Simulation & compile**: Pre-flight validation, linting, and dry-runs before production.
-- **Execution**: Triggers, pause/resume, parallelism, tracing, and operational visibility.
-- **Governance**: Security and policy themes appear in product and legal content (see Legal section).
+- **Stateful execution**: Carry context, outputs, and workflow state across steps, waits, and execution rounds.
+- **Mixed execution**: Route work between AI agents, deterministic rules, MCP/API tools, and human approvals.
+- **Control and recovery**: Branch, validate, pause/resume, retry, and intervene without rebuilding the run.
+- **Observability and governance**: Inspect timelines, traces, permissions, secrets, policies, and audit history.
 
 The public marketing SPA uses client-side routing; authoritative legal text lives in **HTML rendered from Markdown** under `/legal/:slug`. For short page summaries aligned with SEO copy, see **`/llms.txt`**.
 
 ## Product & learning (primary pages)
 
-- [Home](https://www.agentruntime.io/): Primary landing—value proposition “Put your agents to work,” feature summaries, testimonials, and CTAs (waitlist when enabled, otherwise console).
-- [Features](https://www.agentruntime.io/features): Deep dive on capabilities: registration, simulation, runtime API, data layer, versioning, monitoring, security, integrations.
-- [How it works](https://www.agentruntime.io/how-it-works): Step-by-step narrative (connect → configure & validate → execute & orchestrate) plus illustrative snippets in page content.
-- [Pricing](https://www.agentruntime.io/pricing): Tiered plans (e.g. developer, team, enterprise framing); details are marketing unless bound to a separate billing system.
-- [Use cases](https://www.agentruntime.io/use-cases): Scenario-based storytelling (support automation, IoT/robotics, data pipelines, regulated workflows, etc.).
+- [Home](https://www.agentruntime.io/): Primary landing—how AgentRuntime puts AI inside real business processes and routes each step to agents, tools, rules, or people.
+- [Product](https://www.agentruntime.io/platform): Workflow Studio, Runtime APIs, Command Center, control plane, execution architecture, stateful runtime capabilities, and the autonomy spectrum.
+- [Solutions](https://www.agentruntime.io/solutions): Intended teams plus scenario-based patterns for customer onboarding, support, incident response, finance, administration, and product-embedded agents. Detailed workflow blueprints use `/solutions/:workflow-slug`.
+- [Incident response blueprint](https://www.agentruntime.io/solutions/incident-response): An illustrative typed-alert-to-resolution workflow showing deterministic severity routing, Slack coordination, human authority, wait/failure paths, and a structured outcome. It is a reference design, not a customer result or performance claim.
+- [Integrations](https://www.agentruntime.io/integrations): Searchable public connector index covering communication, data, developer tools, business software, model services, and custom MCP/API extension paths. Each catalogued connector has a detail route at `/integrations/:slug` with representative patterns and production-readiness guidance; examples are not claims about enabled actions. Confirm live availability before production use.
+- [Slack integration](https://www.agentruntime.io/integrations/slack): Connector profile for reading Slack context and coordinating workflow updates. It covers available actions, token-based authentication, common scopes, channel boundaries, and the linked incident-response blueprint.
+- [Developers](https://www.agentruntime.io/developers): Backend-first integration, APIs, SDKs, MCP tools, events, identity, and the run lifecycle.
+- [Enterprise](https://www.agentruntime.io/enterprise): Identity, permissions, secrets, data boundaries, execution policies, approvals, and auditability.
 - [Blog](https://www.agentruntime.io/blog): Articles and updates; every post is listed in [sitemap.xml](https://www.agentruntime.io/sitemap.xml) at `/blog/:slug` (example: [Introducing the AgentRuntime blog](https://www.agentruntime.io/blog/introducing-the-agentruntime-blog)).
-- [Documentation hub](https://www.agentruntime.io/docs): Curated documentation **entry point** on the marketing site (sections such as getting started, API reference pointers, CLI, WebSocket, operations). Confirm any live API base URL and auth in product docs or the developer platform—not only this site.
+- [Developer documentation](https://docs.agentruntime.io/): Official guides and API reference. Confirm live API behavior and authentication here rather than relying on marketing examples.
 
 ## Company & conversion
 
 - [Contact](https://www.agentruntime.io/contact): Contact form and listed channels; enterprise or support lines may be gated behind feature flags.
-- [Console](http://console.agentruntime.io/): Primary product UI—sign in to run and manage agents (public URL).
+- [Company](https://www.agentruntime.io/company): Founding thesis, product principles, team perspective, and intended audiences.
+- [Console](https://console.agentruntime.io/): Primary product UI—sign in to run and manage agents (public URL).
 - [Developer documentation](https://docs.agentruntime.io/): Guides and API reference hosted separately from the marketing site.
 - **Waitlist (`/waitlist`)**: May be enabled for email capture via `featureFlags.showWaitlist`; when disabled the path redirects to `/`.
-- **About (`/about`)** and **Careers (`/careers`)**: Implemented in the app but may be **disabled** in production via `featureFlags.showAboutPage` / `showCareersPage`. When disabled, those paths redirect to `/`. Do not treat them as canonical live URLs until flags are enabled (then add to sitemap).
+- **Careers (`/careers`)**: Implemented in the app but may be **disabled** in production via `featureFlags.showCareersPage`. When disabled, the path redirects to `/`. Do not treat it as a canonical live URL until enabled.
 
 ## Legal & policies
 

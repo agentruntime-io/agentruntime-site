@@ -5,8 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { lazy, Suspense } from "react";
-import Navigation from "./components/Navigation";
-import Footer from "./components/Footer";
+import { MarketingNavigation } from "./components/marketing/MarketingNavigation";
+import { MarketingFooter } from "./components/marketing/MarketingFooter";
 import { ScrollManager } from "./components/ScrollManager";
 import { featureFlags } from "@/config/featureFlags";
 import { Analytics } from "@vercel/analytics/react";
@@ -14,14 +14,16 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const queryClient = new QueryClient();
 
-const Index = lazy(() => import("./pages/Index"));
-const Features = lazy(() => import("./pages/Features"));
-const HowItWorks = lazy(() => import("./pages/HowItWorks"));
-const Pricing = lazy(() => import("./pages/Pricing"));
-const UseCases = lazy(() => import("./pages/UseCases"));
-const Documentation = lazy(() => import("./pages/Documentation"));
-const About = lazy(() => import("./pages/About"));
-const Contact = lazy(() => import("./pages/Contact"));
+const Home = lazy(() => import("./pages/Home"));
+const Platform = lazy(() => import("./pages/Platform"));
+const Workflows = lazy(() => import("./pages/Workflows"));
+const SolutionDetail = lazy(() => import("./pages/SolutionDetail"));
+const Integrations = lazy(() => import("./pages/Integrations"));
+const IntegrationDetail = lazy(() => import("./pages/IntegrationDetail"));
+const Developers = lazy(() => import("./pages/Developers"));
+const Enterprise = lazy(() => import("./pages/Enterprise"));
+const Company = lazy(() => import("./pages/Company"));
+const Contact = lazy(() => import("./pages/ContactMarketing"));
 const Waitlist = lazy(() => import("./pages/Waitlist"));
 const Careers = lazy(() => import("./pages/Careers"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -33,7 +35,12 @@ const ApiReference = lazy(() => import("./pages/ApiReference"));
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="light"
+      enableSystem={false}
+      forcedTheme="light"
+    >
       <TooltipProvider>
         <Toaster />
         <Sonner />
@@ -50,18 +57,29 @@ const App = () => (
             {/* All other routes share the site nav + footer shell */}
             <Route path="*" element={
               <>
-                <Navigation />
+                <MarketingNavigation />
                 <main id="main-content">
                   <Suspense fallback={<div className="min-h-screen bg-background" aria-label="Loading page" />}>
                     <Routes>
-                      <Route path="/" element={<Index />} />
-                      <Route path="/features" element={<Features />} />
-                      <Route path="/how-it-works" element={<HowItWorks />} />
-                      <Route path="/pricing" element={<Pricing />} />
-                      <Route path="/use-cases" element={<UseCases />} />
-                      <Route path="/docs" element={<Documentation />} />
-                      <Route path="/about" element={featureFlags.showAboutPage ? <About /> : <Navigate to="/" replace />} />
+                      <Route path="/" element={<Home />} />
+                      <Route path="/platform" element={<Platform />} />
+                      <Route path="/solutions" element={<Workflows />} />
+                      <Route path="/solutions/:slug" element={<SolutionDetail />} />
+                      <Route path="/integrations" element={<Integrations />} />
+                      <Route path="/integrations/:slug" element={<IntegrationDetail />} />
+                      <Route path="/developers" element={<Developers />} />
+                      <Route path="/enterprise" element={<Enterprise />} />
+                      <Route path="/company" element={<Company />} />
                       <Route path="/contact" element={<Contact />} />
+                      <Route path="/product" element={<Navigate to="/platform" replace />} />
+                      <Route path="/workflows" element={<Navigate to="/solutions" replace />} />
+                      <Route path="/connectors" element={<Navigate to="/integrations" replace />} />
+                      <Route path="/features" element={<Navigate to="/platform" replace />} />
+                      <Route path="/how-it-works" element={<Navigate to="/platform" replace />} />
+                      <Route path="/pricing" element={<Navigate to="/contact?source=pricing" replace />} />
+                      <Route path="/use-cases" element={<Navigate to="/solutions" replace />} />
+                      <Route path="/docs" element={<Navigate to="/developers" replace />} />
+                      <Route path="/about" element={<Navigate to="/company" replace />} />
                       <Route
                         path="/waitlist"
                         element={featureFlags.showWaitlist ? <Waitlist /> : <Navigate to="/" replace />}
@@ -79,7 +97,7 @@ const App = () => (
                     </Routes>
                   </Suspense>
                 </main>
-                <Footer />
+                <MarketingFooter />
               </>
             } />
           </Routes>
