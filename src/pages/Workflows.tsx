@@ -38,6 +38,7 @@ const workflowPatterns = [
         },
       ],
     },
+    detailTo: "/solutions/customer-onboarding",
   },
   {
     id: "support-operations",

@@ -947,6 +947,22 @@
   border-radius: 6px;
 }
 
+.marketing-node-logo {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  padding: 3px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+}
+
+.marketing-node[data-status="done"] .marketing-node-logo {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(98, 199, 128, 0.55);
+}
+
 .marketing-node h4 {
   margin: 18px 0 5px;
   font-size: 14px;
@@ -960,12 +976,24 @@
 }
 
 .marketing-node-tool-call {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin-top: 10px !important;
   padding-top: 8px;
   color: #d8d4cb !important;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 10px !important;
+}
+
+.marketing-node-tool-call-logo {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.96);
 }
 
 .marketing-mobile-run-status {

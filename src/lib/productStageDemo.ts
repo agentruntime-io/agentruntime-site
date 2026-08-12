@@ -1,3 +1,5 @@
+import { getIntegrationLogoPath } from "./integrationLogos";
+
 export type StepStatus = "pending" | "running" | "done" | "waiting" | "failed";
 
 export type RunPhase =
@@ -14,6 +16,12 @@ export type ProductStageNode = {
   title: string;
   description: string;
   highlighted?: boolean;
+  integrationLogo?: string;
+};
+
+export type ToolCallDetail = {
+  label: string;
+  logo?: string;
 };
 
 export type TimelineEntry = {
@@ -53,11 +61,13 @@ export const productStageNodes: ProductStageNode[] = [
     type: "Trigger",
     title: "New customer created",
     description: "Starts from CRM or API event.",
+    integrationLogo: getIntegrationLogoPath("hubspot"),
   },
   {
     type: "Agent",
     title: "Research account",
     description: "Collects context across connected tools.",
+    integrationLogo: getIntegrationLogoPath("hubspot"),
   },
   {
     type: "Decision",
@@ -68,6 +78,7 @@ export const productStageNodes: ProductStageNode[] = [
     type: "Tool",
     title: "Prepare workspace",
     description: "Creates records, tasks and access.",
+    integrationLogo: getIntegrationLogoPath("notion"),
   },
   {
     type: "Human approval",
@@ -79,6 +90,7 @@ export const productStageNodes: ProductStageNode[] = [
     type: "Agent",
     title: "Launch onboarding",
     description: "Executes, monitors and handles exceptions.",
+    integrationLogo: getIntegrationLogoPath("slack"),
   },
 ];
 
@@ -91,10 +103,19 @@ export const timelineLabels = [
   "Onboarding launched",
 ] as const;
 
-export const toolCallsByStep: Partial<Record<number, string>> = {
-  1: "HubSpot · Account tier: Enterprise",
-  3: "Notion · Workspace draft created",
-  5: "Slack · Welcome sequence scheduled",
+export const toolCallsByStep: Partial<Record<number, ToolCallDetail>> = {
+  1: {
+    label: "HubSpot · Account tier: Enterprise",
+    logo: getIntegrationLogoPath("hubspot"),
+  },
+  3: {
+    label: "Notion · Workspace draft created",
+    logo: getIntegrationLogoPath("notion"),
+  },
+  5: {
+    label: "Slack · Welcome sequence scheduled",
+    logo: getIntegrationLogoPath("slack"),
+  },
 };
 
 export const stepDurationMs = 1400;
@@ -483,7 +504,7 @@ export function timelineDetailForStep(
   const node = productStageNodes[stepIndex];
 
   if (status === "running") {
-    return toolCallsByStep[stepIndex] ?? node.description;
+    return toolCallsByStep[stepIndex]?.label ?? node.description;
   }
 
   if (status === "waiting") {

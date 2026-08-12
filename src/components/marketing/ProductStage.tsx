@@ -548,7 +548,7 @@ export function ProductStage() {
         setTimeline((previous) =>
           upsertTimelineEntry(previous, stepIndex, "running", getElapsedMs()),
         );
-        setActiveToolCall(toolCallsByStep[stepIndex] ?? null);
+        setActiveToolCall(toolCallsByStep[stepIndex]?.label ?? null);
 
         try {
           await sleep(stepDurationMs, runId, runIdRef, isPausedRef);
@@ -891,7 +891,16 @@ export function ProductStage() {
                       key={node.title}
                     >
                       <div className="marketing-node-type">
-                        <span className="marketing-node-icon" />
+                        {node.integrationLogo ? (
+                          <img
+                            className="marketing-node-logo"
+                            src={node.integrationLogo}
+                            alt=""
+                            aria-hidden="true"
+                          />
+                        ) : (
+                          <span className="marketing-node-icon" />
+                        )}
                         {node.type}
                       </div>
                       <h4>{node.title}</h4>
@@ -899,7 +908,15 @@ export function ProductStage() {
                       {stepStatuses[index] === "running" &&
                       toolCallsByStep[index] ? (
                         <p className="marketing-node-tool-call">
-                          {toolCallsByStep[index]}
+                          {toolCallsByStep[index].logo ? (
+                            <img
+                              className="marketing-node-tool-call-logo"
+                              src={toolCallsByStep[index].logo}
+                              alt=""
+                              aria-hidden="true"
+                            />
+                          ) : null}
+                          <span>{toolCallsByStep[index].label}</span>
                         </p>
                       ) : null}
                     </div>

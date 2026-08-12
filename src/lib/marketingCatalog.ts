@@ -312,7 +312,7 @@ export const workflowSolutions = [
     id: "customer-onboarding",
     label: "Customer onboarding",
     description: "Coordinate research, setup, approvals, and launch.",
-    to: "/solutions#customer-onboarding",
+    to: "/solutions/customer-onboarding",
   },
   {
     id: "support-operations",

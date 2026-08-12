@@ -5,6 +5,7 @@ import {
   PageHero,
 } from "@/components/marketing/MarketingPrimitives";
 import { getIntegrationDetail } from "@/lib/integrationDetails";
+import { getIntegrationLogoPath } from "@/lib/integrationLogos";
 import {
   integrations,
   productSurfaces,
@@ -247,15 +248,19 @@ export default function SolutionDetail() {
                 Integrations
               </span>
               {connectedIntegrations.map(
-                ({ integration, detail, requirement, role }) => (
+                ({ integration, detail, requirement, role }) => {
+                  const logoPath =
+                    detail?.logoPath ?? getIntegrationLogoPath(integration.slug);
+
+                  return (
                   <Link
                     className="marketing-blueprint-connection"
                     to={`/integrations/${integration.slug}`}
                     key={integration.slug}
                   >
-                    {detail?.logoPath ? (
+                    {logoPath ? (
                       <span className="marketing-integration-logo">
-                        <img src={detail.logoPath} alt="" aria-hidden="true" />
+                        <img src={logoPath} alt="" aria-hidden="true" />
                       </span>
                     ) : null}
                     <span>
@@ -265,7 +270,8 @@ export default function SolutionDetail() {
                     </span>
                     <b aria-hidden="true">→</b>
                   </Link>
-                ),
+                );
+                },
               )}
             </div>
             <div>
