@@ -40,7 +40,7 @@ export type IntegrationDetailRecord = {
 export const integrationDetails = {
   slack: {
     slug: "slack",
-    logoPath: "/integrations/slack.png",
+    logoPath: "/integrations/slack.svg",
     headline: "Bring governed workflows into Slack.",
     summary:
       "Use Slack as the human coordination surface for durable AgentRuntime workflows: discover accessible channels and users, read conversation context, post messages, reply in threads, and add reactions.",
@@ -145,7 +145,7 @@ export const integrationDetails = {
     ],
     docsUrl: "https://api.slack.com/web",
     connectedServiceSlugs: ["github", "posthog", "gmail"],
-    relatedWorkflowSlugs: ["incident-response"],
+    relatedWorkflowSlugs: ["incident-response", "customer-onboarding"],
   },
 } satisfies Record<string, IntegrationDetailRecord>;
 

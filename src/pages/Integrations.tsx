@@ -7,6 +7,7 @@ import {
   PageHero,
 } from "@/components/marketing/MarketingPrimitives";
 import { getIntegrationDetail } from "@/lib/integrationDetails";
+import { getIntegrationLogoPath } from "@/lib/integrationLogos";
 import {
   getIntegrationMark,
   integrationCategories,
@@ -118,6 +119,8 @@ export default function Integrations() {
             <div className="marketing-integration-grid">
               {filteredIntegrations.map((integration) => {
                 const detail = getIntegrationDetail(integration.slug);
+                const logoPath =
+                  detail?.logoPath ?? getIntegrationLogoPath(integration.slug);
 
                 return (
                   <Link
@@ -128,11 +131,11 @@ export default function Integrations() {
                   >
                     <span
                       className="marketing-integration-mark"
-                      data-logo={detail?.logoPath ? "true" : undefined}
+                      data-logo={logoPath ? "true" : undefined}
                       aria-hidden="true"
                     >
-                      {detail?.logoPath ? (
-                        <img src={detail.logoPath} alt="" />
+                      {logoPath ? (
+                        <img src={logoPath} alt="" />
                       ) : (
                         getIntegrationMark(integration.name)
                       )}

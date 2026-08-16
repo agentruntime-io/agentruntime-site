@@ -312,13 +312,13 @@ export const workflowSolutions = [
     id: "customer-onboarding",
     label: "Customer onboarding",
     description: "Coordinate research, setup, approvals, and launch.",
-    to: "/solutions#customer-onboarding",
+    to: "/solutions/customer-onboarding",
   },
   {
     id: "support-operations",
-    label: "Issue resolution",
-    description: "Resolve routine cases and escalate with context.",
-    to: "/solutions#support-operations",
+    label: "Connected support",
+    description: "Blend automation with connected CRM, product, and chat context.",
+    to: "/solutions/connected-support",
   },
   {
     id: "incident-response",
@@ -331,13 +331,13 @@ export const workflowSolutions = [
     id: "finance-approvals",
     label: "Finance approvals",
     description: "Keep documents, checks, and authority in one trace.",
-    to: "/solutions#finance-approvals",
+    to: "/solutions/finance-approvals",
   },
   {
     id: "embedded-agents",
     label: "Embedded agents",
     description: "Put durable execution behind your product API.",
-    to: "/solutions#embedded-agents",
+    to: "/solutions/embedded-agents",
   },
 ] as const;
 

@@ -1,13 +1,14 @@
 import { Seo } from "@/components/Seo";
+import { BlueprintWorkflowVisual } from "@/components/marketing/BlueprintWorkflowVisual";
 import {
   CallToAction,
   PageHero,
-  WorkflowVisual,
 } from "@/components/marketing/MarketingPrimitives";
 import {
   solutionAudiences,
   workflowSolutions,
 } from "@/lib/marketingCatalog";
+import { getWorkflowBlueprint } from "@/lib/workflowBlueprints";
 import { seoCopy } from "@/seo/metadata";
 import { Link } from "react-router-dom";
 
@@ -38,6 +39,7 @@ const workflowPatterns = [
         },
       ],
     },
+    detailTo: "/solutions/customer-onboarding",
   },
   {
     id: "support-operations",
@@ -52,23 +54,24 @@ const workflowPatterns = [
       "Better escalation packages for human agents",
     ],
     visual: {
-      title: "Issue resolution",
+      title: "Connected support",
       status: "Running",
-      outcome: "Routine cases resolve; exceptions arrive with context.",
+      outcome: "Automation and connected context stay on one run timeline.",
       rows: [
-        { left: "Ticket arrives", right: "Gather account state" },
+        { left: "Ticket arrives", right: "Enrich context" },
         {
-          left: "Policy decision",
-          right: "Risk check",
+          left: "Automated path",
+          right: "Exception review",
           hot: "right" as const,
         },
         {
-          left: "Resolve",
-          connector: "or",
-          right: "Escalate with context",
+          left: "Connected follow-through",
+          connector: "→",
+          right: "Resolution recorded",
         },
       ],
     },
+    detailTo: "/solutions/connected-support",
   },
   {
     id: "incident-response",
@@ -125,6 +128,7 @@ const workflowPatterns = [
         { left: "Post to system", right: "Notify requester" },
       ],
     },
+    detailTo: "/solutions/finance-approvals",
   },
   {
     id: "embedded-agents",
@@ -147,6 +151,7 @@ const workflowPatterns = [
         { left: "Validation", right: "Stream result", hot: "left" as const },
       ],
     },
+    detailTo: "/solutions/embedded-agents",
   },
 ];
 
@@ -303,7 +308,10 @@ export default function Workflows() {
             ))}
           </nav>
 
-          {workflowPatterns.map((workflow) => (
+          {workflowPatterns.map((workflow) => {
+            const blueprint = getWorkflowBlueprint(workflow.id);
+
+            return (
             <article
               className="marketing-use-case"
               id={workflow.id}
@@ -336,9 +344,12 @@ export default function Workflows() {
                     : "Map this workflow →"}
                 </Link>
               </div>
-              <WorkflowVisual {...workflow.visual} />
+              {blueprint ? (
+                <BlueprintWorkflowVisual blueprint={blueprint} compact />
+              ) : null}
             </article>
-          ))}
+            );
+          })}
         </div>
       </section>
 
