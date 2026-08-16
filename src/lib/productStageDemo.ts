@@ -1,4 +1,6 @@
 import { getIntegrationLogoPath } from "./integrationLogos";
+import type { ProductStageDemoProfile } from "./productStageDemoProfile";
+import { standardSixNodeWorkflowEdges } from "./workflowGraphEdges";
 
 export type StepStatus = "pending" | "running" | "done" | "waiting" | "failed";
 
@@ -11,7 +13,15 @@ export type RunPhase =
   | "rejected"
   | "stopped";
 
+export type ProductStageNodeKind =
+  | "trigger"
+  | "agent"
+  | "decision"
+  | "tool"
+  | "approval";
+
 export type ProductStageNode = {
+  kind: ProductStageNodeKind;
   type: string;
   title: string;
   description: string;
@@ -58,35 +68,41 @@ export type BottomPanelTab = "context" | "events" | "timeline";
 
 export const productStageNodes: ProductStageNode[] = [
   {
+    kind: "trigger",
     type: "Trigger",
     title: "New customer created",
     description: "Starts from CRM or API event.",
     integrationLogo: getIntegrationLogoPath("hubspot"),
   },
   {
+    kind: "agent",
     type: "Agent",
     title: "Research account",
     description: "Collects context across connected tools.",
     integrationLogo: getIntegrationLogoPath("hubspot"),
   },
   {
+    kind: "decision",
     type: "Decision",
     title: "Choose onboarding path",
     description: "Applies rules, confidence and account tier.",
   },
   {
+    kind: "tool",
     type: "Tool",
     title: "Prepare workspace",
     description: "Creates records, tasks and access.",
     integrationLogo: getIntegrationLogoPath("notion"),
   },
   {
+    kind: "approval",
     type: "Human approval",
     title: "Review plan",
     description: "Routes to the exact owner when judgment matters.",
     highlighted: true,
   },
   {
+    kind: "agent",
     type: "Agent",
     title: "Launch onboarding",
     description: "Executes, monitors and handles exceptions.",
@@ -560,10 +576,15 @@ export function upsertTimelineEntry(
   stepIndex: number,
   status: StepStatus,
   elapsedMs: number | null,
+  nodes: readonly ProductStageNode[] = productStageNodes,
+  timelineLabelsSource: readonly string[] = timelineLabels,
 ): TimelineEntry[] {
+  const node = nodes[stepIndex];
+  if (!node) return entries;
+
   const id = `step-${stepIndex}`;
-  const label = timelineLabels[stepIndex];
-  const stepType = productStageNodes[stepIndex].type;
+  const label = timelineLabelsSource[stepIndex] ?? node.title;
+  const stepType = node.type;
   const existing = entries.find((entry) => entry.id === id);
   const startMs = existing?.startMs ?? elapsedMs ?? 0;
   let endMs = existing?.endMs ?? null;
@@ -589,3 +610,19 @@ export function upsertTimelineEntry(
 
   return [...entries, nextEntry];
 }
+
+export const customerOperationsDemoProfile: ProductStageDemoProfile = {
+  nodes: productStageNodes,
+  graphEdges: standardSixNodeWorkflowEdges,
+  toolCallsByStep,
+  timelineLabels,
+  approvalStepIndex: 4,
+  workflowTitle: "Customer onboarding",
+  runCompleteMessage: "Run finished — onboarding launched for the new customer.",
+  runRejectedMessage: "Plan rejected — the run was routed to exception handling.",
+  approvalWaitingDetail: "Assigned to Jordan Lee · plan ready for review",
+  createInitialRunContext,
+  createDemoEvents,
+  runContextAfterStep,
+  timelineDetailForStep,
+};

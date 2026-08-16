@@ -4,6 +4,7 @@ import {
   CallToAction,
   PageHero,
 } from "@/components/marketing/MarketingPrimitives";
+import { BlueprintWorkflowVisual } from "@/components/marketing/BlueprintWorkflowVisual";
 import { getIntegrationDetail } from "@/lib/integrationDetails";
 import { getIntegrationLogoPath } from "@/lib/integrationLogos";
 import {
@@ -129,16 +130,33 @@ export default function SolutionDetail() {
             </p>
           </div>
 
+          <BlueprintWorkflowVisual blueprint={blueprint} />
+
           <ol
             className="marketing-blueprint-graph"
             aria-label={`${blueprint.title} execution steps`}
           >
-            {blueprint.steps.map((step, index) => (
+            {blueprint.steps.map((step, index) => {
+              const logoPath = step.integrationSlug
+                ? getIntegrationLogoPath(step.integrationSlug)
+                : undefined;
+
+              return (
               <li data-type={step.type.toLowerCase()} key={step.title}>
                 <span className="marketing-blueprint-step-index">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <div className="marketing-blueprint-step-type">{step.type}</div>
+                <div className="marketing-blueprint-step-type">
+                  {logoPath ? (
+                    <img
+                      className="marketing-blueprint-step-logo"
+                      src={logoPath}
+                      alt=""
+                      aria-hidden="true"
+                    />
+                  ) : null}
+                  <span>{step.type}</span>
+                </div>
                 <div className="marketing-blueprint-step-copy">
                   <h3>{step.title}</h3>
                   <p>{step.description}</p>
@@ -160,7 +178,8 @@ export default function SolutionDetail() {
                   ) : null}
                 </div>
               </li>
-            ))}
+            );
+            })}
           </ol>
         </div>
       </section>

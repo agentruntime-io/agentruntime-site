@@ -1,32 +1,35 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { ProductStageWorkflowGraph } from "@/components/marketing/ProductStageWorkflowGraph";
 import {
   autoStartDelayMs,
   autoApproveDelayMs,
-  createDemoEvents,
-  createInitialRunContext,
-  createInitialStepStatuses,
   createInitialTimeline,
   formatRunContextState,
   formatRunOffset,
-  productStageNodes,
-  runContextAfterStep,
   runStatusLabel,
   stepDurationMs,
   stepGapMs,
-  timelineLabels,
   getTimelineAxisTicks,
   getTimelineSpanMs,
-  timelineDetailForStep,
   timelineStatusLabel,
-  toolCallsByStep,
   upsertTimelineEntry,
   type BottomPanelTab,
   type DemoEvent,
+  type ProductStageNode,
   type RunContextSnapshot,
   type RunPhase,
   type StepStatus,
   type TimelineEntry,
 } from "@/lib/productStageDemo";
+import type { ProductStageDemoProfile } from "@/lib/productStageDemoProfile";
+import {
+  createStepStatusesForWorkspace,
+  defaultProductStageWorkspaceId,
+  getProductStageWorkspace,
+  productStageWorkspaces,
+  type ProductStageWorkspaceId,
+} from "@/lib/productStageWorkspaces";
 
 function sleep(
   ms: number,
@@ -149,14 +152,26 @@ type StageBottomBarProps = {
   timeline: TimelineEntry[];
   phase: RunPhase;
   currentMs: number | null;
+  nodes: readonly ProductStageNode[];
+  previewMode: boolean;
+  workflowTitle: string;
+  blueprintSlug: string;
+  timelineLabels: readonly string[];
+  timelineDetailForStep: ProductStageDemoProfile["timelineDetailForStep"];
 };
 
 function StageGanttChart({
   timeline,
   currentMs,
+  nodes,
+  timelineLabels,
+  timelineDetailForStep,
 }: {
   timeline: TimelineEntry[];
   currentMs: number | null;
+  nodes: readonly ProductStageNode[];
+  timelineLabels: readonly string[];
+  timelineDetailForStep: ProductStageDemoProfile["timelineDetailForStep"];
 }) {
   const totalMs = getTimelineSpanMs(timeline, currentMs);
   const axisTicks = getTimelineAxisTicks(totalMs);
@@ -190,7 +205,7 @@ function StageGanttChart({
       </div>
 
       <ul className="marketing-stage-gantt-rows">
-        {productStageNodes.map((node, stepIndex) => {
+        {nodes.map((node, stepIndex) => {
           const entry = timeline.find((item) => item.id === `step-${stepIndex}`);
           const endMs = entry
             ? entry.endMs ?? currentMs ?? entry.startMs
@@ -345,6 +360,12 @@ function StageBottomBar({
   timeline,
   phase,
   currentMs,
+  nodes,
+  previewMode,
+  workflowTitle,
+  blueprintSlug,
+  timelineLabels,
+  timelineDetailForStep,
 }: StageBottomBarProps) {
   const tabs: Array<{ id: BottomPanelTab; label: string; hint: string }> = [
     {
@@ -400,7 +421,9 @@ function StageBottomBar({
         {activeTab === "context" ? (
           runContext.state === "idle" ? (
             <p className="marketing-stage-bottom-empty">
-              Start the workflow to load the run context snapshot.
+              {previewMode
+                ? `Open ${workflowTitle} in Workflow Studio to inspect run context.`
+                : "Start the workflow to load the run context snapshot."}
             </p>
           ) : (
             <RunContextPanel runContext={runContext} />
@@ -410,7 +433,16 @@ function StageBottomBar({
         {activeTab === "events" ? (
           events.length === 0 ? (
             <p className="marketing-stage-bottom-empty">
-              Events will stream here as the workflow executes.
+              {previewMode ? (
+                <>
+                  Previewing the {workflowTitle} workflow graph.{" "}
+                  <Link to={`/solutions/${blueprintSlug}`}>
+                    Explore the blueprint →
+                  </Link>
+                </>
+              ) : (
+                "Events will stream here as the workflow executes."
+              )}
             </p>
           ) : (
             <ul className="marketing-stage-events">
@@ -428,10 +460,18 @@ function StageBottomBar({
         {activeTab === "timeline" ? (
           timeline.length === 0 ? (
             <p className="marketing-stage-bottom-empty">
-              Step bars will appear here once the run starts.
+              {previewMode
+                ? "Switch to Customer operations or Connected support to watch a live run timeline."
+                : "Step bars will appear here once the run starts."}
             </p>
           ) : (
-            <StageGanttChart timeline={timeline} currentMs={currentMs} />
+            <StageGanttChart
+              timeline={timeline}
+              currentMs={currentMs}
+              nodes={nodes}
+              timelineLabels={timelineLabels}
+              timelineDetailForStep={timelineDetailForStep}
+            />
           )
         ) : null}
       </div>
@@ -440,14 +480,21 @@ function StageBottomBar({
 }
 
 export function ProductStage() {
+  const [activeWorkspaceId, setActiveWorkspaceId] =
+    useState<ProductStageWorkspaceId>(defaultProductStageWorkspaceId);
+  const workspace = getProductStageWorkspace(activeWorkspaceId);
+  const workspaceRef = useRef(workspace);
+  workspaceRef.current = workspace;
+  const demo = workspace.demo!;
+
   const [phase, setPhase] = useState<RunPhase>("idle");
-  const [stepStatuses, setStepStatuses] = useState<StepStatus[]>(
-    createInitialStepStatuses,
+  const [stepStatuses, setStepStatuses] = useState<StepStatus[]>(() =>
+    createStepStatusesForWorkspace(workspace),
   );
   const [timeline, setTimeline] = useState<TimelineEntry[]>(createInitialTimeline);
   const [events, setEvents] = useState<DemoEvent[]>([]);
   const [runContext, setRunContext] = useState<RunContextSnapshot>(
-    createInitialRunContext,
+    demo.createInitialRunContext,
   );
   const [activeBottomTab, setActiveBottomTab] =
     useState<BottomPanelTab>("events");
@@ -485,7 +532,8 @@ export function ProductStage() {
         runStartedAtRef.current === null
           ? 0
           : Date.now() - runStartedAtRef.current;
-      const newEvents = createDemoEvents(
+      const currentDemo = workspaceRef.current.demo!;
+      const newEvents = currentDemo.createDemoEvents(
         stepIndex,
         action,
         elapsedMs,
@@ -498,18 +546,20 @@ export function ProductStage() {
       }
 
       setRunContext((previous) =>
-        runContextAfterStep(stepIndex, action, previous),
+        currentDemo.runContextAfterStep(stepIndex, action, previous),
       );
     },
     [],
   );
 
   const resetRun = useCallback(() => {
+    const currentWorkspace = workspaceRef.current;
+    const currentDemo = currentWorkspace.demo!;
     setPhase("idle");
-    setStepStatuses(createInitialStepStatuses());
+    setStepStatuses(createStepStatusesForWorkspace(currentWorkspace));
     setTimeline(createInitialTimeline());
     setEvents([]);
-    setRunContext(createInitialRunContext());
+    setRunContext(currentDemo.createInitialRunContext());
     setRound(0);
     setActiveToolCall(null);
     setStartedLabel("Just now");
@@ -520,6 +570,31 @@ export function ProductStage() {
     approvalPausedRemainingRef.current = null;
     setApprovalRemainingMs(null);
     setCurrentMs(null);
+  }, []);
+
+  const selectWorkspace = useCallback((workspaceId: ProductStageWorkspaceId) => {
+    if (workspaceId === workspaceRef.current.id) return;
+
+    runIdRef.current += 1;
+    const nextWorkspace = getProductStageWorkspace(workspaceId);
+    const nextDemo = nextWorkspace.demo!;
+    setActiveWorkspaceId(workspaceId);
+    setPhase("idle");
+    setStepStatuses(createStepStatusesForWorkspace(nextWorkspace));
+    setTimeline(createInitialTimeline());
+    setEvents([]);
+    setRunContext(nextDemo.createInitialRunContext());
+    setRound(0);
+    setActiveToolCall(null);
+    setStartedLabel("Just now");
+    runStartedAtRef.current = null;
+    eventCountRef.current = 0;
+    approvalResolvedRef.current = false;
+    pausedFromPhaseRef.current = null;
+    approvalPausedRemainingRef.current = null;
+    setApprovalRemainingMs(null);
+    setCurrentMs(null);
+    setActiveBottomTab("events");
   }, []);
 
   const finishRun = useCallback((_runId: number) => {
@@ -536,7 +611,10 @@ export function ProductStage() {
 
   const runSteps = useCallback(
     async (runId: number, startIndex: number) => {
-      for (let stepIndex = startIndex; stepIndex < productStageNodes.length; stepIndex += 1) {
+      const { nodes, toolCallsByStep, approvalStepIndex, timelineLabels } =
+        workspaceRef.current.demo!;
+
+      for (let stepIndex = startIndex; stepIndex < nodes.length; stepIndex += 1) {
         if (runIdRef.current !== runId) return;
 
         recordStepActivity(stepIndex, "start");
@@ -546,7 +624,14 @@ export function ProductStage() {
           ),
         );
         setTimeline((previous) =>
-          upsertTimelineEntry(previous, stepIndex, "running", getElapsedMs()),
+          upsertTimelineEntry(
+            previous,
+            stepIndex,
+            "running",
+            getElapsedMs(),
+            nodes,
+            timelineLabels,
+          ),
         );
         setActiveToolCall(toolCallsByStep[stepIndex]?.label ?? null);
 
@@ -556,7 +641,7 @@ export function ProductStage() {
           return;
         }
 
-        if (stepIndex === 4) {
+        if (approvalStepIndex !== null && stepIndex === approvalStepIndex) {
           recordStepActivity(stepIndex, "waiting");
           setStepStatuses((previous) =>
             previous.map((status, index) =>
@@ -564,7 +649,14 @@ export function ProductStage() {
             ),
           );
           setTimeline((previous) =>
-            upsertTimelineEntry(previous, stepIndex, "waiting", getElapsedMs()),
+            upsertTimelineEntry(
+              previous,
+              stepIndex,
+              "waiting",
+              getElapsedMs(),
+              nodes,
+              timelineLabels,
+            ),
           );
           setActiveToolCall(null);
           setPhase("approval");
@@ -579,11 +671,18 @@ export function ProductStage() {
           ),
         );
         setTimeline((previous) =>
-          upsertTimelineEntry(previous, stepIndex, "done", getElapsedMs()),
+          upsertTimelineEntry(
+            previous,
+            stepIndex,
+            "done",
+            getElapsedMs(),
+            nodes,
+            timelineLabels,
+          ),
         );
         setActiveToolCall(null);
 
-        if (stepIndex < productStageNodes.length - 1) {
+        if (stepIndex < nodes.length - 1) {
           try {
             await sleep(stepGapMs, runId, runIdRef, isPausedRef);
           } catch {
@@ -598,6 +697,8 @@ export function ProductStage() {
   );
 
   const startRun = useCallback(async () => {
+    if (!workspaceRef.current.supportsLiveRun) return;
+
     runIdRef.current += 1;
     const runId = runIdRef.current;
     resetRun();
@@ -611,15 +712,27 @@ export function ProductStage() {
   const approveRun = useCallback(async () => {
     if (phase !== "approval" || approvalResolvedRef.current) return;
 
+    const { approvalStepIndex, nodes, timelineLabels } = workspaceRef.current.demo!;
+    if (approvalStepIndex === null) return;
+
     approvalResolvedRef.current = true;
     const runId = runIdRef.current;
     setPhase("running");
-    recordStepActivity(4, "approved");
+    recordStepActivity(approvalStepIndex, "approved");
     setStepStatuses((previous) =>
-      previous.map((status, index) => (index === 4 ? "done" : status)),
+      previous.map((status, index) =>
+        index === approvalStepIndex ? "done" : status,
+      ),
     );
     setTimeline((previous) =>
-      upsertTimelineEntry(previous, 4, "done", getElapsedMs()),
+      upsertTimelineEntry(
+        previous,
+        approvalStepIndex,
+        "done",
+        getElapsedMs(),
+        nodes,
+        timelineLabels,
+      ),
     );
 
     try {
@@ -628,7 +741,7 @@ export function ProductStage() {
       return;
     }
 
-    await runSteps(runId, 5);
+    await runSteps(runId, approvalStepIndex + 1);
   }, [getElapsedMs, phase, recordStepActivity, runSteps]);
 
   const pauseRun = useCallback(() => {
@@ -681,14 +794,26 @@ export function ProductStage() {
   const rejectRun = useCallback(async () => {
     if (phase !== "approval" || approvalResolvedRef.current) return;
 
+    const { approvalStepIndex, nodes, timelineLabels } = workspaceRef.current.demo!;
+    if (approvalStepIndex === null) return;
+
     approvalResolvedRef.current = true;
     const runId = runIdRef.current;
-    recordStepActivity(4, "rejected");
+    recordStepActivity(approvalStepIndex, "rejected");
     setStepStatuses((previous) =>
-      previous.map((status, index) => (index === 4 ? "failed" : status)),
+      previous.map((status, index) =>
+        index === approvalStepIndex ? "failed" : status,
+      ),
     );
     setTimeline((previous) =>
-      upsertTimelineEntry(previous, 4, "failed", getElapsedMs()),
+      upsertTimelineEntry(
+        previous,
+        approvalStepIndex,
+        "failed",
+        getElapsedMs(),
+        nodes,
+        timelineLabels,
+      ),
     );
     await finishRejected(runId);
   }, [finishRejected, getElapsedMs, phase, recordStepActivity]);
@@ -748,6 +873,7 @@ export function ProductStage() {
   }, [approveRun, phase]);
 
   useEffect(() => {
+    if (!workspace.supportsLiveRun) return;
     if (hasAutoStartedRef.current) return;
     hasAutoStartedRef.current = true;
 
@@ -756,7 +882,7 @@ export function ProductStage() {
     }, autoStartDelayMs);
 
     return () => window.clearTimeout(timer);
-  }, [startRun]);
+  }, [startRun, workspace.supportsLiveRun]);
 
   useEffect(
     () => () => {
@@ -766,8 +892,10 @@ export function ProductStage() {
   );
 
   const showApprovalActions = phase === "approval";
-  const mobileStatus =
-    phase === "paused"
+  const previewMode = !workspace.supportsLiveRun;
+  const mobileStatus = previewMode
+    ? `Previewing ${workspace.workflowTitle} — open the blueprint for the full execution path.`
+    : phase === "paused"
       ? "Run paused — resume to continue the workflow demo."
       : phase === "stopped"
         ? "Run stopped — output remains visible below."
@@ -777,9 +905,9 @@ export function ProductStage() {
           0,
         )}s unless you choose.`
       : phase === "rejected"
-        ? "Plan rejected — the run was routed to exception handling."
+        ? demo.runRejectedMessage
       : phase === "complete"
-        ? "Run finished — onboarding launched for the new customer."
+        ? demo.runCompleteMessage
         : phase === "running"
           ? activeToolCall
             ? `Running: ${activeToolCall}`
@@ -791,29 +919,29 @@ export function ProductStage() {
       <div className="marketing-container">
         <figure className="marketing-stage-shell">
           <figcaption className="sr-only">
-            Interactive AgentRuntime workflow demo showing agents, tools,
-            decisions, and a human approval in one observable run.
+            Interactive AgentRuntime workflow demo showing connected tools,
+            automated actions, policy decisions, and human approval in one run.
           </figcaption>
           <div className="marketing-app">
-            <aside className="marketing-app-sidebar" aria-hidden="true">
-              <div className="marketing-window-dots">
+            <aside className="marketing-app-sidebar" aria-label="Workspace navigation">
+              <div className="marketing-window-dots" aria-hidden="true">
                 <span />
                 <span />
                 <span />
               </div>
               <div className="marketing-side-label">Workspace</div>
-              <div className="marketing-side-item" data-active="true">
-                <span>Customer operations</span>
-                <span>•••</span>
-              </div>
-              <div className="marketing-side-item">
-                <span>Finance</span>
-                <span>6</span>
-              </div>
-              <div className="marketing-side-item">
-                <span>Support</span>
-                <span>12</span>
-              </div>
+              {productStageWorkspaces.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  className="marketing-side-item"
+                  data-active={item.id === activeWorkspaceId || undefined}
+                  onClick={() => selectWorkspace(item.id)}
+                >
+                  <span>{item.label}</span>
+                  <span>{item.count}</span>
+                </button>
+              ))}
               <div className="marketing-side-label">Build</div>
               <div className="marketing-side-item">
                 <span>Workflows</span>
@@ -846,19 +974,29 @@ export function ProductStage() {
                 <div className="marketing-canvas-header">
                   <div>
                     <div className="marketing-crumbs">
-                      Workflows / Customer onboarding
+                      Workflows / {workspace.workflowTitle}
                     </div>
                     <h3 className="marketing-canvas-title">
-                      Customer onboarding
+                      {workspace.workflowTitle}
                     </h3>
                   </div>
-                  <RunControls
-                    phase={phase}
-                    onRun={() => void startRun()}
-                    onPause={pauseRun}
-                    onResume={resumeRun}
-                    onStop={stopRun}
-                  />
+                  {workspace.supportsLiveRun ? (
+                    <RunControls
+                      phase={phase}
+                      onRun={() => void startRun()}
+                      onPause={pauseRun}
+                      onResume={resumeRun}
+                      onStop={stopRun}
+                    />
+                  ) : (
+                    <Link
+                      className="marketing-run-control"
+                      data-variant="primary"
+                      to={`/solutions/${workspace.blueprintSlug}`}
+                    >
+                      Explore blueprint
+                    </Link>
+                  )}
                 </div>
 
                 <div
@@ -879,49 +1017,12 @@ export function ProductStage() {
                   ) : null}
                 </div>
 
-                <div className="marketing-flow">
-                  {productStageNodes.map((node, index) => (
-                    <div
-                      className="marketing-node"
-                      data-highlighted={node.highlighted || undefined}
-                      data-status={stepStatuses[index]}
-                      data-connector={
-                        index === 2 || index === 5 ? "none" : undefined
-                      }
-                      key={node.title}
-                    >
-                      <div className="marketing-node-type">
-                        {node.integrationLogo ? (
-                          <img
-                            className="marketing-node-logo"
-                            src={node.integrationLogo}
-                            alt=""
-                            aria-hidden="true"
-                          />
-                        ) : (
-                          <span className="marketing-node-icon" />
-                        )}
-                        {node.type}
-                      </div>
-                      <h4>{node.title}</h4>
-                      <p>{node.description}</p>
-                      {stepStatuses[index] === "running" &&
-                      toolCallsByStep[index] ? (
-                        <p className="marketing-node-tool-call">
-                          {toolCallsByStep[index].logo ? (
-                            <img
-                              className="marketing-node-tool-call-logo"
-                              src={toolCallsByStep[index].logo}
-                              alt=""
-                              aria-hidden="true"
-                            />
-                          ) : null}
-                          <span>{toolCallsByStep[index].label}</span>
-                        </p>
-                      ) : null}
-                    </div>
-                  ))}
-                </div>
+                <ProductStageWorkflowGraph
+                  nodes={demo.nodes}
+                  stepStatuses={stepStatuses}
+                  toolCallsByStep={demo.toolCallsByStep}
+                  graphEdges={demo.graphEdges}
+                />
               </div>
 
               <StageBottomBar
@@ -932,6 +1033,12 @@ export function ProductStage() {
                 timeline={timeline}
                 phase={phase}
                 currentMs={currentMs}
+                nodes={demo.nodes}
+                previewMode={previewMode}
+                workflowTitle={workspace.workflowTitle}
+                blueprintSlug={workspace.blueprintSlug}
+                timelineLabels={demo.timelineLabels}
+                timelineDetailForStep={demo.timelineDetailForStep}
               />
             </div>
 
