@@ -1,0 +1,80 @@
+{
+  "slug": "slack",
+  "category": "Communication",
+  "maturity": "verified",
+  "logoPath": "/integrations/slack.svg",
+  "headline": "Bring governed workflows into Slack.",
+  "summary": "Use Slack as the human coordination surface for durable AgentRuntime workflows: discover accessible channels and users, read conversation context, post messages, reply in threads, and add reactions.",
+  "cardSummary": "Coordinate messages, threads, reactions, channels, and users while AgentRuntime keeps the workflow state.",
+  "authLabel": "OAuth token",
+  "workflowStartLabel": "API + webhook",
+  "authentication": "The connector accepts a Slack bot or user OAuth token (xoxb- or xoxp-). Required scopes depend on the methods used.",
+  "workflowStart": "Start the workflow from AgentRuntime or an external alert, then use Slack for conversation context, coordination, and updates.",
+  "docsPath": "connectors/slack",
+  "docsUrl": "https://docs.agentruntime.io/connectors/slack",
+  "connectedServiceSlugs": ["github", "posthog", "gmail"],
+  "relatedConnectorSlugs": ["github", "gmail", "posthog"],
+  "relatedWorkflowSlugs": ["incident-response"],
+  "outcomes": [
+    {
+      "title": "Incident coordination",
+      "description": "Post alerts, keep updates in a thread, and collect acknowledgements while AgentRuntime owns run state."
+    },
+    {
+      "title": "Human-in-the-loop updates",
+      "description": "Pause for approval, then publish the decision back to the channel that triggered the workflow."
+    },
+    {
+      "title": "Context-aware replies",
+      "description": "Read channel or thread history before agents draft the next action."
+    }
+  ],
+  "howItWorks": [
+    "Install the Slack MCP connector and provide a token with scopes for the planned actions.",
+    "Bind an MCP instance to the workflow and select explicit tools per step.",
+    "Use human_task steps when channel posts need review before they go out."
+  ],
+  "configuration": [
+    {
+      "key": "slack_api_token",
+      "requirement": "Required",
+      "description": "Bot or user OAuth token with scopes for the Slack methods the workflow uses."
+    },
+    {
+      "key": "slack_team_id",
+      "requirement": "Conditional",
+      "description": "Workspace team ID used by channel and user discovery when no channel allowlist is configured."
+    },
+    {
+      "key": "slack_channel_ids",
+      "requirement": "Optional",
+      "description": "Comma-separated channel allowlist that restricts channel discovery."
+    },
+    {
+      "key": "slack_api_base",
+      "requirement": "Optional",
+      "description": "Override for the Slack Web API base URL."
+    }
+  ],
+  "representativeScopes": [
+    "channels:read",
+    "channels:history",
+    "chat:write",
+    "users:read",
+    "reactions:write"
+  ],
+  "faq": [
+    {
+      "question": "Bot or user token?",
+      "answer": "Bot tokens are typical for channel automation. User tokens are required for some private-channel patterns."
+    },
+    {
+      "question": "Can workflows post to any channel?",
+      "answer": "Only channels the token can access. Use channel allowlists when you need a hard boundary."
+    },
+    {
+      "question": "Does Slack hold workflow state?",
+      "answer": "No. Slack is the coordination surface; AgentRuntime retains durable run state and audit history."
+    }
+  ]
+}

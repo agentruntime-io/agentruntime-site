@@ -1,3 +1,5 @@
+import type { PublicConnector } from "@/api/connectors";
+
 export const productSurfaces = [
   {
     id: "workflow-studio",
@@ -363,104 +365,8 @@ export type Integration = {
   category: IntegrationCategory;
 };
 
-/**
- * Public connector index derived from committed manifests in connectors/catalog.
- * The mock healthcare test connector is intentionally excluded from marketing.
- */
-export const integrations = [
-  { slug: "activecampaign", name: "ActiveCampaign", category: "CRM & Marketing" },
-  { slug: "airtable", name: "Airtable", category: "Data & Databases" },
-  { slug: "apify", name: "Apify", category: "Search & Research" },
-  { slug: "brave", name: "Brave Search", category: "Search & Research" },
-  { slug: "browserless", name: "Browserless", category: "Search & Research" },
-  { slug: "clicksend", name: "ClickSend", category: "Communication" },
-  { slug: "clickup", name: "ClickUp", category: "Productivity" },
-  { slug: "cloudinary", name: "Cloudinary", category: "Content & Files" },
-  { slug: "contentful", name: "Contentful", category: "Content & Files" },
-  { slug: "csv", name: "CSV", category: "Data & Databases" },
-  { slug: "cursor", name: "Cursor", category: "Developer Tools" },
-  { slug: "dropbox", name: "Dropbox", category: "Content & Files" },
-  { slug: "elevenlabs", name: "ElevenLabs", category: "AI & Media" },
-  { slug: "exa", name: "Exa", category: "Search & Research" },
-  { slug: "fellow", name: "Fellow", category: "Productivity" },
-  { slug: "figma", name: "Figma", category: "Productivity" },
-  { slug: "firecrawl", name: "Firecrawl", category: "Search & Research" },
-  { slug: "firestore", name: "Firestore", category: "Data & Databases" },
-  { slug: "freshdesk", name: "Freshdesk", category: "Analytics & Support" },
-  { slug: "gemini-image", name: "Gemini Image", category: "AI & Media" },
-  { slug: "github", name: "GitHub", category: "Developer Tools" },
-  { slug: "gitlab", name: "GitLab", category: "Developer Tools" },
-  { slug: "gmail", name: "Gmail", category: "Communication" },
-  {
-    slug: "google-analytics-4",
-    name: "Google Analytics 4",
-    category: "Analytics & Support",
-  },
-  {
-    slug: "google-business-profile",
-    name: "Google Business Profile",
-    category: "CRM & Marketing",
-  },
-  { slug: "google-calendar", name: "Google Calendar", category: "Productivity" },
-  { slug: "google-docs", name: "Google Docs", category: "Content & Files" },
-  { slug: "google-drive", name: "Google Drive", category: "Content & Files" },
-  { slug: "google-form", name: "Google Forms", category: "Productivity" },
-  { slug: "google-keep", name: "Google Keep", category: "Productivity" },
-  { slug: "google-meet", name: "Google Meet", category: "Communication" },
-  { slug: "google-search", name: "Google Search", category: "Search & Research" },
-  {
-    slug: "google-search-console",
-    name: "Google Search Console",
-    category: "Analytics & Support",
-  },
-  { slug: "google-sheets", name: "Google Sheets", category: "Data & Databases" },
-  { slug: "google-slides", name: "Google Slides", category: "Content & Files" },
-  { slug: "google-task", name: "Google Tasks", category: "Productivity" },
-  { slug: "heartbeat", name: "Heartbeat", category: "Communication" },
-  { slug: "heygen", name: "HeyGen", category: "AI & Media" },
-  { slug: "hubspot", name: "HubSpot", category: "CRM & Marketing" },
-  { slug: "hugging-face", name: "Hugging Face", category: "AI & Media" },
-  { slug: "imap", name: "IMAP", category: "Communication" },
-  { slug: "knock", name: "Knock", category: "Communication" },
-  { slug: "linear", name: "Linear", category: "Productivity" },
-  { slug: "linkedin", name: "LinkedIn", category: "CRM & Marketing" },
-  { slug: "linkup", name: "Linkup", category: "Search & Research" },
-  { slug: "mailchimp", name: "Mailchimp", category: "CRM & Marketing" },
-  { slug: "mongodb", name: "MongoDB", category: "Data & Databases" },
-  { slug: "mysql", name: "MySQL", category: "Data & Databases" },
-  { slug: "neo4j", name: "Neo4j", category: "Data & Databases" },
-  { slug: "notion", name: "Notion", category: "Productivity" },
-  { slug: "openai-image", name: "OpenAI Image", category: "AI & Media" },
-  { slug: "pdf", name: "PDF", category: "Content & Files" },
-  { slug: "postgres", name: "PostgreSQL", category: "Data & Databases" },
-  { slug: "posthog", name: "PostHog", category: "Analytics & Support" },
-  { slug: "quickbooks", name: "QuickBooks", category: "Commerce & Finance" },
-  { slug: "reddit", name: "Reddit", category: "Search & Research" },
-  { slug: "redis", name: "Redis", category: "Data & Databases" },
-  { slug: "resend", name: "Resend", category: "Communication" },
-  { slug: "rss", name: "RSS", category: "Search & Research" },
-  { slug: "salesforce", name: "Salesforce", category: "CRM & Marketing" },
-  { slug: "sendgrid", name: "SendGrid", category: "Communication" },
-  { slug: "shopify", name: "Shopify", category: "Commerce & Finance" },
-  { slug: "slack", name: "Slack", category: "Communication" },
-  { slug: "spotify", name: "Spotify", category: "AI & Media" },
-  { slug: "sqlite", name: "SQLite", category: "Data & Databases" },
-  { slug: "square", name: "Square", category: "Commerce & Finance" },
-  { slug: "streak", name: "Streak", category: "CRM & Marketing" },
-  { slug: "stripe", name: "Stripe", category: "Commerce & Finance" },
-  { slug: "supabase", name: "Supabase", category: "Data & Databases" },
-  { slug: "tavily", name: "Tavily", category: "Search & Research" },
-  { slug: "tl-dv", name: "tl;dv", category: "Productivity" },
-  { slug: "trello", name: "Trello", category: "Productivity" },
-  { slug: "vapi", name: "Vapi", category: "AI & Media" },
-  { slug: "whatsapp", name: "WhatsApp", category: "Communication" },
-  { slug: "wrike", name: "Wrike", category: "Productivity" },
-  { slug: "youtube", name: "YouTube", category: "AI & Media" },
-  { slug: "zapier", name: "Zapier", category: "Automation & Operations" },
-  { slug: "zoom", name: "Zoom", category: "Communication" },
-] satisfies readonly Integration[];
-
-export const featuredIntegrations = [
+/** Homepage and developer spotlight slugs resolved against the live platform catalog. */
+export const featuredIntegrationSlugs = [
   "slack",
   "salesforce",
   "google-drive",
@@ -473,12 +379,16 @@ export const featuredIntegrations = [
   "firecrawl",
   "shopify",
   "posthog",
-].flatMap((slug) => {
-  const integration = integrations.find((item) => item.slug === slug);
-  return integration ? [integration] : [];
-});
+] as const;
 
-export const integrationCount = integrations.length;
+export function resolveFeaturedConnectors(
+  connectors: readonly PublicConnector[],
+) {
+  return featuredIntegrationSlugs.flatMap((slug) => {
+    const connector = connectors.find((item) => item.slug === slug);
+    return connector ? [connector] : [];
+  });
+}
 
 export function getIntegrationMark(name: string) {
   const words = name

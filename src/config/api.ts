@@ -17,4 +17,23 @@ export const api = {
   newsletter: bffBase ? `${bffBase.replace(/\/$/, "")}/v1/newsletter` : "",
   careersApplications: bffBase ? `${bffBase.replace(/\/$/, "")}/v1/careers/applications` : "",
   careersJobs: bffBase ? `${bffBase.replace(/\/$/, "")}/v1/careers/jobs` : "",
+  publicConnectors: bffBase ? `${bffBase.replace(/\/$/, "")}/v1/public/connectors` : "",
+  publicMarketplaceWorkflows: bffBase
+    ? `${bffBase.replace(/\/$/, "")}/v1/public/marketplace/workflows`
+    : "",
+  publicMarketplaceWorkflowLookup: bffBase
+    ? `${bffBase.replace(/\/$/, "")}/v1/public/marketplace/workflows/lookup`
+    : "",
+  publicMarketplaceAgents: bffBase
+    ? `${bffBase.replace(/\/$/, "")}/v1/public/marketplace/agents`
+    : "",
+  publicMarketplaceAgentLookup: bffBase
+    ? `${bffBase.replace(/\/$/, "")}/v1/public/marketplace/agents/lookup`
+    : "",
+  publicMarketplaceBundles: bffBase
+    ? `${bffBase.replace(/\/$/, "")}/v1/public/marketplace/bundles`
+    : "",
+  publicMarketplaceBundleLookup: bffBase
+    ? `${bffBase.replace(/\/$/, "")}/v1/public/marketplace/bundles/lookup`
+    : "",
 } as const;

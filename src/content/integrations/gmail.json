@@ -1,0 +1,77 @@
+{
+  "slug": "gmail",
+  "category": "Communication",
+  "maturity": "verified",
+  "logoPath": "/integrations/gmail.svg",
+  "headline": "Run governed email workflows on Gmail.",
+  "summary": "Use Gmail as a durable communication channel inside AgentRuntime workflows: read threads, search inboxes, draft replies, send messages, and route human approvals without giving agents unbounded mailbox access.",
+  "cardSummary": "Read, search, draft, send, and coordinate approvals in Gmail while AgentRuntime keeps workflow state.",
+  "authLabel": "Google OAuth",
+  "workflowStartLabel": "API + webhook",
+  "authentication": "Connect with Google OAuth credentials (client ID, client secret, and refresh token) scoped to the Gmail methods your workflow uses.",
+  "workflowStart": "Start from AgentRuntime, a schedule, or an inbound event, then use Gmail for context, outbound communication, and approval checkpoints.",
+  "docsPath": "connectors/gmail",
+  "docsUrl": "https://docs.agentruntime.io/connectors/gmail",
+  "connectedServiceSlugs": ["slack", "google-drive", "google-sheets"],
+  "relatedConnectorSlugs": ["google-drive", "google-sheets", "slack"],
+  "outcomes": [
+    {
+      "title": "Triage inbound mail",
+      "description": "Search and read threads, classify intent, and route high-priority messages into the right workflow branch."
+    },
+    {
+      "title": "Draft before send",
+      "description": "Create draft replies for human review, then send or escalate when policy checks pass."
+    },
+    {
+      "title": "Approval in email",
+      "description": "Request explicit human approval inside the mailbox boundary before sensitive actions continue."
+    }
+  ],
+  "howItWorks": [
+    "Connect Gmail with OAuth credentials and an MCP instance scoped to the mailbox.",
+    "Reference the instance from mcp_call steps in Studio with explicit tool selection.",
+    "Apply rules, human_task gates, and audit trails around every send or reply."
+  ],
+  "configuration": [
+    {
+      "key": "client_id",
+      "requirement": "Required",
+      "description": "Google OAuth client ID for the Gmail API integration."
+    },
+    {
+      "key": "client_secret",
+      "requirement": "Required",
+      "description": "Google OAuth client secret paired with the client ID."
+    },
+    {
+      "key": "refresh_token",
+      "requirement": "Required",
+      "description": "Long-lived refresh token for the mailbox AgentRuntime should act on behalf of."
+    },
+    {
+      "key": "sender_email",
+      "requirement": "Optional",
+      "description": "Verified sender address used in From headers for send and reply tools."
+    }
+  ],
+  "representativeScopes": [
+    "https://www.googleapis.com/auth/gmail.readonly",
+    "https://www.googleapis.com/auth/gmail.send",
+    "https://www.googleapis.com/auth/gmail.compose"
+  ],
+  "faq": [
+    {
+      "question": "Can agents send mail without human review?",
+      "answer": "Only if your workflow omits human_task gates. Most production patterns draft first or require approval before send tools run."
+    },
+    {
+      "question": "Does AgentRuntime store mailbox content?",
+      "answer": "Workflow runs retain step outputs required for execution and audit. Retention policies follow your tenant configuration."
+    },
+    {
+      "question": "Which Gmail account is used?",
+      "answer": "The OAuth credentials on the MCP instance determine the mailbox. Use user_id me for the authenticated account."
+    }
+  ]
+}

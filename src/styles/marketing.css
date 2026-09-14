@@ -4620,6 +4620,132 @@ button.marketing-side-item:focus-visible {
   color: var(--marketing-muted);
 }
 
+@keyframes marketing-loading-shimmer {
+  0%,
+  100% {
+    opacity: 0.42;
+  }
+
+  50% {
+    opacity: 0.88;
+  }
+}
+
+.marketing-loading-graphic {
+  pointer-events: none;
+}
+
+.marketing-loading-count {
+  display: inline-block;
+  width: 112px;
+  height: 11px;
+  border-radius: 999px;
+  background: var(--marketing-border);
+  animation: marketing-loading-shimmer 1.4s ease-in-out infinite;
+}
+
+.marketing-loading-block {
+  display: block;
+  border-radius: 8px;
+  background: var(--marketing-border);
+  animation: marketing-loading-shimmer 1.4s ease-in-out infinite;
+}
+
+.marketing-loading-block-lg {
+  width: min(520px, 72%);
+  height: 34px;
+}
+
+.marketing-loading-block-md {
+  width: min(420px, 58%);
+  height: 14px;
+  margin-top: 18px;
+}
+
+.marketing-loading-block-sm {
+  width: min(280px, 42%);
+  height: 12px;
+  margin-top: 12px;
+}
+
+.marketing-loading-block-xs {
+  width: 56px;
+  height: 11px;
+  margin-bottom: 16px;
+}
+
+.marketing-loading-block-card {
+  width: 100%;
+  min-height: 220px;
+  border-radius: 18px;
+}
+
+.marketing-loading-integration-card {
+  min-height: 164px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-content: start;
+  gap: 15px;
+  border-right: 1px solid var(--marketing-border);
+  border-bottom: 1px solid var(--marketing-border);
+}
+
+.marketing-loading-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--marketing-border);
+  animation: marketing-loading-shimmer 1.4s ease-in-out infinite;
+}
+
+.marketing-loading-lines {
+  display: grid;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.marketing-loading-lines span {
+  display: block;
+  height: 12px;
+  border-radius: 4px;
+  background: var(--marketing-border);
+  animation: marketing-loading-shimmer 1.4s ease-in-out infinite;
+}
+
+.marketing-loading-lines span:first-child {
+  width: 72%;
+}
+
+.marketing-loading-lines span:last-child {
+  width: 46%;
+  animation-delay: 0.12s;
+}
+
+.marketing-loading-card {
+  min-height: 220px;
+  padding: 24px;
+  border: 1px solid var(--marketing-border);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.marketing-loading-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 28px;
+  padding: 48px 0 72px;
+  border-bottom: 1px solid var(--marketing-border);
+}
+
+.marketing-loading-detail-hero {
+  padding-top: 8px;
+}
+
+.marketing-loading-detail-aside {
+  display: flex;
+  align-items: flex-start;
+}
+
 .marketing-blog-header {
   padding: 96px 0 58px;
   border-bottom: 1px solid var(--marketing-border);
@@ -5173,6 +5299,10 @@ button.marketing-side-item:focus-visible {
 
   .marketing-page-hero-aside {
     width: 100%;
+  }
+
+  .marketing-loading-detail {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .marketing-integration-hero-visual {
@@ -5788,6 +5918,165 @@ button.marketing-side-item:focus-visible {
   .marketing-workflow-outcome {
     padding-left: 34px;
   }
+}
+
+.marketing-marketplace-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.marketing-marketplace-nav a {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  color: inherit;
+}
+
+.marketing-marketplace-nav a[data-active="true"] {
+  background: rgba(15, 23, 42, 0.92);
+  color: #fff;
+  border-color: transparent;
+}
+
+.marketing-marketplace-bundle-contents {
+  display: grid;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.marketing-marketplace-bundle-contents ul {
+  margin: 12px 0 0;
+  padding-left: 18px;
+}
+
+.marketing-integration-tool-group {
+  margin-top: 32px;
+}
+
+.marketing-integration-tool-group h3 {
+  margin-bottom: 16px;
+}
+
+.marketing-integration-how-list {
+  display: grid;
+  gap: 14px;
+  margin: 24px 0 0;
+  padding-left: 20px;
+}
+
+.marketing-faq-list {
+  display: grid;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.marketing-faq-list article h3 {
+  margin-bottom: 8px;
+}
+
+.marketing-marketplace-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.marketing-marketplace-card-meta span,
+.marketing-marketplace-card-meta a {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.06);
+  text-decoration: none;
+}
+
+.marketing-marketplace-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.marketing-marketplace-facts {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.marketing-marketplace-facts dt {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+}
+
+.marketing-marketplace-step-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.marketing-marketplace-step-list li {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.marketing-marketplace-toolbar {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.marketing-marketplace-toolbar .marketing-integration-search {
+  flex: 1 1 280px;
+  width: auto;
+  max-width: 460px;
+}
+
+.marketing-marketplace-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 0 1 240px;
+  min-width: 200px;
+}
+
+.marketing-marketplace-filter-label {
+  color: var(--marketing-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.marketing-marketplace-filter-select {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  color: var(--marketing-text);
+  background: var(--marketing-surface);
+  border: 1px solid var(--marketing-border-strong);
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.marketing-marketplace-filter-select:focus-visible {
+  outline: 3px solid rgba(255, 90, 54, 0.23);
+  outline-offset: 2px;
+  border-color: rgba(255, 90, 54, 0.65);
 }
 
 @media (prefers-reduced-motion: reduce) {
