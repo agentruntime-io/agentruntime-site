@@ -9,6 +9,10 @@ import {
 import { getIntegrationContent } from "@/lib/integrationContent";
 import { getIntegrationLogoPath } from "@/lib/integrationLogos";
 import { getIntegrationMark } from "@/lib/marketingCatalog";
+import {
+  MarketingLoadingCount,
+  MarketingLoadingGraphic,
+} from "@/components/marketing/MarketingLoadingGraphic";
 import { usePublicConnectors } from "@/hooks/usePublicConnectors";
 import { seoCopy } from "@/seo/metadata";
 
@@ -40,11 +44,9 @@ export default function Integrations() {
       <PageHero
         centered
         eyebrow={
-          isLoading
-            ? "Loading catalogued connectors"
-            : isError
-              ? "Connector catalog"
-              : `${integrationCount} catalogued connectors`
+          isError || isLoading
+            ? "Connector catalog"
+            : `${integrationCount} catalogued connectors`
         }
         title="Connect the systems where the work already happens."
         description="Bring communication, data, developer tools, business software, and model services into governed AgentRuntime workflows."
@@ -84,11 +86,13 @@ export default function Integrations() {
 
           <div className="marketing-integration-results" aria-live="polite">
             <span>
-              {isLoading
-                ? "Loading connectors..."
-                : `${filteredIntegrations.length} ${
-                    filteredIntegrations.length === 1 ? "connector" : "connectors"
-                  }`}
+              {isLoading ? (
+                <MarketingLoadingCount />
+              ) : (
+                `${filteredIntegrations.length} ${
+                  filteredIntegrations.length === 1 ? "connector" : "connectors"
+                }`
+              )}
             </span>
             {query && (
               <button type="button" onClick={() => setQuery("")}>
@@ -103,9 +107,7 @@ export default function Integrations() {
               <p>Refresh the page or contact us if you need a specific system.</p>
             </div>
           ) : isLoading ? (
-            <div className="marketing-integration-empty">
-              <strong>Loading connector catalog...</strong>
-            </div>
+            <MarketingLoadingGraphic variant="integrations" />
           ) : filteredIntegrations.length > 0 ? (
             <div className="marketing-integration-grid">
               {filteredIntegrations.map((connector) => {

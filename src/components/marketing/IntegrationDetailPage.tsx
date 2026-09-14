@@ -4,10 +4,10 @@ import {
   CallToAction,
   PageHero,
 } from "@/components/marketing/MarketingPrimitives";
-import type { PublicConnector } from "@/api/connectors";
+import { MarketingLoadingGraphic } from "@/components/marketing/MarketingLoadingGraphic";
+import type { PublicConnectorDetail } from "@/api/connectors";
 import type { PublicAgentPackage, PublicWorkflowPackage } from "@/api/marketplace";
 import { getIntegrationContent } from "@/lib/integrationContent";
-import { integrationCatalogBySlug } from "@/lib/integrationCatalog.generated";
 import { getIntegrationMark, type Integration } from "@/lib/marketingCatalog";
 import {
   agentPackageInstallUrl,
@@ -17,7 +17,7 @@ import {
 } from "@/lib/marketplaceLinks";
 
 type IntegrationDetailPageProps = {
-  connector: PublicConnector;
+  connector: PublicConnectorDetail;
   related: readonly Integration[];
   exampleWorkflows: readonly PublicWorkflowPackage[];
   workflowsLoading?: boolean;
@@ -34,30 +34,29 @@ export function IntegrationDetailPage({
   agentsLoading,
 }: IntegrationDetailPageProps) {
   const content = getIntegrationContent(connector.slug);
-  const catalog = integrationCatalogBySlug[connector.slug];
   const integration: Integration = {
     slug: connector.slug,
     name: connector.name,
     category: content?.category ?? "Productivity",
   };
-  const description =
-    content?.summary ||
-    connector.description ||
-    `Explore governed AgentRuntime patterns for ${integration.name}.`;
-
-  const toolGroups = catalog?.toolGroups ?? [];
-  const toolCount = connector.tool_count || catalog?.toolCount || 0;
+  const description = content?.summary || connector.description || "";
+  const toolGroups = connector.tool_groups ?? [];
+  const flatTools = toolGroups.length === 0 ? (connector.tools ?? []) : [];
+  const toolCount = connector.tool_count || connector.tools?.length || 0;
+  const showWorkflows =
+    workflowsLoading || exampleWorkflows.length > 0;
+  const showAgents = agentsLoading || exampleAgents.length > 0;
 
   return (
     <div className="marketing-page">
       <Seo
         title={`${integration.name} Integration for AI Workflows`}
-        description={description}
+        description={description || `${integration.name} connector on AgentRuntime.`}
         canonicalPath={`/integrations/${integration.slug}`}
       />
       <PageHero
         eyebrow={`${integration.name} integration`}
-        title={content?.headline ?? `Plan governed AI workflows around ${integration.name}.`}
+        title={content?.headline ?? integration.name}
         description={description}
         primary={{ label: "Discuss this integration →", to: `/contact?integration=${integration.slug}` }}
         secondary={{ label: "Back to integrations", to: "/integrations" }}
@@ -97,7 +96,11 @@ export function IntegrationDetailPage({
             <div className="marketing-blueprint-section-head">
               <div>
                 <div className="marketing-section-label">Supported actions</div>
-                <h2>{toolCount} tools grouped for workflow design.</h2>
+                <h2>
+                  {toolCount > 0
+                    ? `${toolCount} tools grouped for workflow design.`
+                    : "Published connector tools."}
+                </h2>
               </div>
               <p>
                 These actions come from the committed {integration.name} connector
@@ -113,12 +116,14 @@ export function IntegrationDetailPage({
                     <article key={tool.name}>
                       <div className="marketing-integration-tool-head">
                         <span>{String(index + 1).padStart(2, "0")}</span>
-                        <span data-access={tool.access.toLowerCase()}>
-                          {tool.access}
-                        </span>
+                        {tool.access ? (
+                          <span data-access={tool.access.toLowerCase()}>
+                            {tool.access}
+                          </span>
+                        ) : null}
                       </div>
-                      <h4>{tool.label}</h4>
-                      <p>{tool.description}</p>
+                      <h4>{tool.label || tool.name}</h4>
+                      {tool.description ? <p>{tool.description}</p> : null}
                       <code>{tool.name}</code>
                     </article>
                   ))}
@@ -127,131 +132,152 @@ export function IntegrationDetailPage({
             ))}
           </div>
         </section>
+      ) : flatTools.length > 0 ? (
+        <section className="marketing-section" id="capabilities">
+          <div className="marketing-container">
+            <div className="marketing-blueprint-section-head">
+              <div>
+                <div className="marketing-section-label">Supported actions</div>
+                <h2>{toolCount} published connector tools.</h2>
+              </div>
+            </div>
+            <div className="marketing-integration-tool-grid">
+              {flatTools.map((tool, index) => (
+                <article key={tool.name}>
+                  <div className="marketing-integration-tool-head">
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    {tool.access ? (
+                      <span data-access={tool.access.toLowerCase()}>
+                        {tool.access}
+                      </span>
+                    ) : null}
+                  </div>
+                  <h4>{tool.label || tool.name}</h4>
+                  {tool.description ? <p>{tool.description}</p> : null}
+                  <code>{tool.name}</code>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
       ) : null}
 
-      <section className="marketing-section" data-tone="soft" id="how-it-works">
-        <div className="marketing-container">
-          <div className="marketing-section-label">How it works in AgentRuntime</div>
-          <h2>Connection → MCP instance → governed execution.</h2>
-          <ol className="marketing-integration-how-list">
-            {(content?.howItWorks ?? [
-              "Register the connector and create an MCP instance with the required credentials.",
-              "Bind the instance to mcp_call steps in Workflow Studio.",
-              "Add rules, human_task gates, and audit around every action.",
-            ]).map((step) => (
-              <li key={step}>{step}</li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section className="marketing-section" id="example-workflows">
-        <div className="marketing-container">
-          <div className="marketing-blueprint-section-head">
-            <div>
-              <div className="marketing-section-label">Example workflows</div>
-              <h2>Installable packages from the marketplace.</h2>
-            </div>
-            <p>
-              Real workflow packages that reference {integration.name}. Install in
-              Console to start from a published graph.
-            </p>
-          </div>
-
-          {workflowsLoading ? (
-            <p className="marketing-section-intro">Loading marketplace examples…</p>
-          ) : exampleWorkflows.length > 0 ? (
-            <div className="marketing-grid-3">
-              {exampleWorkflows.map((workflow) => (
-                <article className="marketing-card" key={`${workflow.package_id}:${workflow.version}`}>
-                  <h3>{workflow.display_name}</h3>
-                  <p>{workflow.description || "Published workflow package."}</p>
-                  <div className="marketing-marketplace-card-meta">
-                    {workflow.trigger_kinds?.map((kind) => (
-                      <span key={kind}>{kind}</span>
-                    ))}
-                    {workflow.has_human_task ? <span>human review</span> : null}
-                  </div>
-                  <div className="marketing-marketplace-card-actions">
-                    <Link
-                      className="marketing-inline-link"
-                      to={marketplaceWorkflowPath(workflow.package_id)}
-                    >
-                      View package →
-                    </Link>
-                    <a
-                      className="marketing-inline-link"
-                      href={workflowPackageInstallUrl(workflow.package_id, workflow.version)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Install in Console ↗
-                    </a>
-                  </div>
-                </article>
+      {content?.howItWorks?.length ? (
+        <section className="marketing-section" data-tone="soft" id="how-it-works">
+          <div className="marketing-container">
+            <div className="marketing-section-label">How it works in AgentRuntime</div>
+            <h2>Connection → MCP instance → governed execution.</h2>
+            <ol className="marketing-integration-how-list">
+              {content.howItWorks.map((step) => (
+                <li key={step}>{step}</li>
               ))}
-            </div>
-          ) : (
-            <p className="marketing-section-intro">
-              No public marketplace packages are indexed for {integration.name} yet.
-              Browse the full marketplace or contact us to feature your workflow.
-            </p>
-          )}
-
-          <Link className="marketing-button marketing-button-secondary" to="/marketplace/workflows">
-            Browse workflow marketplace →
-          </Link>
-        </div>
-      </section>
-
-      <section className="marketing-section" data-tone="soft" id="example-agents">
-        <div className="marketing-container">
-          <div className="marketing-blueprint-section-head">
-            <div>
-              <div className="marketing-section-label">Example agents</div>
-              <h2>Agent packages that reference {integration.name}.</h2>
-            </div>
-            <p>
-              Installable agent packages from the marketplace with connector requirements
-              indexed at publish time.
-            </p>
+            </ol>
           </div>
+        </section>
+      ) : null}
 
-          {agentsLoading ? (
-            <p className="marketing-section-intro">Loading marketplace agents…</p>
-          ) : exampleAgents.length > 0 ? (
-            <div className="marketing-grid-3">
-              {exampleAgents.map((agent) => (
-                <article className="marketing-card" key={`${agent.package_id}:${agent.version}`}>
-                  <h3>{agent.display_name}</h3>
-                  <p>{agent.description || "Published agent package."}</p>
-                  <div className="marketing-marketplace-card-actions">
-                    <Link className="marketing-inline-link" to={marketplaceAgentPath(agent.package_id)}>
-                      View package →
-                    </Link>
-                    <a
-                      className="marketing-inline-link"
-                      href={agentPackageInstallUrl(agent.package_id, agent.version)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Open in Console ↗
-                    </a>
-                  </div>
-                </article>
-              ))}
+      {showWorkflows ? (
+        <section className="marketing-section" id="example-workflows">
+          <div className="marketing-container">
+            <div className="marketing-blueprint-section-head">
+              <div>
+                <div className="marketing-section-label">Example workflows</div>
+                <h2>Installable packages from the marketplace.</h2>
+              </div>
+              <p>
+                Workflow packages that reference {integration.name}. Install in
+                Console to start from a published graph.
+              </p>
             </div>
-          ) : (
-            <p className="marketing-section-intro">
-              No public agent packages are indexed for {integration.name} yet.
-            </p>
-          )}
 
-          <Link className="marketing-button marketing-button-secondary" to="/marketplace/agents">
-            Browse agent marketplace →
-          </Link>
-        </div>
-      </section>
+            {workflowsLoading ? (
+              <MarketingLoadingGraphic variant="cards" count={3} />
+            ) : (
+              <div className="marketing-grid-3">
+                {exampleWorkflows.map((workflow) => (
+                  <article className="marketing-card" key={`${workflow.package_id}:${workflow.version}`}>
+                    <h3>{workflow.display_name}</h3>
+                    {workflow.description ? <p>{workflow.description}</p> : null}
+                    <div className="marketing-marketplace-card-meta">
+                      {workflow.trigger_kinds?.map((kind) => (
+                        <span key={kind}>{kind}</span>
+                      ))}
+                      {workflow.has_human_task ? <span>human review</span> : null}
+                    </div>
+                    <div className="marketing-marketplace-card-actions">
+                      <Link
+                        className="marketing-inline-link"
+                        to={marketplaceWorkflowPath(workflow.package_id)}
+                      >
+                        View package →
+                      </Link>
+                      <a
+                        className="marketing-inline-link"
+                        href={workflowPackageInstallUrl(workflow.package_id, workflow.version)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Install in Console ↗
+                      </a>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+
+            <Link className="marketing-button marketing-button-secondary" to="/marketplace/workflows">
+              Browse workflow marketplace →
+            </Link>
+          </div>
+        </section>
+      ) : null}
+
+      {showAgents ? (
+        <section className="marketing-section" data-tone="soft" id="example-agents">
+          <div className="marketing-container">
+            <div className="marketing-blueprint-section-head">
+              <div>
+                <div className="marketing-section-label">Example agents</div>
+                <h2>Agent packages that reference {integration.name}.</h2>
+              </div>
+              <p>
+                Installable agent packages from the marketplace with connector requirements
+                indexed at publish time.
+              </p>
+            </div>
+
+            {agentsLoading ? (
+              <MarketingLoadingGraphic variant="cards" count={3} />
+            ) : (
+              <div className="marketing-grid-3">
+                {exampleAgents.map((agent) => (
+                  <article className="marketing-card" key={`${agent.package_id}:${agent.version}`}>
+                    <h3>{agent.display_name}</h3>
+                    {agent.description ? <p>{agent.description}</p> : null}
+                    <div className="marketing-marketplace-card-actions">
+                      <Link className="marketing-inline-link" to={marketplaceAgentPath(agent.package_id)}>
+                        View package →
+                      </Link>
+                      <a
+                        className="marketing-inline-link"
+                        href={agentPackageInstallUrl(agent.package_id, agent.version)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Open in Console ↗
+                      </a>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+
+            <Link className="marketing-button marketing-button-secondary" to="/marketplace/agents">
+              Browse agent marketplace →
+            </Link>
+          </div>
+        </section>
+      ) : null}
 
       {(content?.configuration?.length || content?.docsUrl) ? (
         <section className="marketing-section" id="setup">
@@ -261,9 +287,11 @@ export function IntegrationDetailPage({
                 <div className="marketing-section-label">Auth & setup</div>
                 <h2>Connect with only the access the workflow needs.</h2>
               </div>
-              <p>
-                {content?.authentication} {content?.workflowStart}
-              </p>
+              {(content?.authentication || content?.workflowStart) ? (
+                <p>
+                  {content.authentication} {content.workflowStart}
+                </p>
+              ) : null}
             </div>
 
             {content?.representativeScopes?.length ? (
@@ -360,11 +388,24 @@ function IntegrationHeroSummary({
   integration,
   toolCount,
 }: {
-  connector: PublicConnector;
+  connector: PublicConnectorDetail;
   content: ReturnType<typeof getIntegrationContent>;
   integration: Integration;
   toolCount: number;
 }) {
+  const summary = content?.cardSummary || connector.description;
+  const stats = [
+    toolCount > 0
+      ? { label: String(toolCount), detail: `${integration.name} actions` }
+      : null,
+    content?.workflowStartLabel
+      ? { label: content.workflowStartLabel, detail: "Workflow starts" }
+      : null,
+    content?.maturity
+      ? { label: content.maturity, detail: "Catalog status" }
+      : null,
+  ].filter((item): item is { label: string; detail: string } => item !== null);
+
   return (
     <div
       className="marketing-integration-hero-visual"
@@ -375,6 +416,8 @@ function IntegrationHeroSummary({
           <span className="marketing-integration-summary-logo">
             {content?.logoPath ? (
               <img src={content.logoPath} alt="" aria-hidden="true" />
+            ) : connector.icon_url ? (
+              <img src={connector.icon_url} alt="" aria-hidden="true" />
             ) : (
               <span aria-hidden="true">{getIntegrationMark(integration.name)}</span>
             )}
@@ -383,23 +426,19 @@ function IntegrationHeroSummary({
             <small>Integration</small>
             <strong>{integration.name}</strong>
           </span>
-          <b>{content?.authLabel ?? "MCP connector"}</b>
+          {content?.authLabel ? <b>{content.authLabel}</b> : null}
         </header>
-        <p>{content?.cardSummary ?? connector.description}</p>
-        <dl>
-          <div>
-            <dt>{toolCount}</dt>
-            <dd>{integration.name} actions</dd>
-          </div>
-          <div>
-            <dt>{content?.workflowStartLabel ?? "API"}</dt>
-            <dd>Workflow starts</dd>
-          </div>
-          <div>
-            <dt>{content?.maturity ?? "registered"}</dt>
-            <dd>Catalog status</dd>
-          </div>
-        </dl>
+        {summary ? <p>{summary}</p> : null}
+        {stats.length > 0 ? (
+          <dl>
+            {stats.map((stat) => (
+              <div key={stat.detail}>
+                <dt>{stat.label}</dt>
+                <dd>{stat.detail}</dd>
+              </div>
+            ))}
+          </dl>
+        ) : null}
       </article>
     </div>
   );

@@ -7,6 +7,7 @@ import {
 } from "@/components/marketing/MarketingPrimitives";
 import { MarketplaceNav } from "@/components/marketing/MarketplaceNav";
 import { MarketplaceCatalogToolbar } from "@/components/marketing/MarketplaceCatalogToolbar";
+import { MarketingLoadingGraphic } from "@/components/marketing/MarketingLoadingGraphic";
 import { usePublicCatalogBundles } from "@/hooks/usePublicMarketplace";
 import { usePublicConnectors } from "@/hooks/usePublicConnectors";
 import {
@@ -53,11 +54,9 @@ export default function MarketplaceBundles() {
       <PageHero
         centered
         eyebrow={
-          isLoading
-            ? "Loading marketplace"
-            : isError
-              ? "Marketplace"
-              : `${filtered.length} catalog bundles`
+          isError || isLoading
+            ? "Marketplace"
+            : `${filtered.length} catalog bundles`
         }
         title="Install agent + workflow packages together."
         description="Bundles wire a governed agent to the workflow packages it needs so teams can adopt a complete operating pattern in one step."
@@ -84,6 +83,9 @@ export default function MarketplaceBundles() {
             </p>
           ) : null}
 
+          {isLoading ? (
+            <MarketingLoadingGraphic variant="cards" count={6} />
+          ) : (
           <div className="marketing-grid-3">
             {filtered.map((bundle) => (
               <article className="marketing-card" key={`${bundle.bundle_id}:${bundle.version}`}>
@@ -122,6 +124,7 @@ export default function MarketplaceBundles() {
               </article>
             ))}
           </div>
+          )}
 
           {!isLoading && !isError && filtered.length === 0 ? (
             <p className="marketing-section-intro">

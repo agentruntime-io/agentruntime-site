@@ -1,7 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import {
   DEFAULT_DESCRIPTION,
+  OG_IMAGE_ALT,
+  OG_IMAGE_HEIGHT,
   OG_IMAGE_PATH,
+  OG_IMAGE_WIDTH,
   SITE_NAME,
   SITE_URL,
   TWITTER_HANDLE,
@@ -17,6 +20,8 @@ export type SeoProps = {
   noindex?: boolean;
   /** Absolute URL or path starting with / (defaults to OG image on SITE_URL) */
   ogImage?: string;
+  /** Override default social preview alt text */
+  ogImageAlt?: string;
   /** Open Graph type; blog posts should use `"article"` */
   ogType?: "website" | "article";
   /** ISO 8601, e.g. `2026-05-07T12:00:00.000Z`. Used when `ogType === "article"`. */
@@ -44,6 +49,7 @@ export function Seo({
   canonicalPath,
   noindex = false,
   ogImage,
+  ogImageAlt = OG_IMAGE_ALT,
   ogType = "website",
   articlePublishedTime,
 }: SeoProps) {
@@ -51,6 +57,7 @@ export function Seo({
   const canonical =
     canonicalPath !== undefined ? absoluteUrl(canonicalPath) : undefined;
   const ogImageUrl = ogImage ? absoluteUrl(ogImage) : absoluteUrl(OG_IMAGE_PATH);
+  const usesDefaultOgImage = !ogImage || ogImage === OG_IMAGE_PATH;
 
   return (
     <Helmet>
@@ -68,6 +75,14 @@ export function Seo({
       <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:image" content={ogImageUrl} />
+      {usesDefaultOgImage ? (
+        <>
+          <meta property="og:image:width" content={String(OG_IMAGE_WIDTH)} />
+          <meta property="og:image:height" content={String(OG_IMAGE_HEIGHT)} />
+          <meta property="og:image:type" content="image/png" />
+        </>
+      ) : null}
+      <meta property="og:image:alt" content={ogImageAlt} />
       <meta property="og:locale" content="en_US" />
       {ogType === "article" && articlePublishedTime ? (
         <meta property="article:published_time" content={articlePublishedTime} />

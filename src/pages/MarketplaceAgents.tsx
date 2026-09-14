@@ -7,6 +7,7 @@ import {
 } from "@/components/marketing/MarketingPrimitives";
 import { MarketplaceNav } from "@/components/marketing/MarketplaceNav";
 import { MarketplaceCatalogToolbar } from "@/components/marketing/MarketplaceCatalogToolbar";
+import { MarketingLoadingGraphic } from "@/components/marketing/MarketingLoadingGraphic";
 import { usePublicAgentPackages } from "@/hooks/usePublicMarketplace";
 import { usePublicConnectors } from "@/hooks/usePublicConnectors";
 import {
@@ -52,11 +53,9 @@ export default function MarketplaceAgents() {
       <PageHero
         centered
         eyebrow={
-          isLoading
-            ? "Loading marketplace"
-            : isError
-              ? "Marketplace"
-              : `${filtered.length} agent packages`
+          isError || isLoading
+            ? "Marketplace"
+            : `${filtered.length} agent packages`
         }
         title="Hire governed agents with explicit tool boundaries."
         description="Discover platform and public agent packages, review connector requirements, and install or hire them in Console."
@@ -83,6 +82,9 @@ export default function MarketplaceAgents() {
             </p>
           ) : null}
 
+          {isLoading ? (
+            <MarketingLoadingGraphic variant="cards" count={6} />
+          ) : (
           <div className="marketing-grid-3">
             {filtered.map((agent) => (
               <article className="marketing-card" key={`${agent.package_id}:${agent.version}`}>
@@ -121,6 +123,7 @@ export default function MarketplaceAgents() {
               </article>
             ))}
           </div>
+          )}
 
           {!isLoading && !isError && filtered.length === 0 ? (
             <p className="marketing-section-intro">

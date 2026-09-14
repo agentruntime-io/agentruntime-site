@@ -5,6 +5,7 @@ import {
   PageHero,
 } from "@/components/marketing/MarketingPrimitives";
 import { MarketplaceNav } from "@/components/marketing/MarketplaceNav";
+import { MarketingLoadingGraphic } from "@/components/marketing/MarketingLoadingGraphic";
 import { usePublicAgentPackage } from "@/hooks/usePublicMarketplace";
 import { usePublicConnectors } from "@/hooks/usePublicConnectors";
 import { getIntegrationMark } from "@/lib/marketingCatalog";
@@ -19,8 +20,8 @@ export default function MarketplaceAgentDetail() {
   if (isLoading) {
     return (
       <div className="marketing-page">
-        <div className="marketing-container marketing-integration-empty">
-          <strong>Loading agent package...</strong>
+        <div className="marketing-container">
+          <MarketingLoadingGraphic variant="detail" />
         </div>
       </div>
     );

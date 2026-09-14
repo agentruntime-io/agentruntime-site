@@ -8,6 +8,7 @@ import { usePublicWorkflowPackage } from "@/hooks/usePublicMarketplace";
 import { usePublicConnectors } from "@/hooks/usePublicConnectors";
 import { getIntegrationMark } from "@/lib/marketingCatalog";
 import { MarketplaceNav } from "@/components/marketing/MarketplaceNav";
+import { MarketingLoadingGraphic } from "@/components/marketing/MarketingLoadingGraphic";
 import { workflowPackageInstallUrl } from "@/lib/marketplaceLinks";
 
 export default function MarketplaceWorkflowDetail() {
@@ -19,8 +20,8 @@ export default function MarketplaceWorkflowDetail() {
   if (isLoading) {
     return (
       <div className="marketing-page">
-        <div className="marketing-container marketing-integration-empty">
-          <strong>Loading workflow package...</strong>
+        <div className="marketing-container">
+          <MarketingLoadingGraphic variant="detail" />
         </div>
       </div>
     );

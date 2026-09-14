@@ -7,6 +7,7 @@ import {
 } from "@/components/marketing/MarketingPrimitives";
 import { MarketplaceNav } from "@/components/marketing/MarketplaceNav";
 import { MarketplaceCatalogToolbar } from "@/components/marketing/MarketplaceCatalogToolbar";
+import { MarketingLoadingGraphic } from "@/components/marketing/MarketingLoadingGraphic";
 import { usePublicWorkflowPackages } from "@/hooks/usePublicMarketplace";
 import { usePublicConnectors } from "@/hooks/usePublicConnectors";
 import {
@@ -51,11 +52,9 @@ export default function MarketplaceWorkflows() {
       <PageHero
         centered
         eyebrow={
-          isLoading
-            ? "Loading marketplace"
-            : isError
-              ? "Marketplace"
-              : `${filtered.length} workflow packages`
+          isError || isLoading
+            ? "Marketplace"
+            : `${filtered.length} workflow packages`
         }
         title="Installable workflows for production agent operations."
         description="Discover platform and public workflow packages, see which connectors they require, and install them in Console."
@@ -82,6 +81,9 @@ export default function MarketplaceWorkflows() {
             </p>
           ) : null}
 
+          {isLoading ? (
+            <MarketingLoadingGraphic variant="cards" count={6} />
+          ) : (
           <div className="marketing-grid-3">
             {filtered.map((workflow) => (
               <article className="marketing-card" key={`${workflow.package_id}:${workflow.version}`}>
@@ -122,6 +124,7 @@ export default function MarketplaceWorkflows() {
               </article>
             ))}
           </div>
+          )}
 
           {!isLoading && !isError && filtered.length === 0 ? (
             <p className="marketing-section-intro">

@@ -5,6 +5,7 @@ import {
   PageHero,
 } from "@/components/marketing/MarketingPrimitives";
 import { MarketplaceNav } from "@/components/marketing/MarketplaceNav";
+import { MarketingLoadingGraphic } from "@/components/marketing/MarketingLoadingGraphic";
 import { usePublicCatalogBundle } from "@/hooks/usePublicMarketplace";
 import { usePublicConnectors } from "@/hooks/usePublicConnectors";
 import { getIntegrationMark } from "@/lib/marketingCatalog";
@@ -23,8 +24,8 @@ export default function MarketplaceBundleDetail() {
   if (isLoading) {
     return (
       <div className="marketing-page">
-        <div className="marketing-container marketing-integration-empty">
-          <strong>Loading catalog bundle...</strong>
+        <div className="marketing-container">
+          <MarketingLoadingGraphic variant="detail" />
         </div>
       </div>
     );

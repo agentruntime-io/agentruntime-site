@@ -170,7 +170,7 @@ function useWorkflowEdges(
       resizeObserver.disconnect();
       window.removeEventListener("resize", measure);
     };
-  }, [measure]);
+  }, [containerRef, measure]);
 
   return { edges, svgSize };
 }
