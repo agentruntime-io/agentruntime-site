@@ -5,7 +5,8 @@ import {
   PageHero,
 } from "@/components/marketing/MarketingPrimitives";
 import { DOCS_APP_URL } from "@/config/site";
-import { featuredIntegrations, integrationCount } from "@/lib/marketingCatalog";
+import { resolveFeaturedConnectors } from "@/lib/marketingCatalog";
+import { usePublicConnectors } from "@/hooks/usePublicConnectors";
 import { seoCopy } from "@/seo/metadata";
 
 const executionLifecycle = [
@@ -79,6 +80,9 @@ const stackSurfaces = [
 ];
 
 export default function Developers() {
+  const { data: connectors = [] } = usePublicConnectors();
+  const featuredIntegrations = resolveFeaturedConnectors(connectors);
+  const integrationCount = connectors.length;
   return (
     <div className="marketing-page">
       <Seo {...seoCopy.developers} canonicalPath="/developers" />

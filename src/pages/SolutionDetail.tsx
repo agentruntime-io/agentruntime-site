@@ -7,14 +7,13 @@ import {
 import { BlueprintWorkflowVisual } from "@/components/marketing/BlueprintWorkflowVisual";
 import { getIntegrationDetail } from "@/lib/integrationDetails";
 import { getIntegrationLogoPath } from "@/lib/integrationLogos";
-import {
-  integrations,
-  productSurfaces,
-} from "@/lib/marketingCatalog";
+import { productSurfaces } from "@/lib/marketingCatalog";
+import { findPublicConnector, usePublicConnectors } from "@/hooks/usePublicConnectors";
 import { getWorkflowBlueprint } from "@/lib/workflowBlueprints";
 
 export default function SolutionDetail() {
   const { slug } = useParams<{ slug: string }>();
+  const { data: connectors = [] } = usePublicConnectors();
   const blueprint = slug ? getWorkflowBlueprint(slug) : undefined;
 
   if (!blueprint) {
@@ -22,15 +21,17 @@ export default function SolutionDetail() {
   }
 
   const connectedIntegrations = blueprint.integrations.flatMap((connection) => {
-    const integration = integrations.find(
-      (item) => item.slug === connection.slug,
-    );
-    return integration
+    const connector = findPublicConnector(connectors, connection.slug);
+    return connector
       ? [
           {
             ...connection,
-            integration,
-            detail: getIntegrationDetail(integration.slug),
+            integration: {
+              slug: connector.slug,
+              name: connector.name,
+              category: "Productivity" as const,
+            },
+            detail: getIntegrationDetail(connector.slug),
           },
         ]
       : [];

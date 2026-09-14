@@ -2,7 +2,13 @@
  * Emit `public/sitemap.xml` and `public/blog/rss.xml` from static routes + `src/blog/posts.ts`.
  * Run before `vite build` (see package.json). Keep static route list aligned with App.tsx + featureFlags.
  */
-import { writeFileSync, readFileSync, existsSync, statSync } from "node:fs";
+import {
+  writeFileSync,
+  readFileSync,
+  existsSync,
+  statSync,
+  readdirSync,
+} from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { coverImageWebp800Path, parseBlogPosts } from "./parse-blog-posts.mjs";
@@ -10,13 +16,13 @@ import { coverImageWebp800Path, parseBlogPosts } from "./parse-blog-posts.mjs";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 const POSTS_TS = join(ROOT, "src", "blog", "posts.ts");
-const MARKETING_CATALOG_TS = join(ROOT, "src", "lib", "marketingCatalog.ts");
 const WORKFLOW_BLUEPRINTS_TS = join(
   ROOT,
   "src",
   "lib",
   "workflowBlueprints.ts",
 );
+const INTEGRATIONS_CONTENT_DIR = join(ROOT, "src", "content", "integrations");
 const SITEMAP_OUT = join(ROOT, "public", "sitemap.xml");
 const RSS_OUT = join(ROOT, "public", "blog", "rss.xml");
 
@@ -26,24 +32,6 @@ const SITE_NAME = "AgentRuntime";
 
 /** Keep aligned with src/config/featureFlags.ts → showWaitlist */
 const SHOW_WAITLIST = false;
-
-function parseIntegrationSlugs(path) {
-  const source = readFileSync(path, "utf8");
-  const integrationsBlock = source.match(
-    /export const integrations = \[([\s\S]*?)\]\s+satisfies readonly Integration\[\];/,
-  );
-
-  if (!integrationsBlock) {
-    console.error(
-      "generate-seo-assets: could not parse integrations from marketingCatalog.ts",
-    );
-    process.exit(1);
-  }
-
-  return [...integrationsBlock[1].matchAll(/\bslug:\s*"([^"]+)"/g)].map(
-    (match) => match[1],
-  );
-}
 
 function parseWorkflowBlueprintSlugs(path) {
   const source = readFileSync(path, "utf8");
@@ -71,6 +59,10 @@ const baseStaticEntries = [
   ["/platform", "monthly", "0.9"],
   ["/solutions", "monthly", "0.9"],
   ["/integrations", "weekly", "0.9"],
+  ["/marketplace", "weekly", "0.9"],
+  ["/marketplace/workflows", "weekly", "0.9"],
+  ["/marketplace/agents", "weekly", "0.9"],
+  ["/marketplace/bundles", "weekly", "0.9"],
   ["/developers", "monthly", "0.9"],
   ["/enterprise", "monthly", "0.8"],
   ["/company", "monthly", "0.7"],
@@ -88,22 +80,10 @@ const baseStaticEntries = [
   ["/legal/service-level-agreement", "yearly", "0.4"],
 ];
 
-const integrationSlugs = parseIntegrationSlugs(MARKETING_CATALOG_TS);
-const integrationSlugSet = new Set(integrationSlugs);
 const workflowBlueprintSlugs = parseWorkflowBlueprintSlugs(
   WORKFLOW_BLUEPRINTS_TS,
 );
 const workflowBlueprintSlugSet = new Set(workflowBlueprintSlugs);
-
-if (
-  integrationSlugs.length === 0 ||
-  integrationSlugSet.size !== integrationSlugs.length
-) {
-  console.error(
-    "generate-seo-assets: integration slugs are empty or contain duplicates",
-  );
-  process.exit(1);
-}
 
 if (
   workflowBlueprintSlugs.length === 0 ||
@@ -115,20 +95,26 @@ if (
   process.exit(1);
 }
 
-const integrationEntries = integrationSlugs.map((slug) => [
-  `/integrations/${slug}`,
-  "monthly",
-  "0.7",
-]);
 const workflowBlueprintEntries = workflowBlueprintSlugs.map((slug) => [
   `/solutions/${slug}`,
   "monthly",
   "0.8",
 ]);
+const curatedIntegrationSlugs = existsSync(INTEGRATIONS_CONTENT_DIR)
+  ? readdirSync(INTEGRATIONS_CONTENT_DIR)
+      .filter((name) => name.endsWith(".json"))
+      .map((name) => name.replace(/\.json$/, ""))
+      .sort()
+  : [];
+const curatedIntegrationEntries = curatedIntegrationSlugs.map((slug) => [
+  `/integrations/${slug}`,
+  "weekly",
+  "0.85",
+]);
 const staticEntries = [
   ...baseStaticEntries,
   ...workflowBlueprintEntries,
-  ...integrationEntries,
+  ...curatedIntegrationEntries,
   ...(SHOW_WAITLIST ? [["/waitlist", "monthly", "0.8"]] : []),
 ];
 
@@ -261,6 +247,6 @@ const rss = [
 writeFileSync(RSS_OUT, `${rss}\n`, "utf8");
 
 console.log(
-  `generate-seo-assets: sitemap ${smLines.length - 3} URLs (${workflowBlueprintSlugs.length} workflow blueprints, ${integrationSlugs.length} integrations, ${blogPosts.length} posts, lastmod on static=${buildDay}) -> ${SITEMAP_OUT}`
+  `generate-seo-assets: sitemap ${smLines.length - 3} URLs (${workflowBlueprintSlugs.length} workflow blueprints, live integrations index only, ${blogPosts.length} posts, lastmod on static=${buildDay}) -> ${SITEMAP_OUT}`
 );
 console.log(`generate-seo-assets: RSS ${sorted.length} items -> ${RSS_OUT}`);

@@ -10,6 +10,7 @@ import {
 
 const directNavItems = [
   { path: "/integrations", label: "Integrations" },
+  { path: "/marketplace", label: "Marketplace" },
   { path: "/developers", label: "Developers" },
   { path: "/enterprise", label: "Enterprise" },
 ] as const;

@@ -6,45 +6,46 @@ import {
   CallToAction,
   PageHero,
 } from "@/components/marketing/MarketingPrimitives";
-import { getIntegrationDetail } from "@/lib/integrationDetails";
+import { getIntegrationContent } from "@/lib/integrationContent";
 import { getIntegrationLogoPath } from "@/lib/integrationLogos";
-import {
-  getIntegrationMark,
-  integrationCategories,
-  integrationCount,
-  integrations,
-  type IntegrationCategory,
-} from "@/lib/marketingCatalog";
+import { getIntegrationMark } from "@/lib/marketingCatalog";
+import { usePublicConnectors } from "@/hooks/usePublicConnectors";
 import { seoCopy } from "@/seo/metadata";
-
-type CategoryFilter = "All" | IntegrationCategory;
 
 export default function Integrations() {
   const [query, setQuery] = useState("");
-  const [activeCategory, setActiveCategory] =
-    useState<CategoryFilter>("All");
+  const { data: connectors = [], isLoading, isError } = usePublicConnectors();
 
   const filteredIntegrations = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
-    return integrations.filter((integration) => {
-      const matchesCategory =
-        activeCategory === "All" || integration.category === activeCategory;
-      const matchesQuery =
-        normalizedQuery.length === 0 ||
-        integration.name.toLowerCase().includes(normalizedQuery) ||
-        integration.category.toLowerCase().includes(normalizedQuery);
+    return connectors.filter((connector) => {
+      if (normalizedQuery.length === 0) {
+        return true;
+      }
 
-      return matchesCategory && matchesQuery;
+      return (
+        connector.name.toLowerCase().includes(normalizedQuery) ||
+        connector.slug.toLowerCase().includes(normalizedQuery) ||
+        (connector.description?.toLowerCase().includes(normalizedQuery) ?? false)
+      );
     });
-  }, [activeCategory, query]);
+  }, [connectors, query]);
+
+  const integrationCount = connectors.length;
 
   return (
     <div className="marketing-page">
       <Seo {...seoCopy.integrations} canonicalPath="/integrations" />
       <PageHero
         centered
-        eyebrow={`${integrationCount} catalogued connectors`}
+        eyebrow={
+          isLoading
+            ? "Loading catalogued connectors"
+            : isError
+              ? "Connector catalog"
+              : `${integrationCount} catalogued connectors`
+        }
         title="Connect the systems where the work already happens."
         description="Bring communication, data, developer tools, business software, and model services into governed AgentRuntime workflows."
         primary={{ label: "Discuss an integration →", to: "/contact" }}
@@ -62,8 +63,9 @@ export default function Integrations() {
               <h2>Find the systems your workflow needs.</h2>
             </div>
             <p>
-              Catalog coverage changes quickly. Confirm connector availability
-              and deployment requirements with the team before production use.
+              This directory reflects the first-party connectors registered in
+              the AgentRuntime platform catalog. Confirm deployment requirements
+              with the team before production use.
             </p>
           </div>
 
@@ -75,78 +77,69 @@ export default function Integrations() {
                 type="search"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search by name or category"
+                placeholder="Search by name or slug"
               />
             </label>
-
-            <div
-              className="marketing-integration-filters"
-              aria-label="Filter integrations by category"
-            >
-              {(["All", ...integrationCategories] as const).map((category) => (
-                <button
-                  type="button"
-                  key={category}
-                  data-active={activeCategory === category}
-                  aria-pressed={activeCategory === category}
-                  onClick={() => setActiveCategory(category)}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
           </div>
 
           <div className="marketing-integration-results" aria-live="polite">
             <span>
-              {filteredIntegrations.length}{" "}
-              {filteredIntegrations.length === 1 ? "connector" : "connectors"}
+              {isLoading
+                ? "Loading connectors..."
+                : `${filteredIntegrations.length} ${
+                    filteredIntegrations.length === 1 ? "connector" : "connectors"
+                  }`}
             </span>
-            {(query || activeCategory !== "All") && (
-              <button
-                type="button"
-                onClick={() => {
-                  setQuery("");
-                  setActiveCategory("All");
-                }}
-              >
-                Clear filters
+            {query && (
+              <button type="button" onClick={() => setQuery("")}>
+                Clear search
               </button>
             )}
           </div>
 
-          {filteredIntegrations.length > 0 ? (
+          {isError ? (
+            <div className="marketing-integration-empty">
+              <strong>Connector catalog is temporarily unavailable.</strong>
+              <p>Refresh the page or contact us if you need a specific system.</p>
+            </div>
+          ) : isLoading ? (
+            <div className="marketing-integration-empty">
+              <strong>Loading connector catalog...</strong>
+            </div>
+          ) : filteredIntegrations.length > 0 ? (
             <div className="marketing-integration-grid">
-              {filteredIntegrations.map((integration) => {
-                const detail = getIntegrationDetail(integration.slug);
+              {filteredIntegrations.map((connector) => {
+                const content = getIntegrationContent(connector.slug);
                 const logoPath =
-                  detail?.logoPath ?? getIntegrationLogoPath(integration.slug);
+                  content?.logoPath ??
+                  connector.icon_url ??
+                  getIntegrationLogoPath(connector.slug);
 
                 return (
                   <Link
                     className="marketing-integration-card"
-                    to={`/integrations/${integration.slug}`}
-                    aria-label={`View ${integration.name} integration details`}
-                    key={integration.slug}
+                    to={`/integrations/${connector.slug}`}
+                    aria-label={`View ${connector.name} integration details`}
+                    key={connector.slug}
                   >
                     <span
                       className="marketing-integration-mark"
                       data-logo={logoPath ? "true" : undefined}
                       aria-hidden="true"
                     >
-                      {logoPath ? (
-                        <img src={logoPath} alt="" />
-                      ) : (
-                        getIntegrationMark(integration.name)
-                      )}
+                      {logoPath ? <img src={logoPath} alt="" /> : getIntegrationMark(connector.name)}
                     </span>
                     <div>
-                      <h3>{integration.name}</h3>
-                      <p>{integration.category}</p>
+                      <h3>{connector.name}</h3>
+                      <p>
+                        {connector.tool_count > 0
+                          ? `${connector.tool_count} tools`
+                          : "Platform connector"}
+                      </p>
                     </div>
                     <span className="marketing-integration-status">
                       <i aria-hidden="true" />
-                      {detail ? "Connector profile" : "View details"}
+                      {content ? "Connector profile" : "View details"}
                     </span>
                   </Link>
                 );
@@ -154,10 +147,8 @@ export default function Integrations() {
             </div>
           ) : (
             <div className="marketing-integration-empty">
-              <strong>No connector matches those filters.</strong>
-              <p>
-                Clear the filters or tell us which system your workflow needs.
-              </p>
+              <strong>No connector matches that search.</strong>
+              <p>Clear the search or tell us which system your workflow needs.</p>
             </div>
           )}
         </div>

@@ -152,3 +152,8 @@ export const integrationDetails = {
 export function getIntegrationDetail(slug: string) {
   return integrationDetails[slug as keyof typeof integrationDetails];
 }
+
+/** @deprecated Prefer getIntegrationContent for new integration pages. */
+export function hasLegacyIntegrationDetail(slug: string) {
+  return Boolean(getIntegrationDetail(slug));
+}

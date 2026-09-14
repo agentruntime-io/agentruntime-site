@@ -8,12 +8,12 @@ import {
   ProductStage,
 } from "@/components/marketing/MarketingPrimitives";
 import {
-  featuredIntegrations,
   getIntegrationMark,
-  integrationCount,
   productSurfaces,
+  resolveFeaturedConnectors,
   solutionAudiences,
 } from "@/lib/marketingCatalog";
+import { usePublicConnectors } from "@/hooks/usePublicConnectors";
 import { seoCopy } from "@/seo/metadata";
 
 const operationalProblems = [
@@ -79,6 +79,9 @@ const runtimeOutcomes = [
 ];
 
 export default function Home() {
+  const { data: connectors = [] } = usePublicConnectors();
+  const featuredIntegrations = resolveFeaturedConnectors(connectors);
+  const integrationCount = connectors.length;
   return (
     <div className="marketing-page">
       <Seo {...seoCopy.home} canonicalPath="/" />

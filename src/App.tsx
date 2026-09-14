@@ -20,6 +20,13 @@ const Workflows = lazy(() => import("./pages/Workflows"));
 const SolutionDetail = lazy(() => import("./pages/SolutionDetail"));
 const Integrations = lazy(() => import("./pages/Integrations"));
 const IntegrationDetail = lazy(() => import("./pages/IntegrationDetail"));
+const Marketplace = lazy(() => import("./pages/Marketplace"));
+const MarketplaceWorkflows = lazy(() => import("./pages/MarketplaceWorkflows"));
+const MarketplaceAgents = lazy(() => import("./pages/MarketplaceAgents"));
+const MarketplaceBundles = lazy(() => import("./pages/MarketplaceBundles"));
+const MarketplaceWorkflowDetail = lazy(() => import("./pages/MarketplaceWorkflowDetail"));
+const MarketplaceAgentDetail = lazy(() => import("./pages/MarketplaceAgentDetail"));
+const MarketplaceBundleDetail = lazy(() => import("./pages/MarketplaceBundleDetail"));
 const Developers = lazy(() => import("./pages/Developers"));
 const Enterprise = lazy(() => import("./pages/Enterprise"));
 const Company = lazy(() => import("./pages/Company"));
@@ -67,6 +74,13 @@ const App = () => (
                       <Route path="/solutions/:slug" element={<SolutionDetail />} />
                       <Route path="/integrations" element={<Integrations />} />
                       <Route path="/integrations/:slug" element={<IntegrationDetail />} />
+                      <Route path="/marketplace" element={<Marketplace />} />
+                      <Route path="/marketplace/workflows" element={<MarketplaceWorkflows />} />
+                      <Route path="/marketplace/workflows/:packageId" element={<MarketplaceWorkflowDetail />} />
+                      <Route path="/marketplace/agents" element={<MarketplaceAgents />} />
+                      <Route path="/marketplace/agents/:packageId" element={<MarketplaceAgentDetail />} />
+                      <Route path="/marketplace/bundles" element={<MarketplaceBundles />} />
+                      <Route path="/marketplace/bundles/:bundleId" element={<MarketplaceBundleDetail />} />
                       <Route path="/developers" element={<Developers />} />
                       <Route path="/enterprise" element={<Enterprise />} />
                       <Route path="/company" element={<Company />} />
