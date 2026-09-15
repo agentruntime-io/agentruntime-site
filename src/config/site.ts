@@ -15,7 +15,8 @@ export const DEFAULT_DESCRIPTION =
   "Connect AI agents, tools, business rules, and people in reliable, stateful workflows built for real production operations.";
 
 /** Path to social preview image (served from site root) */
-export const OG_IMAGE_PATH = "/agentruntime-og-image.png";
+export const OG_IMAGE_PATH = "/og-image.jpg";
 export const OG_IMAGE_WIDTH = 1200;
 export const OG_IMAGE_HEIGHT = 630;
+export const OG_IMAGE_TYPE = "image/jpeg";
 export const OG_IMAGE_ALT = "AgentRuntime — Build. Run. Govern. Agents.";

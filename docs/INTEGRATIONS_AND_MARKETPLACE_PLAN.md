@@ -13,7 +13,8 @@ Build a **Composio / n8n / Make–quality** public discovery layer that is hones
 1. **Integrations directory** — what first-party connectors are registered in the platform catalog (from DB).
 2. **Integration detail pages** — dedicated `/integrations/:slug` pages with curated marketing + real tool facts.
 3. **Marketplace** — public browse/install entry for **workflow packages** (and later agents/bundles) listed with `visibility: public | platform`.
-4. **Cross-linking** — integration pages show example workflows from marketplace; marketplace items show required connectors.
+4. **Apps (Surfaces)** — marketplace-installable app packages (views + workflow templates + connections). Design: [../../docs/surfaces/SURFACES_ARCHITECTURE.md](../../docs/surfaces/SURFACES_ARCHITECTURE.md).
+5. **Cross-linking** — integration pages show example workflows from marketplace; marketplace items show required connectors.
 
 **Core principle:** dynamic **index** (DB) + curated **detail** (site content) + **marketplace examples** (published packages), merged at render time.
 
