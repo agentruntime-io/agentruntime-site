@@ -426,7 +426,11 @@ function IntegrationHeroSummary({
             <small>Integration</small>
             <strong>{integration.name}</strong>
           </span>
-          {content?.authLabel ? <b>{content.authLabel}</b> : null}
+          {content?.authLabel ? (
+            <b>{content.authLabel}</b>
+          ) : connector.source === "composio" ? (
+            <b>Composio catalog</b>
+          ) : null}
         </header>
         {summary ? <p>{summary}</p> : null}
         {stats.length > 0 ? (
