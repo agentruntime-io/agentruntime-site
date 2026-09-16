@@ -4,6 +4,7 @@ import {
   OG_IMAGE_ALT,
   OG_IMAGE_HEIGHT,
   OG_IMAGE_PATH,
+  OG_IMAGE_TYPE,
   OG_IMAGE_WIDTH,
   SITE_NAME,
   SITE_URL,
@@ -79,7 +80,7 @@ export function Seo({
         <>
           <meta property="og:image:width" content={String(OG_IMAGE_WIDTH)} />
           <meta property="og:image:height" content={String(OG_IMAGE_HEIGHT)} />
-          <meta property="og:image:type" content="image/png" />
+          <meta property="og:image:type" content={OG_IMAGE_TYPE} />
         </>
       ) : null}
       <meta property="og:image:alt" content={ogImageAlt} />
@@ -93,6 +94,7 @@ export function Seo({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImageUrl} />
+      <meta name="twitter:image:alt" content={ogImageAlt} />
 
       {noindex ? (
         <meta name="robots" content="noindex, nofollow" />

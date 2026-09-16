@@ -1,11 +1,14 @@
 import { api } from "@/config/api";
 
+export type PublicConnectorSource = "first_party" | "composio";
+
 export type PublicConnector = {
   slug: string;
   name: string;
   description?: string;
   icon_url?: string;
   tool_count: number;
+  source: PublicConnectorSource;
 };
 
 export type PublicConnectorTool = {

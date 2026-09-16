@@ -14,7 +14,63 @@ import {
   MarketingLoadingGraphic,
 } from "@/components/marketing/MarketingLoadingGraphic";
 import { usePublicConnectors } from "@/hooks/usePublicConnectors";
+import type { PublicConnector } from "@/api/connectors";
 import { seoCopy } from "@/seo/metadata";
+
+function IntegrationConnectorGrid({
+  connectors,
+}: {
+  connectors: readonly PublicConnector[];
+}) {
+  return (
+    <div className="marketing-integration-grid">
+      {connectors.map((connector) => {
+        const content = getIntegrationContent(connector.slug);
+        const logoPath =
+          content?.logoPath ??
+          connector.icon_url ??
+          getIntegrationLogoPath(connector.slug);
+        const isComposio = connector.source === "composio";
+
+        return (
+          <Link
+            className="marketing-integration-card"
+            to={`/integrations/${connector.slug}`}
+            aria-label={`View ${connector.name} integration details`}
+            key={connector.slug}
+          >
+            <span
+              className="marketing-integration-mark"
+              data-logo={logoPath ? "true" : undefined}
+              aria-hidden="true"
+            >
+              {logoPath ? <img src={logoPath} alt="" /> : getIntegrationMark(connector.name)}
+            </span>
+            <div>
+              <h3>{connector.name}</h3>
+              <p>
+                {connector.tool_count > 0
+                  ? `${connector.tool_count} tools`
+                  : "Platform connector"}
+              </p>
+            </div>
+            <span
+              className="marketing-integration-status"
+              data-source={isComposio ? "composio" : undefined}
+            >
+              <i aria-hidden="true" />
+              {content
+                ? "Connector profile"
+                : isComposio
+                  ? "Composio catalog"
+                  : "View details"}
+            </span>
+          </Link>
+        );
+      })}
+    </div>
+  );
+}
 
 export default function Integrations() {
   const [query, setQuery] = useState("");
@@ -36,7 +92,18 @@ export default function Integrations() {
     });
   }, [connectors, query]);
 
+  const firstPartyConnectors = useMemo(
+    () => filteredIntegrations.filter((connector) => connector.source !== "composio"),
+    [filteredIntegrations],
+  );
+  const composioConnectors = useMemo(
+    () => filteredIntegrations.filter((connector) => connector.source === "composio"),
+    [filteredIntegrations],
+  );
+
   const integrationCount = connectors.length;
+  const firstPartyCount = connectors.filter((connector) => connector.source !== "composio").length;
+  const composioCount = connectors.length - firstPartyCount;
 
   return (
     <div className="marketing-page">
@@ -65,9 +132,9 @@ export default function Integrations() {
               <h2>Find the systems your workflow needs.</h2>
             </div>
             <p>
-              This directory reflects the first-party connectors registered in
-              the AgentRuntime platform catalog. Confirm deployment requirements
-              with the team before production use.
+              AgentRuntime first-party connectors are listed first, followed by
+              Composio-backed catalog entries published to the platform. Tool
+              lists on each page come from the committed platform catalog.
             </p>
           </div>
 
@@ -109,44 +176,30 @@ export default function Integrations() {
           ) : isLoading ? (
             <MarketingLoadingGraphic variant="integrations" />
           ) : filteredIntegrations.length > 0 ? (
-            <div className="marketing-integration-grid">
-              {filteredIntegrations.map((connector) => {
-                const content = getIntegrationContent(connector.slug);
-                const logoPath =
-                  content?.logoPath ??
-                  connector.icon_url ??
-                  getIntegrationLogoPath(connector.slug);
+            <>
+              {firstPartyConnectors.length > 0 ? (
+                <div className="marketing-integration-catalog-section">
+                  <div className="marketing-integration-catalog-head">
+                    <h3>AgentRuntime connectors</h3>
+                    <p>{firstPartyCount} first-party integrations in the platform catalog.</p>
+                  </div>
+                  <IntegrationConnectorGrid connectors={firstPartyConnectors} />
+                </div>
+              ) : null}
 
-                return (
-                  <Link
-                    className="marketing-integration-card"
-                    to={`/integrations/${connector.slug}`}
-                    aria-label={`View ${connector.name} integration details`}
-                    key={connector.slug}
-                  >
-                    <span
-                      className="marketing-integration-mark"
-                      data-logo={logoPath ? "true" : undefined}
-                      aria-hidden="true"
-                    >
-                      {logoPath ? <img src={logoPath} alt="" /> : getIntegrationMark(connector.name)}
-                    </span>
-                    <div>
-                      <h3>{connector.name}</h3>
-                      <p>
-                        {connector.tool_count > 0
-                          ? `${connector.tool_count} tools`
-                          : "Platform connector"}
-                      </p>
-                    </div>
-                    <span className="marketing-integration-status">
-                      <i aria-hidden="true" />
-                      {content ? "Connector profile" : "View details"}
-                    </span>
-                  </Link>
-                );
-              })}
-            </div>
+              {composioConnectors.length > 0 ? (
+                <div className="marketing-integration-catalog-section" data-tone="soft">
+                  <div className="marketing-integration-catalog-head">
+                    <h3>Composio catalog</h3>
+                    <p>
+                      {composioCount} Composio-backed integrations published to the
+                      platform catalog.
+                    </p>
+                  </div>
+                  <IntegrationConnectorGrid connectors={composioConnectors} />
+                </div>
+              ) : null}
+            </>
           ) : (
             <div className="marketing-integration-empty">
               <strong>No connector matches that search.</strong>
