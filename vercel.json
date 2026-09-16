@@ -16,6 +16,13 @@
       ]
     }
   ],
+  "redirects": [
+    {
+      "source": "/join-community",
+      "destination": "https://chat.whatsapp.com/LdRScQChl3hHJbAlLgm4Os",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/((?!.*\\..*).*)",

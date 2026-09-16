@@ -9,6 +9,8 @@ export const TWITTER_HANDLE = "@agentruntime";
 /** Hosted product surfaces (outside the marketing SPA) */
 export const DOCS_APP_URL = "https://docs.agentruntime.io/";
 export const CONSOLE_APP_URL = "https://console.agentruntime.io/";
+/** Short link → WhatsApp community (Vercel redirect in vercel.json) */
+export const JOIN_COMMUNITY_URL = `${SITE_URL}/join-community`;
 
 /** Default description when a page omits a custom one */
 export const DEFAULT_DESCRIPTION =
