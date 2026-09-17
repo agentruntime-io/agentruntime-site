@@ -3,6 +3,7 @@ import type { BlogPost } from "@/blog/types";
 
 /** Curated posts for internal linking (home, nav, footer, blog index). Order = priority. */
 export const FEATURED_BLOG_SLUGS = [
+  "fast-reactions-slow-reasoning-jev-future-ai-systems",
   "why-ai-agents-fail-in-production",
   "what-is-mcp-and-why-it-matters",
   "observability-for-ai-agents",

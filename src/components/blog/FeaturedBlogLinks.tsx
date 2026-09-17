@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { format } from "date-fns";
 import type { BlogPost } from "@/blog/types";
-import { BlogCoverImage } from "@/components/blog/BlogCoverImage";
+import { BlogPostPreviewImage } from "@/components/blog/BlogPostPreviewImage";
 
 type FeaturedBlogLinksProps = {
   posts: BlogPost[];
@@ -63,12 +63,12 @@ export function FeaturedBlogLinks({ posts, variant = "home" }: FeaturedBlogLinks
           to={`/blog/${post.slug}`}
           className="group flex flex-col rounded-xl border border-border bg-card p-6 hover:border-primary/40 hover:shadow-md transition-all duration-200"
         >
-          {post.coverImage ? (
-            <BlogCoverImage
-              coverImage={post.coverImage}
+          {post.coverImage || post.videoSrc ? (
+            <BlogPostPreviewImage
+              post={post}
               alt=""
               variant="card"
-              className="w-full h-36 object-cover rounded-lg mb-4"
+              className="w-full h-36 rounded-lg mb-4"
               loading="lazy"
             />
           ) : null}

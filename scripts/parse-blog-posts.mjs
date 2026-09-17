@@ -1,26 +1,38 @@
 /**
  * Parse `src/blog/posts.ts` for RSS + sitemap without executing TypeScript.
- * Expects each post block: slug, title, description, publishedAt, tags, coverImage in that order.
  */
 import { readFileSync } from "node:fs";
 
-const BLOCK =
-  /  "[^"]+": \{\s*\n    slug: "([^"]+)",\s*\n    title: "([^"]+)",\s*\n    description:\s*\n      "([^"]*)",\s*\n    publishedAt: "([^"]+)",\s*\n    tags: \[[^\]]*\],\s*\n    coverImage: "([^"]+)",/g;
+const BLOCK_RE = /  "([^"]+)": \{([\s\S]*?)\n  \},/g;
+
+function readQuotedField(block, name) {
+  const m = block.match(new RegExp(`${name}: "([^"]*)"`));
+  return m ? m[1] : undefined;
+}
 
 /**
  * @param {string} postsTsPath
- * @returns {{ slug: string, title: string, description: string, publishedAt: string, coverImage: string }[]}
+ * @returns {{ slug: string, title: string, description: string, publishedAt: string, coverImage?: string, videoPoster?: string }[]}
  */
 export function parseBlogPosts(postsTsPath) {
   const src = readFileSync(postsTsPath, "utf8");
   const posts = [];
-  for (const m of src.matchAll(BLOCK)) {
+  for (const m of src.matchAll(BLOCK_RE)) {
+    const block = m[2];
+    const slug = readQuotedField(block, "slug");
+    const title = readQuotedField(block, "title");
+    const description = readQuotedField(block, "description");
+    const publishedAt = readQuotedField(block, "publishedAt");
+    if (!slug || !title || !publishedAt) {
+      continue;
+    }
     posts.push({
-      slug: m[1],
-      title: m[2],
-      description: m[3],
-      publishedAt: m[4],
-      coverImage: m[5],
+      slug,
+      title,
+      description: description ?? "",
+      publishedAt,
+      coverImage: readQuotedField(block, "coverImage"),
+      videoPoster: readQuotedField(block, "videoPoster"),
     });
   }
   return posts;

@@ -5,7 +5,7 @@ import { format } from "date-fns";
 import { BLOG_POSTS } from "@/blog/posts";
 import { FEATURED_BLOG_SLUGS, getFeaturedPosts, isFeaturedBlogSlug } from "@/blog/featuredPosts";
 import { FeaturedBlogLinks } from "@/components/blog/FeaturedBlogLinks";
-import { BlogCoverImage } from "@/components/blog/BlogCoverImage";
+import { BlogPostPreviewImage } from "@/components/blog/BlogPostPreviewImage";
 import { type BlogTag } from "@/blog/types";
 import { Seo } from "@/components/Seo";
 import { seoCopy } from "@/seo/metadata";
@@ -110,9 +110,9 @@ const Blog = () => {
             to={`/blog/${hero.slug}`}
             className="marketing-blog-featured"
           >
-            {hero.coverImage && (
-              <BlogCoverImage
-                coverImage={hero.coverImage}
+            {(hero.coverImage || hero.videoSrc) && (
+              <BlogPostPreviewImage
+                post={hero}
                 alt={hero.title}
                 variant="hero"
                 className="marketing-blog-featured-image"
@@ -172,9 +172,9 @@ const Blog = () => {
                   to={`/blog/${post.slug}`}
                   className="marketing-blog-card"
                 >
-                  {post.coverImage && (
-                    <BlogCoverImage
-                      coverImage={post.coverImage}
+                  {(post.coverImage || post.videoSrc) && (
+                    <BlogPostPreviewImage
+                      post={post}
                       alt={post.title}
                       variant="grid"
                       className="marketing-blog-card-image"

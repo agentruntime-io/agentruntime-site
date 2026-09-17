@@ -213,7 +213,7 @@ const itemsXml = sorted
     const link = `${SITE}/blog/${p.slug}`;
     const pub = rfc822Date(p.publishedAt);
     const desc = escapeCdata(p.description || p.title);
-    const enclosure = enclosureXml(rssEnclosureForCover(p.coverImage));
+    const enclosure = enclosureXml(rssEnclosureForCover(p.coverImage ?? p.videoPoster));
     return [
       `    <item>`,
       `      <title>${escapeXml(p.title)}</title>`,
