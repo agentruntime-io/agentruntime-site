@@ -10,7 +10,9 @@ import { extractHeadings } from "@/legal/utils";
 import { Seo } from "@/components/Seo";
 import { BlogPostJsonLd } from "@/components/BlogPostJsonLd";
 import { BlogCoverImage } from "@/components/blog/BlogCoverImage";
+import { BlogPostVideo } from "@/components/blog/BlogPostVideo";
 import { getBlogCoverOgPath } from "@/lib/blogCoverImage";
+import { getBlogPostOgImagePath } from "@/lib/blogPostMedia";
 import { blogRestoreScrollState } from "@/lib/blogScrollRestoration";
 
 const TAG_COLORS: Record<BlogTag, string> = {
@@ -52,7 +54,7 @@ const BlogPost = () => {
         canonicalPath={`/blog/${post.slug}`}
         ogType="article"
         articlePublishedTime={isoPublished}
-        {...(post.coverImage ? { ogImage: getBlogCoverOgPath(post.coverImage) } : {})}
+        {...(getBlogPostOgImagePath(post) ? { ogImage: getBlogPostOgImagePath(post) } : {})}
       />
       <BlogPostJsonLd post={post} />
 
@@ -95,19 +97,39 @@ const BlogPost = () => {
               </span>
             </div>
 
-            {/* Cover image — only rendered when present */}
-            {post.coverImage && (
+            {post.videoSrc ? (
+              <BlogPostVideo
+                src={post.videoSrc}
+                poster={post.videoPoster}
+                title={post.title}
+                className="mb-10"
+              />
+            ) : post.coverImage ? (
               <BlogCoverImage
                 coverImage={post.coverImage}
                 alt={post.title}
                 variant="article"
                 className="w-full rounded-xl object-cover mb-10 max-h-96"
               />
-            )}
+            ) : null}
 
             <article className="prose prose-slate dark:prose-invert max-w-none prose-headings:scroll-mt-24 prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-code:text-primary prose-pre:bg-muted/60 prose-pre:border prose-pre:border-border prose-table:border-collapse prose-th:border prose-th:border-border prose-th:bg-muted/50 prose-th:px-3 prose-th:py-2 prose-td:border prose-td:border-border prose-td:px-3 prose-td:py-2">
               <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]}>{post.content}</ReactMarkdown>
             </article>
+
+            {post.linkedInEmbedUrl && (
+              <div className="mt-12 flex justify-center">
+                <iframe
+                  src={post.linkedInEmbedUrl}
+                  height={842}
+                  width={504}
+                  className="max-w-full rounded-xl border border-border"
+                  title="LinkedIn post"
+                  loading="lazy"
+                  allowFullScreen
+                />
+              </div>
+            )}
 
             {/* Related posts */}
             {related.length > 0 && (

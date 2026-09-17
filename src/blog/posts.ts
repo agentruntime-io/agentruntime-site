@@ -53,6 +53,7 @@ import notebookToProdRaw from "@/blog/posts/from-notebook-to-production.md?raw";
 import eventDrivenRaw from "@/blog/posts/event-driven-ai-workflows.md?raw";
 import choosingLlmRaw from "@/blog/posts/choosing-the-right-llm-per-step.md?raw";
 import leadEnrichmentRaw from "@/blog/posts/building-lead-enrichment-pipeline.md?raw";
+import jevFastReactionsRaw from "@/blog/posts/fast-reactions-slow-reasoning-jev-future-ai-systems.md?raw";
 import type { BlogPost } from "@/blog/types";
 
 const postMap: Record<string, BlogPost> = {
@@ -555,6 +556,20 @@ const postMap: Record<string, BlogPost> = {
     tags: ["Deep Dive"],
     coverImage: "/blog/blog-tracing-vs-logging.png",
     content: tracingVsLoggingRaw,
+  },
+  "fast-reactions-slow-reasoning-jev-future-ai-systems": {
+    slug: "fast-reactions-slow-reasoning-jev-future-ai-systems",
+    title: "Fast Reactions, Slow Reasoning: What Jev Could Tell Us About the Future of AI Systems",
+    description:
+      "TypeSafe's Jev is built for fast structured decisions, not text generation. That idea aligns with how we think AgentRuntime should coordinate different kinds of intelligence.",
+    publishedAt: "2026-09-17",
+    tags: ["Deep Dive"],
+    videoSrc: "/blog/jev-edge-intelligence-explainer.mp4",
+    videoPoster: "/blog/jev-edge-intelligence-poster.png",
+    videoPosterSvg: "/blog/jev-edge-intelligence-poster.svg",
+    linkedInEmbedUrl:
+      "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7506317496648404992?collapsed=1",
+    content: jevFastReactionsRaw,
   },
 };
 
