@@ -8,6 +8,7 @@ import {
   type CSSProperties,
   type RefObject,
 } from "react";
+import { Avatar } from "@/components/marketing/Avatar";
 import type {
   ProductStageNode,
   StepStatus,
@@ -238,6 +239,15 @@ function WorkflowNodeCard({
       </div>
       <h4>{node.title}</h4>
       <p>{node.description}</p>
+      {node.approverName ? (
+        <p className="marketing-node-approver">
+          <Avatar name={node.approverName} className="marketing-node-approver-avatar" />
+          <span>
+            {status === "done" ? "Reviewed by " : "Waiting on "}
+            {node.approverName}
+          </span>
+        </p>
+      ) : null}
       {status === "running" && toolCall ? (
         <p className="marketing-node-tool-call">
           {toolCall.logo ? (

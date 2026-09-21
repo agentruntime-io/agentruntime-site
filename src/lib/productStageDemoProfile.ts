@@ -17,6 +17,7 @@ export type ProductStageDemoProfile = {
   runCompleteMessage: string;
   runRejectedMessage: string;
   approvalWaitingDetail: string;
+  approverName?: string;
   createInitialRunContext: () => RunContextSnapshot;
   createDemoEvents: (
     stepIndex: number,

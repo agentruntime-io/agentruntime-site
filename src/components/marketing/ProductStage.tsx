@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { Avatar } from "@/components/marketing/Avatar";
 import { ProductStageWorkflowGraph } from "@/components/marketing/ProductStageWorkflowGraph";
 import {
   autoStartDelayMs,
@@ -251,6 +252,7 @@ type ApprovalActionsProps = {
   onViewContext: () => void;
   remainingMs: number;
   totalMs: number;
+  approverName?: string;
 };
 
 function ApprovalActions({
@@ -259,6 +261,7 @@ function ApprovalActions({
   onViewContext,
   remainingMs,
   totalMs,
+  approverName,
 }: ApprovalActionsProps) {
   const secondsLeft = Math.max(Math.ceil(remainingMs / 1000), 0);
   const progress = Math.min(
@@ -268,6 +271,15 @@ function ApprovalActions({
 
   return (
     <div className="marketing-approval-panel">
+      {approverName ? (
+        <div className="marketing-approval-reviewer">
+          <Avatar name={approverName} />
+          <div>
+            <strong>{approverName}</strong>
+            <span>Reviewing this run</span>
+          </div>
+        </div>
+      ) : null}
       <div className="marketing-approval-countdown">
         <span>
           Auto-approves in <strong>{secondsLeft}s</strong> unless you decide
@@ -1013,6 +1025,7 @@ export function ProductStage() {
                       onViewContext={() => setActiveBottomTab("context")}
                       remainingMs={approvalRemainingMs}
                       totalMs={autoApproveDelayMs}
+                      approverName={demo.approverName}
                     />
                   ) : null}
                 </div>
@@ -1102,6 +1115,7 @@ export function ProductStage() {
                   onViewContext={() => setActiveBottomTab("context")}
                   remainingMs={approvalRemainingMs}
                   totalMs={autoApproveDelayMs}
+                  approverName={demo.approverName}
                 />
               ) : null}
 

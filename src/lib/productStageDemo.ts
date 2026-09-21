@@ -27,6 +27,7 @@ export type ProductStageNode = {
   description: string;
   highlighted?: boolean;
   integrationLogo?: string;
+  approverName?: string;
 };
 
 export type ToolCallDetail = {
@@ -100,6 +101,7 @@ export const productStageNodes: ProductStageNode[] = [
     title: "Review plan",
     description: "Routes to the exact owner when judgment matters.",
     highlighted: true,
+    approverName: "Jordan Lee",
   },
   {
     kind: "agent",
@@ -621,6 +623,7 @@ export const customerOperationsDemoProfile: ProductStageDemoProfile = {
   runCompleteMessage: "Run finished — onboarding launched for the new customer.",
   runRejectedMessage: "Plan rejected — the run was routed to exception handling.",
   approvalWaitingDetail: "Assigned to Jordan Lee · plan ready for review",
+  approverName: "Jordan Lee",
   createInitialRunContext,
   createDemoEvents,
   runContextAfterStep,

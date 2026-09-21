@@ -37,6 +37,7 @@ export const connectedSupportNodes = [
     title: "Review exception package",
     description: "Pauses when connected context or policy needs human judgment.",
     highlighted: true,
+    approverName: "Morgan Ellis",
   },
   {
     kind: "agent" as const,
@@ -443,6 +444,7 @@ export const connectedSupportDemoProfile: ProductStageDemoProfile = {
     "Resolution rejected — automated reply held and queue updated.",
   approvalWaitingDetail:
     "Assigned to Morgan Ellis · connected context ready for review",
+  approverName: "Morgan Ellis",
   createInitialRunContext,
   createDemoEvents,
   runContextAfterStep,
