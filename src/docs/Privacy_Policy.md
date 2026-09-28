@@ -1,7 +1,7 @@
 # AGENTRUNTIME PRIVACY POLICY
 
 **Effective Date:** March 1, 2026
-**Last Updated:** March 1, 2026
+**Last Updated:** September 28, 2026
 
 This Privacy Policy ("**Policy**") describes how **AgentRuntime Labs Ltd** ("**AgentRuntime**," "**we**," "**us**," or "**our**") collects, uses, discloses, and safeguards personal information in connection with the AgentRuntime platform and related services (collectively, the "**Services**"). This Policy applies to all users, visitors, and customers who access or use the Services.
 
@@ -56,6 +56,20 @@ We use third-party payment processors to handle payment transactions. We do not 
 
 When you contact AgentRuntime for support, submit inquiries, or otherwise communicate with us, we retain records of such communications, including message content, contact details, and timestamps.
 
+### 1.6 Connected integrations and messaging channels (including WhatsApp)
+
+If you connect third-party platforms through the Services (for example **WhatsApp Business** via **Meta**, email, chat, or other connectors), we may process:
+
+- **Connection credentials** you authorize (such as OAuth access tokens, API keys, WhatsApp Business Account identifiers, and phone number IDs), stored to run workflows and automations on your behalf;
+- **Integration configuration** (connection names, selected assets, and webhook settings);
+- **Message and channel data** submitted to or received through the integration, which may include phone numbers, message text, media, timestamps, delivery or read status, and related metadata.
+
+**Facebook Login** is used only where needed to complete authorized onboarding flows (such as Meta **Embedded Signup** for WhatsApp). We do not use Facebook Login as the primary sign-in method for the AgentRuntime console unless separately offered.
+
+If you use WhatsApp or other messaging channels, **your end customers** (the people who message your business number) may have their personal data processed through the Services as part of your automations. In those cases, **you** (or your organization) typically determine why and how that data is used; AgentRuntime processes it as a service provider to deliver the Services you configure. **Meta** also processes data under its own terms and privacy policies when you use WhatsApp Business Platform.
+
+We do not sell Meta Platform Data. For how to disconnect integrations or request deletion, see our [User Data Deletion Instructions](/legal/data-deletion-instructions).
+
 ---
 
 ## 2. HOW WE COLLECT INFORMATION
@@ -66,7 +80,7 @@ We collect personal information through the following means:
 
 **Automatically** — through the operation of the Services, including server logs, telemetry systems, and cookies or similar tracking technologies.
 
-**From third parties** — including identity verification providers, payment processors, and business partners, to the extent permitted by applicable law and such parties' privacy policies.
+**From third parties** — including identity verification providers, payment processors, business partners, and **platforms you connect** (such as Meta when you complete WhatsApp Embedded Signup or when message webhooks are delivered), to the extent permitted by applicable law and such parties' privacy policies.
 
 ---
 
@@ -196,7 +210,9 @@ AgentRuntime operates globally and may transfer personal information to countrie
 
 ## 12. THIRD-PARTY LINKS AND INTEGRATIONS
 
-The Services may contain links to or integrations with third-party websites and services. This Policy does not apply to the privacy practices of such third parties. We encourage you to review the privacy policies of any third-party services you access through the platform.
+The Services may contain links to or integrations with third-party websites and services. This Policy does not apply to the privacy practices of such third parties. We encourage you to review the privacy policies and platform terms of any third-party services you access through the platform—including **Meta** and **WhatsApp** when you use our WhatsApp connection features ([Meta Privacy Policy](https://www.facebook.com/privacy/policy/), [WhatsApp Business terms](https://www.whatsapp.com/legal/business-terms)).
+
+Your use of connected messaging channels must comply with applicable platform rules (for example, WhatsApp's business messaging and template policies). AgentRuntime is not responsible for third-party platforms' availability, enforcement actions, or independent processing of personal data.
 
 ---
 

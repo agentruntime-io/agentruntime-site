@@ -1,7 +1,7 @@
 # AGENTRUNTIME TERMS OF SERVICE
 
 **Effective Date:** March 1, 2026
-**Last Updated:** March 1, 2026
+**Last Updated:** September 28, 2026
 
 PLEASE READ THESE TERMS OF SERVICE CAREFULLY BEFORE ACCESSING OR USING THE AGENTRUNTIME PLATFORM. BY CREATING AN ACCOUNT, CLICKING "I AGREE," OR OTHERWISE ACCESSING OR USING THE SERVICES, YOU ACKNOWLEDGE THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE LEGALLY BOUND BY THESE TERMS AND ALL POLICIES INCORPORATED HEREIN BY REFERENCE. IF YOU DO NOT AGREE, YOU MUST IMMEDIATELY CEASE ALL USE OF THE SERVICES.
 
@@ -124,6 +124,8 @@ As used in these Terms, the following definitions apply:
 **8.2 Third-Party Terms.** Your use of Third-Party Services is governed solely by the terms and conditions of the respective third-party provider. You agree to comply with all applicable third-party terms.
 
 **8.3 No Third-Party Liability.** AgentRuntime shall not be responsible or liable for any loss, damage, or harm resulting from your access to or use of Third-Party Services.
+
+**8.4 Messaging and communications platforms.** If you connect messaging channels (including **WhatsApp Business** through **Meta**), you agree that: (a) you are authorized to connect the relevant business accounts and phone numbers; (b) your messages, templates, and automations comply with the applicable platform's terms, policies, and laws (including opt-in, marketing, and template requirements); (c) you are responsible for notices and rights of individuals who receive messages sent through your connected channels; and (d) platform providers (such as Meta) may suspend or limit your account independently of AgentRuntime. AgentRuntime provides tooling to send and receive messages using credentials you supply; it does not guarantee message delivery or platform approval.
 
 ---
 

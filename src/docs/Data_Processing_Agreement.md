@@ -1,7 +1,7 @@
 # AGENTRUNTIME DATA PROCESSING AGREEMENT
 
 **Effective Date:** March 1, 2026
-**Last Updated:** March 1, 2026
+**Last Updated:** September 28, 2026
 
 This Data Processing Agreement ("**DPA**") is entered into between **AgentRuntime Labs Ltd** ("**AgentRuntime**," "**Processor**," "**we**," "**us**," or "**our**") and the customer entity that has accepted the AgentRuntime Terms of Service ("**Customer**" or "**Controller**"). This DPA forms part of and is incorporated by reference into the AgentRuntime Terms of Service (the "**Principal Agreement**").
 
@@ -55,7 +55,9 @@ For the purposes of this DPA, the following terms have the meanings set forth be
 
 **3.4 Categories of Data Subjects.** Personal Data Processed under this DPA may relate to Customer's employees, contractors, clients, end-users, and other individuals whose Personal Data Customer submits to the Services.
 
-**3.5 Types of Personal Data.** The types of Personal Data Processed depend on the content submitted by Customer and may include name, email address, professional information, usage data, and any other Personal Data included in Customer's workflows, datasets, or configurations.
+**3.5 Types of Personal Data.** The types of Personal Data Processed depend on the content submitted by Customer and may include name, email address, professional information, usage data, phone numbers, message content and metadata from connected communications channels (such as **WhatsApp** or other integrations Customer enables), and any other Personal Data included in Customer's workflows, datasets, or configurations.
+
+**3.5.1 Third-party messaging platforms.** Where Customer connects a messaging platform (for example, WhatsApp Business via Meta), Customer is responsible for providing any required notices to Data Subjects and for ensuring a lawful basis for Processing. Meta and other platform providers may also Process Personal Data as independent controllers under their own terms. AgentRuntime Processes such data only to provide the Services in accordance with Customer's configuration and documented instructions.
 
 **3.6 Customer Instructions.** AgentRuntime shall Process Personal Data only on Customer's documented instructions, including as set forth in this DPA and the Principal Agreement. If AgentRuntime is required by applicable law to Process Personal Data otherwise than as instructed, AgentRuntime shall, to the extent permitted by law, notify Customer prior to such Processing.
 
