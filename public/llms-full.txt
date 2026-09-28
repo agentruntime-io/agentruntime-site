@@ -52,6 +52,7 @@ Brand **AgentRuntime** appears in page copy; **AgentRuntime Labs LLC** is the le
 - [AI Usage Policy](https://www.agentruntime.io/legal/ai-usage-policy)
 - [Developer Platform License](https://www.agentruntime.io/legal/developer-platform-license)
 - [Service Level Agreement](https://www.agentruntime.io/legal/service-level-agreement)
+- [User Data Deletion Instructions](https://www.agentruntime.io/legal/data-deletion-instructions)
 
 ## Machine-readable companions on this host
 

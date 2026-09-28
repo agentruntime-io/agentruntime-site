@@ -12,6 +12,7 @@ import billingRaw from "@/docs/Billing_and_Credits_Policy.md?raw";
 import aiUsageRaw from "@/docs/AI_Usage_Policy.md?raw";
 import developerLicenseRaw from "@/docs/Developer_Platform_License.md?raw";
 import slaRaw from "@/docs/Service_Level_Agreement.md?raw";
+import userDataDeletionRaw from "@/docs/User_Data_Deletion_Instructions.md?raw";
 
 export interface LegalPolicy {
   slug: string;
@@ -64,6 +65,11 @@ const policyMap: Record<string, Omit<LegalPolicy, "content"> & { content: string
     slug: "service-level-agreement",
     title: "Service Level Agreement",
     content: slaRaw,
+  },
+  "data-deletion-instructions": {
+    slug: "data-deletion-instructions",
+    title: "User Data Deletion Instructions",
+    content: userDataDeletionRaw,
   },
 };
 
