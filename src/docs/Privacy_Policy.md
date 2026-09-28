@@ -166,7 +166,7 @@ Depending on your jurisdiction, you may have the following rights with respect t
 
 **(g) Right to Withdraw Consent.** Where processing is based on consent, the right to withdraw that consent at any time.
 
-To exercise any of these rights, please contact us at **privacy@agentruntime.io**. We will respond to verifiable requests within the timeframe required by applicable law. We may need to verify your identity before processing your request.
+To exercise any of these rights, please contact us at **privacy@agentruntime.io**. Step-by-step deletion options (console self-service, account deletion, and Meta/WhatsApp data) are described in our [User Data Deletion Instructions](/legal/data-deletion-instructions). We will respond to verifiable requests within the timeframe required by applicable law. We may need to verify your identity before processing your request.
 
 If you are a resident of a jurisdiction with a supervisory authority (such as an EU/EEA data protection authority), you have the right to lodge a complaint if you believe we have processed your personal data unlawfully.
 

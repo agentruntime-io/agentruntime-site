@@ -5,7 +5,7 @@
     <link>https://www.agentruntime.io/blog</link>
     <description>Product updates, engineering notes, and practical guidance for running AI agents in production on AgentRuntime.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Sep 2026 12:43:51 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 28 Sep 2026 13:42:33 GMT</lastBuildDate>
     <atom:link href="https://www.agentruntime.io/blog/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>Fast Reactions, Slow Reasoning: What Jev Could Tell Us About the Future of AI Systems</title>
@@ -13,7 +13,7 @@
       <guid isPermaLink="true">https://www.agentruntime.io/blog/fast-reactions-slow-reasoning-jev-future-ai-systems</guid>
       <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[Fast Reactions, Slow Reasoning: What Jev Could Tell Us About the Future of AI Systems]]></description>
-      <enclosure url="https://www.agentruntime.io/blog/jev-edge-intelligence-poster.png" length="4857" type="image/png"/>
+      <enclosure url="https://www.agentruntime.io/blog/jev-edge-intelligence-poster-800.webp" length="26402" type="image/webp"/>
     </item>
     <item>
       <title>Prompt Engineering for Production: Beyond &apos;It Worked Once&apos;</title>
