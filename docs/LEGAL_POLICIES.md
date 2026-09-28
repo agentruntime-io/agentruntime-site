@@ -19,3 +19,18 @@ Routes are already wired: `App.tsx` → `/legal` and `/legal/:policyName` → `L
 - **User data deletion instructions URL:** `https://www.agentruntime.io/legal/data-deletion-instructions` (platform-wide deletion; includes a Meta/Facebook/WhatsApp section for developer compliance)
 
 Update the Meta Developer app **Basic** settings after deploy.
+
+## WhatsApp / Meta (cross-policy)
+
+When adding or changing WhatsApp-related product behavior, align at least:
+
+| Document | What to cover |
+| --- | --- |
+| [User Data Deletion Instructions](/legal/data-deletion-instructions) | Disconnect steps, Meta revoke, deletion email |
+| [Privacy Policy](/legal/privacy-policy) | §1.6 integrations/messaging, §12 third parties |
+| [Terms](/legal/terms-and-conditions) | §8.4 messaging platforms |
+| [Acceptable Use](/legal/acceptable-use-policy) | §3(g) messaging platform compliance |
+| [DPA](/legal/data-processing-agreement) | §3.5 messaging data, controller roles |
+| [Billing](/legal/billing-and-credits-policy) | §7.4 Meta/WhatsApp usage charges |
+
+Have counsel review substantive legal changes before publish.

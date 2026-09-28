@@ -1,7 +1,7 @@
 # AGENTRUNTIME BILLING AND CREDITS POLICY
 
 **Effective Date:** March 1, 2026
-**Last Updated:** March 1, 2026
+**Last Updated:** September 28, 2026
 
 This Billing and Credits Policy ("**Policy**") governs all billing, payment, credit, and subscription matters related to your use of the AgentRuntime platform and services (the "**Services**") provided by **AgentRuntime Labs Ltd** ("**AgentRuntime**," "**we**," "**us**," or "**our**"). This Policy is incorporated by reference into AgentRuntime's Terms of Service and constitutes a binding part of your agreement with AgentRuntime.
 
@@ -135,9 +135,11 @@ Capitalized terms not defined in this Policy have the meanings given to them in 
 
 &nbsp;&nbsp;&nbsp;&nbsp;(b) credentials are shared with or reused by other platforms;
 
-&nbsp;&nbsp;&nbsp;&nbsp;(c) third-party integrations or connected services misuse credentials through no fault of AgentRuntime; or
+&nbsp;&nbsp;&nbsp;&nbsp;(c) third-party integrations or connected services misuse credentials through no fault of AgentRuntime;
 
-&nbsp;&nbsp;&nbsp;&nbsp;(d) automated workflows generate usage on Third-Party Service accounts.
+&nbsp;&nbsp;&nbsp;&nbsp;(d) automated workflows generate usage on Third-Party Service accounts; or
+
+&nbsp;&nbsp;&nbsp;&nbsp;(e) you use **WhatsApp Business** or other messaging platforms and incur conversation, template, or usage charges billed by **Meta** or another provider directly or through your connected account.
 
 ---
 

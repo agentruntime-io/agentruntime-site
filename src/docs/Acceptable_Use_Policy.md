@@ -1,7 +1,7 @@
 # AGENTRUNTIME ACCEPTABLE USE POLICY
 
 **Effective Date:** March 1, 2026
-**Last Updated:** March 1, 2026
+**Last Updated:** September 28, 2026
 
 This Acceptable Use Policy ("**AUP**") forms a binding part of the AgentRuntime Terms of Service and governs the permitted and prohibited uses of the AgentRuntime platform, services, APIs, and associated infrastructure (collectively, the "**Services**") operated by **AgentRuntime Labs Ltd** ("**AgentRuntime**," "**we**," "**us**," or "**our**").
 
@@ -56,6 +56,8 @@ Users shall not deploy agents, bots, scripts, or automated workflows that:
 **(f)** manipulate, deceive, or psychologically coerce users through dark patterns, deceptive UI, or behavioral manipulation techniques.
 
 All automated activity must comply with applicable laws, ethical standards, and the terms of any systems with which the automation interacts.
+
+**(g) Messaging platform compliance.** When using connected messaging channels (including **WhatsApp Business**), Users shall comply with the relevant platform's business messaging rules, including requirements for user consent, approved message templates where required, quality and rate limits, and prohibitions on spam or unsolicited bulk outreach. Users shall not use the Services to send unlawful, deceptive, or abusive messages through any connected channel.
 
 ---
 
