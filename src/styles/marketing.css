@@ -8,6 +8,7 @@
   --marketing-border: rgba(23, 23, 21, 0.13);
   --marketing-border-strong: rgba(23, 23, 21, 0.24);
   --marketing-accent: #ff5a36;
+  --marketing-focus: #c83a1b;
   --marketing-dark: #171715;
   --marketing-dark-2: #232320;
   --marketing-dark-muted: #c4c0b7;
@@ -268,7 +269,7 @@
   margin-top: 6px;
   display: block;
   color: var(--marketing-muted);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.4;
 }
 
@@ -333,11 +334,20 @@
   transform: none;
 }
 
+/* Keyboard focus for every link and control; :where() keeps specificity low so
+   component rules below can still adjust the ring. #c83a1b holds 3:1 against
+   both the white page and the dark sections. */
+:where(.marketing-page, .marketing-nav-wrap, .marketing-footer)
+  :where(a, button, [tabindex], input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--marketing-focus);
+  outline-offset: 3px;
+}
+
 .marketing-button:focus-visible,
 .marketing-nav-link:focus-visible,
 .marketing-brand:focus-visible,
 .marketing-footer a:focus-visible {
-  outline: 3px solid rgba(255, 90, 54, 0.35);
+  outline: 2px solid var(--marketing-focus);
   outline-offset: 4px;
 }
 
@@ -454,7 +464,7 @@
   color: var(--marketing-muted);
   border-top: 1px solid var(--marketing-border);
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -522,15 +532,6 @@
   gap: 8px;
   color: var(--marketing-muted);
   font-size: 13px;
-}
-
-.marketing-eyebrow-dot {
-  width: 7px;
-  height: 7px;
-  flex: 0 0 auto;
-  background: var(--marketing-accent);
-  border-radius: 999px;
-  box-shadow: 0 0 0 5px rgba(255, 90, 54, 0.12);
 }
 
 .marketing-page h1,
@@ -962,6 +963,7 @@ button.marketing-side-item:focus-visible {
   position: relative;
   min-height: 125px;
   padding: 16px 16px 16px 18px;
+  color: #e8e5dd;
   background: #23221f;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 13px;
@@ -1892,6 +1894,7 @@ button.marketing-side-item:focus-visible {
 }
 
 .marketing-card {
+  min-width: 0;
   min-height: 270px;
   padding: 30px;
   background: rgba(255, 255, 255, 0.18);
@@ -2094,7 +2097,7 @@ button.marketing-side-item:focus-visible {
 
 .marketing-architecture-box span {
   color: #aaa69d;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.45;
 }
 
@@ -2135,7 +2138,7 @@ button.marketing-side-item:focus-visible {
   color: #bcb8af;
   background: #1a1a18;
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -2172,7 +2175,7 @@ button.marketing-side-item:focus-visible {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #7f7c75;
+  color: #9a978f;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   font-size: 12px;
 }
@@ -2237,7 +2240,7 @@ button.marketing-side-item:focus-visible {
   border: 1px solid var(--marketing-border-strong);
   border-radius: 50%;
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
+  font-size: 11px;
   counter-increment: marketing-step;
 }
 
@@ -2254,7 +2257,7 @@ button.marketing-side-item:focus-visible {
 }
 
 .marketing-use-case {
-  padding: 72px 0;
+  padding: 56px 0;
   display: grid;
   grid-template-columns: 1fr 1.05fr;
   align-items: center;
@@ -2279,6 +2282,13 @@ button.marketing-side-item:focus-visible {
   line-height: 1.65;
 }
 
+/* Diagram nodes sit on a dark card; keep their own text style inside use cases. */
+.marketing-use-case .marketing-node p {
+  color: #aaa69d;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
 .marketing-outcome-list {
   margin: 12px 0 0;
   padding: 0;
@@ -2294,7 +2304,7 @@ button.marketing-side-item:focus-visible {
 .marketing-outcomes-label {
   color: var(--marketing-muted);
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -2318,7 +2328,7 @@ button.marketing-side-item:focus-visible {
   color: #2d7d48;
   background: rgba(98, 199, 128, 0.14);
   border-radius: 50%;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 800;
 }
 
@@ -2370,7 +2380,7 @@ button.marketing-side-item:focus-visible {
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 50%;
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .marketing-flow-step {
@@ -2403,7 +2413,7 @@ button.marketing-side-item:focus-visible {
 .marketing-workflow-outcome span {
   color: #aaa69d;
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -2820,7 +2830,7 @@ button.marketing-side-item:focus-visible {
 .marketing-detail-index a > small {
   color: var(--marketing-muted);
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .marketing-detail-index a > small {
@@ -2850,11 +2860,11 @@ button.marketing-side-item:focus-visible {
 }
 
 .marketing-detail-section {
-  padding: 92px 0;
+  padding: 64px 0;
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   align-items: center;
-  gap: 80px;
+  gap: 64px;
   border-top: 1px solid var(--marketing-border);
 }
 
@@ -2873,7 +2883,7 @@ button.marketing-side-item:focus-visible {
   gap: 13px;
   color: var(--marketing-muted);
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -2934,7 +2944,7 @@ button.marketing-side-item:focus-visible {
 .marketing-audience-start > span {
   color: #969289;
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
@@ -2981,7 +2991,7 @@ button.marketing-side-item:focus-visible {
 .marketing-product-panel-rows small {
   color: #969289;
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .marketing-product-panel-rows strong {
@@ -2997,7 +3007,7 @@ button.marketing-side-item:focus-visible {
   color: #8bd5a1;
   background: rgba(98, 199, 128, 0.12);
   border-radius: 50%;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .marketing-product-panel-rows button[data-active="false"] b {
@@ -3017,7 +3027,7 @@ button.marketing-side-item:focus-visible {
 .marketing-product-panel-detail span {
   color: #969289;
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
@@ -3066,18 +3076,20 @@ button.marketing-side-item:focus-visible {
 }
 
 .marketing-audience-fit-panel li {
-  min-height: 70px;
-  display: grid;
-  grid-template-columns: 42px 1fr;
+  min-height: 60px;
+  display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 14px;
   border-bottom: 1px solid var(--marketing-border);
 }
 
-.marketing-audience-fit-panel li > span {
-  color: var(--marketing-muted);
-  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
+.marketing-audience-fit-panel li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  flex: none;
+  background: var(--marketing-accent);
+  border-radius: 999px;
 }
 
 .marketing-audience-fit-panel li > strong {
@@ -3112,7 +3124,7 @@ button.marketing-side-item:focus-visible {
 .marketing-solution-scenario > span {
   color: var(--marketing-muted);
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
@@ -3151,7 +3163,7 @@ button.marketing-side-item:focus-visible {
   left: 0;
   color: var(--marketing-muted);
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .marketing-solution-scenario > p {
@@ -4123,7 +4135,7 @@ button.marketing-side-item:focus-visible {
   display: block;
   color: var(--marketing-muted);
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -4277,7 +4289,7 @@ button.marketing-side-item:focus-visible {
   left: 0;
   color: var(--marketing-muted);
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .marketing-blueprint-workflow-stage[data-compact="true"] {
@@ -4384,7 +4396,7 @@ button.marketing-side-item:focus-visible {
   background: var(--marketing-dark);
   border-radius: 50%;
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .marketing-blueprint-step-type {
@@ -4394,7 +4406,7 @@ button.marketing-side-item:focus-visible {
   padding-top: 11px;
   color: var(--marketing-muted);
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
@@ -4428,7 +4440,7 @@ button.marketing-side-item:focus-visible {
   margin-top: 9px;
   display: block;
   color: #8d3927;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -4445,7 +4457,7 @@ button.marketing-side-item:focus-visible {
   background: rgba(255, 90, 54, 0.06);
   border: 1px solid rgba(168, 62, 40, 0.18);
   border-radius: 6px;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .marketing-blueprint-step-connector {
@@ -4453,7 +4465,7 @@ button.marketing-side-item:focus-visible {
   margin-top: 12px;
   display: inline-flex;
   color: #8d3927;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -4474,7 +4486,7 @@ button.marketing-side-item:focus-visible {
   color: var(--marketing-muted);
   border-bottom: 1px solid var(--marketing-border);
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -4492,7 +4504,7 @@ button.marketing-side-item:focus-visible {
 .marketing-blueprint-guardrails section small {
   color: var(--marketing-muted);
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .marketing-blueprint-guardrails h3 {
@@ -4555,7 +4567,7 @@ button.marketing-side-item:focus-visible {
 .marketing-blueprint-connection small {
   color: #969289;
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
@@ -4594,7 +4606,7 @@ button.marketing-side-item:focus-visible {
 .marketing-blueprint-surface-links small {
   color: #969289;
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 9px;
+  font-size: 11px;
   text-transform: uppercase;
 }
 
@@ -4857,7 +4869,7 @@ button.marketing-side-item:focus-visible {
   align-items: center;
   gap: 8px;
   color: var(--marketing-muted);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .marketing-blog-tag {
@@ -4866,7 +4878,7 @@ button.marketing-side-item:focus-visible {
   color: var(--marketing-muted);
   border: 1px solid var(--marketing-border);
   border-radius: 999px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 650;
 }
 
@@ -4947,7 +4959,7 @@ button.marketing-side-item:focus-visible {
 .marketing-blog-guide-index {
   color: var(--marketing-muted);
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .marketing-blog-guide h3 {
@@ -5037,7 +5049,7 @@ button.marketing-side-item:focus-visible {
   gap: 16px;
   color: var(--marketing-muted);
   border-top: 1px solid var(--marketing-border);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .marketing-honeypot {
@@ -5699,7 +5711,7 @@ button.marketing-side-item:focus-visible {
     content: attr(data-label);
     color: var(--marketing-muted);
     font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
@@ -5911,7 +5923,7 @@ button.marketing-side-item:focus-visible {
 
   .marketing-flow-step {
     padding: 10px;
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .marketing-workflow-outcome {
@@ -6056,7 +6068,7 @@ button.marketing-side-item:focus-visible {
 .marketing-marketplace-filter-label {
   color: var(--marketing-muted);
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }

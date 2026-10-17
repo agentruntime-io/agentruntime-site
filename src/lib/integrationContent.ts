@@ -42,10 +42,12 @@ export type IntegrationContent = {
   faq: readonly IntegrationFaq[];
 };
 
+// JSON imports widen string unions (category, maturity) to `string`, so each
+// entry is asserted here; keep the JSON values within IntegrationContent's unions.
 const integrationContentBySlug = {
-  gmail,
-  slack,
-} satisfies Record<string, IntegrationContent>;
+  gmail: gmail as IntegrationContent,
+  slack: slack as IntegrationContent,
+};
 
 export function getIntegrationContent(slug: string): IntegrationContent | undefined {
   return integrationContentBySlug[slug as keyof typeof integrationContentBySlug];

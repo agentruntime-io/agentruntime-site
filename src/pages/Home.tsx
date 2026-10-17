@@ -276,7 +276,7 @@ export default function Home() {
                 instead of assembling the control plane around every agent
                 yourself.
               </p>
-              <pre className="marketing-card-code" aria-label="Example API call">
+              <pre className="marketing-card-code" aria-label="Example API call" tabIndex={0}>
                 <code>{completeTaskRequest}</code>
               </pre>
               <Link

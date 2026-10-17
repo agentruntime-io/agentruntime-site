@@ -41,10 +41,7 @@ export function ActionLink({
 
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <div className="marketing-eyebrow">
-      <span className="marketing-eyebrow-dot" aria-hidden="true" />
-      {children}
-    </div>
+    <div className="marketing-eyebrow">{children}</div>
   );
 }
 

@@ -207,9 +207,8 @@ export default function Workflows() {
             data-columns="5"
             aria-label="Solutions by team"
           >
-            {solutionAudiences.map((audience, index) => (
+            {solutionAudiences.map((audience) => (
               <Link to={`/solutions#${audience.id}`} key={audience.id}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
                 <small>By team</small>
                 <strong>{audience.label}</strong>
                 <b aria-hidden="true">↓</b>
@@ -227,7 +226,6 @@ export default function Workflows() {
               >
                 <div className="marketing-detail-copy">
                   <div className="marketing-detail-kicker">
-                    <span>{String(index + 1).padStart(2, "0")}</span>
                     <span>By team</span>
                   </div>
                   <h3>{audience.label}</h3>
@@ -247,9 +245,8 @@ export default function Workflows() {
                     <strong>{audience.label}</strong>
                   </div>
                   <ul>
-                    {audience.useCases.map((useCase, useCaseIndex) => (
+                    {audience.useCases.map((useCase) => (
                       <li key={useCase}>
-                        <span>{String(useCaseIndex + 1).padStart(2, "0")}</span>
                         <strong>{useCase}</strong>
                       </li>
                     ))}
@@ -298,9 +295,8 @@ export default function Workflows() {
             data-columns="5"
             aria-label="Solutions by workflow"
           >
-            {workflowSolutions.map((solution, index) => (
+            {workflowSolutions.map((solution) => (
               <Link to={solution.to} key={solution.id}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
                 <small>By workflow</small>
                 <strong>{solution.label}</strong>
                 <b aria-hidden="true">↓</b>
@@ -333,15 +329,9 @@ export default function Workflows() {
                 </div>
                 <Link
                   className="marketing-button marketing-button-secondary marketing-detail-cta"
-                  to={
-                    "detailTo" in workflow
-                      ? workflow.detailTo
-                      : `/contact?workflow=${workflow.id}`
-                  }
+                  to={workflow.detailTo}
                 >
-                  {"detailTo" in workflow
-                    ? "Explore the blueprint →"
-                    : "Map this workflow →"}
+                  Explore the blueprint →
                 </Link>
               </div>
               {blueprint ? (

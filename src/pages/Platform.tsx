@@ -223,15 +223,13 @@ export default function Platform() {
           </div>
           <h2>Production behavior is designed into the execution model.</h2>
           <div className="marketing-ruled-grid" data-columns="3">
-            {capabilities.map((capability, index) => (
+            {capabilities.map((capability) => (
               <article
                 className="marketing-card"
+                data-compact="true"
                 data-tone="dark"
                 key={capability.title}
               >
-                <div className="marketing-card-number">
-                  {String(index + 1).padStart(2, "0")}
-                </div>
                 <h3>{capability.title}</h3>
                 <p>{capability.description}</p>
               </article>
