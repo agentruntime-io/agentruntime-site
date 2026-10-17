@@ -181,7 +181,9 @@ export default function Developers() {
               className="marketing-button marketing-button-ghost-dark"
               to="/integrations"
             >
-              Browse {integrationCount} catalogued connectors →
+              {integrationCount > 0
+                ? `Browse ${integrationCount} catalogued connectors →`
+                : "Browse the connector catalog →"}
             </Link>
           </div>
           <div className="marketing-grid-3">

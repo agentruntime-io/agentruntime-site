@@ -381,13 +381,26 @@ export const featuredIntegrationSlugs = [
   "posthog",
 ] as const;
 
+export type FeaturedIntegration = Pick<PublicConnector, "slug" | "name" | "icon_url">;
+
+/** Shown while the live catalog is loading, unavailable, or matches none of the featured slugs. */
+const fallbackFeaturedIntegrations: FeaturedIntegration[] = [
+  { slug: "slack", name: "Slack" },
+  { slug: "google-drive", name: "Google Drive" },
+  { slug: "hubspot", name: "HubSpot" },
+  { slug: "notion", name: "Notion" },
+  { slug: "firecrawl", name: "Firecrawl" },
+  { slug: "posthog", name: "PostHog" },
+];
+
 export function resolveFeaturedConnectors(
   connectors: readonly PublicConnector[],
-) {
-  return featuredIntegrationSlugs.flatMap((slug) => {
+): FeaturedIntegration[] {
+  const live = featuredIntegrationSlugs.flatMap((slug) => {
     const connector = connectors.find((item) => item.slug === slug);
     return connector ? [connector] : [];
   });
+  return live.length > 0 ? live : fallbackFeaturedIntegrations;
 }
 
 export function getIntegrationMark(name: string) {

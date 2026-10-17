@@ -4,7 +4,6 @@ import { Seo } from "@/components/Seo";
 import {
   ActionLink,
   CallToAction,
-  Eyebrow,
   ProductStage,
 } from "@/components/marketing/MarketingPrimitives";
 import {
@@ -13,45 +12,34 @@ import {
   resolveFeaturedConnectors,
   solutionAudiences,
 } from "@/lib/marketingCatalog";
+import { getIntegrationContent } from "@/lib/integrationContent";
+import { getIntegrationLogoPath } from "@/lib/integrationLogos";
 import { usePublicConnectors } from "@/hooks/usePublicConnectors";
 import { seoCopy } from "@/seo/metadata";
 
-const operationalProblems = [
+const problemAnswers = [
   {
-    number: "01",
-    title: "AI stays isolated",
-    description:
+    problem: "AI stays isolated",
+    problemDetail:
       "The assistant can answer questions, but cannot reliably participate in the systems where work happens.",
-  },
-  {
-    number: "02",
-    title: "Automation breaks at exceptions",
-    description:
-      "Rigid flows fail when judgment, missing data, a failed tool, or an unexpected situation appears.",
-  },
-  {
-    number: "03",
-    title: "Nobody can safely let go",
-    description:
-      "Without control, visibility, and ownership, every important action still returns to a person.",
-  },
-];
-
-const executionModel = [
-  {
-    pill: "AI agents",
-    title: "Interpret, reason, and create",
-    description:
-      "Use models where the work needs context, judgment, synthesis, or natural-language interaction.",
-    dark: true,
-  },
-  {
     pill: "Tools + rules",
     title: "Execute with precision",
     description:
       "Call APIs and MCP tools while enforcing schemas, permissions, and deterministic business rules.",
   },
   {
+    problem: "Automation breaks at exceptions",
+    problemDetail:
+      "Rigid flows fail when judgment, missing data, a failed tool, or an unexpected situation appears.",
+    pill: "AI agents",
+    title: "Interpret, reason, and create",
+    description:
+      "Use models where the work needs context, judgment, synthesis, or natural-language interaction.",
+  },
+  {
+    problem: "Nobody can safely let go",
+    problemDetail:
+      "Without control, visibility, and ownership, every important action still returns to a person.",
     pill: "People",
     title: "Keep humans where they matter",
     description:
@@ -59,28 +47,23 @@ const executionModel = [
   },
 ];
 
-const runtimeOutcomes = [
-  {
-    label: "State",
-    value: "Survives waits and handoffs",
-  },
-  {
-    label: "Ownership",
-    value: "Stays explicit at every decision",
-  },
-  {
-    label: "Exceptions",
-    value: "Become designed execution paths",
-  },
-  {
-    label: "History",
-    value: "Remains connected in one timeline",
-  },
-];
+// Request shape from public/openapi.yaml (Complete a human task).
+const completeTaskRequest = `POST /api/v1/workflows/{id}/runs/{run_id}
+     /tasks/{task_id}/complete
+
+{
+  "decision": "approve",
+  "notes": "Reviewed account. Credit approved."
+}`;
 
 export default function Home() {
   const { data: connectors = [] } = usePublicConnectors();
-  const featuredIntegrations = resolveFeaturedConnectors(connectors);
+  const resolvedIntegrations = resolveFeaturedConnectors(connectors);
+  // Keep whole rows: the grid is 6, 3, or 2 columns wide.
+  const featuredIntegrations =
+    resolvedIntegrations.length >= 6
+      ? resolvedIntegrations.slice(0, resolvedIntegrations.length - (resolvedIntegrations.length % 6))
+      : resolvedIntegrations;
   const integrationCount = connectors.length;
   return (
     <div className="marketing-page">
@@ -89,7 +72,6 @@ export default function Home() {
 
       <section className="marketing-hero">
         <div className="marketing-container">
-          <Eyebrow>Infrastructure for production AI work</Eyebrow>
           <h1>Put AI inside the way your business actually runs.</h1>
           <p className="marketing-hero-copy">
             AgentRuntime connects your tools, business rules, agents, and people
@@ -108,44 +90,10 @@ export default function Home() {
               variant="secondary"
             />
           </div>
-          <p className="marketing-hero-note">
-            Built for real operations — not isolated prompts or one-off demos.
-          </p>
         </div>
       </section>
 
       <ProductStage />
-
-      <section
-        className="marketing-outcome-band"
-        aria-labelledby="runtime-outcomes-title"
-      >
-        <div className="marketing-container">
-          <div className="marketing-outcome-band-header">
-            <div>
-              <div className="marketing-section-label">
-                What the runtime preserves
-              </div>
-              <h2 id="runtime-outcomes-title">
-                The process stays coherent when the work changes hands.
-              </h2>
-            </div>
-            <p>
-              Designed into every run, independent of which agent, tool, or
-              person acts next.
-            </p>
-          </div>
-          <div className="marketing-outcome-metrics">
-            {runtimeOutcomes.map((outcome, index) => (
-              <div className="marketing-outcome-metric" key={outcome.label}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <strong>{outcome.label}</strong>
-                <p>{outcome.value}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="marketing-section marketing-product-index-section">
         <div className="marketing-container">
@@ -188,38 +136,22 @@ export default function Home() {
             process must survive rules, approvals, failures, context changes,
             long-running work, and human responsibility.
           </p>
-          <div className="marketing-ruled-grid" data-columns="3">
-            {operationalProblems.map((problem) => (
-              <article className="marketing-card" key={problem.number}>
-                <div className="marketing-card-number">{problem.number}</div>
-                <h3>{problem.title}</h3>
-                <p>{problem.description}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="marketing-section">
-        <div className="marketing-container">
-          <div className="marketing-section-label">The execution model</div>
-          <h2>Route every step to the right kind of intelligence.</h2>
-          <p className="marketing-section-intro">
-            One runtime carries context and state while agents, deterministic
-            logic, connected software, and people each do the work they are best
-            suited for.
-          </p>
-          <div className="marketing-grid-3">
-            {executionModel.map((item) => (
-              <article
-                className="marketing-card"
-                data-compact="true"
-                data-tone={item.dark ? "dark" : undefined}
-                key={item.title}
-              >
-                <span className="marketing-pill">{item.pill}</span>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
+          <div className="marketing-problem-answers">
+            <div className="marketing-problem-answers-head" aria-hidden="true">
+              <span>Where it breaks</span>
+              <span>What the runtime does</span>
+            </div>
+            {problemAnswers.map((item) => (
+              <article className="marketing-problem-answer" key={item.problem}>
+                <div>
+                  <h3>{item.problem}</h3>
+                  <p>{item.problemDetail}</p>
+                </div>
+                <div>
+                  <span className="marketing-pill">{item.pill}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -238,13 +170,12 @@ export default function Home() {
             </Link>
           </div>
           <div className="marketing-audience-preview">
-            {solutionAudiences.map((audience, index) => (
+            {solutionAudiences.map((audience) => (
               <Link
                 to={`/solutions#${audience.id}`}
                 className="marketing-audience-preview-row"
                 key={audience.id}
               >
-                <span>{String(index + 1).padStart(2, "0")}</span>
                 <strong>{audience.label}</strong>
                 <p>{audience.title}</p>
                 <b aria-hidden="true">→</b>
@@ -254,23 +185,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="marketing-statement">
-        <div className="marketing-container">
-          <h2>
-            The goal is not to remove people from the process.{" "}
-            <span>
-              It is to remove people from every step that no longer needs them.
-            </span>
-          </h2>
-        </div>
-      </section>
-
       <section className="marketing-section marketing-home-integrations">
         <div className="marketing-container">
           <div className="marketing-catalog-heading">
             <div>
               <div className="marketing-section-label">
-                {integrationCount} catalogued connectors
+                {integrationCount > 0
+                  ? `${integrationCount} catalogued connectors`
+                  : "Connector catalog"}
               </div>
               <h2>Connect the stack you already operate.</h2>
             </div>
@@ -283,17 +205,32 @@ export default function Home() {
             className="marketing-featured-integrations"
             aria-label="Featured integrations"
           >
-            {featuredIntegrations.map((integration) => (
-              <Link
-                to={`/integrations/${integration.slug}`}
-                key={integration.slug}
-              >
-                <span aria-hidden="true">
-                  {getIntegrationMark(integration.name)}
-                </span>
-                <strong>{integration.name}</strong>
-              </Link>
-            ))}
+            {featuredIntegrations.map((integration) => {
+              const logoPath =
+                getIntegrationContent(integration.slug)?.logoPath ??
+                integration.icon_url ??
+                getIntegrationLogoPath(integration.slug);
+
+              return (
+                <Link
+                  to={`/integrations/${integration.slug}`}
+                  key={integration.slug}
+                >
+                  <span
+                    className="marketing-integration-mark"
+                    data-logo={logoPath ? "true" : undefined}
+                    aria-hidden="true"
+                  >
+                    {logoPath ? (
+                      <img src={logoPath} alt="" />
+                    ) : (
+                      getIntegrationMark(integration.name)
+                    )}
+                  </span>
+                  <strong>{integration.name}</strong>
+                </Link>
+              );
+            })}
           </div>
           <Link
             className="marketing-button marketing-button-secondary"
@@ -339,6 +276,9 @@ export default function Home() {
                 instead of assembling the control plane around every agent
                 yourself.
               </p>
+              <pre className="marketing-card-code" aria-label="Example API call">
+                <code>{completeTaskRequest}</code>
+              </pre>
               <Link
                 className="marketing-button marketing-button-ghost-dark"
                 to="/developers"
