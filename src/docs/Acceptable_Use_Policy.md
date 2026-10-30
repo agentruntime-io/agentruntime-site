@@ -3,7 +3,7 @@
 **Effective Date:** March 1, 2026
 **Last Updated:** September 28, 2026
 
-This Acceptable Use Policy ("**AUP**") forms a binding part of the AgentRuntime Terms of Service and governs the permitted and prohibited uses of the AgentRuntime platform, services, APIs, and associated infrastructure (collectively, the "**Services**") operated by **AgentRuntime Labs Ltd** ("**AgentRuntime**," "**we**," "**us**," or "**our**").
+This Acceptable Use Policy ("**AUP**") forms a binding part of the AgentRuntime Terms of Service and governs the permitted and prohibited uses of the AgentRuntime platform, services, APIs, and associated infrastructure (collectively, the "**Services**") operated by **AgentRuntime Labs LLC** ("**AgentRuntime**," "**we**," "**us**," or "**our**").
 
 By accessing or using the Services, you ("**User**," "**you**," or "**your**") agree to comply with this AUP. Capitalized terms not defined herein have the meanings given in the Terms of Service.
 
@@ -189,10 +189,10 @@ AgentRuntime may update this AUP from time to time. Updates will be posted on ou
 
 For questions regarding this Acceptable Use Policy:
 
-**AgentRuntime Labs Ltd**
+**AgentRuntime Labs LLC**
 Email: [legal@agentruntime.io](mailto:legal@agentruntime.io)
 Abuse Reports: [abuse@agentruntime.io](mailto:abuse@agentruntime.io)
 
 ---
 
-*© 2026 AgentRuntime Labs Ltd. All rights reserved.*
+*© 2026 AgentRuntime Labs LLC. All rights reserved.*

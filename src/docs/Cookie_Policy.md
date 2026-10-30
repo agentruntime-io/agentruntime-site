@@ -3,7 +3,7 @@
 **Effective Date:** October 30, 2026
 **Last Updated:** October 30, 2026
 
-This Cookie Policy explains how **AgentRuntime Labs Ltd** ("**AgentRuntime**," "**we**," "**us**," or "**our**") uses cookies and similar technologies on our website at **agentruntime.io** (the "**Site**"). It supplements our [Privacy Policy](/legal/privacy-policy).
+This Cookie Policy explains how **AgentRuntime Labs LLC** ("**AgentRuntime**," "**we**," "**us**," or "**our**") uses cookies and similar technologies on our website at **agentruntime.io** (the "**Site**"). It supplements our [Privacy Policy](/legal/privacy-policy).
 
 ---
 
@@ -63,5 +63,5 @@ We may update this Policy when we change the technologies we use. We will update
 
 For questions about this Policy or our use of cookies, contact:
 
-**AgentRuntime Labs Ltd**
+**AgentRuntime Labs LLC**
 Email: [privacy@agentruntime.io](mailto:privacy@agentruntime.io)

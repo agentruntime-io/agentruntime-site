@@ -3,7 +3,7 @@
 **Effective Date:** March 1, 2026
 **Last Updated:** March 1, 2026
 
-This AI Usage Policy ("**Policy**") governs the deployment and operation of artificial intelligence systems, automated agents, machine learning models, and other automated systems (collectively, "**AI Systems**") on the AgentRuntime platform and related services (collectively, the "**Services**") operated by **AgentRuntime Labs Ltd** ("**AgentRuntime**," "**we**," "**us**," or "**our**").
+This AI Usage Policy ("**Policy**") governs the deployment and operation of artificial intelligence systems, automated agents, machine learning models, and other automated systems (collectively, "**AI Systems**") on the AgentRuntime platform and related services (collectively, the "**Services**") operated by **AgentRuntime Labs LLC** ("**AgentRuntime**," "**we**," "**us**," or "**our**").
 
 This Policy is incorporated by reference into AgentRuntime's Terms of Service and Acceptable Use Policy, both of which form part of your binding agreement with AgentRuntime. In the event of a conflict between this Policy and the Terms of Service, the Terms of Service shall prevail.
 
@@ -153,9 +153,9 @@ AgentRuntime may update this AI Usage Policy from time to time to reflect develo
 
 For questions regarding this AI Usage Policy:
 
-**AgentRuntime Labs Ltd**
+**AgentRuntime Labs LLC**
 Email: [legal@agentruntime.io](mailto:legal@agentruntime.io)
 
 ---
 
-*© 2026 AgentRuntime Labs Ltd. All rights reserved.*
+*© 2026 AgentRuntime Labs LLC. All rights reserved.*
