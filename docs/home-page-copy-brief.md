@@ -1,6 +1,6 @@
 # Home Page Copy Brief
 
-Last updated: 2026-10-18
+Last updated: 2026-10-30
 
 ## Handoff context
 
@@ -9,7 +9,9 @@ This file is the working copy of the brief. Update it here, in git, so every mac
 Where things stand:
 
 - Branch `develop`. Commit `36d4e79` finished the home page layout pass: white background, light grey section bands (`--marketing-band`), hero badge and statement band removed, problem and execution-model sections merged into one problem → answer list, a real API call on the builders card, and integration logos with a fallback list.
-- The copy rewrite has not started. It waits on the research checklist below.
+- Commit `cc08e66` fixed ESLint and TypeScript, ran an accessibility pass, and removed decorative numbering and the hero badge dot on the other marketing pages. Commit `229fbe5` cleared the npm audit findings (0 vulnerabilities as of 2026-10-30).
+- Analytics and consent are built but switched off until `VITE_POSTHOG_KEY` is set (see `.env.example` and `src/lib/analytics.ts`). Before a choice and after Reject, PostHog runs cookieless; Accept enables its cookie; Do Not Track disables it. Events: `$pageview`, `cta_clicked`, `section_viewed`, `demo_interacted`, `pricing_intent`, `contact_form_started`, `contact_form_submitted`, `contact_form_failed`. The Cookie Policy is at `src/docs/Cookie_Policy.md`.
+- The copy rewrite has not started. It waits on the research checklist below, starting with the audience decision in "Who the site speaks to today".
 - Do not change the workflow demo (`ProductStage`) or the integrations section as part of the copy rewrite.
 - Files involved: `src/pages/Home.tsx` (page copy), `src/lib/marketingCatalog.ts` (shared product surfaces and audience data), `src/styles/marketing.css` (styles and color tokens).
 - Run locally with `npm run dev` (port 3080). The connectors API at `localhost:8080` is optional; the integrations section falls back to six built-in logos without it.
@@ -27,6 +29,34 @@ How to use it:
 1. Check the page structure (next section) and confirm what is in scope.
 2. Work through the research checklist, assigning an owner and status to each row.
 3. When most rows are found, draft each section from the facts, following the writing rules.
+
+## Who the site speaks to today
+
+The site currently speaks to one group: engineers who have already built an AI agent and hit the problems of running it in production. The operations, support and finance teams it lists as audiences would mostly not follow it.
+
+Measured on the live pages on 2026-10-30 (home page demo excluded):
+
+- Every page uses 2 to 6 infrastructure terms per 100 words (runtime, execution, stateful, durable, deterministic, control plane, MCP, governance). Platform is the densest, at one every 18 words.
+- Solutions, the page aimed at operations, customer and finance teams, says "execution" 13 times, "stateful" 10 times and "durable" 7 times.
+- 17 of the 36 main buttons go to "Book a conversation". The only self-serve paths are "Open console" and "Documentation" in the nav, and `/pricing` redirects to the contact form.
+- The site only has Vercel Web Analytics (`<Analytics />` in `src/App.tsx`): page views and referrers, but no button clicks, form starts or funnels. The console (`webapp`) uses PostHog (EU) and Mixpanel, so nothing links a site visit to a console signup.
+
+| Reader | Gets it? | Why |
+| --- | --- | --- |
+| AI or platform engineer with an agent prototype | Yes | "Durable runs", "human task", "MCP tools" and "after the demo" describe their problem exactly |
+| Technical founder or CTO deciding whether to build or buy | Partly | Understands the terms, but finds no pricing, no comparison with alternatives, and no quick way to try it |
+| Head of operations, support or finance | Mostly no | Thinks in tickets, refunds, approvals and month-end close; "execution model" and "control plane" don't map to their day |
+| Implementation partners or agencies | Partly | Technical enough, but nothing explains what's in it for them (reuse, margins, client handover) |
+
+The mismatch: engineers' vocabulary, sales-led buttons suited to business buyers, and business teams listed as the audience.
+
+What to change, in order:
+
+1. Decide the primary buyer first (checklist row "Main buyer's role, and who signs"). Every other choice follows from it.
+2. Split vocabulary by page: Home and Solutions in work language (a refund waits for the finance lead; the ticket closes itself); Platform, Developers and the API reference in engineering language.
+3. Give engineers a way in without a sales call: a hero button to a quickstart or the console, and at least a pricing signal ("free to start", "usage-based") instead of redirecting `/pricing` to the contact form.
+4. Show one real workflow before and after, in words an operations lead can follow. The home page demo is close, but it uses the product's own terms.
+5. Add event tracking before the rewrite, so we can see who visits, what they click, and whether the new copy performs better. Built 2026-10-30; collect about two weeks of baseline data after it goes live, before changing copy.
 
 ## Page structure
 

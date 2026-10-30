@@ -192,7 +192,7 @@ Our website and Services may use cookies, web beacons, pixel tags, and similar t
 
 You may control or disable Cookies through your browser settings. Note that disabling certain Cookies may affect the functionality of the Services.
 
-For detailed information about the Cookies we use, please refer to our Cookie Policy, available on our website.
+For detailed information about the Cookies we use, please refer to our [Cookie Policy](/legal/cookie-policy).
 
 ---
 

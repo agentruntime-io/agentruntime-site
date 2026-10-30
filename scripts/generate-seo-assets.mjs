@@ -79,6 +79,7 @@ const baseStaticEntries = [
   ["/legal/developer-platform-license", "yearly", "0.4"],
   ["/legal/service-level-agreement", "yearly", "0.4"],
   ["/legal/data-deletion-instructions", "yearly", "0.4"],
+  ["/legal/cookie-policy", "yearly", "0.4"],
 ];
 
 const workflowBlueprintSlugs = parseWorkflowBlueprintSlugs(

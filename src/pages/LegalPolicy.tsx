@@ -42,7 +42,7 @@ const LegalPolicy = () => {
                   to={`/legal/${p.slug}`}
                   className={`block px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     p.slug === policy.slug
-                      ? "bg-primary/15 text-primary dark:bg-primary/20 dark:text-primary"
+                      ? "bg-primary/15 text-primary-strong dark:bg-primary/20 dark:text-primary"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   }`}
                 >
@@ -80,7 +80,7 @@ const LegalPolicy = () => {
               </div>
             )}
 
-            <article className="prose prose-slate dark:prose-invert max-w-none prose-headings:scroll-mt-24 prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
+            <article className="prose prose-slate dark:prose-invert max-w-none prose-headings:scroll-mt-24 prose-a:text-primary-strong prose-a:no-underline hover:prose-a:underline">
               <ReactMarkdown rehypePlugins={[rehypeSlug]}>
                 {policy.content}
               </ReactMarkdown>

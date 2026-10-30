@@ -18,6 +18,8 @@
 
     --primary: 11 100% 61%;
     --primary-foreground: 0 0% 100%;
+    /* Brand orange darkened for text links: 5.6:1 on white (--primary is 3:1). */
+    --primary-strong: 11 80% 42%;
 
     --secondary: 38 20% 89%;
     --secondary-foreground: 60 4% 9%;

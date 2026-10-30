@@ -1,7 +1,7 @@
 import { Link, useParams, Navigate } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Clock } from "lucide-react";
 import { format } from "date-fns";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { type Components } from "react-markdown";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import { BLOG_POSTS, getPostBySlug } from "@/blog/posts";
@@ -11,17 +11,23 @@ import { Seo } from "@/components/Seo";
 import { BlogPostJsonLd } from "@/components/BlogPostJsonLd";
 import { BlogCoverImage } from "@/components/blog/BlogCoverImage";
 import { BlogPostVideo } from "@/components/blog/BlogPostVideo";
+import { LinkedInEmbed } from "@/components/blog/LinkedInEmbed";
 import { getBlogCoverOgPath } from "@/lib/blogCoverImage";
 import { getBlogPostOgImagePath } from "@/lib/blogPostMedia";
 import { blogRestoreScrollState } from "@/lib/blogScrollRestoration";
 
 const TAG_COLORS: Record<BlogTag, string> = {
-  Infrastructure: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
-  "How-to":       "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20",
-  "Deep Dive":    "bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/20",
-  Security:       "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20",
-  "Use Case":     "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
-  Product:        "bg-primary/10 text-primary border-primary/20",
+  Infrastructure: "bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-500/20",
+  "How-to":       "bg-green-500/10 text-green-800 dark:text-green-400 border-green-500/20",
+  "Deep Dive":    "bg-violet-500/10 text-violet-700 dark:text-violet-400 border-violet-500/20",
+  Security:       "bg-red-500/10 text-red-700 dark:text-red-400 border-red-500/20",
+  "Use Case":     "bg-amber-500/10 text-amber-800 dark:text-amber-400 border-amber-500/20",
+  Product:        "bg-primary/10 text-primary-strong border-primary/20",
+};
+
+// Code blocks can scroll sideways, so keyboard users need to be able to focus them.
+const markdownComponents: Components = {
+  pre: ({ node, ...props }) => <pre tabIndex={0} {...props} />,
 };
 
 function readTime(content: string) {
@@ -113,21 +119,19 @@ const BlogPost = () => {
               />
             ) : null}
 
-            <article className="prose prose-slate dark:prose-invert max-w-none prose-headings:scroll-mt-24 prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-code:text-primary prose-pre:bg-muted/60 prose-pre:border prose-pre:border-border prose-table:border-collapse prose-th:border prose-th:border-border prose-th:bg-muted/50 prose-th:px-3 prose-th:py-2 prose-td:border prose-td:border-border prose-td:px-3 prose-td:py-2">
-              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]}>{post.content}</ReactMarkdown>
+            <article className="prose prose-slate dark:prose-invert max-w-none prose-headings:scroll-mt-24 prose-a:text-primary-strong prose-a:no-underline hover:prose-a:underline prose-code:text-primary-strong prose-pre:bg-muted/60 prose-pre:text-foreground prose-pre:border prose-pre:border-border prose-table:border-collapse prose-th:border prose-th:border-border prose-th:bg-muted/50 prose-th:px-3 prose-th:py-2 prose-td:border prose-td:border-border prose-td:px-3 prose-td:py-2">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeSlug]}
+                components={markdownComponents}
+              >
+                {post.content}
+              </ReactMarkdown>
             </article>
 
             {post.linkedInEmbedUrl && (
               <div className="mt-12 flex justify-center">
-                <iframe
-                  src={post.linkedInEmbedUrl}
-                  height={842}
-                  width={504}
-                  className="max-w-full rounded-xl border border-border"
-                  title="LinkedIn post"
-                  loading="lazy"
-                  allowFullScreen
-                />
+                <LinkedInEmbed src={post.linkedInEmbedUrl} />
               </div>
             )}
 
@@ -155,7 +159,7 @@ const BlogPost = () => {
                       <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors leading-snug mb-2">
                         {p.title}
                       </p>
-                      <span className="mt-auto text-xs text-primary flex items-center gap-1 font-medium">
+                      <span className="mt-auto text-xs text-primary-strong flex items-center gap-1 font-medium">
                         Read <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
                       </span>
                     </Link>

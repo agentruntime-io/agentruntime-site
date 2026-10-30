@@ -8,6 +8,8 @@ import { lazy, Suspense } from "react";
 import { MarketingNavigation } from "./components/marketing/MarketingNavigation";
 import { MarketingFooter } from "./components/marketing/MarketingFooter";
 import { ScrollManager } from "./components/ScrollManager";
+import { SiteAnalytics } from "./components/analytics/SiteAnalytics";
+import { CookieConsent } from "./components/analytics/CookieConsent";
 import { featureFlags } from "@/config/featureFlags";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -53,6 +55,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <ScrollManager />
+          <SiteAnalytics />
           <Routes>
             {/* Full-viewport route — no site nav or footer */}
             <Route path="/api-reference" element={
@@ -115,6 +118,7 @@ const App = () => (
               </>
             } />
           </Routes>
+          <CookieConsent />
           <Analytics />
           <SpeedInsights />
         </BrowserRouter>
