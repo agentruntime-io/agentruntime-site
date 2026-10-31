@@ -16,9 +16,9 @@ import posthog from "posthog-js";
  */
 
 const key = (import.meta.env.VITE_POSTHOG_KEY as string | undefined)?.trim() || "";
-const host =
-  (import.meta.env.VITE_POSTHOG_HOST as string | undefined)?.trim() ||
-  "https://eu.i.posthog.com";
+// Events go through our own domain (/ingest, forwarded to PostHog EU by vercel.json and the
+// Vite dev server) so ad blockers that block posthog.com hosts don't drop them.
+const host = (import.meta.env.VITE_POSTHOG_HOST as string | undefined)?.trim() || "/ingest";
 
 export type ConsentStatus = "granted" | "denied" | "pending";
 
@@ -62,11 +62,22 @@ export function initAnalytics(): void {
 
   posthog.init(key, {
     api_host: host,
+    ui_host: "https://eu.posthog.com",
     person_profiles: "identified_only",
     autocapture: false,
     capture_pageview: false,
     capture_pageleave: true,
+    // The project is shared with the console, so pin off every feature its remote config
+    // could switch on here; the site collects only what the Cookie Policy describes.
     disable_session_recording: true,
+    enable_heatmaps: false,
+    capture_dead_clicks: false,
+    capture_exceptions: false,
+    capture_performance: false,
+    disable_surveys: true,
+    disable_product_tours: true,
+    disable_conversations: true,
+    disable_web_experiments: true,
     opt_out_capturing_by_default: true,
     cookieless_mode: "on_reject",
     respect_dnt: true,
