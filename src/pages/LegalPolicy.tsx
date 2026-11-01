@@ -1,10 +1,20 @@
 import { Link, useParams, Navigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { type Components } from "react-markdown";
 import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
 import { getPolicyBySlug, LEGAL_POLICIES } from "@/legal/policies";
 import { extractHeadings } from "@/legal/utils";
 import { Seo } from "@/components/Seo";
+
+// Policy tables (cookie lists, SLA credits) are wider than a phone screen, so they scroll sideways.
+const markdownComponents: Components = {
+  table: ({ node: _node, ...props }) => (
+    <div className="overflow-x-auto">
+      <table {...props} />
+    </div>
+  ),
+};
 
 const LegalPolicy = () => {
   const { policyName } = useParams<{ policyName: string }>();
@@ -80,8 +90,12 @@ const LegalPolicy = () => {
               </div>
             )}
 
-            <article className="prose prose-slate dark:prose-invert max-w-none prose-headings:scroll-mt-24 prose-a:text-primary-strong prose-a:no-underline hover:prose-a:underline">
-              <ReactMarkdown rehypePlugins={[rehypeSlug]}>
+            <article className="prose prose-slate dark:prose-invert max-w-none prose-headings:scroll-mt-24 prose-a:text-primary-strong prose-a:no-underline hover:prose-a:underline prose-code:before:content-none prose-code:after:content-none prose-table:border-collapse prose-th:border prose-th:border-border prose-th:bg-muted/50 prose-th:px-3 prose-th:py-2 prose-td:border prose-td:border-border prose-td:px-3 prose-td:py-2">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeSlug]}
+                components={markdownComponents}
+              >
                 {policy.content}
               </ReactMarkdown>
             </article>
