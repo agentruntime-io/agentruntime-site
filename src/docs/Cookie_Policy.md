@@ -1,7 +1,7 @@
 # AGENTRUNTIME COOKIE POLICY
 
 **Effective Date:** October 30, 2026
-**Last Updated:** October 30, 2026
+**Last Updated:** November 2, 2026
 
 This Cookie Policy explains how **AgentRuntime Labs LLC** ("**AgentRuntime**," "**we**," "**us**," or "**our**") uses cookies and similar technologies on our website at **agentruntime.io** (the "**Site**"). It supplements our [Privacy Policy](/legal/privacy-policy).
 
@@ -20,11 +20,11 @@ We use cookies for two purposes only: to remember your cookie choice and, if you
 ### 2.1 Without your consent
 
 - **Counting visits without cookies.** We count visits using PostHog in cookieless mode, Vercel Web Analytics and Vercel Speed Insights. None of these store cookies or other identifiers in your browser. In cookieless mode, PostHog distinguishes visits using a privacy-preserving hash generated on its servers.
-- **Remembering your choice.** When you select **Accept** or **Reject**, we store that choice in your browser's local storage so the Site can respect it and does not ask again. This storage is strictly necessary for that purpose.
+- **Remembering your choice.** When you select **Accept** or **Reject**, we store that choice in a cookie that applies across agentruntime.io subdomains, so the Site and the AgentRuntime console can respect it and do not ask again. This cookie is strictly necessary for that purpose.
 
 ### 2.2 With your consent
 
-If you select **Accept**, PostHog stores an analytics cookie that lets us understand how visitors move between pages of the Site and the AgentRuntime console at **console.agentruntime.io**. The cookie applies across agentruntime.io subdomains. You can withdraw consent at any time (see Section 5).
+If you select **Accept**, PostHog stores an analytics cookie that lets us understand how visitors move between pages of the Site and the AgentRuntime console at **console.agentruntime.io**. The cookie applies across agentruntime.io subdomains. Your choice also applies when you use the console. You can withdraw consent at any time (see Section 5).
 
 ---
 
@@ -32,7 +32,7 @@ If you select **Accept**, PostHog stores an analytics cookie that lets us unders
 
 | Name | Provider | Purpose | Type | Duration | Consent required |
 | --- | --- | --- | --- | --- | --- |
-| `__ph_opt_in_out_[project key]` | PostHog, on our behalf | Remembers whether you accepted or rejected analytics cookies | Local storage | Until you clear it or change your choice | No (strictly necessary) |
+| `__ph_opt_in_out_[project key]` | PostHog, on our behalf | Remembers whether you accepted or rejected analytics cookies, on the Site and in the console | Cookie on .agentruntime.io | 1 year | No (strictly necessary) |
 | `ph_[project key]_posthog` | PostHog | Distinguishes visitors and sessions for analytics across the Site and console | Cookie on .agentruntime.io | 1 year | Yes |
 
 "[project key]" is the public identifier of our PostHog project.
