@@ -41,6 +41,8 @@ const LegalPolicy = lazy(() => import("./pages/LegalPolicy"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const ApiReference = lazy(() => import("./pages/ApiReference"));
+const Labs = lazy(() => import("./pages/Labs"));
+const LabsDiskScout = lazy(() => import("./pages/LabsDiskScout"));
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -109,6 +111,8 @@ const App = () => (
                       <Route path="/blog/:slug" element={<BlogPost />} />
                       <Route path="/legal" element={<Legal />} />
                       <Route path="/legal/:policyName" element={<LegalPolicy />} />
+                      <Route path="/labs" element={<Labs />} />
+                      <Route path="/labs/diskscout" element={<LabsDiskScout />} />
                       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                       <Route path="*" element={<NotFound />} />
                     </Routes>
