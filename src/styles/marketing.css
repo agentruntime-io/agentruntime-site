@@ -6210,6 +6210,26 @@ button.marketing-side-item:focus-visible {
   line-height: 1.6;
 }
 
+.marketing-labs-shot {
+  margin: 0 0 88px;
+}
+
+.marketing-labs-shot img {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: var(--marketing-surface);
+  border: 1px solid var(--marketing-border);
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(23, 23, 21, 0.08);
+}
+
+.marketing-labs-shot figcaption {
+  margin-top: 14px;
+  color: var(--marketing-muted);
+  font-size: 13px;
+}
+
 .marketing-labs-facts {
   margin: 0;
   display: grid;
@@ -6315,6 +6335,14 @@ button.marketing-side-item:focus-visible {
 
   .marketing-labs-panel {
     padding: 24px;
+  }
+
+  .marketing-labs-shot {
+    margin-bottom: 56px;
+  }
+
+  .marketing-labs-shot img {
+    border-radius: 10px;
   }
 }
 

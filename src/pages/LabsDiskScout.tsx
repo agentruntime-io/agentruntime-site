@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Seo } from "@/components/Seo";
 import {
@@ -17,6 +18,16 @@ const checkedRelease = {
   fileName: "DiskScout-1.8.0.exe",
   sha256: "83c29c1ae2ca979cea3da337daad3f2e35cf952b7ef2dae02a6351640b316895",
   url: "https://github.com/agentruntime-io/diskscout/releases/tag/v1.8.0",
+};
+
+/**
+ * Loaded straight from the repo's main branch so it stays in step with the project; the
+ * figure hides itself if the file is ever moved. Size is the image's own, to avoid layout shift.
+ */
+const screenshot = {
+  src: "https://raw.githubusercontent.com/agentruntime-io/diskscout/main/docs/screenshot-light.png",
+  width: 2040,
+  height: 1290,
 };
 
 const facts = [
@@ -76,6 +87,8 @@ const source = {
 };
 
 export default function LabsDiskScout() {
+  const [showScreenshot, setShowScreenshot] = useState(true);
+
   return (
     <div className="marketing-page">
       <Seo {...seoCopy.labsDiskScout} canonicalPath="/labs/diskscout" />
@@ -97,6 +110,30 @@ export default function LabsDiskScout() {
 
       <section className="marketing-section" data-flush-top="true">
         <div className="marketing-container">
+          {showScreenshot && (
+            <figure className="marketing-labs-shot">
+              <img
+                src={screenshot.src}
+                width={screenshot.width}
+                height={screenshot.height}
+                alt="The DiskScout window showing a drive as a map of colored blocks, one per folder or file, with a folder tree on the right."
+                decoding="async"
+                onError={() => setShowScreenshot(false)}
+              />
+              <figcaption>
+                Screenshot from the{" "}
+                <a
+                  className="marketing-labs-text-link"
+                  href={diskScout.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  DiskScout repository
+                </a>{" "}
+                on GitHub.
+              </figcaption>
+            </figure>
+          )}
           <div className="marketing-section-label">At a glance</div>
           <dl className="marketing-labs-facts">
             {facts.map((fact) => (
