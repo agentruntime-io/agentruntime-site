@@ -52,8 +52,9 @@ export function CookieConsent() {
       </h2>
       <p>
         We count visits to this site without cookies. With your permission, we
-        also use analytics cookies to understand how people move between this
-        site and the AgentRuntime console.{" "}
+        also use analytics cookies here and in the AgentRuntime console, including
+        masked recordings of console sessions, to understand how people use
+        AgentRuntime.{" "}
         <Link to="/legal/cookie-policy">Cookie Policy</Link>
       </p>
       {choiceLabel[status] && (

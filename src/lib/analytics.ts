@@ -9,6 +9,8 @@ import posthog from "posthog-js";
  *   PostHog's servers). Cookieless mode must be enabled in the PostHog project settings.
  * - After "Accept": PostHog uses its normal cookie, shared across agentruntime.io
  *   subdomains, so a site visit can be linked to a console signup.
+ * - The choice itself is a cookie on .agentruntime.io, shared with the console, so one
+ *   choice covers both.
  * - Do Not Track turns analytics off entirely; Global Privacy Control counts as "Reject".
  *
  * Nothing is sent unless VITE_POSTHOG_KEY is set, and never from the prerender browser.
@@ -16,9 +18,9 @@ import posthog from "posthog-js";
  */
 
 const key = (import.meta.env.VITE_POSTHOG_KEY as string | undefined)?.trim() || "";
-const host =
-  (import.meta.env.VITE_POSTHOG_HOST as string | undefined)?.trim() ||
-  "https://eu.i.posthog.com";
+// Events go through our own domain (/ingest, forwarded to PostHog EU by vercel.json and the
+// Vite dev server) so ad blockers that block posthog.com hosts don't drop them.
+const host = (import.meta.env.VITE_POSTHOG_HOST as string | undefined)?.trim() || "/ingest";
 
 export type ConsentStatus = "granted" | "denied" | "pending";
 
@@ -62,13 +64,29 @@ export function initAnalytics(): void {
 
   posthog.init(key, {
     api_host: host,
+    ui_host: "https://eu.posthog.com",
     person_profiles: "identified_only",
     autocapture: false,
     capture_pageview: false,
     capture_pageleave: true,
+    // The project is shared with the console, so pin off every feature its remote config
+    // could switch on here; the site collects only what the Cookie Policy describes.
     disable_session_recording: true,
+    enable_heatmaps: false,
+    capture_dead_clicks: false,
+    capture_exceptions: false,
+    capture_performance: false,
+    disable_surveys: true,
+    disable_product_tours: true,
+    disable_conversations: true,
+    disable_web_experiments: true,
     opt_out_capturing_by_default: true,
     cookieless_mode: "on_reject",
+    // Store the choice as a cookie on .agentruntime.io so it covers the console too. The console
+    // must use the same setting: PostHog moves the choice into whichever store it is configured
+    // for and deletes it from the other, and a console visitor with no choice yet would otherwise
+    // lose the shared cookie that links their site visit to their signup.
+    opt_out_capturing_persistence_type: "cookie",
     respect_dnt: true,
     cross_subdomain_cookie: true,
   });

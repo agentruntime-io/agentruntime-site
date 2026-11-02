@@ -3,7 +3,7 @@
 **Effective Date:** March 1, 2026
 **Last Updated:** September 28, 2026
 
-This Privacy Policy ("**Policy**") describes how **AgentRuntime Labs Ltd** ("**AgentRuntime**," "**we**," "**us**," or "**our**") collects, uses, discloses, and safeguards personal information in connection with the AgentRuntime platform and related services (collectively, the "**Services**"). This Policy applies to all users, visitors, and customers who access or use the Services.
+This Privacy Policy ("**Policy**") describes how **AgentRuntime Labs LLC** ("**AgentRuntime**," "**we**," "**us**," or "**our**") collects, uses, discloses, and safeguards personal information in connection with the AgentRuntime platform and related services (collectively, the "**Services**"). This Policy applies to all users, visitors, and customers who access or use the Services.
 
 Please read this Policy carefully. By accessing or using the Services, you acknowledge that you have read and understood this Policy. If you do not agree with the practices described herein, you must discontinue use of the Services.
 
@@ -226,9 +226,9 @@ We may update this Privacy Policy from time to time to reflect changes in our pr
 
 For questions, requests, or concerns regarding this Privacy Policy or our data practices, please contact:
 
-**AgentRuntime Labs Ltd — Privacy Team**
+**AgentRuntime Labs LLC — Privacy Team**
 Email: [privacy@agentruntime.io](mailto:privacy@agentruntime.io)
 
 ---
 
-*© 2026 AgentRuntime Labs Ltd. All rights reserved.*
+*© 2026 AgentRuntime Labs LLC. All rights reserved.*

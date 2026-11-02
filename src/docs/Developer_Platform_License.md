@@ -3,7 +3,7 @@
 **Effective Date:** March 1, 2026
 **Last Updated:** March 1, 2026
 
-This Developer Platform License ("**License**") governs your use of the AgentRuntime developer tools and interfaces, including APIs, software development kits (SDKs), command-line interfaces (CLIs), client libraries, developer documentation, and sample code (collectively, the "**Developer Tools**") provided by **AgentRuntime Labs Ltd** ("**AgentRuntime**," "**we**," "**us**," or "**our**").
+This Developer Platform License ("**License**") governs your use of the AgentRuntime developer tools and interfaces, including APIs, software development kits (SDKs), command-line interfaces (CLIs), client libraries, developer documentation, and sample code (collectively, the "**Developer Tools**") provided by **AgentRuntime Labs LLC** ("**AgentRuntime**," "**we**," "**us**," or "**our**").
 
 This License is incorporated by reference into, and forms part of, AgentRuntime's Terms of Service (the "**Agreement**"). By accessing or using the Developer Tools, you acknowledge that you have read and agreed to this License and the Agreement. In the event of a conflict between this License and the Agreement with respect to the use of the Developer Tools, this License shall prevail solely to the extent of the conflict.
 
@@ -137,10 +137,10 @@ AgentRuntime may update this Developer Platform License from time to time. Updat
 
 For questions regarding this Developer Platform License:
 
-**AgentRuntime Labs Ltd**
+**AgentRuntime Labs LLC**
 Email: [legal@agentruntime.io](mailto:legal@agentruntime.io)
 Developer Documentation: [docs.agentruntime.io](https://docs.agentruntime.io)
 
 ---
 
-*© 2026 AgentRuntime Labs Ltd. All rights reserved.*
+*© 2026 AgentRuntime Labs LLC. All rights reserved.*

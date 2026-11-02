@@ -9,7 +9,7 @@ PLEASE READ THESE TERMS OF SERVICE CAREFULLY BEFORE ACCESSING OR USING THE AGENT
 
 ## 1. PARTIES AND AGREEMENT
 
-**1.1 Operator.** These Terms of Service ("**Terms**") constitute a legally binding agreement between you ("**Customer**," "**User**," "**you**," or "**your**") and **AgentRuntime Labs Ltd**, a company incorporated under applicable laws ("**AgentRuntime**," "**we**," "**us**," or "**our**").
+**1.1 Operator.** These Terms of Service ("**Terms**") constitute a legally binding agreement between you ("**Customer**," "**User**," "**you**," or "**your**") and **AgentRuntime Labs LLC**, a company incorporated under applicable laws ("**AgentRuntime**," "**we**," "**us**," or "**our**").
 
 **1.2 Entire Agreement.** These Terms, together with AgentRuntime's Privacy Policy, Acceptable Use Policy, Data Processing Agreement, and any Order Form or Statement of Work executed between the parties, constitute the entire agreement between you and AgentRuntime with respect to the Services and supersede all prior and contemporaneous agreements, representations, and understandings.
 
@@ -229,7 +229,7 @@ TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE SERVICES ARE PROVIDED "AS
 
 ## 19. GOVERNING LAW AND DISPUTE RESOLUTION
 
-**19.1 Governing Law.** These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which AgentRuntime Labs Ltd is incorporated, without regard to its conflict of law provisions.
+**19.1 Governing Law.** These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which AgentRuntime Labs LLC is incorporated, without regard to its conflict of law provisions.
 
 **19.2 Dispute Resolution.** Any dispute, claim, or controversy arising out of or relating to these Terms or the breach, termination, enforcement, interpretation, or validity thereof shall first be subject to good-faith negotiation between the parties. If unresolved within thirty (30) days of written notice of a dispute, such dispute shall be resolved by binding arbitration or through the courts of competent jurisdiction, as specified in the applicable Order Form or otherwise agreed in writing by the parties.
 
@@ -257,9 +257,9 @@ TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE SERVICES ARE PROVIDED "AS
 
 For questions regarding these Terms:
 
-**AgentRuntime Labs Ltd**
+**AgentRuntime Labs LLC**
 Email: [legal@agentruntime.io](mailto:legal@agentruntime.io)
 
 ---
 
-*© 2026 AgentRuntime Labs Ltd. All rights reserved.*
+*© 2026 AgentRuntime Labs LLC. All rights reserved.*

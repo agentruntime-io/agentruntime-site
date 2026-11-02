@@ -120,11 +120,11 @@ AgentRuntime reserves the right to modify this SLA with reasonable prior notice 
 
 For questions regarding this SLA or to submit a credit request:
 
-**AgentRuntime Labs Ltd**
+**AgentRuntime Labs LLC**
 Email: [support@agentruntime.io](mailto:support@agentruntime.io)
 Billing Credits: [billing@agentruntime.io](mailto:billing@agentruntime.io)
 Status Page: [status.agentruntime.io](https://status.agentruntime.io)
 
 ---
 
-*© 2026 AgentRuntime Labs Ltd. All rights reserved.*
+*© 2026 AgentRuntime Labs LLC. All rights reserved.*
