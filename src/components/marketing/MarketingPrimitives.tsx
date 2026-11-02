@@ -5,6 +5,7 @@ export type MarketingAction = {
   label: string;
   to?: string;
   href?: string;
+  onClick?: () => void;
 };
 
 type ActionLinkProps = MarketingAction & {
@@ -15,13 +16,14 @@ export function ActionLink({
   label,
   to,
   href,
+  onClick,
   variant = "primary",
 }: ActionLinkProps) {
   const className = `marketing-button marketing-button-${variant}`;
 
   if (to) {
     return (
-      <Link className={className} to={to}>
+      <Link className={className} to={to} onClick={onClick}>
         {label}
       </Link>
     );
@@ -33,6 +35,7 @@ export function ActionLink({
       href={href}
       target={href?.startsWith("http") ? "_blank" : undefined}
       rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
+      onClick={onClick}
     >
       {label}
     </a>
@@ -46,7 +49,7 @@ export function Eyebrow({ children }: { children: ReactNode }) {
 }
 
 type PageHeroProps = {
-  eyebrow: string;
+  eyebrow: ReactNode;
   title: ReactNode;
   description: string;
   primary?: MarketingAction;

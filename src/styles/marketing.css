@@ -6170,6 +6170,154 @@ button.marketing-side-item:focus-visible {
   justify-content: center;
 }
 
+/* Labs: open-source side projects, kept plainer than the product pages. */
+.marketing-page .marketing-labs-text-link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.marketing-page .marketing-labs-text-link:hover {
+  color: var(--marketing-text);
+}
+
+.marketing-labs-card {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 150ms ease, transform 150ms ease;
+}
+
+.marketing-labs-card:hover {
+  border-color: var(--marketing-border-strong);
+  transform: translateY(-1px);
+}
+
+.marketing-labs-card .marketing-inline-link {
+  margin-top: 24px;
+}
+
+.marketing-labs-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.marketing-labs-fineprint {
+  max-width: 720px;
+  margin: 40px 0 0;
+  color: var(--marketing-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.marketing-labs-facts {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0 32px;
+  border-top: 1px solid var(--marketing-border-strong);
+}
+
+.marketing-labs-facts > div {
+  min-width: 0;
+  padding-top: 22px;
+}
+
+.marketing-labs-facts dt {
+  color: var(--marketing-muted);
+  font-size: 13px;
+}
+
+.marketing-labs-facts dd {
+  margin: 8px 0 0;
+  line-height: 1.55;
+}
+
+.marketing-labs-feature {
+  min-height: 0;
+}
+
+.marketing-labs-before {
+  align-items: start;
+}
+
+.marketing-labs-panel {
+  min-width: 0;
+  padding: 30px;
+  background: var(--marketing-bg);
+  border: 1px solid var(--marketing-border);
+  border-radius: var(--marketing-radius);
+}
+
+.marketing-labs-panel[data-tone="warning"] {
+  border-color: rgba(200, 58, 27, 0.32);
+  box-shadow: inset 4px 0 var(--marketing-focus);
+}
+
+.marketing-labs-panel h3 {
+  margin: 0 0 12px;
+  font-size: 22px;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.marketing-labs-panel p {
+  margin: 0;
+  color: var(--marketing-muted);
+  line-height: 1.58;
+}
+
+.marketing-labs-checksum-label {
+  margin-top: 20px;
+  color: var(--marketing-muted);
+  font-size: 13px;
+}
+
+.marketing-labs-checksum {
+  margin-top: 8px;
+  padding: 14px 16px;
+  display: block;
+  color: #d9d6ce;
+  background: var(--marketing-dark-2);
+  border-radius: 12px;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.marketing-labs-panel .marketing-labs-panel-note {
+  margin-top: 14px;
+  font-size: 14px;
+}
+
+.marketing-labs-panel-note code {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12.5px;
+  overflow-wrap: anywhere;
+}
+
+.marketing-labs-actions.marketing-hero-actions {
+  margin-top: 40px;
+  justify-content: flex-start;
+}
+
+@media (max-width: 1140px) {
+  .marketing-labs-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .marketing-labs-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .marketing-labs-panel {
+    padding: 24px;
+  }
+}
+
 @media (max-width: 440px) {
   .marketing-consent {
     right: 16px;

@@ -64,6 +64,7 @@ export function MarketingFooter() {
             <h4>Company</h4>
             <Link to="/company">About</Link>
             <Link to="/blog">Blog</Link>
+            <Link to="/labs">Labs</Link>
             <Link to="/contact">Contact</Link>
             <a href={CONSOLE_APP_URL} {...externalProps}>
               Open console ↗
