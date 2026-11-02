@@ -94,11 +94,12 @@ export default function Enterprise() {
           </div>
           <h2>Control exists at every boundary where an agent can act.</h2>
           <div className="marketing-ruled-grid" data-columns="3">
-            {governanceControls.map((control, index) => (
-              <article className="marketing-card" key={control.title}>
-                <div className="marketing-card-number">
-                  {String(index + 1).padStart(2, "0")}
-                </div>
+            {governanceControls.map((control) => (
+              <article
+                className="marketing-card"
+                data-compact="true"
+                key={control.title}
+              >
                 <h3>{control.title}</h3>
                 <p>{control.description}</p>
               </article>

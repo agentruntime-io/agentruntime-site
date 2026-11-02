@@ -3,7 +3,7 @@
 **Effective Date:** March 1, 2026
 **Last Updated:** September 28, 2026
 
-This Billing and Credits Policy ("**Policy**") governs all billing, payment, credit, and subscription matters related to your use of the AgentRuntime platform and services (the "**Services**") provided by **AgentRuntime Labs Ltd** ("**AgentRuntime**," "**we**," "**us**," or "**our**"). This Policy is incorporated by reference into AgentRuntime's Terms of Service and constitutes a binding part of your agreement with AgentRuntime.
+This Billing and Credits Policy ("**Policy**") governs all billing, payment, credit, and subscription matters related to your use of the AgentRuntime platform and services (the "**Services**") provided by **AgentRuntime Labs LLC** ("**AgentRuntime**," "**we**," "**us**," or "**our**"). This Policy is incorporated by reference into AgentRuntime's Terms of Service and constitutes a binding part of your agreement with AgentRuntime.
 
 Capitalized terms not defined in this Policy have the meanings given to them in the Terms of Service.
 
@@ -199,9 +199,9 @@ Capitalized terms not defined in this Policy have the meanings given to them in 
 
 For billing inquiries or to submit a billing dispute:
 
-**AgentRuntime Labs Ltd — Billing Team**
+**AgentRuntime Labs LLC — Billing Team**
 Email: [billing@agentruntime.io](mailto:billing@agentruntime.io)
 
 ---
 
-*© 2026 AgentRuntime Labs Ltd. All rights reserved.*
+*© 2026 AgentRuntime Labs LLC. All rights reserved.*

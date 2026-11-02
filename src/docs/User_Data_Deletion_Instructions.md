@@ -3,7 +3,7 @@
 **Effective Date:** September 28, 2026  
 **Last Updated:** September 28, 2026
 
-This page describes how to delete or remove **personal data** that **AgentRuntime Labs Ltd** ("**AgentRuntime**," "**we**," "**us**") processes when you use the AgentRuntime console, APIs, and related services (collectively, the "**Services**").
+This page describes how to delete or remove **personal data** that **AgentRuntime Labs LLC** ("**AgentRuntime**," "**we**," "**us**") processes when you use the AgentRuntime console, APIs, and related services (collectively, the "**Services**").
 
 It applies to data we collect and store as part of operating the platform—not only data from third-party integrations.
 
@@ -123,9 +123,9 @@ When emailing **privacy@agentruntime.io** about Meta data, also include (if know
 
 ## 5. QUESTIONS
 
-**AgentRuntime Labs Ltd — Privacy Team**  
+**AgentRuntime Labs LLC — Privacy Team**  
 Email: [privacy@agentruntime.io](mailto:privacy@agentruntime.io)
 
 ---
 
-*© 2026 AgentRuntime Labs Ltd. All rights reserved.*
+*© 2026 AgentRuntime Labs LLC. All rights reserved.*

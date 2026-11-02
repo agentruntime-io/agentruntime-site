@@ -13,6 +13,7 @@ import aiUsageRaw from "@/docs/AI_Usage_Policy.md?raw";
 import developerLicenseRaw from "@/docs/Developer_Platform_License.md?raw";
 import slaRaw from "@/docs/Service_Level_Agreement.md?raw";
 import userDataDeletionRaw from "@/docs/User_Data_Deletion_Instructions.md?raw";
+import cookiePolicyRaw from "@/docs/Cookie_Policy.md?raw";
 
 export interface LegalPolicy {
   slug: string;
@@ -70,6 +71,11 @@ const policyMap: Record<string, Omit<LegalPolicy, "content"> & { content: string
     slug: "data-deletion-instructions",
     title: "User Data Deletion Instructions",
     content: userDataDeletionRaw,
+  },
+  "cookie-policy": {
+    slug: "cookie-policy",
+    title: "Cookie Policy",
+    content: cookiePolicyRaw,
   },
 };
 

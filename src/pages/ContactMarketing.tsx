@@ -1,8 +1,9 @@
-import { FormEvent, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { FormEvent, useRef, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { Seo } from "@/components/Seo";
 import { PageHero } from "@/components/marketing/MarketingPrimitives";
 import { api } from "@/config/api";
+import { track } from "@/lib/analytics";
 import { SITE_URL } from "@/config/site";
 import { seoCopy } from "@/seo/metadata";
 
@@ -15,6 +16,14 @@ export default function ContactMarketing() {
   const [status, setStatus] = useState<
     "idle" | "success" | "error" | "submitting"
   >("idle");
+  const startedRef = useRef(false);
+
+  // Analytics gets the page source and the role category only, never what was typed.
+  const handleInput = () => {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    track("contact_form_started", { source: source || "contact" });
+  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -61,9 +70,14 @@ export default function ContactMarketing() {
         throw new Error(`Request failed (${response.status})`);
       }
       form.reset();
+      track("contact_form_submitted", {
+        source: source || "contact",
+        role: role || "none",
+      });
       setStatus("success");
       window.setTimeout(() => setStatus("idle"), 8000);
     } catch {
+      track("contact_form_failed", { source: source || "contact" });
       setStatus("error");
     }
   };
@@ -109,7 +123,11 @@ export default function ContactMarketing() {
                 Describe the current process in plain language. We will reply with
                 the right next step.
               </p>
-              <form className="marketing-form" onSubmit={handleSubmit}>
+              <form
+                className="marketing-form"
+                onSubmit={handleSubmit}
+                onInput={handleInput}
+              >
                 <div className="marketing-form-row">
                   <label>
                     First name
@@ -186,6 +204,11 @@ export default function ContactMarketing() {
                     ? "Sending…"
                     : "Send the workflow →"}
                 </button>
+                <p className="marketing-form-note">
+                  We use these details to respond to your request. See our{" "}
+                  <Link to="/legal/privacy-policy">Privacy Policy</Link> for how
+                  we handle personal data.
+                </p>
                 <div aria-live="polite">
                   {status === "success" && (
                     <p

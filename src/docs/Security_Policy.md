@@ -3,7 +3,7 @@
 **Effective Date:** March 1, 2026
 **Last Updated:** March 1, 2026
 
-This Security Policy ("**Policy**") describes the security practices, controls, and commitments that **AgentRuntime Labs Ltd** ("**AgentRuntime**," "**we**," "**us**," or "**our**") maintains to protect the integrity, confidentiality, and availability of the AgentRuntime platform and associated services (collectively, the "**Services**") and the data of our users and customers.
+This Security Policy ("**Policy**") describes the security practices, controls, and commitments that **AgentRuntime Labs LLC** ("**AgentRuntime**," "**we**," "**us**," or "**our**") maintains to protect the integrity, confidentiality, and availability of the AgentRuntime platform and associated services (collectively, the "**Services**") and the data of our users and customers.
 
 This Policy is provided for informational purposes and is incorporated by reference into AgentRuntime's Terms of Service and Data Processing Agreement. AgentRuntime may update its security practices at any time without prior notice, provided that any changes will not materially reduce the level of protection afforded to customer data during the term of an active subscription.
 
@@ -161,9 +161,9 @@ AgentRuntime may undergo third-party security assessments, audits, or certificat
 
 To report a security vulnerability or for security-related inquiries:
 
-**AgentRuntime Labs Ltd — Security Team**
+**AgentRuntime Labs LLC — Security Team**
 Email: [security@agentruntime.io](mailto:security@agentruntime.io)
 
 ---
 
-*© 2026 AgentRuntime Labs Ltd. All rights reserved.*
+*© 2026 AgentRuntime Labs LLC. All rights reserved.*

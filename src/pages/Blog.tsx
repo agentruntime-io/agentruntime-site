@@ -36,7 +36,7 @@ const Blog = () => {
   const showStartHere = activeTag === null;
   const curatedFeatured = showStartHere ? getFeaturedPosts() : [];
   const startHerePosts = curatedFeatured.slice(1);
-  const featuredSlugs = new Set(FEATURED_BLOG_SLUGS);
+  const featuredSlugs = new Set<string>(FEATURED_BLOG_SLUGS);
 
   const hero = (showStartHere ? curatedFeatured[0] : undefined) ?? filtered[0];
 

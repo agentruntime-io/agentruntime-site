@@ -94,6 +94,16 @@ export const seoCopy = {
     description:
       "Product updates, engineering notes, and guidance for running AI agents in production on AgentRuntime.",
   },
+  labs: {
+    title: "Labs: Open-Source Tools",
+    description:
+      "Small open-source tools built by the AgentRuntime team. They are separate from the AgentRuntime product, and each one has its own license.",
+  },
+  labsDiskScout: {
+    title: "DiskScout: Disk Space Map and Duplicate Finder",
+    description:
+      "DiskScout is a small open-source Windows tool that shows where your disk space went, finds duplicate files by content, and deletes carefully. MIT licensed.",
+  },
   notFound: {
     title: "Page Not Found",
     description: "The page you requested could not be found.",

@@ -3,7 +3,7 @@
 **Effective Date:** March 1, 2026
 **Last Updated:** September 28, 2026
 
-This Data Processing Agreement ("**DPA**") is entered into between **AgentRuntime Labs Ltd** ("**AgentRuntime**," "**Processor**," "**we**," "**us**," or "**our**") and the customer entity that has accepted the AgentRuntime Terms of Service ("**Customer**" or "**Controller**"). This DPA forms part of and is incorporated by reference into the AgentRuntime Terms of Service (the "**Principal Agreement**").
+This Data Processing Agreement ("**DPA**") is entered into between **AgentRuntime Labs LLC** ("**AgentRuntime**," "**Processor**," "**we**," "**us**," or "**our**") and the customer entity that has accepted the AgentRuntime Terms of Service ("**Customer**" or "**Controller**"). This DPA forms part of and is incorporated by reference into the AgentRuntime Terms of Service (the "**Principal Agreement**").
 
 This DPA governs the processing of Personal Data by AgentRuntime on behalf of Customer in connection with the provision of the Services. Where there is a conflict between this DPA and the Principal Agreement regarding the processing of Personal Data, this DPA shall prevail.
 
@@ -210,9 +210,9 @@ This DPA shall be governed by and construed in accordance with the governing law
 
 For data protection inquiries:
 
-**AgentRuntime Labs Ltd — Data Protection Team**
+**AgentRuntime Labs LLC — Data Protection Team**
 Email: [privacy@agentruntime.io](mailto:privacy@agentruntime.io)
 
 ---
 
-*© 2026 AgentRuntime Labs Ltd. All rights reserved.*
+*© 2026 AgentRuntime Labs LLC. All rights reserved.*

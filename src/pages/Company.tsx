@@ -100,16 +100,13 @@ export default function Company() {
           <div className="marketing-section-label">Product principles</div>
           <h2>The principles behind the runtime.</h2>
           <div className="marketing-grid-3">
-            {principles.map((principle, index) => (
+            {principles.map((principle) => (
               <article
                 className="marketing-card"
                 data-compact="true"
                 data-tone="dark"
                 key={principle.title}
               >
-                <span className="marketing-pill">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
                 <h3>{principle.title}</h3>
                 <p>{principle.description}</p>
               </article>

@@ -8,6 +8,8 @@ import { lazy, Suspense } from "react";
 import { MarketingNavigation } from "./components/marketing/MarketingNavigation";
 import { MarketingFooter } from "./components/marketing/MarketingFooter";
 import { ScrollManager } from "./components/ScrollManager";
+import { SiteAnalytics } from "./components/analytics/SiteAnalytics";
+import { CookieConsent } from "./components/analytics/CookieConsent";
 import { featureFlags } from "@/config/featureFlags";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -39,6 +41,8 @@ const LegalPolicy = lazy(() => import("./pages/LegalPolicy"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const ApiReference = lazy(() => import("./pages/ApiReference"));
+const Labs = lazy(() => import("./pages/Labs"));
+const LabsDiskScout = lazy(() => import("./pages/LabsDiskScout"));
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -53,6 +57,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <ScrollManager />
+          <SiteAnalytics />
           <Routes>
             {/* Full-viewport route — no site nav or footer */}
             <Route path="/api-reference" element={
@@ -106,6 +111,8 @@ const App = () => (
                       <Route path="/blog/:slug" element={<BlogPost />} />
                       <Route path="/legal" element={<Legal />} />
                       <Route path="/legal/:policyName" element={<LegalPolicy />} />
+                      <Route path="/labs" element={<Labs />} />
+                      <Route path="/labs/diskscout" element={<LabsDiskScout />} />
                       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                       <Route path="*" element={<NotFound />} />
                     </Routes>
@@ -115,6 +122,7 @@ const App = () => (
               </>
             } />
           </Routes>
+          <CookieConsent />
           <Analytics />
           <SpeedInsights />
         </BrowserRouter>

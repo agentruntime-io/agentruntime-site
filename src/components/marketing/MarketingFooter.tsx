@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { CONSOLE_APP_URL, DOCS_APP_URL } from "@/config/site";
+import { analyticsEnabled, openCookieSettings } from "@/lib/analytics";
 
 const externalProps = {
   target: "_blank" as const,
@@ -63,6 +64,7 @@ export function MarketingFooter() {
             <h4>Company</h4>
             <Link to="/company">About</Link>
             <Link to="/blog">Blog</Link>
+            <Link to="/labs">Labs</Link>
             <Link to="/contact">Contact</Link>
             <a href={CONSOLE_APP_URL} {...externalProps}>
               Open console ↗
@@ -74,6 +76,16 @@ export function MarketingFooter() {
             <Link to="/legal">Legal</Link>
             <Link to="/legal/privacy-policy">Privacy</Link>
             <Link to="/legal/terms-and-conditions">Terms</Link>
+            <Link to="/legal/cookie-policy">Cookie Policy</Link>
+            {analyticsEnabled() && (
+              <button
+                type="button"
+                className="marketing-footer-link-button"
+                onClick={openCookieSettings}
+              >
+                Cookie settings
+              </button>
+            )}
           </div>
         </div>
 

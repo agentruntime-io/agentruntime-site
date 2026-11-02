@@ -39,7 +39,7 @@ const Footer = () => {
   const footerLinks: {
     product: FooterLinkItem[];
     company: FooterLinkItem[];
-    blog: FooterLinkItem[];
+    blog: { label: string; path: string }[];
     legal: { label: string; path: string }[];
   } = {
     product: [

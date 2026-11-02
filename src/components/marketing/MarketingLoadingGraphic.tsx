@@ -13,7 +13,7 @@ export function MarketingLoadingGraphic({
 }: MarketingLoadingGraphicProps) {
   if (variant === "detail") {
     return (
-      <div className="marketing-loading-detail" aria-busy="true" aria-label="Loading">
+      <div className="marketing-loading-detail" role="status" aria-busy="true" aria-label="Loading">
         <div className="marketing-loading-detail-hero" aria-hidden="true">
           <span className="marketing-loading-block marketing-loading-block-lg" />
           <span className="marketing-loading-block marketing-loading-block-md" />
@@ -31,6 +31,7 @@ export function MarketingLoadingGraphic({
     return (
       <div
         className="marketing-grid-3 marketing-loading-graphic"
+        role="status"
         aria-busy="true"
         aria-label="Loading"
       >
@@ -49,6 +50,7 @@ export function MarketingLoadingGraphic({
   return (
     <div
       className="marketing-integration-grid marketing-loading-graphic"
+      role="status"
       aria-busy="true"
       aria-label="Loading"
     >

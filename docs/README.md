@@ -12,6 +12,7 @@ Documentation for the marketing site, organized by concern.
 | **[improve.md](./improve.md)** | Technical improvements (CTAs, nav, footer, config, responsive) |
 | **[pages/](./pages/README.md)** | Page-specific recommendations (Index, Pricing, Contact, etc.) |
 | **[business.md](./business.md)** | Business & strategy (social proof, placeholders, meta tags, credibility) |
+| **[home-page-copy-brief.md](./home-page-copy-brief.md)** | Home page copy rewrite — page structure, facts to find, writing rules, handoff status |
 | **[roadmap.md](./roadmap.md)** | Future features, design system roadmap |
 | [enterprise-design-system-guide.md](./enterprise-design-system-guide.md) | Future reference — enterprise-grade design system (deferred) |
 
