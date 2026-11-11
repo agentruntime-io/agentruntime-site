@@ -4,6 +4,12 @@
   "installCommand": "bash scripts/vercel-install.sh",
   "headers": [
     {
+      "source": "/legal/partner-program-terms",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         { "key": "X-Frame-Options", "value": "SAMEORIGIN" },

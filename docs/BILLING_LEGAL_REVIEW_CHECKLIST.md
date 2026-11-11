@@ -60,7 +60,7 @@ Section numbers are those of `src/docs/Billing_and_Credits_Policy.md`.
 
 ## E. Partner program terms (draft only)
 
-`src/docs/Partner_Program_Terms_DRAFT.md`, shown at `/legal/partner-program-terms`. **The program ships OFF**, so this page is dated, marked DRAFT, **not linked** from the Legal index, the sidebar, the footer or the menu, **not in the sitemap or the llms files**, and served with `noindex`. Only someone with the exact address can open it.
+`src/docs/Partner_Program_Terms_DRAFT.md`, shown at `/legal/partner-program-terms`. **The program ships OFF**, so this page is dated, marked DRAFT, **not linked** from the Legal index, the sidebar, the footer or the menu, **not in the sitemap or the llms files**, and served with `noindex` (a meta tag in the page and an `X-Robots-Tag` header in `vercel.json`). Only someone with the exact address can open it.
 
 | # | Left open on purpose | What you confirm |
 |---|---|---|
