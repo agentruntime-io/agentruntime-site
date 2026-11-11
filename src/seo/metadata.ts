@@ -3,6 +3,8 @@
  * Titles are short; `Seo` appends ` | AgentRuntime` unless `title` already includes the site name.
  */
 
+import { PLANS, TRIAL, numberWord } from "@/config/pricing";
+
 export const seoCopy = {
   home: {
     title: "Run AI Workflows in Production",
@@ -52,7 +54,7 @@ export const seoCopy = {
   pricing: {
     title: "Pricing",
     description:
-      "Plans for individuals, teams, and enterprise - from free developer tier to dedicated support, SLAs, and custom integrations.",
+      `${numberWord(PLANS.length)[0].toUpperCase()}${numberWord(PLANS.length).slice(1)} self-serve plans, a free ${TRIAL.days}-day trial${TRIAL.requiresCard ? "" : " with no card"}, and credits for model and platform usage you can top up any time. Enterprise by agreement.`,
   },
   useCases: {
     title: "Use Cases",

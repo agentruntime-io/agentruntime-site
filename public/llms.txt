@@ -12,6 +12,7 @@
 - [Slack integration](https://www.agentruntime.io/integrations/slack): Connector profile covering Slack workflow capabilities, token-based authentication, access scopes, channel boundaries, and an incident-response example.
 - [Developers](https://www.agentruntime.io/developers): APIs, SDKs, MCP tools, events, and the execution lifecycle.
 - [Enterprise](https://www.agentruntime.io/enterprise): Permissions, approvals, policy controls, auditability, and adoption path.
+- [Pricing](https://www.agentruntime.io/pricing): Self-serve plans, the two kinds of credits (model and platform), the free trial, top-ups, and billing questions.
 
 ## Learn & engage
 

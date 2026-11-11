@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { CONSOLE_APP_URL, DOCS_APP_URL } from "@/config/site";
+import { featureFlags } from "@/config/featureFlags";
 import { analyticsEnabled, openCookieSettings } from "@/lib/analytics";
 
 const externalProps = {
@@ -35,6 +36,7 @@ export function MarketingFooter() {
             <Link to="/platform#workflow-studio">Workflow Studio</Link>
             <Link to="/platform#command-center">Command Center</Link>
             <Link to="/integrations">Integrations</Link>
+            {featureFlags.showPricingPage && <Link to="/pricing">Pricing</Link>}
             <Link to="/enterprise">Enterprise</Link>
           </div>
 
@@ -76,6 +78,9 @@ export function MarketingFooter() {
             <Link to="/legal">Legal</Link>
             <Link to="/legal/privacy-policy">Privacy</Link>
             <Link to="/legal/terms-and-conditions">Terms</Link>
+            <Link to="/legal/billing-and-credits-policy">
+              Billing and credits
+            </Link>
             <Link to="/legal/cookie-policy">Cookie Policy</Link>
             {analyticsEnabled() && (
               <button

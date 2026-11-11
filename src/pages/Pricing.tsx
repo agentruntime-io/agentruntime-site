@@ -1,240 +1,249 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Check, Star, Zap, Crown } from "lucide-react";
 import { Link } from "react-router-dom";
-import { featureFlags } from "@/config/featureFlags";
-import { CONSOLE_APP_URL } from "@/config/site";
 import { Seo } from "@/components/Seo";
+import {
+  ActionLink,
+  CallToAction,
+  PageHero,
+} from "@/components/marketing/MarketingPrimitives";
+import { BILLING_FAQ } from "@/config/billingFaq";
+import {
+  CURRENCY_NAME,
+  ENTERPRISE,
+  PLANS,
+  TOP_UP,
+  TRIAL,
+  YEARLY_MONTHS_FREE,
+  formatUsd,
+  numberWord,
+  planByCode,
+  yearlyUsd,
+} from "@/config/pricing";
+import { CONSOLE_APP_URL } from "@/config/site";
 import { seoCopy } from "@/seo/metadata";
 
-const externalProps = { target: "_blank" as const, rel: "noopener noreferrer" as const };
+const trialPlan = planByCode(TRIAL.planCode);
+const capitalize = (word: string) => word.charAt(0).toUpperCase() + word.slice(1);
 
-const Pricing = () => {
-  const plans = [
-    {
-      name: "Developer",
-      price: "Free",
-      icon: Zap,
-      description: "Perfect for individual developers and small projects",
-      features: [
-        "5 agents",
-        "100 runs/month",
-        "Community support",
-        "Basic analytics",
-        "API access",
-        "Versioning",
-        "24/7 status alerts"
-      ],
-      limitations: [
-        "No custom integrations",
-        "Limited monitoring"
-      ],
-      cta: "Start Free",
-      ctaPath: "/waitlist?plan=developer",
-      popular: false
-    },
-    {
-      name: "Team",
-      price: "$49",
-      period: "/month",
-      icon: Star,
-      description: "For growing teams and production workflows",
-      features: [
-        "25 agents",
-        "10,000 runs/month",
-        "Email support",
-        "Advanced analytics",
-        "API access",
-        "Versioning",
-        "24/7 status alerts",
-        "Custom webhooks",
-        "Team collaboration",
-        "Priority queues"
-      ],
-      limitations: [],
-      cta: "Start Team Trial",
-      ctaPath: "/waitlist?plan=team",
-      popular: true
-    },
-    {
-      name: "Enterprise",
-      price: "Custom",
-      icon: Crown,
-      description: "For large organizations with advanced requirements",
-      features: [
-        "Unlimited agents",
-        "Unlimited runs",
-        "Dedicated account manager",
-        "SLA guarantees",
-        "Advanced security",
-        "Custom integrations",
-        "On-premise deployment",
-        "Priority support",
-        "Custom analytics",
-        "SSO integration",
-        "Audit logs",
-        "Compliance certifications"
-      ],
-      limitations: [],
-      cta: "Contact Sales",
-      ctaPath: "/contact?source=enterprise",
-      popular: false
-    }
-  ];
+const creditKinds = [
+  {
+    pill: "Model credits",
+    title: "For model calls we pay for",
+    description:
+      "Charged at the model provider's price for the tokens used, with no markup on the tokens. If your agent uses your own provider key, the provider bills you directly and we charge nothing for those tokens.",
+  },
+  {
+    pill: "Platform credits",
+    title: "For the work the platform does",
+    description:
+      "Pay for workflow steps and the other work AgentRuntime performs to run your agents and workflows. Each kind of credit is spent only on its own kind of usage.",
+  },
+  {
+    pill: "Top-ups",
+    title: "Add credits any time",
+    description: `Buy ${formatUsd(TOP_UP.minUsd)} to ${formatUsd(TOP_UP.maxUsd)} at a time and split it between the two kinds. Credits you buy stay until you use them. Credits included with a plan expire at the end of the billing period.`,
+  },
+];
 
+export default function Pricing() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="marketing-page">
       <Seo {...seoCopy.pricing} canonicalPath="/pricing" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 fade-in-up">
-            Simple, Transparent
-            <span className="text-gradient block">Pricing</span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto fade-in-up">
-            Choose the plan that fits your needs. Start free and scale as you grow. 
-            All plans include API access, versioning, and 24/7 status alerts.
+      <PageHero
+        centered
+        eyebrow="Pricing"
+        title="Pay for what your agents actually run."
+        description={`Pick a plan, or just add credits. Every plan includes credits for model calls and for platform work, and eligible new users can try the platform free for ${TRIAL.days} days${TRIAL.requiresCard ? "" : " without a card"}.`}
+        primary={{ label: "Start free trial →", href: CONSOLE_APP_URL }}
+        secondary={{ label: "How credits work", to: "/pricing#credits" }}
+      />
+
+      <section
+        className="marketing-section"
+        data-flush-top="true"
+        id="plans"
+      >
+        <div className="marketing-container">
+          <div className="marketing-section-label">Plans</div>
+          <h2>
+            {capitalize(numberWord(PLANS.length))} plans. Credits included in
+            every one.
+          </h2>
+          <p className="marketing-section-intro">
+            Plans differ by price and by the credits they include. Every plan
+            has the full platform, with no limit on the number of members in
+            your workspace.
+          </p>
+
+          <div className="marketing-grid-4">
+            {PLANS.map((plan) => (
+              <article
+                className="marketing-card marketing-plan-card"
+                key={plan.code}
+                data-plan={plan.code}
+              >
+                <h3>{plan.name}</h3>
+                <p className="marketing-plan-price">
+                  <strong>{formatUsd(plan.monthlyUsd)}</strong>
+                  <span>/ month</span>
+                </p>
+                <p className="marketing-plan-yearly">
+                  or {formatUsd(yearlyUsd(plan))} a year,{" "}
+                  {numberWord(YEARLY_MONTHS_FREE)} months free
+                </p>
+                <ul className="marketing-plan-includes">
+                  <li>
+                    <strong>{formatUsd(plan.includedModelUsd)}</strong> of model
+                    credits every month
+                  </li>
+                  <li>
+                    <strong>{formatUsd(plan.includedPlatformUsd)}</strong> of
+                    platform credits every month
+                  </li>
+                </ul>
+                <ActionLink
+                  label={`Choose ${plan.name}`}
+                  href={CONSOLE_APP_URL}
+                  variant="secondary"
+                />
+              </article>
+            ))}
+          </div>
+
+          <div className="marketing-enterprise-strip">
+            <div>
+              <h3>{ENTERPRISE.name}</h3>
+              <p>
+                Custom pricing, terms, and billing, arranged by agreement with
+                our team.
+              </p>
+            </div>
+            <ActionLink
+              label="Talk to us →"
+              to={ENTERPRISE.contactPath}
+              variant="primary"
+            />
+          </div>
+
+          <p className="marketing-tiny marketing-pricing-note">
+            Prices are in {CURRENCY_NAME} and do not include taxes. Where we are
+            required to collect VAT, sales tax, or a similar tax, it is added at
+            checkout or on your invoice and shown separately. A yearly plan
+            grants its credits for the whole year at the start of the year.
+            Prices and included credits may change before launch.
           </p>
         </div>
+      </section>
 
-        {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {plans.map((plan, index) => {
-            const IconComponent = plan.icon;
-            return (
-              <Card 
-                key={plan.name}
-                className={`relative card-gradient hover-lift transition-all duration-300 ${
-                  plan.popular ? 'ring-2 ring-primary scale-105' : ''
-                }`}
-                style={{ animationDelay: `${index * 100}ms` }}
+      <section className="marketing-section" data-tone="soft" id="credits">
+        <div className="marketing-container">
+          <div className="marketing-section-label">How credits work</div>
+          <h2>Two kinds of credit, one balance.</h2>
+          <p className="marketing-section-intro">
+            Usage is prepaid. When a kind of credit runs out, the usage that
+            needs it stops until you add credits or your plan's credits are
+            granted again.
+          </p>
+          <div className="marketing-grid-3">
+            {creditKinds.map((kind) => (
+              <article
+                className="marketing-card"
+                data-compact="true"
+                key={kind.pill}
               >
-                {plan.popular && (
-                  <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground">
-                    Most Popular
-                  </Badge>
-                )}
-                
-                <CardHeader className="text-center">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <IconComponent className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-2xl font-bold text-foreground">
-                    {plan.name}
-                  </CardTitle>
-                  <div className="mb-4">
-                    <span className="text-4xl font-bold text-foreground">{plan.price}</span>
-                    {plan.period && <span className="text-muted-foreground">{plan.period}</span>}
-                  </div>
-                  <CardDescription className="text-muted-foreground">
-                    {plan.description}
-                  </CardDescription>
-                </CardHeader>
-
-                <CardContent className="space-y-6">
-                  {/* Features */}
-                  <ul className="space-y-3">
-                    {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-3">
-                        <Check className="h-4 w-4 text-primary flex-shrink-0" />
-                        <span className="text-sm text-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* CTA Button */}
-                  <Button 
-                    variant={plan.popular ? "hero" : "outline"} 
-                    size="lg" 
-                    className="w-full"
-                    asChild
-                  >
-                    {!plan.ctaPath.startsWith("/waitlist") || featureFlags.showWaitlist ? (
-                      <Link to={plan.ctaPath}>{plan.cta}</Link>
-                    ) : (
-                      <a
-                        href={`${CONSOLE_APP_URL}${
-                          plan.ctaPath.includes("?") ? plan.ctaPath.slice(plan.ctaPath.indexOf("?")) : ""
-                        }`}
-                        {...externalProps}
-                      >
-                        {plan.cta}
-                      </a>
-                    )}
-                  </Button>
-                </CardContent>
-              </Card>
-            );
-          })}
+                <span className="marketing-pill">{kind.pill}</span>
+                <h3>{kind.title}</h3>
+                <p>{kind.description}</p>
+              </article>
+            ))}
+          </div>
         </div>
+      </section>
 
-        {/* All Plans Include */}
-        <div className="text-center mb-12">
-          <div className="bg-gradient-card p-6 rounded-lg max-w-4xl mx-auto">
-            <h3 className="text-lg font-semibold text-foreground mb-4">
-              All plans include:
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-muted-foreground">
-              <div className="flex items-center justify-center gap-2">
-                <Check className="h-4 w-4 text-primary" />
-                <span>API access</span>
+      <section className="marketing-section" id="trial">
+        <div className="marketing-container">
+          <div className="marketing-section-label">Free trial</div>
+          <h2>
+            Try it free for {TRIAL.days} days
+            {TRIAL.requiresCard ? "." : ", no card needed."}
+          </h2>
+          <div className="marketing-split">
+            <div className="marketing-feature-copy">
+              <h3>Start on {trialPlan.name}, decide later.</h3>
+              <p>
+                Eligible users can start a trial of the {trialPlan.name} plan.
+                If you add a card, your plan starts when the trial ends, or
+                sooner if you choose to start billing. If you do not, the trial
+                ends, nothing is charged, and the credits left from it expire.
+                One person can start at most {numberWord(TRIAL.maxPerPerson)}{" "}
+                trials.
+              </p>
+              <div className="marketing-hero-actions">
+                <ActionLink
+                  label="Start free trial →"
+                  href={CONSOLE_APP_URL}
+                  variant="primary"
+                />
               </div>
-              <div className="flex items-center justify-center gap-2">
-                <Check className="h-4 w-4 text-primary" />
-                <span>Versioning & rollback</span>
+            </div>
+            <div className="marketing-pricing-facts">
+              <div className="marketing-status-row">
+                <span>Plan</span>
+                <span>{trialPlan.name}</span>
               </div>
-              <div className="flex items-center justify-center gap-2">
-                <Check className="h-4 w-4 text-primary" />
-                <span>24/7 status alerts</span>
+              <div className="marketing-status-row">
+                <span>Length</span>
+                <span>{TRIAL.days} days</span>
+              </div>
+              <div className="marketing-status-row">
+                <span>Platform credits</span>
+                <span>{formatUsd(TRIAL.platformCreditsUsd)}</span>
+              </div>
+              <div className="marketing-status-row">
+                <span>Model credits</span>
+                <span>{formatUsd(TRIAL.modelCreditsUsd)}</span>
+              </div>
+              <div className="marketing-status-row">
+                <span>Card needed</span>
+                <span>{TRIAL.requiresCard ? "Yes" : "No"}</span>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* FAQ Section */}
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold text-foreground text-center mb-8">
-            Frequently Asked Questions
-          </h2>
-          
-          <Accordion type="single" collapsible className="bg-gradient-card rounded-lg px-6">
-            <AccordionItem value="upgrade">
-              <AccordionTrigger className="text-foreground font-semibold">
-                Can I upgrade or downgrade my plan anytime?
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
-                Yes, you can change your plan at any time. Changes take effect immediately,
-                and you'll be billed pro-rata for the remainder of your billing cycle.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="limits">
-              <AccordionTrigger className="text-foreground font-semibold">
-                What happens if I exceed my plan limits?
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
-                We'll send you notifications as you approach your limits. You can upgrade
-                your plan or purchase additional capacity to avoid any service interruption.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="enterprise">
-              <AccordionTrigger className="text-foreground font-semibold">
-                Do you offer custom enterprise plans?
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
-                Yes, we work with enterprise customers to create custom plans that meet
-                their specific requirements, including on-premise deployment and dedicated support.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+      <section className="marketing-section" data-tone="soft" id="billing-faq">
+        <div className="marketing-container">
+          <div className="marketing-section-label">Billing questions</div>
+          <h2>Plain answers about billing.</h2>
+          <p className="marketing-section-intro">
+            The binding wording is in the{" "}
+            <Link to="/legal/billing-and-credits-policy">
+              Billing and Credits Policy
+            </Link>
+            .
+          </p>
+          <div className="marketing-faq-list marketing-pricing-faq">
+            {BILLING_FAQ.map((item) => (
+              <article key={item.id} id={item.id}>
+                <h3>{item.question}</h3>
+                <p>{item.answer}</p>
+                {item.policyLink && (
+                  <p>
+                    <Link to={item.policyLink.to}>{item.policyLink.label} →</Link>
+                  </p>
+                )}
+              </article>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
+
+      <CallToAction
+        title="Start with the trial. Add credits when you need them."
+        description="Or tell us about your workflows and we will help you choose."
+        primary={{ label: "Start free trial →", href: CONSOLE_APP_URL }}
+        secondary={{ label: "Talk to us", to: ENTERPRISE.contactPath }}
+      />
     </div>
   );
-};
-
-export default Pricing;
+}
