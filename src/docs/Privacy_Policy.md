@@ -1,7 +1,9 @@
 # AGENTRUNTIME PRIVACY POLICY
 
 **Effective Date:** March 1, 2026
-**Last Updated:** September 28, 2026
+**Last Updated:** November 11, 2026
+
+> **This policy is under review and may change before launch.**
 
 This Privacy Policy ("**Policy**") describes how **AgentRuntime Labs LLC** ("**AgentRuntime**," "**we**," "**us**," or "**our**") collects, uses, discloses, and safeguards personal information in connection with the AgentRuntime platform and related services (collectively, the "**Services**"). This Policy applies to all users, visitors, and customers who access or use the Services.
 
@@ -50,7 +52,11 @@ We may automatically collect certain technical information, including:
 
 ### 1.4 Payment Information
 
-We use third-party payment processors to handle payment transactions. We do not store full payment card numbers or sensitive financial account data. We may retain limited payment metadata such as billing address, last four digits of a card, payment status, and transaction identifiers as necessary for billing and compliance purposes.
+We use a third-party payment processor, **Stripe**, to handle payment transactions. Your card details are entered with Stripe, and we do not store full payment card numbers or sensitive financial account data. We may retain limited payment metadata such as billing address, billing country and postal code, last four digits and brand of a card, payment status, invoices and receipts, and transaction identifiers as necessary for billing and compliance purposes. We also keep your credit balances and the usage records that show how credits were used.
+
+Where tax applies to your purchase, we may ask you for billing details such as your country, postal code and, if you buy as a business, a tax or VAT registration number. We may share these details with Stripe to calculate and record the tax, and a tax or VAT number may be checked with the relevant tax authority.
+
+If you take part in a partner or referral program, we also keep your program status, the referral and commission records for the customers you refer, your payout history, and the identifier of your payout account with Stripe. Your bank and tax details for payouts are collected and held by Stripe. We show you only your own counts and amounts, and we do not show you the names or email addresses of the customers you refer.
 
 ### 1.5 Communications Data
 
@@ -126,7 +132,7 @@ Where applicable law requires a legal basis for processing personal data, we pro
 
 We do not sell, rent, or trade your personal information to third parties for their own marketing purposes. We may disclose personal information in the following circumstances:
 
-**(a) Service Providers.** We engage trusted third-party vendors and service providers that perform services on our behalf, including cloud infrastructure providers, payment processors, analytics providers, and customer support tools. Such parties are contractually required to process personal data only in accordance with our instructions and to implement appropriate security measures.
+**(a) Service Providers.** We engage trusted third-party vendors and service providers that perform services on our behalf, including cloud infrastructure providers, payment processors (such as Stripe), analytics providers, and customer support tools. Such parties are contractually required to process personal data only in accordance with our instructions and to implement appropriate security measures.
 
 **(b) Legal Requirements.** We may disclose personal information if we believe in good faith that such disclosure is required by applicable law, regulation, legal process, or governmental request, including lawful requests from public authorities for national security or law enforcement purposes.
 
@@ -155,6 +161,8 @@ Notwithstanding the foregoing, no security measure is entirely impenetrable. We 
 ## 7. DATA RETENTION
 
 We retain personal information only for as long as is reasonably necessary to fulfill the purposes for which it was collected, including to comply with legal, regulatory, tax, accounting, or reporting obligations, resolve disputes, and enforce our agreements.
+
+We keep billing, payment, invoice, and tax records for as long as the law requires, even after you close your account.
 
 Upon termination of your account, we will delete or anonymize your personal information within a commercially reasonable time, except where retention is required by applicable law or where we need to retain information to exercise or defend legal claims.
 
@@ -211,6 +219,8 @@ AgentRuntime operates globally and may transfer personal information to countrie
 ## 12. THIRD-PARTY LINKS AND INTEGRATIONS
 
 The Services may contain links to or integrations with third-party websites and services. This Policy does not apply to the privacy practices of such third parties. We encourage you to review the privacy policies and platform terms of any third-party services you access through the platform—including **Meta** and **WhatsApp** when you use our WhatsApp connection features ([Meta Privacy Policy](https://www.facebook.com/privacy/policy/), [WhatsApp Business terms](https://www.whatsapp.com/legal/business-terms)).
+
+Payments are handled by **Stripe**, which handles the card and payment details you give it under its own privacy policy ([Stripe Privacy Policy](https://stripe.com/privacy)).
 
 Your use of connected messaging channels must comply with applicable platform rules (for example, WhatsApp's business messaging and template policies). AgentRuntime is not responsible for third-party platforms' availability, enforcement actions, or independent processing of personal data.
 

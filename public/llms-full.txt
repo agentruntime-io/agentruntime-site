@@ -23,6 +23,7 @@ The public marketing SPA uses client-side routing; authoritative legal text live
 - [Slack integration](https://www.agentruntime.io/integrations/slack): Connector profile for reading Slack context and coordinating workflow updates. It covers available actions, token-based authentication, common scopes, channel boundaries, and the linked incident-response blueprint.
 - [Developers](https://www.agentruntime.io/developers): Backend-first integration, APIs, SDKs, MCP tools, events, identity, and the run lifecycle.
 - [Enterprise](https://www.agentruntime.io/enterprise): Identity, permissions, secrets, data boundaries, execution policies, approvals, and auditability.
+- [Pricing](https://www.agentruntime.io/pricing): Self-serve plans, the two kinds of credits (model and platform), the free trial, top-ups, and billing questions. Prices are in US dollars and are shown on the page itself.
 - [Blog](https://www.agentruntime.io/blog): Articles and updates; every post is listed in [sitemap.xml](https://www.agentruntime.io/sitemap.xml) at `/blog/:slug` (example: [Introducing the AgentRuntime blog](https://www.agentruntime.io/blog/introducing-the-agentruntime-blog)).
 - [Developer documentation](https://docs.agentruntime.io/): Official guides and API reference. Confirm live API behavior and authentication here rather than relying on marketing examples.
 

@@ -49,4 +49,6 @@ Output is in `dist/`. Production deploys to **Vercel** (`www.agentruntime.io`; a
 
 ## Docs
 
+- [Legal policies, prices in policy text and unlisted drafts](./docs/LEGAL_POLICIES.md) — every price lives in `src/config/pricing.ts`
+- [Billing and legal review checklist](./docs/BILLING_LEGAL_REVIEW_CHECKLIST.md) — assumptions for the owner and counsel to confirm
 - [Scroll restoration](./docs/SCROLL_RESTORATION.md) — `/blog` list position save/restore and global route scroll policy

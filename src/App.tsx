@@ -31,6 +31,7 @@ const MarketplaceAgentDetail = lazy(() => import("./pages/MarketplaceAgentDetail
 const MarketplaceBundleDetail = lazy(() => import("./pages/MarketplaceBundleDetail"));
 const Developers = lazy(() => import("./pages/Developers"));
 const Enterprise = lazy(() => import("./pages/Enterprise"));
+const Pricing = lazy(() => import("./pages/Pricing"));
 const Company = lazy(() => import("./pages/Company"));
 const Contact = lazy(() => import("./pages/ContactMarketing"));
 const Waitlist = lazy(() => import("./pages/Waitlist"));
@@ -95,7 +96,16 @@ const App = () => (
                       <Route path="/connectors" element={<Navigate to="/integrations" replace />} />
                       <Route path="/features" element={<Navigate to="/platform" replace />} />
                       <Route path="/how-it-works" element={<Navigate to="/platform" replace />} />
-                      <Route path="/pricing" element={<Navigate to="/contact?source=pricing" replace />} />
+                      <Route
+                        path="/pricing"
+                        element={
+                          featureFlags.showPricingPage ? (
+                            <Pricing />
+                          ) : (
+                            <Navigate to="/contact?source=pricing" replace />
+                          )
+                        }
+                      />
                       <Route path="/use-cases" element={<Navigate to="/solutions" replace />} />
                       <Route path="/docs" element={<Navigate to="/developers" replace />} />
                       <Route path="/about" element={<Navigate to="/company" replace />} />

@@ -11,6 +11,8 @@ Documentation for the marketing site, organized by concern.
 | **[brand-design-system.md](./brand-design-system.md)** | **Primary** — Brand identity, colors, typography, components, design tokens |
 | **[improve.md](./improve.md)** | Technical improvements (CTAs, nav, footer, config, responsive) |
 | **[pages/](./pages/README.md)** | Page-specific recommendations (Index, Pricing, Contact, etc.) |
+| **[LEGAL_POLICIES.md](./LEGAL_POLICIES.md)** | How legal pages are wired, how prices reach policy text (`{{tokens}}`), unlisted drafts |
+| **[BILLING_LEGAL_REVIEW_CHECKLIST.md](./BILLING_LEGAL_REVIEW_CHECKLIST.md)** | What the pricing and billing wording assumes, for the owner and counsel to confirm (not legal advice) |
 | **[business.md](./business.md)** | Business & strategy (social proof, placeholders, meta tags, credibility) |
 | **[home-page-copy-brief.md](./home-page-copy-brief.md)** | Home page copy rewrite — page structure, facts to find, writing rules, handoff status |
 | **[roadmap.md](./roadmap.md)** | Future features, design system roadmap |

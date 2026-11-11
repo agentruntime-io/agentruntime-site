@@ -21,6 +21,15 @@ export const featureFlags = {
    */
   showWaitlist: false,
 
+  /**
+   * `/pricing` page, its nav and footer links, sitemap and llms entries.
+   * When false, `/pricing` redirects to `/contact?source=pricing` (the behaviour before 2026-11-11) and the
+   * links disappear. Turned on 2026-11-11 at the owner's request: the page and the billing policy read their
+   * numbers from `src/config/pricing.ts`. If you turn it off, also drop `/pricing` from the static routes in
+   * `scripts/generate-seo-assets.mjs` and from `public/llms.txt` / `public/llms-full.txt`.
+   */
+  showPricingPage: true,
+
   /** Hero section variant: "cta" = centered CTAs; "waitlist" = split layout with waitlist form (only when showWaitlist is true) */
   heroVariant: "waitlist" as "cta" | "waitlist",
 

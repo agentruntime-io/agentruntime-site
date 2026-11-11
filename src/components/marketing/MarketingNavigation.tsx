@@ -2,18 +2,22 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { CONSOLE_APP_URL, DOCS_APP_URL } from "@/config/site";
+import { featureFlags } from "@/config/featureFlags";
 import {
   productSurfaces,
   solutionAudiences,
   workflowSolutions,
 } from "@/lib/marketingCatalog";
 
-const directNavItems = [
+const directNavItems: ReadonlyArray<{ path: string; label: string }> = [
   { path: "/integrations", label: "Integrations" },
   { path: "/marketplace", label: "Marketplace" },
   { path: "/developers", label: "Developers" },
+  ...(featureFlags.showPricingPage
+    ? [{ path: "/pricing", label: "Pricing" }]
+    : []),
   { path: "/enterprise", label: "Enterprise" },
-] as const;
+];
 
 const externalProps = {
   target: "_blank" as const,

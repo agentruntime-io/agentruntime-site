@@ -1,7 +1,9 @@
 # AGENTRUNTIME TERMS OF SERVICE
 
 **Effective Date:** March 1, 2026
-**Last Updated:** September 28, 2026
+**Last Updated:** November 11, 2026
+
+> **This policy is under review and may change before launch.**
 
 PLEASE READ THESE TERMS OF SERVICE CAREFULLY BEFORE ACCESSING OR USING THE AGENTRUNTIME PLATFORM. BY CREATING AN ACCOUNT, CLICKING "I AGREE," OR OTHERWISE ACCESSING OR USING THE SERVICES, YOU ACKNOWLEDGE THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE LEGALLY BOUND BY THESE TERMS AND ALL POLICIES INCORPORATED HEREIN BY REFERENCE. IF YOU DO NOT AGREE, YOU MUST IMMEDIATELY CEASE ALL USE OF THE SERVICES.
 
@@ -11,7 +13,7 @@ PLEASE READ THESE TERMS OF SERVICE CAREFULLY BEFORE ACCESSING OR USING THE AGENT
 
 **1.1 Operator.** These Terms of Service ("**Terms**") constitute a legally binding agreement between you ("**Customer**," "**User**," "**you**," or "**your**") and **AgentRuntime Labs LLC**, a company incorporated under applicable laws ("**AgentRuntime**," "**we**," "**us**," or "**our**").
 
-**1.2 Entire Agreement.** These Terms, together with AgentRuntime's Privacy Policy, Acceptable Use Policy, Data Processing Agreement, and any Order Form or Statement of Work executed between the parties, constitute the entire agreement between you and AgentRuntime with respect to the Services and supersede all prior and contemporaneous agreements, representations, and understandings.
+**1.2 Entire Agreement.** These Terms, together with AgentRuntime's Privacy Policy, Acceptable Use Policy, Billing and Credits Policy, Data Processing Agreement, and any Order Form or Statement of Work executed between the parties, constitute the entire agreement between you and AgentRuntime with respect to the Services and supersede all prior and contemporaneous agreements, representations, and understandings.
 
 **1.3 Order of Precedence.** In the event of a conflict between these Terms and any supplemental agreement, the supplemental agreement shall control solely with respect to the subject matter of that agreement.
 
@@ -141,17 +143,21 @@ As used in these Terms, the following definitions apply:
 
 ## 10. FEES AND BILLING
 
-**10.1 Fees.** Access to certain features of the Services requires payment of fees as specified in your applicable subscription plan or Order Form. All fees are stated in the applicable currency and are exclusive of applicable taxes unless otherwise stated.
+**10.1 Fees.** Access to certain features of the Services requires payment of fees as specified in your applicable subscription plan or Order Form. The plans, prices, and credits on offer are described on AgentRuntime's Pricing Page and in the Billing and Credits Policy. Prices are stated in US dollars unless an Order Form says otherwise, and are exclusive of applicable taxes unless otherwise stated.
 
-**10.2 Payment Obligation.** You agree to pay all fees in accordance with the payment terms applicable to your subscription plan. You must provide valid and current payment information and authorize AgentRuntime to charge your payment method for all applicable fees.
+**10.2 Payment Obligation.** You agree to pay all fees in accordance with the payment terms applicable to your subscription plan. You must provide valid and current payment information and authorize AgentRuntime to charge your payment method for all applicable fees. Payments are processed by AgentRuntime's payment provider, Stripe.
 
-**10.3 Non-Refundable Fees.** All fees paid are non-refundable except as expressly required by applicable law or as set forth in the Billing and Credits Policy.
+**10.3 Non-Refundable Fees.** All fees paid are non-refundable except as expressly required by applicable law or as set forth in the Billing and Credits Policy, which also describes how cancellation and refunds work.
 
-**10.4 Taxes.** You are responsible for all applicable taxes, levies, or duties imposed by taxing authorities arising from your purchase of the Services, excluding taxes based on AgentRuntime's net income.
+**10.4 Taxes.** You are responsible for all applicable taxes, levies, or duties imposed by taxing authorities arising from your purchase of the Services, excluding taxes based on AgentRuntime's net income. Where AgentRuntime is required to collect such taxes, they are added to the price and shown separately.
 
 **10.5 Pricing Changes.** AgentRuntime reserves the right to modify pricing at any time upon reasonable prior notice. Your continued use of the Services following a price change constitutes your acceptance of the revised pricing.
 
 **10.6 Suspension for Non-Payment.** AgentRuntime may suspend or terminate your access to the Services if any payment obligation remains outstanding after the applicable due date, following written notice and a reasonable cure period.
+
+**10.7 Credits.** Some usage of the Services is paid for with prepaid credits, which come as model credits and platform credits and are granted by your plan, by a free trial, or by a top-up. Credits have no cash value, are not transferable, and may expire, all as described in the Billing and Credits Policy.
+
+**10.8 Free Trials.** AgentRuntime may offer free trials. A trial is offered on the terms in the Billing and Credits Policy, and AgentRuntime may change or end the trial offer for new trials at any time.
 
 ---
 
@@ -185,7 +191,7 @@ As used in these Terms, the following definitions apply:
 
 ## 14. SUSPENSION AND TERMINATION
 
-**14.1 Termination by You.** You may terminate your account at any time by following the account cancellation process described in the platform or by contacting AgentRuntime support.
+**14.1 Termination by You.** You may terminate your account at any time by following the account cancellation process described in the platform or by contacting AgentRuntime support. Cancelling a paid subscription takes effect at the end of the current billing period, as described in the Billing and Credits Policy.
 
 **14.2 Termination by AgentRuntime.** AgentRuntime may, at its sole discretion, suspend or terminate your access to the Services, in whole or in part, with or without notice, if: (a) you materially breach these Terms and fail to cure such breach within fourteen (14) days of written notice; (b) your account poses a security risk or threatens the integrity of the platform; (c) you fail to pay applicable fees; (d) continued provision of the Services becomes unlawful; or (e) AgentRuntime elects to discontinue the Services.
 
