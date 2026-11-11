@@ -20,7 +20,7 @@ To change a price: edit `src/config/pricing.ts`, run the build, done. The Billin
 
 ## Unlisted drafts
 
-A policy with `unlisted: true` in `policies.ts` has a page at its URL but is left out of the Legal index, the sidebar, the sitemap and the llms files, and is served with `noindex`. The partner program terms (`Partner_Program_Terms_DRAFT.md`, `/legal/partner-program-terms`) are one: the program ships off. To publish it, drop `unlisted`, rename the file, add the URL to `scripts/generate-seo-assets.mjs` and `public/llms-full.txt`, set the Console partner settings `terms_url` and bump `terms_version`.
+A policy with `unlisted: true` in `policies.ts` has a page at its URL but is left out of the Legal index, the sidebar, the sitemap and the llms files, and is served with `noindex` (a meta tag in the page, plus an `X-Robots-Tag` header in `vercel.json`, because an unlisted page is not prerendered and crawlers that skip JavaScript would otherwise see the default `index, follow`). The partner program terms (`Partner_Program_Terms_DRAFT.md`, `/legal/partner-program-terms`) are one: the program ships off. To publish it, drop `unlisted`, remove its `vercel.json` header, rename the file, add the URL to `scripts/generate-seo-assets.mjs` and `public/llms-full.txt`, set the Console partner settings `terms_url` and bump `terms_version`.
 
 ## Under-review line
 
