@@ -12,7 +12,7 @@
   <url><loc>https://www.agentruntime.io/enterprise</loc><lastmod>2026-11-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.agentruntime.io/pricing</loc><lastmod>2026-11-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.agentruntime.io/company</loc><lastmod>2026-11-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.agentruntime.io/blog</loc><lastmod>2026-09-17</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.agentruntime.io/blog</loc><lastmod>2026-11-12</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.agentruntime.io/contact</loc><lastmod>2026-11-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.agentruntime.io/labs</loc><lastmod>2026-11-11</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://www.agentruntime.io/labs/diskscout</loc><lastmod>2026-11-11</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
@@ -36,6 +36,7 @@
   <url><loc>https://www.agentruntime.io/solutions/incident-response</loc><lastmod>2026-11-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.agentruntime.io/integrations/gmail</loc><lastmod>2026-11-11</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url><loc>https://www.agentruntime.io/integrations/slack</loc><lastmod>2026-11-11</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.agentruntime.io/blog/let-claude-sessions-talk-to-each-other</loc><lastmod>2026-11-12</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agentruntime.io/blog/introducing-the-agentruntime-blog</loc><lastmod>2026-04-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agentruntime.io/blog/why-ai-agents-fail-in-production</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.agentruntime.io/blog/what-is-mcp-and-why-it-matters</loc><lastmod>2026-05-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
