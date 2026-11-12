@@ -54,6 +54,7 @@ import eventDrivenRaw from "@/blog/posts/event-driven-ai-workflows.md?raw";
 import choosingLlmRaw from "@/blog/posts/choosing-the-right-llm-per-step.md?raw";
 import leadEnrichmentRaw from "@/blog/posts/building-lead-enrichment-pipeline.md?raw";
 import jevFastReactionsRaw from "@/blog/posts/fast-reactions-slow-reasoning-jev-future-ai-systems.md?raw";
+import claudeSessionsRaw from "@/blog/posts/let-claude-sessions-talk-to-each-other.md?raw";
 import type { BlogPost } from "@/blog/types";
 
 const postMap: Record<string, BlogPost> = {
@@ -570,6 +571,15 @@ const postMap: Record<string, BlogPost> = {
     linkedInEmbedUrl:
       "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7506317496648404992?collapsed=1",
     content: jevFastReactionsRaw,
+  },
+  "let-claude-sessions-talk-to-each-other": {
+    slug: "let-claude-sessions-talk-to-each-other",
+    title: "Let Your Claude Sessions Talk to Each Other",
+    description:
+      "Connect Claude Code sessions on two machines to one AgentRuntime chat room so they can hand work back and forth, with nothing extra to install.",
+    publishedAt: "2026-11-12",
+    tags: ["How-to"],
+    content: claudeSessionsRaw,
   },
 };
 

@@ -144,6 +144,10 @@ function rfc822Date(isoDate) {
 
 /** Prefer build-time WebP cover; fall back to committed PNG for local `generate:sitemap` runs. */
 function rssEnclosureForCover(coverPath) {
+  // A post may have no cover image (see BlogPost.coverImage in src/blog/types.ts): its feed item has no enclosure.
+  if (!coverPath) {
+    return null;
+  }
   const webpPath = coverImageWebp800Path(coverPath);
   const webpAbs = join(ROOT, "public", webpPath.slice(1));
   if (existsSync(webpAbs)) {
