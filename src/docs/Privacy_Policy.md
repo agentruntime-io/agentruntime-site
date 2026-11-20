@@ -1,7 +1,7 @@
 # AGENTRUNTIME PRIVACY POLICY
 
 **Effective Date:** March 1, 2026
-**Last Updated:** November 11, 2026
+**Last Updated:** November 21, 2026
 
 > **This policy is under review and may change before launch.**
 
@@ -10,6 +10,8 @@ This Privacy Policy ("**Policy**") describes how **AgentRuntime Labs LLC** ("**A
 Please read this Policy carefully. By accessing or using the Services, you acknowledge that you have read and understood this Policy. If you do not agree with the practices described herein, you must discontinue use of the Services.
 
 This Policy is incorporated by reference into AgentRuntime's Terms of Service.
+
+**Browser Agent and Desktop Agent are separate.** Our two local tools, the Browser Agent Chrome extension and helper, and Desktop Agent, run on your own computer and do not connect to the Services. They are covered by their own policies, not by this one: the [Browser Agent Privacy Policy](/legal/browser-agent-privacy) and the [Desktop Agent Privacy Policy](/legal/desktop-agent-privacy).
 
 ---
 

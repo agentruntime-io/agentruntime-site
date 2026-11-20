@@ -71,6 +71,8 @@ const baseStaticEntries = [
   ["/contact", "monthly", "0.8"],
   ["/labs", "monthly", "0.5"],
   ["/labs/diskscout", "monthly", "0.5"],
+  ["/labs/browser-agent", "monthly", "0.5"],
+  ["/labs/desktop-agent", "monthly", "0.5"],
   ["/legal", "monthly", "0.5"],
   ["/legal/terms-and-conditions", "yearly", "0.4"],
   ["/legal/privacy-policy", "yearly", "0.4"],
@@ -83,6 +85,8 @@ const baseStaticEntries = [
   ["/legal/service-level-agreement", "yearly", "0.4"],
   ["/legal/data-deletion-instructions", "yearly", "0.4"],
   ["/legal/cookie-policy", "yearly", "0.4"],
+  ["/legal/browser-agent-privacy", "yearly", "0.4"],
+  ["/legal/desktop-agent-privacy", "yearly", "0.4"],
 ];
 
 const workflowBlueprintSlugs = parseWorkflowBlueprintSlugs(

@@ -97,9 +97,19 @@ export const seoCopy = {
       "Product updates, engineering notes, and guidance for running AI agents in production on AgentRuntime.",
   },
   labs: {
-    title: "Labs: Open-Source Tools",
+    title: "Labs: Tools from the AgentRuntime Team",
     description:
-      "Small open-source tools built by the AgentRuntime team. They are separate from the AgentRuntime product, and each one has its own license.",
+      "Small tools built by the AgentRuntime team: a browser agent, a desktop agent, and a disk space map. They are separate from the AgentRuntime product, and each one has its own license.",
+  },
+  labsBrowserAgent: {
+    title: "Browser Agent: Let AI Agents Work in Your Chrome Tabs",
+    description:
+      "Browser Agent is a Chrome extension and helper that let the AI agents you run on your own computer work in your real browser tabs over a local connection only. Apache-2.0 licensed.",
+  },
+  labsDesktopAgent: {
+    title: "Desktop Agent: Mouse, Keyboard and Screen Control for Windows",
+    description:
+      "Desktop Agent gives AI agents real mouse, keyboard, clipboard, and window screenshot control on Windows, through Cursor, Claude Desktop, or a shell. Apache-2.0 licensed.",
   },
   labsDiskScout: {
     title: "DiskScout: Disk Space Map and Duplicate Finder",

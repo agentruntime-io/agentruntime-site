@@ -44,6 +44,8 @@ const BlogPost = lazy(() => import("./pages/BlogPost"));
 const ApiReference = lazy(() => import("./pages/ApiReference"));
 const Labs = lazy(() => import("./pages/Labs"));
 const LabsDiskScout = lazy(() => import("./pages/LabsDiskScout"));
+const LabsBrowserAgent = lazy(() => import("./pages/LabsBrowserAgent"));
+const LabsDesktopAgent = lazy(() => import("./pages/LabsDesktopAgent"));
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -123,6 +125,8 @@ const App = () => (
                       <Route path="/legal/:policyName" element={<LegalPolicy />} />
                       <Route path="/labs" element={<Labs />} />
                       <Route path="/labs/diskscout" element={<LabsDiskScout />} />
+                      <Route path="/labs/browser-agent" element={<LabsBrowserAgent />} />
+                      <Route path="/labs/desktop-agent" element={<LabsDesktopAgent />} />
                       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                       <Route path="*" element={<NotFound />} />
                     </Routes>
