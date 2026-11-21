@@ -31,6 +31,9 @@ The public marketing SPA uses client-side routing; authoritative legal text live
 
 - [Contact](https://www.agentruntime.io/contact): Contact form and listed channels; enterprise or support lines may be gated behind feature flags.
 - [Company](https://www.agentruntime.io/company): Founding thesis, product principles, team perspective, and intended audiences.
+- [Labs](https://www.agentruntime.io/labs): Small tools from the AgentRuntime team. They are separate from the AgentRuntime platform and each has its own license.
+- [Browser Agent](https://www.agentruntime.io/labs/browser-agent): A Chrome extension plus a local helper (`npx @agentruntime-labs/browser-agent install`) that let AI agents the user runs on their own computer, such as Claude Desktop or Cursor, work in the user's real Chrome tabs. The extension connects only to 127.0.0.1. Apache-2.0.
+- [Desktop Agent](https://www.agentruntime.io/labs/desktop-agent): Real mouse, keyboard, clipboard, and window screenshot control for Windows (`npx @agentruntime-labs/desktop-agent install`), for AI agents through MCP or from a shell. Apache-2.0.
 - [Console](https://console.agentruntime.io/): Primary product UI—sign in to run and manage agents (public URL).
 - [Developer documentation](https://docs.agentruntime.io/): Guides and API reference hosted separately from the marketing site.
 - **Waitlist (`/waitlist`)**: May be enabled for email capture via `featureFlags.showWaitlist`; when disabled the path redirects to `/`.
@@ -54,6 +57,8 @@ Brand **AgentRuntime** appears in page copy; **AgentRuntime Labs LLC** is the le
 - [Developer Platform License](https://www.agentruntime.io/legal/developer-platform-license)
 - [Service Level Agreement](https://www.agentruntime.io/legal/service-level-agreement)
 - [User Data Deletion Instructions](https://www.agentruntime.io/legal/data-deletion-instructions)
+- [Browser Agent Privacy Policy](https://www.agentruntime.io/legal/browser-agent-privacy): Covers the Browser Agent Chrome extension and helper only, not the platform.
+- [Desktop Agent Privacy Policy](https://www.agentruntime.io/legal/desktop-agent-privacy): Covers Desktop Agent only, not the platform.
 
 ## Machine-readable companions on this host
 

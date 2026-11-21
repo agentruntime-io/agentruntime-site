@@ -15,12 +15,16 @@ import slaRaw from "@/docs/Service_Level_Agreement.md?raw";
 import userDataDeletionRaw from "@/docs/User_Data_Deletion_Instructions.md?raw";
 import cookiePolicyRaw from "@/docs/Cookie_Policy.md?raw";
 import partnerProgramTermsRaw from "@/docs/Partner_Program_Terms_DRAFT.md?raw";
+import browserAgentPrivacyRaw from "@/docs/Browser_Agent_Privacy_Policy.md?raw";
+import desktopAgentPrivacyRaw from "@/docs/Desktop_Agent_Privacy_Policy.md?raw";
 import { renderPolicyTemplate } from "@/legal/policyTemplate";
 
 export interface LegalPolicy {
   slug: string;
   title: string;
   content: string;
+  /** Meta description for the page. Policies that cover the platform use a shared default. */
+  description?: string;
   /**
    * An unlisted policy has a page at its URL but is left out of the Legal index, the sidebar,
    * the sitemap and the llms files, and is served with `noindex`. Used for drafts that are
@@ -84,6 +88,21 @@ const policyMap: Record<string, Omit<LegalPolicy, "content"> & { content: string
     slug: "cookie-policy",
     title: "Cookie Policy",
     content: cookiePolicyRaw,
+  },
+  // The Chrome Web Store listing for the Browser Agent extension points at this URL, so keep the slug stable.
+  "browser-agent-privacy": {
+    slug: "browser-agent-privacy",
+    title: "Browser Agent Privacy Policy",
+    description:
+      "Privacy policy for the AgentRuntime Browser Agent Chrome extension and helper: what it reads in your tabs, what it stores, that it connects only to your own computer, and how to remove it.",
+    content: browserAgentPrivacyRaw,
+  },
+  "desktop-agent-privacy": {
+    slug: "desktop-agent-privacy",
+    title: "Desktop Agent Privacy Policy",
+    description:
+      "Privacy policy for AgentRuntime Desktop Agent, which lets AI agents on your Windows computer capture the screen, use the clipboard, and send mouse and keyboard input: what it can access and what stays on your computer.",
+    content: desktopAgentPrivacyRaw,
   },
   // DRAFT. Not linked anywhere while the partner program ships off (see docs/BILLING_LEGAL_REVIEW_CHECKLIST.md).
   "partner-program-terms": {
