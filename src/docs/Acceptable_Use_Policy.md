@@ -1,6 +1,6 @@
 # AGENTRUNTIME ACCEPTABLE USE POLICY
 
-**Effective Date:** March 1, 2026
+**Effective Date:** March 3, 2026
 **Last Updated:** September 28, 2026
 
 This Acceptable Use Policy ("**AUP**") forms a binding part of the AgentRuntime Terms of Service and governs the permitted and prohibited uses of the AgentRuntime platform, services, APIs, and associated infrastructure (collectively, the "**Services**") operated by **AgentRuntime Labs LLC** ("**AgentRuntime**," "**we**," "**us**," or "**our**").

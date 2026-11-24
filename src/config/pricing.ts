@@ -95,6 +95,8 @@ export const TOP_UP = {
   minUsd: 5,
   maxUsd: 1000,
   maxPerPersonPer24HoursUsd: 5000,
+  /** Months a top-up stays valid from the day it is bought. The product setting must default to the same number. */
+  validMonths: 12,
 } as const;
 
 /** Days after an invoice or charge in which a billing error must be reported (existing policy wording). */

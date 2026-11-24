@@ -1,7 +1,7 @@
 # AGENTRUNTIME PRIVACY POLICY
 
-**Effective Date:** March 1, 2026
-**Last Updated:** November 21, 2026
+**Effective Date:** March 3, 2026
+**Last Updated:** November 25, 2026
 
 > **This policy is under review and may change before launch.**
 
@@ -214,7 +214,13 @@ The Services are not directed to individuals under the age of eighteen (18). We 
 
 ## 11. INTERNATIONAL DATA TRANSFERS
 
-AgentRuntime operates globally and may transfer personal information to countries outside your jurisdiction, including countries that may not provide the same level of data protection as your home jurisdiction. Where we transfer personal data internationally, we implement appropriate safeguards, such as Standard Contractual Clauses approved by the European Commission or other legally recognized transfer mechanisms, to ensure that your personal information is protected in accordance with applicable data protection law.
+AgentRuntime Labs LLC is organized in the State of Wyoming, United States, and our team works remotely, mainly from Sri Lanka. The Services run on Amazon Web Services in Singapore, so the personal information you give us is stored and processed there. It may also be processed in the United States and in other countries where our service providers operate (Section 12), and our team may access it from Sri Lanka and elsewhere to run and support the Services.
+
+These countries may not give your personal information the same level of protection as your home jurisdiction. Where the law requires a safeguard for a transfer, for example when the personal data of people in the European Economic Area or the United Kingdom is transferred to us or to our service providers, we rely on the Standard Contractual Clauses approved by the European Commission, the UK addendum to them, or another lawful transfer mechanism. A customer that needs a signed copy for its own records can ask for one under our [Data Processing Agreement](/legal/data-processing-agreement).
+
+We do not have an establishment in the European Economic Area or the United Kingdom.
+
+By default the Services are hosted in Singapore. A customer can ask us to host its workspace in a different Amazon Web Services region, on its own premises, or with another cloud provider such as Google Cloud or Microsoft Azure. We decide each request at our discretion and may approve or decline it, and any arrangement we approve is agreed in writing.
 
 ---
 
@@ -223,6 +229,24 @@ AgentRuntime operates globally and may transfer personal information to countrie
 The Services may contain links to or integrations with third-party websites and services. This Policy does not apply to the privacy practices of such third parties. We encourage you to review the privacy policies and platform terms of any third-party services you access through the platform—including **Meta** and **WhatsApp** when you use our WhatsApp connection features ([Meta Privacy Policy](https://www.facebook.com/privacy/policy/), [WhatsApp Business terms](https://www.whatsapp.com/legal/business-terms)).
 
 Payments are handled by **Stripe**, which handles the card and payment details you give it under its own privacy policy ([Stripe Privacy Policy](https://stripe.com/privacy)).
+
+### Service providers we use
+
+These providers process personal information for us, under their own agreements with us, to run the Services:
+
+| Provider | What it does for us | Where |
+| --- | --- | --- |
+| Amazon Web Services | Hosts the Services and stores their data | Singapore |
+| Stripe | Payments, billing, tax calculation, and partner payouts | The United States and the other countries where Stripe operates |
+| Sentry | Error and performance monitoring | European Union |
+| PostHog | Product and website analytics, and session recordings, with your consent where the law requires it (see our [Cookie Policy](/legal/cookie-policy)) | European Union |
+| Mixpanel | Product analytics and session recordings in the Console, with your consent where the law requires it | European Union |
+| Resend | Sends account and notification emails | The United States |
+| Vercel | Hosts our website and measures its performance | The United States, and its global network |
+| Composio | Runs the connections to third-party apps that you set up, when your workflows use them | The United States |
+| Google | Signs you in, if you choose to sign in with Google | The United States |
+
+When you choose an AI model, or connect a tool or app, we send that provider the content needed to carry out your workflow. Those providers, including model providers and the services you connect, handle it under their own terms and privacy policies, not this one. We update this Policy when the list above changes.
 
 Your use of connected messaging channels must comply with applicable platform rules (for example, WhatsApp's business messaging and template policies). AgentRuntime is not responsible for third-party platforms' availability, enforcement actions, or independent processing of personal data.
 
@@ -240,6 +264,7 @@ For questions, requests, or concerns regarding this Privacy Policy or our data p
 
 **AgentRuntime Labs LLC — Privacy Team**
 Email: [privacy@agentruntime.io](mailto:privacy@agentruntime.io)
+Registered office and mailing address: {{company.address}}
 
 ---
 

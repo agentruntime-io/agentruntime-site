@@ -1,7 +1,7 @@
 # AGENTRUNTIME SERVICE LEVEL AGREEMENT
 
-**Effective Date:** March 1, 2026
-**Last Updated:** March 1, 2026
+**Effective Date:** March 3, 2026
+**Last Updated:** March 3, 2026
 
 This Service Level Agreement ("**SLA**") sets forth AgentRuntime's commitments regarding the availability of the AgentRuntime platform and services (the "**Services**"), and describes the remedies available to eligible customers in the event those commitments are not met.
 

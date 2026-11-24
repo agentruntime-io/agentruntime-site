@@ -1,7 +1,7 @@
 # AGENTRUNTIME SECURITY POLICY
 
-**Effective Date:** March 1, 2026
-**Last Updated:** March 1, 2026
+**Effective Date:** March 3, 2026
+**Last Updated:** November 25, 2026
 
 This Security Policy ("**Policy**") describes the security practices, controls, and commitments that **AgentRuntime Labs LLC** ("**AgentRuntime**," "**we**," "**us**," or "**our**") maintains to protect the integrity, confidentiality, and availability of the AgentRuntime platform and associated services (collectively, the "**Services**") and the data of our users and customers.
 
@@ -153,7 +153,9 @@ Please include in your report: a description of the vulnerability, the affected 
 
 ## 9. SECURITY CERTIFICATIONS AND ASSESSMENTS
 
-AgentRuntime may undergo third-party security assessments, audits, or certification processes. Information regarding applicable certifications or attestations, including SOC 2 reports or equivalent, may be made available to enterprise customers under a non-disclosure agreement upon reasonable request.
+AgentRuntime does not currently hold a SOC 2, ISO/IEC 27001, or similar certification or attestation, and the Services have not been independently audited against a standard. We design our controls to support our customers' obligations under data protection laws such as the GDPR, and we may pursue independent certification or audits in the future. We will not describe the Services as certified, audited, or compliant with a standard unless that is true. The certifications of our infrastructure provider are described in Section 1.1.
+
+The Services have not been audited against HIPAA. Do not send protected health information through the Services unless we have agreed otherwise in writing, including a business associate agreement.
 
 ---
 

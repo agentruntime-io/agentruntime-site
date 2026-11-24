@@ -1,7 +1,7 @@
 # AGENTRUNTIME DATA PROCESSING AGREEMENT
 
-**Effective Date:** March 1, 2026
-**Last Updated:** September 28, 2026
+**Effective Date:** March 3, 2026
+**Last Updated:** November 25, 2026
 
 This Data Processing Agreement ("**DPA**") is entered into between **AgentRuntime Labs LLC** ("**AgentRuntime**," "**Processor**," "**we**," "**us**," or "**our**") and the customer entity that has accepted the AgentRuntime Terms of Service ("**Customer**" or "**Controller**"). This DPA forms part of and is incorporated by reference into the AgentRuntime Terms of Service (the "**Principal Agreement**").
 
@@ -113,14 +113,14 @@ AgentRuntime will review and update its security measures periodically or follow
 
 **6.2 Sub-processor Obligations.** AgentRuntime shall enter into a written agreement with each Sub-processor imposing data protection obligations that are at least equivalent to those set forth in this DPA. AgentRuntime shall remain responsible for the acts and omissions of its Sub-processors to the same extent as if AgentRuntime performed the Processing directly.
 
-**6.3 Sub-processor List.** AgentRuntime shall maintain an up-to-date list of current Sub-processors engaged in the Processing of Customer's Personal Data, which may include:
+**6.3 Sub-processor List.** AgentRuntime shall maintain an up-to-date list of current Sub-processors engaged in the Processing of Customer's Personal Data. As of the Last Updated date above, they are:
 
-- Cloud infrastructure and hosting providers
-- Monitoring and observability platforms
-- Payment processing providers
-- Customer support tooling providers
+- **Amazon Web Services**: cloud hosting and storage (Singapore).
+- **Sentry**: error and performance monitoring (European Union).
+- **Composio**: connections to third-party apps that Customer sets up (United States).
+- The **AI model providers** whose models Customer chooses to run through the Services, and the **tools and services Customer connects** to its workflows. These act on Customer's instructions under their own terms.
 
-This list is available upon request at **privacy@agentruntime.io**.
+AgentRuntime's payment, email, and analytics providers process data about Customer's account holders, not Customer's workflow data. They are listed in the Privacy Policy. This list is available upon request at **privacy@agentruntime.io**.
 
 **6.4 Notification of Changes.** AgentRuntime shall provide Customer with reasonable advance notice of any intended changes to its Sub-processor arrangements that may materially affect the Processing of Customer's Personal Data.
 
@@ -181,6 +181,10 @@ This list is available upon request at **privacy@agentruntime.io**.
 &nbsp;&nbsp;&nbsp;&nbsp;(b) Standard Contractual Clauses (SCCs) or approved binding corporate rules; or
 
 &nbsp;&nbsp;&nbsp;&nbsp;(c) any other legally recognized transfer mechanism under applicable Data Protection Legislation.
+
+**9.3 EEA and UK Transfers.** AgentRuntime is established in the United States and hosts the Services in Singapore. Where Customer's Personal Data protected by the GDPR or the UK GDPR is transferred to AgentRuntime, the parties will agree the transfer mechanism that applies. This will normally be the SCCs (Module Two, or Module Three where Customer is itself a processor) together with the UK Addendum to the SCCs for transfers from the United Kingdom. AgentRuntime will sign them on Customer's written request to **privacy@agentruntime.io**, and this DPA and AgentRuntime's Security Policy describe the Processing, Sub-processors, and security measures that the annexes to the SCCs require.
+
+**9.4 Data Location.** By default AgentRuntime hosts the Services in Singapore. Customer may ask in writing for the Services to be hosted in another Amazon Web Services region, on Customer's own premises, or with another cloud provider such as Google Cloud or Microsoft Azure. AgentRuntime may approve or decline each request at its sole discretion. If it approves, the hosting location, the Sub-processors that apply to that deployment, and any other terms are set out in a separate written agreement, and Section 9.3 applies to any transfer that the new location involves.
 
 ---
 

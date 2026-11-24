@@ -77,7 +77,9 @@ These Partner Program Terms ("**Partner Terms**") are the proposed terms for the
 
 **7.1 Schedule and Minimum.** AgentRuntime pays commission once a month, for what is payable at that point, when your payable balance reaches a minimum amount. A smaller balance rolls over to the next month. The minimum and the next payout date are shown in your partner dashboard. AgentRuntime may require its own approval of each payout run.
 
-**7.2 How You Are Paid.** Payouts are made in US dollars, from AgentRuntime's Stripe balance, through Stripe Connect to a payout account that you set up on Stripe's own pages. Stripe checks your identity and holds your bank and tax details. AgentRuntime keeps only your Stripe account identifier and its status. Until your payout account is ready, AgentRuntime may pay you by another method or hold the payout. Stripe supports payouts to some countries only, and AgentRuntime cannot pay a Partner in a country Stripe does not support.
+**7.2 How You Are Paid.** Payouts are made in US dollars, from AgentRuntime's Stripe balance, through Stripe Connect to a payout account that you set up on Stripe's own pages. Stripe checks your identity and holds your bank and tax details. AgentRuntime keeps only your Stripe account identifier and its status. Until your payout account is ready, AgentRuntime may pay you by another method or hold the payout. Stripe supports payouts to some countries only, and its list changes: see [Stripe's page on cross-border payouts](https://docs.stripe.com/connect/cross-border-payouts) and the country information on Stripe's own pages. AgentRuntime cannot pay a Partner in a country that Stripe does not support for AgentRuntime's account.
+
+**7.3 Payment Costs.** Fees charged by Stripe, by banks, and for currency conversion or transfers may apply to a payout. They are deducted from the amount you receive, or charged to you, and AgentRuntime is not responsible for them. Stripe or your bank shows them to you.
 
 ---
 
