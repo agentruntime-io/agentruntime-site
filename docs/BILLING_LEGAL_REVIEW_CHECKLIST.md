@@ -13,6 +13,8 @@ Written 2026-11-11 for the owner. This is the list of everything the new pricing
 
 ## A. Company facts I did not know (not written into any page)
 
+**Answered 2026-11-25: see section H.**
+
 **Updated 2026-11-12.** The owner confirmed that the company behind the live Stripe account is a **US (Wyoming) company, not a UK Ltd**. No published page says otherwise: the pages use only the legal name the policies already state ("AgentRuntime Labs LLC"), prices are in US dollars, nothing mentions UK company law, UK governing law, UK rates or UK registrations, and the tax wording is only "taxes are added where required". The points that this fact makes necessary to confirm are in rows A1 to A4 and A7 to A9. I wrote none of them into a page.
 
 | # | What I left out | Where it matters | What you confirm |
@@ -106,3 +108,38 @@ New pages: `/labs/browser-agent`, `/labs/desktop-agent` (in Labs, footer "Build"
 | G6 | The Browser Agent page says a Chrome Web Store listing is not live yet and explains how to load the extension from the npm package. The Desktop Agent and Browser Agent pages never link to GitHub (both repositories are private) and do not call the tools open source | When the listing is live, replace step 2 on `src/pages/LabsBrowserAgent.tsx` with an Add to Chrome link. If you make the repositories public, you can add source links and "open source" |
 | G7 | Not confirmed from the code, so not claimed: whether Browser Agent works on macOS or Linux (the page says only that the installer finds Claude Desktop and Cursor in their Windows locations), and any statement about the Chrome Web Store review outcome | Say if you want macOS or Linux support claimed |
 | G8 | `browser-agent install` starts the helper with `--insecure-no-token`, so the local connection needs no pairing token. The policy says only that it listens on 127.0.0.1 and does not claim a token | A product decision, not a wording one |
+
+## H. Company facts confirmed and what changed (2026-11-25)
+
+The owner confirmed the company facts below from the Wyoming filing and answered the questions in section A. The filing documents themselves are kept out of this repository (they hold identifiers and personal contact details that must never go on a page).
+
+**Confirmed.** AgentRuntime Labs LLC is a Wyoming limited liability company, filed 3 March 2026. The Sheridan address is the registered agent's (Registered Agents Inc) and is also the company's listed mailing and principal-office address, so it is printed as "registered office and mailing address" (answers A1 and G3). Servers are on AWS in Singapore (the infrastructure code uses `ap-southeast-1`). The team works from Sri Lanka. There is no certification or audit yet (GDPR and HIPAA are design goals, not claims), and no EU establishment.
+
+**Changed on the pages:**
+
+| Page | Change |
+|---|---|
+| All nine pages that said "Effective March 1, 2026" | Now March 3, 2026 (the company did not exist on March 1). "Last Updated" is November 25, 2026 on the pages edited |
+| Terms 1.1, 19.1 | "A limited liability company organized under the laws of the State of Wyoming, United States", with the registered office and mailing address. Governing law is now named as Wyoming, with a line keeping mandatory consumer rights. The dispute-resolution wording (19.2) is unchanged |
+| Privacy 11, 12, 14 | Where we are, where data is stored (AWS Singapore) and accessed (team in Sri Lanka), the transfer tools, no EU establishment, an option to ask for another AWS region, on-premises or another cloud (we may approve or decline), a table of the service providers (AWS, Stripe, Sentry, PostHog, Mixpanel, Resend, Vercel, Composio, Google sign-in), and the postal address in the contact block |
+| DPA 6.3, 9.3, 9.4 | Named sub-processors (AWS, Sentry, plus customer-chosen model providers and connected tools); SCCs (Module Two or Three) and the UK Addendum signed on request; hosting elsewhere on request, at our sole discretion, by separate written agreement |
+| Security 9 | Says plainly there is no SOC 2, ISO 27001 or similar certification and no HIPAA audit, and that protected health information must not be sent without our written agreement (including a business associate agreement). The old sentence about SOC 2 reports being available is gone |
+| Billing 6.3, FAQ, pricing page | Top-up credits are valid for twelve months from the day they are bought (one number, `TOP_UP.validMonths` in `src/config/pricing.ts`), the expiry date is shown before paying and on the balance, and a longer period can be agreed in writing before a sale. **The product does not expire top-ups yet** (see H4): the matching billing change must ship before the first paid top-up |
+| Partner draft 7.2, 7.3 | Links Stripe's cross-border payouts page instead of a country list; Stripe, bank and currency-conversion or transfer costs apply to a payout and are deducted from, or charged to, the partner |
+
+**Still open:**
+
+| # | Point | Who |
+|---|---|---|
+| H1 | **Decided 2026-11-25:** treat the company as owned 100% by one member for now. A restructuring is planned: revisit the Terms, the Privacy contact block and the tax position when it happens | Owner, later an accountant |
+| H2 | Tax: EU and UK VAT for card sales to consumers by a non-EU and non-UK company (registration from the first sale; Stripe Tax calculates, but registering and filing are separate), US state sales tax, and how long to keep billing records (A4, A5, A9) | Accountant |
+| H3 | Business-only (18 and over) use. Terms 3.1 still allows age 13 with parental consent. Business-only would remove most EU and UK consumer rules (A7) | Owner, then lawyer |
+| H4 | **Decided 2026-11-25:** twelve months from purchase, shown before paying and on the balance; the owner can agree a longer period or change the rule before a sale. The matching billing change (a setting with default 12, expiry on new top-up credits, and the date in the Console) is built and awaiting release | Owner decides when to release |
+| H5 | Dispute venue: 19.2 still says arbitration or courts "as specified in the Order Form". Wyoming law is named, but nothing says where or how a dispute is heard. | Owner, then lawyer |
+| H6 | Sentry, PostHog and Mixpanel are printed as EU (the code points at EU hosts; the owner confirmed he places such services in the EU where he can). Composio, Vercel and Google sign-in are printed as United States (owner). **Resend is printed as United States, not Singapore:** Resend offers sending regions in Virginia, Ireland, São Paulo and Tokyo only, and keeps account data in the US ([Resend: choosing a region](https://resend.com/docs/dashboard/domains/regions)); check the region of the sending domain in the Resend dashboard. Hosted model providers appear only by category in the DPA list: name them when the list is final | Owner |
+| H7 | Security 5.1(d) says vulnerability management includes "periodic third-party penetration testing". Confirm one has happened or soften it | Owner |
+| H8 | Aliases to `hello@`: privacy@, legal@, billing@, support@, security@, abuse@ and sales@ are all printed on the site (privacy@ must work before the Chrome Web Store submission) | Owner |
+| H9 | Partner payment costs are written as the partner's (deducted from the payout or charged to the partner), as the owner said. Stripe charges the platform fees on cross-border payouts, so this decides who carries them | Owner, before the program is switched on |
+| H10 | No EU or UK representative is named. The DPA offers the SCCs on request rather than signing them automatically. Both are fine until there are EU or UK customers | Lawyer, at that point |
+| H11 | The "under review" lines stay on Billing, Terms, Privacy and the partner draft until the owner and a lawyer have read them | Owner |
+| H12 | The wording is a draft from the owner's answers and the code. It has not been read by a lawyer | Lawyer |

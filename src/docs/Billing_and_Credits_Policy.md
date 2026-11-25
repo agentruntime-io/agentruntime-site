@@ -1,7 +1,7 @@
 # AGENTRUNTIME BILLING AND CREDITS POLICY
 
-**Effective Date:** March 1, 2026
-**Last Updated:** November 11, 2026
+**Effective Date:** March 3, 2026
+**Last Updated:** November 25, 2026
 
 > **This policy is under review and may change before launch.**
 
@@ -139,7 +139,7 @@ Each kind of Credits is spent only on its own kind of usage.
 
 &nbsp;&nbsp;&nbsp;&nbsp;(d) **Other grants.** AgentRuntime may, at its discretion, issue Credits to users through promotional offers, service credits, developer grant programs, compensation for confirmed service outages, or referral programs. Referral rewards are platform credits.
 
-**6.3 Expiry.** Credits included with a plan expire at the end of the billing period they were granted for, which is the end of the year for a yearly plan; they do not roll over. Credits from a free trial expire at the end of the trial. Credits you buy by top-up stay in your balance until they are used. Credits issued under Section 6.2(d) may carry an expiration date, which is stated when they are issued.
+**6.3 Expiry.** Credits included with a plan expire at the end of the billing period they were granted for, which is the end of the year for a yearly plan; they do not roll over. Credits from a free trial expire at the end of the trial. Credits you buy by top-up are valid for {{topup.validMonths}} months from the day you buy them, and unused credits expire at the end of that period. The expiry date is shown before you pay and on your credit balance. We may agree a longer period with you in writing before you buy. Credits issued under Section 6.2(d) may carry an expiration date, which is stated when they are issued.
 
 **6.4 Nature of Credits.** Credits:
 
