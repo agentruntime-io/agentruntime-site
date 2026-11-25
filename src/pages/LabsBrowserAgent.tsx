@@ -8,7 +8,7 @@ const facts = [
   {
     label: "Requirements",
     value:
-      "Chrome 114 or newer and Node.js 18 or newer. The installer finds Claude Desktop and Cursor in their Windows locations.",
+      "Chrome 114 or newer and Node.js 18 or newer (Firefox 128 or newer for the experimental Firefox build, see below). The installer finds Claude Desktop and Cursor in their Windows locations.",
   },
   {
     label: "Works with",
@@ -55,6 +55,65 @@ const features = [
   },
 ];
 
+const firefoxSteps = [
+  <>
+    Clone the source repository (<code>agentruntime-io/browser-agent</code> on
+    GitHub), run <code>npm install</code> in its root folder, then{" "}
+    <code>npm run build:firefox</code>. This writes a folder called{" "}
+    <code>extension-firefox</code>.
+  </>,
+  <>
+    In Firefox open <code>about:debugging#/runtime/this-firefox</code>, choose
+    Load Temporary Add-on, and pick <code>extension-firefox/manifest.json</code>.
+    Do not pick <code>extension/manifest.json</code>: Firefox rejects it.
+  </>,
+  <>
+    Open <code>about:addons</code>, select the extension, open Permissions, and
+    turn on &ldquo;Access your data for all websites&rdquo;. Firefox leaves site
+    access off for this kind of extension, and without it nothing works.
+  </>,
+  <>
+    Click the extension icon, check the port, and press Connect. The helper is
+    the same as for Chrome: run{" "}
+    <code>npx @agentruntime-labs/browser-agent install</code>, then restart
+    your AI app.
+  </>,
+];
+
+const firefoxSection = (
+  <section className="marketing-section" id="firefox">
+    <div className="marketing-container">
+      <div className="marketing-section-label">Firefox, experimental</div>
+      <h2>Use it in Firefox.</h2>
+      <p className="marketing-labs-intro">
+        Chrome is the main way to use Browser Agent and the one we support. A
+        Firefox version exists, but it is experimental. It passes
+        Mozilla&rsquo;s add-on linter, and in a throwaway Firefox profile it
+        connected to the helper, listed tabs, opened a page and read its text.
+        It has not been used day to day in a normal profile yet. It needs
+        Firefox 128 or newer.
+      </p>
+      <p className="marketing-labs-intro">
+        There is no Firefox store listing yet, and the npm package does not
+        include the Firefox folder, so for now you build it from a clone of the
+        source repository.
+      </p>
+      <ol className="marketing-labs-steps">
+        {firefoxSteps.map((step, index) => (
+          <li key={index}>{step}</li>
+        ))}
+      </ol>
+      <p className="marketing-labs-fineprint">
+        A temporary add-on disappears when Firefox restarts, so load it again
+        next time; a permanent install needs Mozilla&rsquo;s signing. Dark-mode
+        emulation, full-page and clipped screenshots, and anything else that
+        needs the DevTools protocol do not work in Firefox. Screenshots,
+        downloads and window tools have not been checked there yet.
+      </p>
+    </div>
+  </section>
+);
+
 export default function LabsBrowserAgent() {
   return (
     <LabsAgentPage
@@ -80,9 +139,11 @@ export default function LabsBrowserAgent() {
         </>,
         <>
           Click the extension icon. It connects by itself and shows Connected.
-          Then ask your AI app to take a screenshot of your current tab.
+          Then ask your AI app to take a screenshot of your current tab. Prefer
+          Firefox? There is an experimental build: see below.
         </>,
       ]}
+      extraSection={firefoxSection}
       featuresHeading="Let an agent work in the browser you already use."
       features={features}
       warning={{
