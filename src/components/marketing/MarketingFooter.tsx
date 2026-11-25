@@ -60,6 +60,8 @@ export function MarketingFooter() {
               Documentation ↗
             </a>
             <Link to="/api-reference">API reference</Link>
+            <Link to="/labs/browser-agent">Browser Agent</Link>
+            <Link to="/labs/desktop-agent">Desktop Agent</Link>
           </div>
 
           <div className="marketing-footer-column">
@@ -82,6 +84,8 @@ export function MarketingFooter() {
               Billing and credits
             </Link>
             <Link to="/legal/cookie-policy">Cookie Policy</Link>
+            <Link to="/legal/browser-agent-privacy">Browser Agent privacy</Link>
+            <Link to="/legal/desktop-agent-privacy">Desktop Agent privacy</Link>
             {analyticsEnabled() && (
               <button
                 type="button"

@@ -1,7 +1,7 @@
 # AGENTRUNTIME TERMS OF SERVICE
 
-**Effective Date:** March 1, 2026
-**Last Updated:** November 11, 2026
+**Effective Date:** March 3, 2026
+**Last Updated:** November 25, 2026
 
 > **This policy is under review and may change before launch.**
 
@@ -11,7 +11,7 @@ PLEASE READ THESE TERMS OF SERVICE CAREFULLY BEFORE ACCESSING OR USING THE AGENT
 
 ## 1. PARTIES AND AGREEMENT
 
-**1.1 Operator.** These Terms of Service ("**Terms**") constitute a legally binding agreement between you ("**Customer**," "**User**," "**you**," or "**your**") and **AgentRuntime Labs LLC**, a company incorporated under applicable laws ("**AgentRuntime**," "**we**," "**us**," or "**our**").
+**1.1 Operator.** These Terms of Service ("**Terms**") constitute a legally binding agreement between you ("**Customer**," "**User**," "**you**," or "**your**") and **AgentRuntime Labs LLC**, a limited liability company organized under the laws of the State of Wyoming, United States, whose registered office and mailing address is {{company.address}} ("**AgentRuntime**," "**we**," "**us**," or "**our**").
 
 **1.2 Entire Agreement.** These Terms, together with AgentRuntime's Privacy Policy, Acceptable Use Policy, Billing and Credits Policy, Data Processing Agreement, and any Order Form or Statement of Work executed between the parties, constitute the entire agreement between you and AgentRuntime with respect to the Services and supersede all prior and contemporaneous agreements, representations, and understandings.
 
@@ -235,7 +235,7 @@ TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE SERVICES ARE PROVIDED "AS
 
 ## 19. GOVERNING LAW AND DISPUTE RESOLUTION
 
-**19.1 Governing Law.** These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which AgentRuntime Labs LLC is incorporated, without regard to its conflict of law provisions.
+**19.1 Governing Law.** These Terms shall be governed by and construed in accordance with the laws of the State of Wyoming, United States, without regard to its conflict of law provisions. Nothing in this Section removes a mandatory consumer protection that applies to you under the law of the place where you live and that cannot be waived by contract.
 
 **19.2 Dispute Resolution.** Any dispute, claim, or controversy arising out of or relating to these Terms or the breach, termination, enforcement, interpretation, or validity thereof shall first be subject to good-faith negotiation between the parties. If unresolved within thirty (30) days of written notice of a dispute, such dispute shall be resolved by binding arbitration or through the courts of competent jurisdiction, as specified in the applicable Order Form or otherwise agreed in writing by the parties.
 

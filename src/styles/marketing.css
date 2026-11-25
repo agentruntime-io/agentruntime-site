@@ -6317,6 +6317,38 @@ button.marketing-side-item:focus-visible {
   overflow-wrap: anywhere;
 }
 
+.marketing-labs-intro {
+  max-width: 720px;
+  margin: 18px 0 20px;
+  color: var(--marketing-muted);
+  line-height: 1.6;
+}
+
+.marketing-labs-command {
+  max-width: 720px;
+}
+
+.marketing-labs-steps {
+  max-width: 720px;
+  margin: 28px 0 0;
+  padding-left: 22px;
+  list-style: decimal;
+  color: var(--marketing-muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.marketing-labs-steps li {
+  margin-top: 12px;
+  padding-left: 6px;
+}
+
+.marketing-labs-steps code {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12.5px;
+  overflow-wrap: anywhere;
+}
+
 .marketing-labs-actions.marketing-hero-actions {
   margin-top: 40px;
   justify-content: flex-start;

@@ -40,7 +40,7 @@ const creditKinds = [
   {
     pill: "Top-ups",
     title: "Add credits any time",
-    description: `Buy ${formatUsd(TOP_UP.minUsd)} to ${formatUsd(TOP_UP.maxUsd)} at a time and split it between the two kinds. Credits you buy stay until you use them. Credits included with a plan expire at the end of the billing period.`,
+    description: `Buy ${formatUsd(TOP_UP.minUsd)} to ${formatUsd(TOP_UP.maxUsd)} at a time and split it between the two kinds. Credits you buy are valid for ${numberWord(TOP_UP.validMonths)} months from the day you buy them. Credits included with a plan expire at the end of the billing period.`,
   },
 ];
 

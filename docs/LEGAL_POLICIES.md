@@ -12,6 +12,16 @@ Public legal text lives as Markdown under `src/docs/` and is exposed at `/legal/
 
 Routes are already wired: `App.tsx` → `/legal` and `/legal/:policyName` → `LegalPolicy.tsx`.
 
+A policy that does not cover the platform (the two agent policies) sets `description` in its `policies.ts` entry, which replaces the default "terms, obligations ... use of the platform" meta description.
+
+## Company name and address (`{{company.name}}`, `{{company.address}}`)
+
+These two tokens are filled from `src/config/company.ts`, so no policy keeps its own copy of the legal name or postal address. Only the Browser Agent and Desktop Agent policies print the address so far (see section G of the [review checklist](./BILLING_LEGAL_REVIEW_CHECKLIST.md)).
+
+## Browser Agent and Desktop Agent policies
+
+`/legal/browser-agent-privacy` is the privacy policy URL given to the Chrome Web Store for the Browser Agent extension: **keep that slug stable**, and keep the policy true to what the extension does (the dashboard's privacy answers and permission justifications must agree with it). Facts come from the tools' own code and docs (the `agentruntime-io/browser-agent` and `agentruntime-io/desktop-agent` repositories). The Labs pages for both live at `/labs/browser-agent` and `/labs/desktop-agent` and link to npm, never to GitHub, while the repositories are private.
+
 ## Prices and limits in policy text (`{{tokens}}`)
 
 Never type a price, credit amount, trial length or limit into a policy. Every such number lives in **`src/config/pricing.ts`**, which the pricing page and the billing FAQ also read. In a policy `.md` file write a token, for example `{{trial.days}}`, `{{topup.max}}` or `{{plans.table}}`; `src/legal/policyTemplate.ts` fills it when the policy loads. An unknown token throws, so a typo fails the build instead of publishing `{{...}}`. To add a token, add one line to `policyTokens()` in `policyTemplate.ts`.

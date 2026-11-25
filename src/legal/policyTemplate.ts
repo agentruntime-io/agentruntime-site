@@ -21,6 +21,7 @@ import {
   planNamesSentence,
   yearlyUsd,
 } from "@/config/pricing";
+import { company } from "@/config/company";
 
 const plansTable = (): string => {
   const rows = PLANS.map(
@@ -52,7 +53,11 @@ export const policyTokens = (): Record<string, string> => ({
   "topup.min": formatUsd(TOP_UP.minUsd),
   "topup.max": formatUsd(TOP_UP.maxUsd),
   "topup.maxPerDay": formatUsd(TOP_UP.maxPerPersonPer24HoursUsd),
+  "topup.validMonths": numberWord(TOP_UP.validMonths),
   "dispute.windowDays": numberWord(BILLING_DISPUTE_WINDOW_DAYS),
+  // Company details come from src/config/company.ts so a policy never carries its own copy.
+  "company.name": company.name,
+  "company.address": `${company.address.line1}, ${company.address.city}, ${company.address.state} ${company.address.zip}, ${company.address.country}`,
 });
 
 const TOKEN = /\{\{\s*([A-Za-z0-9_.]+)\s*\}\}/g;

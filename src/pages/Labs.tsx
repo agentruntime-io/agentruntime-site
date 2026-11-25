@@ -10,8 +10,8 @@ export default function Labs() {
       <Seo {...seoCopy.labs} canonicalPath="/labs" />
       <PageHero
         eyebrow="Labs"
-        title="Small open-source tools from the AgentRuntime team."
-        description="Things we built and published on GitHub. They are not part of the AgentRuntime product, and each one has its own license."
+        title="Small tools from the AgentRuntime team."
+        description="Things we built and published for anyone to use. They are not part of the AgentRuntime product, and each one has its own license."
       />
 
       <section className="marketing-section" data-flush-top="true">
@@ -36,7 +36,8 @@ export default function Labs() {
             ))}
           </div>
           <p className="marketing-labs-fineprint">
-            Each project lives in its own repository in the{" "}
+            Browser Agent and Desktop Agent are published as packages on npm.
+            DiskScout lives in its own repository in the{" "}
             <a
               className="marketing-labs-text-link"
               href="https://github.com/agentruntime-io"

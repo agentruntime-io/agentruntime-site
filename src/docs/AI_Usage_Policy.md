@@ -1,7 +1,7 @@
 # AGENTRUNTIME AI USAGE POLICY
 
-**Effective Date:** March 1, 2026
-**Last Updated:** March 1, 2026
+**Effective Date:** March 3, 2026
+**Last Updated:** March 3, 2026
 
 This AI Usage Policy ("**Policy**") governs the deployment and operation of artificial intelligence systems, automated agents, machine learning models, and other automated systems (collectively, "**AI Systems**") on the AgentRuntime platform and related services (collectively, the "**Services**") operated by **AgentRuntime Labs LLC** ("**AgentRuntime**," "**we**," "**us**," or "**our**").
 

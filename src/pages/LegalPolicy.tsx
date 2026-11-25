@@ -25,7 +25,9 @@ const LegalPolicy = () => {
   }
 
   const headings = extractHeadings(policy.content);
-  const policyDescription = `Read AgentRuntime's ${policy.title}: terms, obligations, and how they apply to your use of the platform.`;
+  const policyDescription =
+    policy.description ??
+    `Read AgentRuntime's ${policy.title}: terms, obligations, and how they apply to your use of the platform.`;
 
   return (
     <div className="min-h-screen bg-background">
