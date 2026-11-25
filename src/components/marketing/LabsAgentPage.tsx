@@ -18,6 +18,8 @@ type LabsAgentPageProps = {
   installIntro: string;
   /** Steps shown under the command, in order. */
   installSteps: ReactNode[];
+  /** Optional section shown right after the install steps (for example a secondary platform). */
+  extraSection?: ReactNode;
   featuresHeading: string;
   features: Feature[];
   warning: Panel;
@@ -37,6 +39,7 @@ export function LabsAgentPage({
   installTitle,
   installIntro,
   installSteps,
+  extraSection,
   featuresHeading,
   features,
   warning,
@@ -102,6 +105,8 @@ export function LabsAgentPage({
           </ol>
         </div>
       </section>
+
+      {extraSection}
 
       <section className="marketing-section">
         <div className="marketing-container">
