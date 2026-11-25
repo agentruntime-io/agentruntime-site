@@ -1,7 +1,7 @@
 # AGENTRUNTIME DEVELOPER PLATFORM LICENSE
 
-**Effective Date:** March 1, 2026
-**Last Updated:** March 1, 2026
+**Effective Date:** March 3, 2026
+**Last Updated:** March 3, 2026
 
 This Developer Platform License ("**License**") governs your use of the AgentRuntime developer tools and interfaces, including APIs, software development kits (SDKs), command-line interfaces (CLIs), client libraries, developer documentation, and sample code (collectively, the "**Developer Tools**") provided by **AgentRuntime Labs LLC** ("**AgentRuntime**," "**we**," "**us**," or "**our**").
 

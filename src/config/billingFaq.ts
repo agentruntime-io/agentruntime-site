@@ -44,7 +44,7 @@ export const BILLING_FAQ: readonly BillingFaqItem[] = [
     id: "rollover",
     question: "Do unused credits roll over?",
     answer:
-      "Credits included with a plan expire at the end of the billing period they were granted for (the end of the year for a yearly plan). Credits you buy by top-up stay in your balance until you use them.",
+      `Credits included with a plan expire at the end of the billing period they were granted for (the end of the year for a yearly plan). Credits you buy by top-up are valid for ${numberWord(TOP_UP.validMonths)} months from the day you buy them, and the expiry date is shown before you pay.`,
     policyLink: { label: "Expiry in the Billing and Credits Policy", to: `${BILLING_POLICY}#6-credits` },
   },
   {

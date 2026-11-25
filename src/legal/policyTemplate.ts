@@ -53,6 +53,7 @@ export const policyTokens = (): Record<string, string> => ({
   "topup.min": formatUsd(TOP_UP.minUsd),
   "topup.max": formatUsd(TOP_UP.maxUsd),
   "topup.maxPerDay": formatUsd(TOP_UP.maxPerPersonPer24HoursUsd),
+  "topup.validMonths": numberWord(TOP_UP.validMonths),
   "dispute.windowDays": numberWord(BILLING_DISPUTE_WINDOW_DAYS),
   // Company details come from src/config/company.ts so a policy never carries its own copy.
   "company.name": company.name,
